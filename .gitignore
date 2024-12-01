@@ -1,0 +1,14 @@
+# latex generated
+*.aux
+*.log
+*.toc
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.synctex.gz
+*.fdb_latexmk
+
+# Emacs spesific
+*.~undo-tree~
