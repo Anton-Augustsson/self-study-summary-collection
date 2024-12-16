@@ -1,0 +1,352 @@
+\chapter{Quantum Physics}
+
+\section{Quantum Mechanics Fundamentals}
+% https://www.youtube.com/watch?v=NN2txluv1PY
+
+\subsection{Introduction}
+Quantum Mechanics is the branch of physics that deals with the behavior of matter and energy at very small scales, typically at the level of atoms and subatomic particles. It fundamentally challenges classical mechanics by incorporating wave-particle duality, quantization of energy, and the probabilistic nature of physical systems.
+
+Quantum mechanics has wide-ranging applications, from explaining the structure of atoms to technologies such as semiconductors and quantum computing.
+
+\subsection{Key Concepts in Quantum Mechanics}
+\begin{itemize}
+    \item \textbf{Wave-Particle Duality:} Particles such as electrons exhibit both wave-like and particle-like properties. This was first demonstrated in experiments like the double-slit experiment.
+    \item \textbf{Quantum State:} The state of a quantum system is described by a \textit{wavefunction}, $\psi(x,t)$, which encodes all the information about the system.
+    \item \textbf{Quantization:} Physical quantities like energy and momentum are quantized, meaning they can only take discrete values.
+    \item \textbf{Superposition:} A quantum system can exist in a superposition of multiple states simultaneously, with probabilities determined by the coefficients in the superposition.
+    \item \textbf{Uncertainty Principle:} Formulated by Heisenberg, it states that certain pairs of physical properties, such as position and momentum, cannot both be known exactly at the same time.
+\end{itemize}
+
+\subsection{Mathematical Formulation}
+The mathematical framework of quantum mechanics is built on linear algebra and functional analysis. The core equations and concepts are as follows:
+
+\subsubsection{1. The Schrödinger Equation}
+The time-dependent Schrödinger equation describes how the wavefunction evolves over time. It is given by:
+\[
+i\hbar \frac{\partial}{\partial t} \psi(x,t) = \hat{H} \psi(x,t)
+\]
+where:
+\begin{itemize}
+    \item $i$ is the imaginary unit.
+    \item $\hbar$ is the reduced Planck's constant.
+    \item $\psi(x,t)$ is the wavefunction.
+    \item $\hat{H}$ is the Hamiltonian operator, which represents the total energy (kinetic + potential) of the system.
+\end{itemize}
+
+The time-independent Schrödinger equation is used for systems with no time-dependent external forces:
+\[
+\hat{H} \psi(x) = E \psi(x)
+\]
+where $E$ is the energy eigenvalue.
+
+\subsubsection{2. Operators and Observables}
+In quantum mechanics, physical observables such as position ($\hat{x}$), momentum ($\hat{p}$), and energy ($\hat{H}$) are represented by operators. These operators act on the wavefunction to extract information about the system:
+\[
+\hat{x} \psi(x) = x \psi(x), \quad \hat{p} = -i\hbar \frac{\partial}{\partial x}
+\]
+The expectation value of an observable is given by:
+\[
+\langle \hat{A} \rangle = \int \psi^*(x) \hat{A} \psi(x) \, dx
+\]
+where $\hat{A}$ is the operator corresponding to an observable.
+
+\subsection*{3. The Heisenberg Uncertainty Principle}
+The Heisenberg uncertainty principle states that it is impossible to simultaneously know the exact values of certain pairs of observables (e.g., position and momentum). Mathematically, it is expressed as:
+\[
+\Delta x \Delta p \geq \frac{\hbar}{2}
+\]
+where $\Delta x$ and $\Delta p$ are the uncertainties in position and momentum, respectively.
+
+\subsubsection{4. The Wavefunction}
+The wave function $\psi(x,t)$ contains all the information about the quantum state of a system. 
+It is both injective, continues, and differentiable.
+A wave function actually represents the partial, the probability amplitude. The wave function 
+of a partial gives information about the behavior, both in terms of probability of position,
+probability of momentum, and probability of energy. This can be a misleading interpretation
+and theories are formed to give a better description of the subatomic partial. One thing 
+can be determined it is not a partial in the traditional sense, e.g., a microscopic ball. 
+Other interpretation, such as quantum field theory is described in section~\ref{} and provide 
+a more intuitive description of what the subatomic partials actually are. However, quantum
+mechanics are an abstraction that is useful.
+%https://www.youtube.com/watch?v=sOI4DlWQ_1w
+Its square modulus gives the probability density of finding a particle at position $x$ at time $t$:
+\[
+|\psi(x,t)|^2 \, dx
+\]
+is the probability of finding the particle in the interval $[x, x+dx]$.
+
+For a system in a superposition of states:
+\[
+\psi(x,t) = \sum_{n} c_n \psi_n(x) e^{-i E_n t / \hbar}
+\]
+where $\psi_n(x)$ are the eigenfunctions of the Hamiltonian and $c_n$ are the coefficients determined by the initial conditions.
+
+\subsection{Quantum Mechanics in Different Domains}
+\subsubsection{1. Particle in a Box (Infinite Potential Well)}
+Consider a particle confined in a one-dimensional box with infinite potential walls at $x = 0$ and $x = L$. The Schrödinger equation for this system is:
+\[
+\hat{H} \psi(x) = E \psi(x)
+\]
+with boundary conditions $\psi(0) = \psi(L) = 0$. The solutions are:
+\[
+\psi_n(x) = \sqrt{\frac{2}{L}} \sin \left( \frac{n\pi x}{L} \right)
+\]
+and the corresponding energy eigenvalues are:
+\[
+E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2}, \quad n = 1, 2, 3, \dots
+\]
+
+\subsubsection{2. Harmonic Oscillator}
+For a quantum harmonic oscillator, the potential is given by:
+\[
+V(x) = \frac{1}{2} m \omega^2 x^2
+\]
+The energy eigenvalues for this system are quantized:
+\[
+E_n = \left( n + \frac{1}{2} \right) \hbar \omega
+\]
+and the eigenfunctions are given by Hermite polynomials.
+
+\subsection{Quantum Entanglement and Superposition}
+One of the most striking features of quantum mechanics is \textit{quantum entanglement}, where particles become correlated such that the state of one particle immediately influences the state of another, no matter the distance separating them. This leads to phenomena such as:
+\begin{itemize}
+    \item \textbf{Non-locality:} The measurement of one particle's state can instantaneously affect the state of another.
+    \item \textbf{Bell's Theorem:} A set of inequalities that show that no local hidden variable theory can explain quantum correlations.
+\end{itemize}
+
+\subsection{Applications of Quantum Mechanics}
+Quantum mechanics is fundamental to many modern technologies and fields, including:
+\begin{itemize}
+    \item \textbf{Semiconductors:} Quantum mechanics is essential in the design of transistors and other semiconductor devices.
+    \item \textbf{Quantum Computing:} Quantum computers exploit quantum superposition and entanglement to perform calculations exponentially faster than classical computers.
+    \item \textbf{Quantum Cryptography:} Uses principles of quantum mechanics, such as the no-cloning theorem, to secure communication.
+    \item \textbf{Nuclear Magnetic Resonance (NMR) and MRI:} Quantum mechanical principles are applied in these imaging techniques.
+\end{itemize}
+
+\subsection{Conclusion}
+Quantum mechanics represents a profound shift from classical mechanics, incorporating a probabilistic and wave-like nature to the behavior of particles. It forms the basis for much of modern physics, with applications in a wide range of technologies. The theory continues to evolve, with new interpretations and extensions, such as quantum field theory and quantum gravity, exploring the interplay between quantum mechanics and general relativity.
+
+
+\section{Subatomic Particles}
+The Standard Model categorizes particles into \textit{fermions} and \textit{bosons}:
+\begin{itemize}
+    \item \textbf{Fermions:} These are the building blocks of matter. They obey the Pauli Exclusion Principle and are divided into two families:
+    \begin{itemize}
+        \item \textit{Quarks:} Six types (flavors) of quarks: \textbf{up (u), down (d), charm (c), strange (s), top (t), and bottom (b)}. Quarks combine to form hadrons, such as protons and neutrons.
+        \item \textit{Leptons:} Six types of leptons, including the electron $(e^-)$, muon $(\mu^-)$, tau $(\tau^-)$, and their associated neutrinos $(\nu_e, \nu_\mu, \nu_\tau)$.
+    \end{itemize}
+    \item \textbf{Bosons:} These are force carriers, mediating the fundamental interactions:
+    \begin{itemize}
+        \item \textit{Photon ($\gamma$):} Mediates the electromagnetic force.
+        \item \textit{W$^\pm$, Z$^0$:} Mediate the weak nuclear force.
+        \item \textit{Gluon ($g$):} Mediates the strong nuclear force.
+        \item \textit{Higgs Boson ($H$):} Provides mass to particles through the Higgs mechanism.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Fundamental Forces}
+The Standard Model describes three forces:
+\begin{itemize}
+    \item \textbf{Electromagnetic Force:} Described by Quantum Electrodynamics (QED). It is mediated by photons and affects particles with electric charge.
+    \item \textbf{Weak Nuclear Force:} Responsible for processes like beta decay. It is mediated by W$^\pm$ and Z$^0$ bosons and affects all fermions.
+    \item \textbf{Strong Nuclear Force:} Described by Quantum Chromodynamics (QCD). It binds quarks together into hadrons and is mediated by gluons.
+\end{itemize}
+
+The fourth fundamental force, gravity, is not included in the Standard Model but is described separately by General Relativity.
+
+
+\subsection{Mathematical Framework}
+The Standard Model is based on the principles of quantum field theory (QFT), which combines quantum mechanics and special relativity. The fields and their interactions are described using the following components:
+
+\subsubsection{1. Lagrangian of the Standard Model}
+The dynamics of particles in the Standard Model are encoded in the Lagrangian, which is a function of the fields and their derivatives:
+\[
+\mathcal{L} = \mathcal{L}_{\text{gauge}} + \mathcal{L}_{\text{fermion}} + \mathcal{L}_{\text{Higgs}}
+\]
+\begin{itemize}
+    \item $\mathcal{L}_{\text{gauge}}$: Describes the interactions of gauge fields (force carriers).
+    \item $\mathcal{L}_{\text{fermion}}$: Describes the dynamics of fermions.
+    \item $\mathcal{L}_{\text{Higgs}}$: Describes the Higgs field and its interactions.
+\end{itemize}
+
+\subsubsection{2. Gauge Symmetries}
+The Standard Model is built on the symmetry group:
+\[
+SU(3)_C \times SU(2)_L \times U(1)_Y
+\]
+where:
+\begin{itemize}
+    \item $SU(3)_C$: Describes the strong interaction (QCD).
+    \item $SU(2)_L \times U(1)_Y$: Describes the electroweak interaction.
+\end{itemize}
+
+\subsubsection{3. Higgs Mechanism}
+The Higgs mechanism explains how particles acquire mass. The Higgs field, $\phi$, interacts with particles, and its nonzero vacuum expectation value breaks the electroweak symmetry, giving mass to W$^\pm$, Z$^0$, and fermions:
+\[
+m = g \, v
+\]
+where $g$ is the coupling constant, and $v$ is the vacuum expectation value of the Higgs field.
+
+
+\section{Electromagnetic Waves}
+\subsection{Introduction}
+Electromagnetic waves are a fundamental aspect of both classical and quantum physics. While classical physics describes them as oscillating electric and magnetic fields propagating through space, quantum physics provides a deeper understanding by describing them in terms of quantum electrodynamics (QED) and photons. In this framework:
+\begin{itemize}
+    \item Electromagnetic waves are quantized.
+    \item The wave-particle duality explains the dual behavior of electromagnetic radiation.
+    \item Photons are the quantum carriers of electromagnetic interactions.
+\end{itemize}
+
+This document provides a detailed summary of electromagnetic waves from the perspective of quantum physics.
+
+\subsection{Wave-Particle Duality}
+Quantum physics posits that electromagnetic waves exhibit both particle-like and wave-like properties:
+\begin{itemize}
+    \item \textbf{Wave-like behavior:} Electromagnetic waves are described by the Maxwell equations in their classical form. The electric field $\vec{E}$ and the magnetic field $\vec{B}$ oscillate perpendicular to each other and the direction of propagation.
+    \item \textbf{Particle-like behavior:} The quantization of electromagnetic waves leads to the concept of the \textit{photon}, the fundamental quantum of light.
+\end{itemize}
+
+Mathematically, the energy $E$ and momentum $p$ of a photon are related to the frequency $\nu$ and wavelength $\lambda$ of the wave as:
+\[
+E = h \nu, \quad p = \frac{h}{\lambda},
+\]
+where $h$ is Planck's constant.
+
+\subsection*{Quantization of the Electromagnetic Field}
+The quantization of electromagnetic waves is described by quantum electrodynamics (QED). The electric and magnetic fields are treated as operators acting on a quantum state.
+
+\subsubsection{Classical Fields and Quantization}
+In classical physics, the electromagnetic wave can be described as:
+\[
+\vec{E}(\vec{r}, t) = \vec{E}_0 \cos(\vec{k} \cdot \vec{r} - \omega t),
+\quad
+\vec{B}(\vec{r}, t) = \vec{B}_0 \cos(\vec{k} \cdot \vec{r} - \omega t),
+\]
+where:
+\begin{itemize}
+    \item $\vec{E}_0$ and $\vec{B}_0$ are the amplitudes of the electric and magnetic fields.
+    \item $\vec{k}$ is the wave vector.
+    \item $\omega$ is the angular frequency.
+\end{itemize}
+
+In quantum physics, these fields are replaced by operators:
+\[
+\hat{\vec{E}}(\vec{r}, t), \quad \hat{\vec{B}}(\vec{r}, t),
+\]
+which act on the quantum state of the electromagnetic field.
+
+\subsubsection{Photon Creation and Annihilation Operators}
+The quantized electromagnetic field is expressed in terms of photon creation and annihilation operators:
+\[
+\hat{A}^\dagger(\vec{k}) \quad \text{(creation operator)},
+\quad
+\hat{A}(\vec{k}) \quad \text{(annihilation operator)},
+\]
+which satisfy the commutation relation:
+\[
+[\hat{A}(\vec{k}), \hat{A}^\dagger(\vec{k}')] = \delta^3(\vec{k} - \vec{k}').
+\]
+
+The quantized electric field operator, for example, is written as:
+\[
+\hat{\vec{E}}(\vec{r}, t) = i \sum_{\vec{k}, \lambda} \sqrt{\frac{\hbar \omega_k}{2 \epsilon_0 V}}
+\left[
+\hat{A}(\vec{k}, \lambda) \vec{\epsilon}(\lambda) e^{i (\vec{k} \cdot \vec{r} - \omega_k t)} 
+- \hat{A}^\dagger(\vec{k}, \lambda) \vec{\epsilon}^*(\lambda) e^{-i (\vec{k} \cdot \vec{r} - \omega_k t)}
+\right],
+\]
+where:
+\begin{itemize}
+    \item $\lambda$ denotes the polarization state of the photon.
+    \item $\vec{\epsilon}(\lambda)$ is the polarization vector.
+    \item $\omega_k = c |\vec{k}|$ is the angular frequency.
+    \item $V$ is the quantization volume.
+\end{itemize}
+
+\subsection{Interaction with Matter}
+Photons interact with matter through processes such as:
+\begin{itemize}
+    \item \textbf{Absorption:} A photon is absorbed by an atom, raising an electron to a higher energy level.
+    \item \textbf{Emission:} An atom releases a photon when an electron transitions to a lower energy level.
+    \item \textbf{Scattering:} Photons interact with charged particles, changing their direction and energy.
+\end{itemize}
+
+The probability of these interactions is described by the **transition amplitude**, which is calculated using Feynman diagrams in QED.
+
+\subsubsection{Absorption and Emission}
+The energy difference $\Delta E$ between two atomic levels determines the frequency of the absorbed or emitted photon:
+\[
+\hbar \omega = \Delta E.
+\]
+
+\subsubsection{Scattering Processes}
+In Compton scattering, for example, a photon scatters off an electron, transferring energy and momentum:
+\[
+\lambda' - \lambda = \frac{h}{m_e c} (1 - \cos \theta),
+\]
+where $\lambda$ and $\lambda'$ are the wavelengths before and after scattering, $m_e$ is the electron mass, and $\theta$ is the scattering angle.
+
+\subsection{Coherence and Quantum Superposition}
+Electromagnetic waves can exhibit quantum coherence, where the wavefunction of the photon is a superposition of states:
+\[
+\ket{\psi} = c_1 \ket{E_1} + c_2 \ket{E_2},
+\]
+where $c_1$ and $c_2$ are complex coefficients. This principle underlies phenomena such as:
+\begin{itemize}
+    \item \textbf{Interference:} When photons combine constructively or destructively.
+    \item \textbf{Entanglement:} When two photons share correlated quantum states.
+\end{itemize}
+
+\subsection{Experimental Evidence}
+Quantum properties of electromagnetic waves have been verified through experiments such as:
+\begin{itemize}
+    \item \textbf{Photoelectric Effect:} Demonstrates the particle nature of light.
+    \item \textbf{Double-Slit Experiment:} Shows wave-particle duality.
+    \item \textbf{Quantum Electrodynamics (QED):} Accurately predicts phenomena like the Lamb shift and anomalous magnetic moment of the electron.
+\end{itemize}
+
+\subsection{Conclusion}
+In quantum physics, electromagnetic waves are understood as quantized fields composed of photons, which exhibit both wave-like and particle-like behavior. Quantum electrodynamics provides a robust framework for describing their interactions with matter and their fundamental properties. This dual nature of electromagnetic waves is at the heart of modern physics and has profound implications for both theoretical understanding and technological applications.
+
+% Entropy, it is more likely that a hot object obmits the eat as energy wants to diapate but it is posible the "movment/vibration" stais within the object and the serounding vibration affects the object making it hotter than it initialy was.
+% heat diapation, heat cotains more vibrations and natuarly want to spread out which is why heat moves from hot to could. Why a room gets colder is the los in heat to the cold source.
+% this is for instance why it fels colder close to a window on a cold day. This affect can be faster if the hold air is forced with a fan or other forms that causes air flow.
+% air flow is a macroscopic affect where the slow vibrating atoms and molocules are spread out into higher vibrating space, casing more cold surface area, i.e., faster heat disapating. in other words you move the automs and molicules but causes very litle increase in vibration which is heat. One form of energy
+
+% Entorpy might be the cause of life, since it is life causes increase in entropy
+
+% standard model of elementary particles
+% Dark matter and dark energy could potentialy be described as an extension of the standard model
+% Where bare particles and vertial particals anrth real particles just mathematical model to describe quantom effects
+
+%https://www.youtube.com/watch?v=Zkv8sW6y3sY
+
+
+\section{Quantum Field Theory}
+%https://www.youtube.com/watch?v=xQFgk-nEihg&list=PLUl4u3cNGP61AV6bhf4mB3tCyWQrI_uU5
+
+
+\section{Electricity}
+
+\section{Mass}
+% Higgs field
+% SU(2) 
+% Lie algebra
+% https://www.youtube.com/watch?v=wiBsfvW5AWY&t=542s
+% m = E/c^2
+
+\section{General relativity}
+% https://www.youtube.com/watch?v=qsNQneMxYiQ
+% Lorentz transformations
+% Schwarzschild radius
+
+% Dark energy and dark matter
+% https://www.youtube.com/watch?v=YNEBhwimJWs&t=27s
+
+% Cosmology
+% bubble universes
+% ekpyrotic model
+% cyclic model
+% Loop quantum gravity
+% Lattice Field Theory https://www.youtube.com/watch?v=_1HJi4qn-xo
+
