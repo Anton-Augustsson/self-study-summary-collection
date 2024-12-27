@@ -3,7 +3,6 @@
 \section{Quantum Mechanics Fundamentals}
 % https://www.youtube.com/watch?v=NN2txluv1PY
 
-\subsection{Introduction}
 Quantum Mechanics is the branch of physics that deals with the behavior of matter and energy at very small scales, typically at the level of atoms and subatomic particles. It fundamentally challenges classical mechanics by incorporating wave-particle duality, quantization of energy, and the probabilistic nature of physical systems.
 
 Quantum mechanics has wide-ranging applications, from explaining the structure of atoms to technologies such as semiconductors and quantum computing.
@@ -114,20 +113,93 @@ One of the most striking features of quantum mechanics is \textit{quantum entang
     \item \textbf{Bell's Theorem:} A set of inequalities that show that no local hidden variable theory can explain quantum correlations.
 \end{itemize}
 
-\subsection{Applications of Quantum Mechanics}
-Quantum mechanics is fundamental to many modern technologies and fields, including:
+
+%\subsection{Applications of Quantum Mechanics}
+%Quantum mechanics is fundamental to many modern technologies and fields, including:
+%\begin{itemize}
+%    \item \textbf{Semiconductors:} Quantum mechanics is essential in the design of transistors and other semiconductor devices.
+%    \item \textbf{Quantum Computing:} Quantum computers exploit quantum superposition and entanglement to perform calculations exponentially faster than classical computers.
+%    \item \textbf{Quantum Cryptography:} Uses principles of quantum mechanics, such as the no-cloning theorem, to secure communication.
+%    \item \textbf{Nuclear Magnetic Resonance (NMR) and MRI:} Quantum mechanical principles are applied in these imaging techniques.
+%\end{itemize}
+%
+%\subsection{Conclusion}
+%Quantum mechanics represents a profound shift from classical mechanics, incorporating a probabilistic and wave-like nature to the behavior of particles. It forms the basis for much of modern physics, with applications in a wide range of technologies. The theory continues to evolve, with new interpretations and extensions, such as quantum field theory and quantum gravity, exploring the interplay between quantum mechanics and general relativity.
+
+\section{Quantum Field Theory}
+%https://www.youtube.com/watch?v=xQFgk-nEihg&list=PLUl4u3cNGP61AV6bhf4mB3tCyWQrI_uU5
+Quantum Field Theory (QFT) is the theoretical framework that combines quantum mechanics and special relativity to describe the fundamental interactions of particles through fields. In QFT, particles are excitations of underlying quantum fields, and their interactions are mediated by the exchange of field quanta.
+
+\subsection{Core Principles of QFT}
+\begin{enumerate}
+    \item \textbf{Field Quantization:} Classical fields, such as the electromagnetic field, are quantized to produce quantum fields. Each field corresponds to a particle type. For instance:
+    \begin{itemize}
+        \item The electromagnetic field corresponds to photons.
+        \item The electron field corresponds to electrons.
+    \end{itemize}
+
+    \item \textbf{Wave-Particle Duality:} Particles exhibit both wave-like and particle-like behavior. Fields describe the wave aspect, while excitations of the fields (quanta) represent particles.
+
+    \item \textbf{Lagrangian Formulation:} The dynamics of quantum fields are determined by a Lagrangian density \(\mathcal{L}\), which encodes the symmetries and interactions of the system.
+    
+    \item \textbf{Symmetry and Conservation Laws:} The symmetries of the Lagrangian, via Noether's theorem, lead to conservation laws. For example:
+    \begin{itemize}
+        \item Translational symmetry \(\rightarrow\) conservation of momentum.
+        \item Rotational symmetry \(\rightarrow\) conservation of angular momentum.
+        \item Gauge symmetry \(\rightarrow\) conservation of charge.
+    \end{itemize}
+
+    \item \textbf{Interactions and Feynman Diagrams:} Interactions between particles are described by terms in the Lagrangian. These interactions can be visualized and computed using Feynman diagrams.
+\end{enumerate}
+
+\subsection{Mathematical Framework}
+\subsubsection{Lagrangian Density}
+The Lagrangian density \(\mathcal{L}\) governs the behavior of a field \(\phi(x)\). For a free scalar field, it is given by:
+\[
+\mathcal{L} = \frac{1}{2} \partial^\mu \phi \partial_\mu \phi - \frac{1}{2}m^2\phi^2,
+\]
+where \(\partial^\mu = \frac{\partial}{\partial x_\mu}\) is the spacetime derivative, and \(m\) is the mass of the field quanta.
+
+\subsubsection{Quantization}
+Field quantization replaces classical fields with operators. For a scalar field \(\phi(x)\):
+\[
+\phi(x) = \int \frac{d^3k}{(2\pi)^3} \frac{1}{\sqrt{2\omega_k}} \Big( a_k e^{-i k \cdot x} + a_k^\dagger e^{i k \cdot x} \Big),
+\]
+where:
 \begin{itemize}
-    \item \textbf{Semiconductors:} Quantum mechanics is essential in the design of transistors and other semiconductor devices.
-    \item \textbf{Quantum Computing:} Quantum computers exploit quantum superposition and entanglement to perform calculations exponentially faster than classical computers.
-    \item \textbf{Quantum Cryptography:} Uses principles of quantum mechanics, such as the no-cloning theorem, to secure communication.
-    \item \textbf{Nuclear Magnetic Resonance (NMR) and MRI:} Quantum mechanical principles are applied in these imaging techniques.
+    \item \(a_k\) and \(a_k^\dagger\) are annihilation and creation operators.
+    \item \(\omega_k = \sqrt{\vec{k}^2 + m^2}\) is the energy.
 \end{itemize}
 
-\subsection{Conclusion}
-Quantum mechanics represents a profound shift from classical mechanics, incorporating a probabilistic and wave-like nature to the behavior of particles. It forms the basis for much of modern physics, with applications in a wide range of technologies. The theory continues to evolve, with new interpretations and extensions, such as quantum field theory and quantum gravity, exploring the interplay between quantum mechanics and general relativity.
+\subsubsection{Propagators}
+Propagators describe how particles move through spacetime. For a scalar field, the propagator is:
+\[
+D_F(x - y) = \int \frac{d^4k}{(2\pi)^4} \frac{e^{-i k \cdot (x - y)}}{k^2 - m^2 + i\epsilon}.
+\]
+
+\subsubsection{Interactions}
+Interactions are introduced by adding terms to the Lagrangian. For example, for a scalar field with quartic interaction:
+\[
+\mathcal{L} = \frac{1}{2} \partial^\mu \phi \partial_\mu \phi - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4,
+\]
+where \(\lambda\) is the coupling constant.
+
+\subsection{Renormalization}
+\begin{itemize}
+    \item \textbf{Problem:} Quantum field calculations often produce infinities.
+    \item \textbf{Solution:} Renormalization systematically removes these infinities by redefining parameters (e.g., mass, charge) in the theory.
+\end{itemize}
+
+\subsection{Applications of QFT}
+\begin{enumerate}
+    \item \textbf{Standard Model of Particle Physics:} Describes electromagnetic, weak, and strong interactions using gauge theories (e.g., Quantum Electrodynamics, Quantum Chromodynamics).
+    \item \textbf{Condensed Matter Physics:} Explains phenomena such as superconductivity and quantum phase transitions.
+    \item \textbf{Cosmology:} Provides insight into early-universe phenomena like inflation and dark matter.
+\end{enumerate}
 
 
-\section{Subatomic Particles}
+
+\section{The Standard Model of Subatomic Particles}
 The Standard Model categorizes particles into \textit{fermions} and \textit{bosons}:
 \begin{itemize}
     \item \textbf{Fermions:} These are the building blocks of matter. They obey the Pauli Exclusion Principle and are divided into two families:
@@ -143,6 +215,87 @@ The Standard Model categorizes particles into \textit{fermions} and \textit{boso
         \item \textit{Higgs Boson ($H$):} Provides mass to particles through the Higgs mechanism.
     \end{itemize}
 \end{itemize}
+
+\begin{figure}[H]
+   \centering 
+    \begin{tikzpicture}[x=1.2cm, y=1.2cm]
+    \draw[round] (-0.5,0.5) rectangle (4.4,-1.5);
+    \draw[round] (-0.6,0.6) rectangle (5.0,-2.5);
+    \draw[round] (-0.7,0.7) rectangle (5.6,-3.5);
+  
+    \node at(0, 0)   {\particle[gray!20!white]
+                     {$u$}        {up}       {$2.3$ MeV}{1/2}{$2/3$}{R/G/B}};
+    \node at(0,-1)   {\particle[gray!20!white]
+                     {$d$}        {down}    {$4.8$ MeV}{1/2}{$-1/3$}{R/G/B}};
+    \node at(0,-2)   {\particle[gray!20!white]
+                     {$e$}        {electron}       {$511$ keV}{1/2}{$-1$}{}};
+    \node at(0,-3)   {\particle[gray!20!white]
+                     {$\nu_e$}    {$e$ neutrino}         {$<2$ eV}{1/2}{}{}};
+    \node at(1, 0)   {\particle
+                     {$c$}        {charm}   {$1.28$ GeV}{1/2}{$2/3$}{R/G/B}};
+    \node at(1,-1)   {\particle 
+                     {$s$}        {strange}  {$95$ MeV}{1/2}{$-1/3$}{R/G/B}};
+    \node at(1,-2)   {\particle
+                     {$\mu$}      {muon}         {$105.7$ MeV}{1/2}{$-1$}{}};
+    \node at(1,-3)   {\particle
+                     {$\nu_\mu$}  {$\mu$ neutrino}    {$<190$ keV}{1/2}{}{}};
+    \node at(2, 0)   {\particle
+                     {$t$}        {top}    {$173.2$ GeV}{1/2}{$2/3$}{R/G/B}};
+    \node at(2,-1)   {\particle
+                     {$b$}        {bottom}  {$4.7$ GeV}{1/2}{$-1/3$}{R/G/B}};
+    \node at(2,-2)   {\particle
+                     {$\tau$}     {tau}          {$1.777$ GeV}{1/2}{$-1$}{}};
+    \node at(2,-3)   {\particle
+                     {$\nu_\tau$} {$\tau$ neutrino}  {$<18.2$ MeV}{1/2}{}{}};
+    \node at(3,-3)   {\particle[orange!20!white]
+                     {$W^{\hspace{-.3ex}\scalebox{.5}{$\pm$}}$}
+                                  {}              {$80.4$ GeV}{1}{$\pm1$}{}};
+    \node at(4,-3)   {\particle[orange!20!white]
+                     {$Z$}        {}                    {$91.2$ GeV}{1}{}{}};
+    \node at(3.5,-2) {\particle[green!50!black!20]
+                     {$\gamma$}   {photon}                        {}{1}{}{}};
+    \node at(3.5,-1) {\particle[purple!20!white]
+                     {$g$}        {gluon}                    {}{1}{}{color}};
+    \node at(5,0)    {\particle[gray!50!white]
+                     {$H$}        {Higgs}              {$125.1$ GeV}{0}{}{}};
+    \node at(6.1,-3) {\particle
+                     {}           {graviton}                       {}{}{}{}};
+  
+    \node at(4.25,-0.5) [force]      {strong nuclear force (color)};
+    \node at(4.85,-1.5) [force]    {electromagnetic force (charge)};
+    \node at(5.45,-2.4) [force] {weak nuclear force (weak isospin)};
+    \node at(6.75,-2.5) [force]        {gravitational force (mass)};
+  
+    \draw [<-] (2.5,0.3)   -- (2.7,0.3)          node [legend] {charge};
+    \draw [<-] (2.5,0.15)  -- (2.7,0.15)         node [legend] {colors};
+    \draw [<-] (2.05,0.25) -- (2.3,0) -- (2.7,0) node [legend]   {mass};
+    \draw [<-] (2.5,-0.3)  -- (2.7,-0.3)         node [legend]   {spin};
+  
+    \draw [mbrace] (-0.8,0.5)  -- (-0.8,-1.5)
+                   node[leftlabel] {6 quarks\\(+6 anti-quarks)};
+    \draw [mbrace] (-0.8,-1.5) -- (-0.8,-3.5)
+                   node[leftlabel] {6 leptons\\(+6 anti-leptons)};
+    \draw [mbrace] (-0.5,-3.6) -- (2.5,-3.6)
+                   node[bottomlabel]
+                   {12 fermions\\(+12 anti-fermions)\\increasing mass $\to$};
+    \draw [mbrace] (2.5,-3.6) -- (5.5,-3.6)
+                   node[bottomlabel] {5 bosons\\(+1 opposite charge $W$)};
+  
+    \draw [brace] (-0.5,.8) -- (0.5,.8) node[toplabel]         {standard matter};
+    \draw [brace] (0.5,.8)  -- (2.5,.8) node[toplabel]         {unstable matter};
+    \draw [brace] (2.5,.8)  -- (4.5,.8) node[toplabel]          {force carriers};
+    \draw [brace] (4.5,.8)  -- (5.5,.8) node[toplabel]       {Goldstone\\bosons};
+    \draw [brace] (5.5,.8)  -- (7,.8)   node[toplabel] {outside\\standard model};
+  
+    \node at (0,1.2)   [generation] {1\tiny st};
+    \node at (1,1.2)   [generation] {2\tiny nd};
+    \node at (2,1.2)   [generation] {3\tiny rd};
+    \node at (2.8,1.2) [generation] {\tiny generation};
+  \end{tikzpicture}
+  \caption{This improved diagram of the standard model of physics was made at the CERN Webfest 2012 by David Galbraith and Carsten Burgard.}
+  %https://texample.net/model-physics/
+\end{figure}
+
 
 \subsection{Fundamental Forces}
 The Standard Model describes three forces:
@@ -322,9 +475,6 @@ In quantum physics, electromagnetic waves are understood as quantized fields com
 %https://www.youtube.com/watch?v=Zkv8sW6y3sY
 
 
-\section{Quantum Field Theory}
-%https://www.youtube.com/watch?v=xQFgk-nEihg&list=PLUl4u3cNGP61AV6bhf4mB3tCyWQrI_uU5
-
 
 \section{Electricity}
 
@@ -336,6 +486,89 @@ In quantum physics, electromagnetic waves are understood as quantized fields com
 % m = E/c^2
 
 \section{General relativity}
+General relativity (GR) is a theory of gravitation proposed by Albert Einstein in 1915. It extends the principle of relativity and incorporates the equivalence principle, providing a unified description of gravity as the curvature of spacetime caused by mass and energy.
+General relativity is not a quantum effect in they way it is defined, however, it is generalized version of special relativity which is related to QFT.
+One of the big unsolved questions is the combination gravity with quantum physics into a unified theory of 
+every thing. Many theories have been developed, but none has been proven. 
+%Why general relativity is summaries in this chapter it also dues to the concept of spacetime.
+
+
+\subsection{Core Concepts}
+
+\subsubsection{Principle of Equivalence}
+The equivalence principle states that the effects of gravity are locally indistinguishable from acceleration. This principle laid the foundation for the geometric interpretation of gravity.
+
+\subsubsection{Spacetime and the Metric Tensor}
+Spacetime is a four-dimensional continuum that combines space and time. The geometry of spacetime is described by the metric tensor $g_{\mu \nu}$, which encodes the distances between events in spacetime:
+\[
+\mathrm{d}s^2 = g_{\mu \nu} \mathrm{d}x^{\mu} \mathrm{d}x^{\nu},
+\]
+where $\mathrm{d}s^2$ is the spacetime interval, and $\mathrm{d}x^{\mu}$ and $\mathrm{d}x^{\nu}$ are infinitesimal displacements in spacetime coordinates.
+
+\subsubsection{Einstein Field Equations (EFE)}
+The Einstein field equations describe how matter and energy determine the curvature of spacetime:
+\[
+R_{\mu \nu} - \frac{1}{2} g_{\mu \nu} R + \Lambda g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu},
+\]
+where:
+\begin{itemize}
+  \item $R_{\mu \nu}$ is the Ricci curvature tensor,
+  \item $R$ is the Ricci scalar,
+  \item $g_{\mu \nu}$ is the metric tensor,
+  \item $\Lambda$ is the cosmological constant,
+  \item $T_{\mu \nu}$ is the stress-energy tensor,
+  \item $G$ is the gravitational constant,
+  \item $c$ is the speed of light.
+\end{itemize}
+
+\subsubsection{Geodesics}
+Objects in free fall follow geodesics, which are the straightest possible paths in curved spacetime. The geodesic equation is given by:
+\[
+\frac{\mathrm{d}^2 x^{\mu}}{\mathrm{d}\tau^2} + \Gamma^{\mu}_{\nu \lambda} \frac{\mathrm{d}x^{\nu}}{\mathrm{d}\tau} \frac{\mathrm{d}x^{\lambda}}{\mathrm{d}\tau} = 0,
+\]
+where $\Gamma^{\mu}_{\nu \lambda}$ are the Christoffel symbols, representing the connection coefficients of spacetime.
+
+
+\subsection{Key Predictions}
+
+\subsubsection{Gravitational Time Dilation}
+Time runs slower in stronger gravitational fields. This effect has been confirmed through experiments such as the Pound-Rebka experiment and GPS satellite systems.
+
+\subsubsection{Gravitational Redshift}
+Light emitted from a strong gravitational field is redshifted due to the loss of energy as it escapes the field.
+
+\subsubsection{Bending of Light (Gravitational Lensing)}
+Light rays passing near a massive object are bent due to spacetime curvature. This effect has been confirmed by observations of stars near the Sun during a solar eclipse.
+
+\subsubsection{Black Holes}
+Solutions to the Einstein field equations, such as the Schwarzschild solution, predict the existence of black holes, regions of spacetime where gravity is so strong that not even light can escape.
+
+\subsubsection{Gravitational Waves}
+Ripples in spacetime caused by accelerating massive objects, predicted by GR and confirmed by LIGO's detection in 2015.
+
+\subsection{Mathematical Framework}
+
+\subsubsection{Metric Tensor and Curvature}
+The curvature of spacetime is described by the Riemann curvature tensor $R^{\rho}_{\sigma \mu \nu}$, which is derived from the metric tensor $g_{\mu \nu}$ and its derivatives.
+
+\subsubsection{Stress-Energy Tensor}
+The stress-energy tensor $T_{\mu \nu}$ describes the distribution of matter and energy in spacetime, including density, momentum, and pressure.
+
+\subsubsection{Cosmological Constant}
+The cosmological constant $\Lambda$ represents the energy density of empty space (vacuum energy) and plays a key role in cosmology, particularly in the accelerated expansion of the universe.
+
+\subsection{Applications and Observations}
+
+\subsubsection{Cosmology}
+GR is the foundation of modern cosmology, explaining the dynamics of the universe, the Big Bang, and cosmic inflation.
+
+\subsubsection{Astrophysics}
+GR is essential for understanding black holes, neutron stars, and gravitational wave phenomena.
+
+\subsubsection{Technology}
+Applications such as GPS rely on corrections from GR to account for time dilation and spacetime curvature.
+
+
 % https://www.youtube.com/watch?v=qsNQneMxYiQ
 % Lorentz transformations
 % Schwarzschild radius
