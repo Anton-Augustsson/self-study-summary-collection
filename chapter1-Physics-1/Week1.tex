@@ -355,9 +355,7 @@ where $x_0$ is the initial $x$ position, $v_0$ is the initial velocity, and $a_x
 
 \section{Lecture 3: Vectors}
 
-Because I had already written the part on vector mathematics in these notes long before this course started (I did it about a year ago, when I considered taking 8.01 via MIT OCW), most notes from this lecture are in that part instead.
-
-However, I do find it useful to talk about one thing that is more specific to physics than the vector mathematics part, and that is vector decomposition. Perhaps not decomposition in itself, but the consequences of it for simplifying 2- or 3-dimensional kinematics.
+A more phisical view of vectors from the lecture is presented here.
 
 If we have a position vector $\vec{r_t}$, which changes with time:
 
@@ -366,12 +364,12 @@ If we have a position vector $\vec{r_t}$, which changes with time:
  \vec{v_t} = \frac{d\vec{r_t}}{dt} &= \dot{x} \hat{x} + \dot{y} \hat{y} + \dot{z} \hat{z}\\
  \vec{a_t} = \frac{d\vec{v_t}}{dt} &= \ddot{x} \hat{x} + \ddot{y} \hat{y} + \ddot{z} \hat{z}
 \end{align}
-... using Newton's notation, with a dot representing the first time derivative, and two dots representing the second time derivative.
+using Newton's notation, with a dot representing the first time derivative, and two dots representing the second time derivative.
 
 We could use these three equations as they stand, to calculate the position, velocity and acceleration of a particle in three dimensions. However, that would likely get complex very quickly.
 
 What we can instead do is break the three-dimensional motion into multiple one-dimensional motions.\\
-Imagine we throw a ball, sideways. Its motion will be constrained to two dimensions, if we neglect wind and air drag: it will start accelerating downwards due to gravity, and it will move horizontally in the direction we threw it at constant velocity. The latter is important: gravity only accelerates the ball downwards. If we neglect wind and air drag, as mentioned, there is no force acting on the ball parallel to the ground. Because of Newton's first law (which we have not yet introduced, but will next week), that means the velocity must be constant in that direction.
+Imagine we throw a ball, sideways. Its motion will be constrained to two dimensions, if we neglect wind and air drag: it will start accelerating downwards due to gravity, and it will move horizontally in the direction we threw it at constant velocity. The latter is important: gravity only accelerates the ball downwards. If we neglect wind and air drag, as mentioned, there is no force acting on the ball parallel to the ground. Because of Newton's first law, which is discussed in a later lecure, that means the velocity must be constant in that direction.
 
 Thus, we have reduced a fairly complex problem of three-dimensional motion into \emph{two} problems of one-dimensional motion. One horizontally, where the velocity is constant, and one vertically, where gravity acts as a constant acceleration downwards.
 
@@ -382,9 +380,47 @@ Thus, we have reduced a fairly complex problem of three-dimensional motion into 
 Let's examine the problem of a ball (or a similar object) being thrown diagonally upwards. If there is no air, and thus no wind that could cause the ball to curve, the motion will be constrained to two dimensions, despite moving in three-dimensional space.\\
 We can therefore think of this as a 2D problem, where the ball moves along this trajectory:
 
-\begin{center}
-\includegraphics[scale=0.65]{\pIImages/2d-motion-decomposed}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1.5]
+  % Axes
+  \draw[->] (-0.5, 0) -- (5.5, 0) node[anchor=north] {$x$};
+  \draw[->] (0, -0.5) -- (0, 3.5) node[anchor=east] {$y$};
+  
+  % Initial point
+  \fill[black] (0,0) circle (1pt);
+  
+  % Trajectory
+  \draw[thick, domain=0:4, samples=100] 
+      plot (\x, {2*\x - 0.5*\x^2}); % Parabolic trajectory
+  
+  % Marking P
+  \coordinate (P) at (3, 1.5);
+  \fill[black] (P) circle (1pt);
+  \node[above right] at (P) {$P$};
+  
+  % xt and yt projections
+  \draw[dashed, green!80] (P) -- (3, 0) node[below] {$x_t$};
+  \draw[dashed, green!80] (P) -- (0, 1.5) node[left] {$y_t$};
+  
+  % Velocity vector at P
+  \draw[->, thick, green!90!black] (0,0) -- (P) node[midway, below right] {$\vec{r}_t$};
+  
+  % Vectors 
+  \draw[->, red] (0,0) -- (0.6, 1.2) node[midway, right] {$v_0$};
+  \draw[->, red] (0,0) -- (0, 1.2) node[midway, left] {$v_0 \sin \alpha$};
+  \draw[->, red] (0,0) -- (0.6,0) node[near end, below] {$v_0 \cos \alpha$};
+
+  % xt and yt vector projections
+  \draw[dashed, red!80] (0, 1.2) -- (0.6, 1.2);
+  \draw[dashed, red!80] (0.6, 0) -- (0.6, 1.2);
+  
+  % Angle alpha
+  \draw[->, red] (0.4,0) arc[start angle=0, end angle=50, radius=0.5];
+  \node[text=red] at (0.25,0.15) {$\alpha$};
+\end{tikzpicture}
+\caption{Ball trajectory}
+\end{figure}
 
 The ball moves along the trajectory shown in white. It is launched (thrown) at an initial velocity $v_0$ (in magenta), which is a vector pointing at an angle $\alpha$ from the ground. Also in magenta, we have the initial velocities for the $x$ and $y$ directions, found via vector decomposition:
 
