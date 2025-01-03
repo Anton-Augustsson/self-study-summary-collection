@@ -13,9 +13,27 @@ So, you stand on a bathroom scale. Gravity is acting on you to pull you downward
 
 Now, we move the scale and you into an elevator.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec7_elevator}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \pgfmathsetmacro{\ax}{1}
+  \pgfmathsetmacro{\ay}{0}
+  \pgfmathsetmacro{\bx}{\ax + 2}
+  \pgfmathsetmacro{\by}{\ay + 3}
+  \pgfmathsetmacro{\cx}{\ax + 1}
+  \pgfmathsetmacro{\cy}{\ay+0.9}
+  \pgfmathsetmacro{\ddx}{\bx-\ax}
+  \pgfmathsetmacro{\dx}{\ax + \ddx/2}
+
+  \draw[thick] (\dx, \by) -- (\dx, \by+1);
+  \draw[thick] (\ax, \ay) rectangle (\bx, \by);
+  \node at (\cx, \cy) {\Strichmaxerl[8]};
+
+  \draw[thick, ->] (0, 1) -- (0, 2.6) node[above] {$a$};
+  \draw[thick, red, ->] (\dx+0.1, \ay) -- (\dx+0.1, \ay + 2) node[above right] {$Fs$};
+  \draw[thick, red, ->] (\dx, \ay+1) -- (\dx, \ay-1) node[below right] {$mg$};
+\end{tikzpicture}
+\end{figure}
 
 Again, gravity acts on you with a force $m g$ downwards. The scale pushes back up with force $F_S$. However, now, the elevator is being accelerated upwards. The net force must now be positive (upwards), not zero, since you could not have a nonzero acceleration with zero net force.
 
