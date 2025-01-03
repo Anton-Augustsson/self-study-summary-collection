@@ -126,6 +126,7 @@ One of the most striking features of quantum mechanics is \textit{quantum entang
 %\subsection{Conclusion}
 %Quantum mechanics represents a profound shift from classical mechanics, incorporating a probabilistic and wave-like nature to the behavior of particles. It forms the basis for much of modern physics, with applications in a wide range of technologies. The theory continues to evolve, with new interpretations and extensions, such as quantum field theory and quantum gravity, exploring the interplay between quantum mechanics and general relativity.
 
+
 \section{Quantum Field Theory}
 %https://www.youtube.com/watch?v=xQFgk-nEihg&list=PLUl4u3cNGP61AV6bhf4mB3tCyWQrI_uU5
 Quantum Field Theory (QFT) is the theoretical framework that combines quantum mechanics and special relativity to describe the fundamental interactions of particles through fields. In QFT, particles are excitations of underlying quantum fields, and their interactions are mediated by the exchange of field quanta.
@@ -151,6 +152,25 @@ Quantum Field Theory (QFT) is the theoretical framework that combines quantum me
 
     \item \textbf{Interactions and Feynman Diagrams:} Interactions between particles are described by terms in the Lagrangian. These interactions can be visualized and computed using Feynman diagrams.
 \end{enumerate}
+
+\subsection{Principle of locality}
+Any field $a$ is denoted as $\phi_a(\overline{x},t)$.
+
+The action $S$, i.e., how fields moves or changes in a physical system.
+\begin{equation*}
+    S = \int \mathcal{L}(\phi_a(x), \partial_\mu \phi_a(x)) \, d^4x
+\end{equation*}
+also known as local form where the action is expressed as an integral over a local density, i.e., the Lagrangian density.
+The $d^4x$ term is the infinitesimal volume element in spacetime, i.e., $d^4x=dtdxdydz$.
+The $\partial_\mu \phi_a(x)$ term is the derivatives of the field(s).
+
+
+The momentum density $\Pi$, i.e., how the momentum is distributed across space.
+\begin{eqnarray*}
+    \Pi_a(\overline{x},t) = \frac{\partial \mathcal{L}}{\partial \phi_a(\overline{x},t)}
+\end{eqnarray*}
+
+Hamiltonian $\mathcal{H}$
 
 \subsection{Mathematical Framework}
 \subsubsection{Lagrangian Density}
@@ -183,6 +203,51 @@ Interactions are introduced by adding terms to the Lagrangian. For example, for 
 \mathcal{L} = \frac{1}{2} \partial^\mu \phi \partial_\mu \phi - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4,
 \]
 where \(\lambda\) is the coupling constant.
+
+
+%\subsection{The Principle of Locality}
+%In field theories such as classical field theory and quantum field theory, the principle of locality can be stated as follows:
+%
+%\begin{quote}
+%\textit{Physical interactions occur only at points that are infinitesimally close in spacetime. Information or causal influence cannot propagate faster than the speed of light, $c$.}
+%\end{quote}
+%
+%\subsubsection{Local Commutativity (or Microcausality)}
+%
+%In quantum field theory, locality is encapsulated in the condition of \textbf{microcausality}, which states that the field operators commute (or anticommute for fermionic fields) at spacelike separations:
+%\[
+%\left[ \hat{\phi}(x), \hat{\phi}(y) \right] = 0, \quad \text{for } (x-y)^2 < 0.
+%\]
+%Here:
+%\begin{itemize}
+%    \item $\hat{\phi}(x)$ is the field operator at spacetime point $x$.
+%    \item $(x-y)^2 = (t_x - t_y)^2 - |\mathbf{x} - \mathbf{y}|^2$ is the spacetime interval.
+%    \item The condition $(x-y)^2 < 0$ ensures that the separation is spacelike.
+%\end{itemize}
+%
+%This ensures that no information or causal influence can propagate between $x$ and $y$, as spacelike separations imply events are outside each other's light cones.
+%
+%\subsubsection{Local Action Principle}
+%
+%The principle of locality is also reflected in the action functional of field theories. The action $S$ is a local integral over a Lagrangian density $\mathcal{L}$, which depends only on the fields and their derivatives at a given point:
+%\[
+%S = \int \mathcal{L}(\phi, \partial_\mu \phi) \, d^4x.
+%\]
+%
+%The Lagrangian density $\mathcal{L}$ encodes the dynamics of the field $\phi$, and locality demands that $\mathcal{L}$ at a spacetime point $x$ does not depend on the fields at other points.
+%
+%\subsubsection{Relativistic Causality}
+%
+%Relativistic causality is preserved by requiring that the commutators of observable quantities vanish outside the light cone:
+%\[
+%\left[ \hat{\mathcal{O}}(x), \hat{\mathcal{O}}(y) \right] = 0, \quad \text{if } (x-y)^2 < 0.
+%\]
+%This ensures that measurements made at spacelike-separated points do not influence each other, maintaining locality.
+%
+%\subsubsection{Nonlocal Phenomena in Quantum Mechanics}
+%
+%While locality holds in classical field theory and quantum field theory under relativistic conditions, certain quantum phenomena, such as entanglement, challenge the classical notion of locality. For example, Bell's theorem demonstrates that quantum correlations violate local hidden variable theories, though this does not allow faster-than-light communication.
+
 
 \subsection{Renormalization}
 \begin{itemize}

@@ -1,19 +1,78 @@
 
 \section{Lecture 1: Units, dimensions and scaling arguments}
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{ | p{5cm} | p{3cm} | p{2.5cm} | p{2cm} | }
+    \hline
+    \rowcolor{black}
+    \multicolumn{4}{|c|}{\color{white}SI Base Units} \\
+    \hline
+    \hline
+    \rowcolor{darkgray}
+    \multicolumn{2}{|l|}{\color{white}Base quantity} & \multicolumn{2}{l|}{\color{white}Base Units} \\
+    \hline
+    \rowcolor{lightgray}
+    Name & Typical symbols & Name & Symbol \\  
+    \hline
+    \rowcolor{yellow}
+    time & $t$ & second & $\SI{}{\second}$ \\  
+    \hline
+    \rowcolor{orange}
+    length & $l, x, r,$ etc. & meters & $\SI{}{\meter}$ \\
+    \hline
+    \rowcolor{red}
+    mass & m & kilogram & $\SI{}{\kilogram}$ \\
+    \hline
+    \rowcolor{green}
+    electric current & $I, i$ & ampere & $\SI{}{\ampere}$ \\
+    \hline
+    \rowcolor{cyan}
+    thermodynamic temperature & $T$ & kelvin & $\SI{}{\kelvin}$ \\
+    \hline
+    \rowcolor{magenta}
+    amount of substance & $n$ & mole & $\SI{}{\mol}$ \\
+    \hline
+    \rowcolor{Orchid}
+    luminous intensity & $I_v$ & candela & $\SI{}{\candela}$ \\
+    \hline
+  \end{tabular}
+  \caption{Credits go to NIST SP 330.2019, Table 2.} %https://www.nist.gov/pml/owm/metric-si/si-units
+  \label{fig:SI-UNITS}
+\end{figure}
 
-The lecture begins with a quick intro to units, followed by a movie showing 40 orders of magnitude (from inside a proton, to a perspective 100 million lightyears from Earth).
+\begin{figure}[H]
+  \centering
+\begin{tabular}{l c S[table-format=10.9] S[retain-zero-exponent=true]}
+  \toprule
+  \multicolumn{4}{c}{SI Prefixes} \\
+  \addlinespace %\midrule
+  Prefix & Symbol & {Multiplication Factor} & {\dots\ in Scientific Notation} \\
+  \midrule
+  giga  & \si{\giga} & 1000000000 & e9 \\
+  mega  & \si{\mega} & 1000000    & e6 \\ 
+  kilo  & \si{\kilo} & 1000       & e3 \\
+  deca  & \si{\deca} & 10         & e1 \\ % "\deka" works too
+  \rowcolor{gray!20}  -- & -- & 1 & e0 \\
+  deci  & \si{\deci} & 0.1        & e-1 \\
+  centi & \si{\centi}& 0.01       & e-2 \\
+  milli & \si{\milli}& 0.001      & e-3 \\
+  micro & \si{\micro}& 0.000001   & e-6 \\
+  nano  & \si{\nano} & 0.000000001& e-9 \\
+  \bottomrule
+  \end{tabular}
+  \caption{}
+  \label{fig:SI-PREFIX}
+\end{figure}
 
-After that, we begin talking about dimensional analysis and the metric system.
-The three SI base units, and their respective dimensions, are introduced: the meter (m) for measuring length [L], the second (s) for measuring time [T] and the kilogram [kg] for measuring mass [M].\\
-We use the square brackets to notate that we are not talking about a \emph{unit}, but a \emph{dimension} - such as the three shown above (length, time, mass), or speed, acceleration, temperature, charge, etc.\\
-One dimension can have many units (meters, yards, kilometers, miles and light-years all describe length), but one unit always describes exactly one dimension. (If it were not so, we could perhaps measure temperature in meters, or length in amperes!)
-
-As an important side note, keep in mind that capitalization is extremely important in physics: 1 mm is 1/1000 of a meter, a very short distance, while 1 Mm is a million meters, or 1000 kilometers - a distance larger than many countries. The same goes for units: k means kilo (the prefix for 1000), while K means Kelvin, a unit of absolute temperature. Capital $G$ is the symbol for the gravitational constant (about $6.67 \cdot 10^{-11} \text{ N(m/kg)}^2$), while a lowercase $g$ is the symbol for the gravitational acceleration near Earth, about $9.8 \text{ m/s}^2$. The two are related, but still completely different, so they must not be confused for one another.
+In dimensional analysis we use squared brakets to denote \textit{units} 
+but a \textit{dimension} we use parenthesis, e.g.,  $[t]$ or $(s)$. They are 
+shown in Table~\ref{fig:SI-UNITS} and can be combined with the SI Prefixes in 
+shown in Table~\ref{fig:SI-PREFIX}.
 
 Many other units can be described as combinations of the three base units shown above, for example:
 
 \begin{equation}
- \text{[speed]} = \frac{\text{[L]}}{\text{[T]}}
+ \text{[speed]} = \frac{\text{[l]}}{\text{[t]}}
 \end{equation}
 
 All units of speed are in length per time - meters per second, kilometers per hour, inches per year, etc. Therefore, we say that the \emph{dimension} of speed is the dimension of length per time, as shown above in a more mathematical notation.
@@ -21,28 +80,22 @@ All units of speed are in length per time - meters per second, kilometers per ho
 Other examples are:
 
 \begin{equation}
- \text{[volume]} =\text{[L]}^3
+ \text{[volume]} =\text{[l]}^3
 \end{equation}
 \begin{equation}
- \text{[density]} = \frac{\text{[M]}}{\text{[L]}^3}
+ \text{[density]} = \frac{\text{[m]}}{\text{[l]}^3}
 \end{equation}
 \begin{equation}
- \text{[acceleration]} = \frac{\text{[L]}}{\text{[T]}^2}
+ \text{[acceleration]} = \frac{\text{[l]}}{\text{[t]}^2}
 \end{equation}
 
 The last one may seem strange if you have not studied physics before - an example of a unit of acceleration is meters per second squared, or meters per second per second ($m/s^2$ or $(m/s)/s$). It's quite simple though, once you get past the wording of it.\\
 When measuring a change in something, we always add another "per second" (or another unit of time), so when the unit we are measuring the change in is already meters per second, we get meters per second per second.\\
 For example, a car might start out at 0 m/s (standing still), and be moving at 5 m/s one second later. In that case, the car's average acceleration is 5 meters per second per second.
 
-\subsection{Uncertainty, and an experiment}
+\subsection{Uncertainty}
 Prof. Lewin stresses very strongly: ``Any measurement you make without knowledge of its uncertainty is \emph{meaningless}''. He repeats this a few times throughout the lecture.
-
-Using two rulers accurate to about $\pm$ 1 mm, he measures a student first standing up, and then lying down -- after measuring an aluminum bar, to show that the two rulers agree. They do, within 1 mm - the uncertainty.
-The results of the experiment are a bit surprising: the student was about 2.5 cm $\pm$ 0.2 cm taller lying down! The reason being that gravity compresses our bodies slightly when standing up, while that effect would be gone lying down (since gravity then acts perpendicular to our length).
-
-Because of the small uncertainty, compared to the relatively large height difference, we can be sure that the student indeed was taller lying down. Had the uncertainty of the measurement instead been $\pm 3$ cm, how could we know? The two values $185.7$ cm and $183.2$ cm are indistinguishable from each other if measured with a meter stick where the uncertainty is $\pm 3$ cm! The first could be anything between 182.7-188.7 cm, while the second could be anything from 180.2-186.2 cm. There is considerable overlap, which means the two could indeed be equal -- we could only know by making a more accurate measurement.
-
-Calculating uncertainty properly can be quite complex, and the correct methods will not be taught or used in this class, as it is simply out of the scope. Instead, we use simplified methods, ``poor man's'' as the professor called them.
+First, keep in mind that some numbers are exact. If we multiply a length by 2 -- a constant, not a measurement -- then the length and the uncertainty are both multiplied by 2 exactly. No further work is necessary.\\
 
 \subsubsection{Uncertainty in addition and subtraction}
 
@@ -68,10 +121,6 @@ Both results are $0.008$ m away from $3 + 1.5 = 4.5$, and so the uncertainty is 
 If we use the same method where we subtract, we will find the same result: the uncertainties \emph{add}, and the results will differ from the simple difference by $+0.008$ and $-0.008$, respectively.
 
 \subsubsection{Uncertainty in multiplication and division}
-
-First, keep in mind that some numbers are exact. If we multiply a length by 2 -- a constant, not a measurement -- then the length and the uncertainty are both multiplied by 2 exactly. No further work is necessary.\\
-If the two are measurements, however, care needs to be taken.
-
 One way to get a \emph{rough} uncertainty value when dividing is to choose the largest and smallest values, respectively, for the numerator and denominator, and then subtract the nominal value from that.\\
 As an example, let's say we want to calculate the approximate gravitational acceleration of the Earth based on measurements of the time for an object to fall from a certain height. The equation used is
 
@@ -93,130 +142,22 @@ We can then calculate the uncertainty as mentioned above. For the numerator, we 
 \text{error} = \frac{2 \cdot \SI{3.003}{m}}{(\SI{0.779}{s})^2} - g = \SI{9.8971}{m/s^2} - \SI{9.8367}{m/s^2} = 0.0604 \approx \SI{0.06}{m/s^2}
 \end{equation}
 
-There has not yet been an example with multiplication used in the course, but I would assume that you still try to find the maximum possible value (by choosing the maximum for both terms) and then subtract the nominal value, just as above.
 
-\subsection{Scaling arguments and Galileo Galilei}
-
-Long ago, Galileo Galilei asked himself: why are the mammals the sizes they are, and not much bigger? The short version of a possible answer he came up with is that if they were more massive, their bones would break. Below is a more detailed analysis of what he might have thought about.
-
-Say we have a mammal. It has a size $S$ - very roughly defined, of course: there is no single length that defines the actual size of an animal properly. Let's just say that a mouse is perhaps 10 cm (plus the tail), and a horse is couple of meters -- and let's not worry about the details.
-
-The animal has a thigh bone, or \emph{femur}, of length $\ell$, and a thickness $d$ (at the thinnest point). The cross-sectional area at that point is $A$. We can safely say that $A \propto d^2$ (A is proportional to d squared): doubling $d$ will multiply the cross-sectional area by 4.
-We call the mass of the animal $m$.
-
-\begin{center}
-\includegraphics[scale=1.0]{\pIImages/femur}
-\end{center}
-
-Let's now have a look at a scaling argument.\\
-We assume that the length of the femur scales linearly with the size of the animal. That is, if the animal is twice as large as another, its femur will be twice as long as the other animal's femur. A reasonable assumption, one would think.
-
-We then assume that the animal's mass is proportional to the cube of the size -- also very reasonable, as the size to the third is related to the animal's volume. Twice the volume, twice the mass, assuming the density is similar, of course.\\
-Because of the previous relationship ($\ell \propto S$), this also implies that the mass is proportional to the length of the femur cubed. In mathematical notation, so far we have:
-
-\begin{align}
- \ell &\propto S \label{eq:lproptoS}\\
- m &\propto S^3 \propto \ell^3 \label{eq:mproptoS3}
-\end{align}
-
-The \emph{pressure} on the femur is proportional to the weight of the animal, divided by the femur's cross sectional area. The weight (which the course will talk about later) is proportional to the mass, and as stated earlier, A is proportional to $d^2$, so we have
-
-\begin{equation}
- \text{pressure} \propto \frac{m}{A} \propto \frac{m}{d^2}
-\end{equation}
-
-Because the bones will break if the pressure on them is too great, $m$ cannot increase without $d^2$ increasing by the same factor, if the animal is fairly close to the breaking limit already. This is key in this argument.
-
-Because of this, we find
-\begin{equation}
-m \propto d^2 \label{eq:mproptod2}
-\end{equation}
-
-... or the above cannot be true.
-Combining equation \eqref{eq:mproptoS3} with equation \eqref{eq:mproptod2} just above, we find
-
-\begin{equation}
- d^2 \propto \ell^3
-\end{equation}
-or, taking the square root of both sides,
-\begin{equation}
- d \propto \ell^{3/2} \label{eq:dproptoell32}
-\end{equation}
-
-The above is the result we have been looking for. What this means is that if we have two animals, one being 10 times larger than the other ($S$ being 10 times larger, which implies $\ell$ being 10 times larger via \eqref{eq:lproptoS}, via the above relation, the diameter of the femur $d$ must be $10^{3/2} \approx 32$ times greater!\\
-If we compare e.g. a mouse and an elephant, the difference in size being perhaps 100 times, via the same relationships, $d$ must be $100^{3/2} = 1000$ times greater for the elephant!
-
-Galileo Galilei may have thought this to be a good explanation as to why mammals are the size they are, and not much bigger: much larger animals would have bones so large, that they barely consist of anything else than bones to hold their weight up. Let's see if this appears to be correct by making some calculations on actual measurements of animal femurs.
-
-If we take equation \eqref{eq:dproptoell32} and divide both sides by $\ell$, we find
-
-\begin{equation}
-\frac{d}{\ell} \propto \sqrt{\ell}
-\end{equation}
-
-This is then plotted from the professor's measurements of the bones. If the above is correct, we would expect that if $\ell$ is 4 times greater (such as a horse vs a raccoon), $d/\ell$ should be $\sqrt{4} = 2$ times greater.
-
-The professor then showed the result of the experiment, by measuring these values ($d$ and $\ell$) for bones from various animals: a mouse, an opossum, a raccoon, an antelope, a horse, and an elephant. There was no evidence that the ratio of $d/\ell$ was different as we would have been expected. Even for the case of a mouse vs an elephant, where the difference in size (and thus $\ell$) would be about a factor of 100, so that we expect $d/\ell$ for the elephant to be about 10 times greater than for the mouse, we find less than a factor of two!\\
-Similar relationships were shown between all animal sizes: in no case was $d/\ell$ significantly different, as the hypothesis predicted. It looks like we, and Galilei, must admit defeat. The hypothesis simply doesn't hold up to experiment!
 
 \subsection{Dimensional analysis}
 
-Let's now look at some basic kinematics (the physics of motion) and dimensional analysis in closer detail.\\
-We drop an object, such as an apple, from a height $h$, and use a stopwatch to measure the time $t$ before it hits the ground. How does the time $t$ relate to the height $h$?
-
-We can assume that the time is proportional to the height, to some unknown power, which we will call $\alpha$:
-
-\begin{equation*}
- t \propto h^\alpha
-\end{equation*}
-
-The mass of the apple might matter, so we might expect to find it to be proportional to the mass to some unknown power $\beta$:
-
-\begin{equation*}
- t \propto h^\alpha m^\beta
-\end{equation*}
-
-Finally, it might be related to the Earth's gravitational acceleration $g$ (not to be confused with the gravitational constant $G$; both of these will be introduced properly later in the course):
-
-\begin{equation}
-t \propto h^\alpha m^\beta g^\gamma
-\end{equation}
+Let's do a dimensional analysis of how long it takes to drop and object on earth.
+Most likely the time $t$ depends on the height $h$ to some unknown power $\alpha$, i.e., $t \propto h^\alpha$.
+If we did not know any better we might think mass $m$ has an effect with some unknown power $\beta$.
+This gives us $t \propto h^\alpha m^\beta$. We also would think that gravity $g$ has an effect with a power of $\gamma$. 
+That leaves us with $t \propto h^\alpha m^\beta g^\gamma$
 
 We can now start trying to figure this out. We know that the left-hand side has the dimension of time, [T]. This means that the product on the right-hand side must also have the dimension of time. Using the dimensional analysis notation, we must have
 
-\begin{equation}
- \text{[T]}^1 = \text{[L]}^\alpha \text{[M]}^\beta \left( \frac{\text{[L]}}{\text{[T]}^2} \right)^\gamma 
- \end{equation}
- ... where we have simply replaced the variable names with their respective dimensions, the dimension of $h$ being length, $m$ being mass, and $g$ being acceleration (length per time${}^2$).
- 
- We can now start working. There is only one [M] in this equation, and it's on the right-hand side. There is no possible way to get it to cancel out with anything else, so $\beta$ must be 0 so that it disappears ``by itself'', so to speak.
- 
- We have two [L] on the right hand side, but there is no [L] on the left-hand side. That means that the two must cancel each other out, in one way another. That is,
- 
-\begin{equation*}
- \alpha + \gamma = 0
-\end{equation*}
-
-must be true.
-
-Finally, we have [T] to the power one on the left-hand side, and to the power $-2\gamma$ (since it is in the denominator, it is negative) on the right-hand side, and the two must be equal. All in all, we find
-
 \begin{align*}
-\beta &= 0\\
-\alpha + \gamma &= 0\\
--2\gamma &= 1
-\end{align*}
-
-We can solve the last equation for $\gamma$, and stick that value into the second equation, to find the final answers:
-
-\begin{align*}
--2\gamma &= 1\\
-\gamma &= -\frac{1}{2}
-\end{align*}
-
-\begin{align*}
-\alpha - 1/2 &= 0\\
-\alpha = \frac{1}{2}
+  &\text{[T]}^1 = \text{[L]}^\alpha \text{[M]}^\beta \left( \frac{\text{[L]}}{\text{[T]}^2} \right)^\gamma  \\
+  &\rightarrow \beta=0, \alpha+\gamma=0, -2\gamma = 1 \\
+  &\rightarrow \gamma = -\frac{1}{2} \rightarrow \alpha=-\gamma=\frac{1}{2} \\
 \end{align*}
 
 And, so, we find these values, and these relationships with the variable names we had chosen earlier:
