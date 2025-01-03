@@ -210,66 +210,31 @@ As long as the uncertainty is 0.001 or more, the results can agree with each oth
 \section{Lecture 2: Introduction to Kinematics}
 
 \subsection{Distance vs displacement and velocity vs speed}
-
-In everyday English, speed and velocity are usually used as synonyms. In physics, however, the two are very different, and it's important to understand the difference.\\
-We can define the two as
-
+Speed is a scalar, i.e., a number/cuantaty, of how fast your going in any given direction. 
+The velocity is a vector containing the speed and direction.
 \begin{align}
  \text{speed} &= \frac{\text{distance traveled}}{\text{time taken}}\\
  \text{velocity} &= \frac{\text{displacement}}{\text{time taken}}
 \end{align}
 
-On first glance, the two may appear to say the same thing, but they don't.\\
-There is an important difference between the terms \emph{distance traveled} and \emph{displacement}. The first is a scalar, and is always positive (if not zero, if you have been standing still the entire time) and is equal to what a car's odometer would display.\\
-Displacement, however, is a \emph{vector} (see Part I on vector mathematics, or lecture 3). It is the distance between the starting point and the ending point - which may be zero, if you've traveled back to the start.\\
-The displacement vector, like all vectors, also has a direction, which is defined as pointing from the starting point to the ending point.\\
-With this in mind, it should be clear that the distance traveled must \emph{always} be greater than or equal to the displacement. Anything else would require teleportation!
+Speed is always positive, since it does not care about the direction.
+However, since velocity depends on displacement, i.e., starting point to end point,
+the direction also caries the sign, which means that velocity can be negative.
 
-Now, consider the case where we travel 1 km due north, turn around, and travel 1 km due south. We have traveled 2 km, but we are still standing exactly where we started! In other words, the displacement is zero. Using the above definitions, our average \emph{velocity} for the entire journey was \emph{zero} -- zero displacement divided by any measured time is zero.\\
-The average \emph{speed}, on the other hand, is guaranteed to be positive, and can be found by dividing the 2 kilometers traveled by the time the journey took.
-
-There is another difference between the two: speed is a scalar, that is, a regular number like any other. Velocity, on the other hand, like displacement, is a vector.\\
-The average speed for the first half of the journey (right where we turned around) might have been 10 m/s, while the average velocity at that point might have been 10 m/s to the north.
-
-Vectors are introduced properly in the first part of these notes, and in the next lecture of the course as well.
 
 \subsection{Kinematics}
-
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/1d-motion}
-\end{center}
-
-The increasing direction of $x$ is as shown. An object moves along this line, first towards the right, then shortly after reaching the point $x_{t3}$ at  $t = t_3$, it reverses and moves back, until it is at $x_{t1} = x_{t5}$, where it started.
 
 We can now introduce a definition for the \emph{average velocity} of this object between two times $t_1$ and $t_2$ as the following:
 
 \begingroup
 \large
-\begin{equation}
- \overbar{v}_{t_1 t_2} = \frac{x_{t2} - x_{t1}}{t_2 - t_1}
-\end{equation}
+\begin{align*}
+ \overbar{v}_{t_1 t_2} = &\frac{x_{t2} - x_{t1}}{t_2 - t_1} \\
+ &\text{or} \\
+ \overbar{v} = &\frac{\Delta x}{\Delta t}
+\end{align*}
 \endgroup
 
-This should make some intuitive sense -- the numerator is just the distance between the two points (the \emph{displacement}), while the denominator is the time that has passed. Displacement over time gives us the \emph{average velocity}.
-
-If we consider the average velocity between times $t_1$ and $t_5$, the answer is zero, because the position is the same for the two times, and so we have zero divided by the time taken, which is of course simply zero.\\
-Between e.g. times $t_2$ and $t_4$, the velocity is \emph{negative}, which indicates we have moved in the \emph{opposite direction} of the positive $x$ axis.\\
-The average velocity can be positive, zero or negative, depending on the positions involved.\\
-The average \emph{speed}, however, is \emph{always} positive or zero. The average \emph{velocity} is still zero, because the distance between the starting point and the ending point is zero.
-
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/1d-motion-graph}
-\end{center}
-
-Here, we see a different way of notating what is really the same thing as we have above. If we call a difference in time $\Delta t$, and a difference in $x$ position $\Delta x$, we can find the average velocity as
-
-\begin{equation}
- \overbar{v} = \frac{\Delta x}{\Delta t}
-\end{equation} 
-
-This is simply a different way of notating what we already had. Be careful with signs, though - if you take the first $x$ value in the middle, and the second from the right, be sure to take the $t$ values in the same order, or you will get the negative of the correct answer. In other words, your average velocity will be in the opposite direction of the actual movement.
-
-Also shown above is the angle $\alpha$, that we can find between two arbitrary points. When $\alpha > 0$, as above (it's pointing upwards), the average velocity is positive. If it is instead negative, as it would be between $t_4$ and $t_5$, the average velocity is negative.
 
 \subsubsection{Instantaneous velocity}
 
@@ -290,13 +255,12 @@ The last three are just three different ways of writing the same thing: the firs
 
 As for speed, we can simply define instantaneous speed as the absolute value of the instantaneous velocity. In other words, if the velocity has a minus sign, remove it. If not, the two are equal.
 
+
 \subsection{Calculating the average speed of a bullet}
 
-Using an electronic, an experiment was set up to measure the speed of a bullet. The bullet is fired from a rifle, and breaks a wire, at which point the timing starts. Soon thereafter, the same bullet breaks another wire, at which point the timing stops.
-
-Using a measurement of the distance, and a measurement of the time taken, we can calculate the average speed.
-
-The distance was measured to be $148.5 \pm 0.5$ cm, that is, $1.485 \pm 0.005$ m.\\
+Let's say we have a rifle that fires a bulet that brakes a wire that 
+starts the mesurment and then another wire that stops the mesurment.
+The distance between the wire was messured to be $148.5 \pm 0.5$ cm, that is, $1.485 \pm 0.005$ m.\\
 The time taken was measured as $5.8 \pm 0.1$ ms, which equals, $0.0058 \pm 0.0001$ s.
 
 The average speed is then
@@ -310,6 +274,8 @@ The relative error in the timing can be calculated as
 \begin{equation}
 \text{relative error} = \frac{\SI{0.1}{ms}}{\SI{5.8}{ms}} \cdot 100\% = 1.7\% 
 \end{equation}
+
+The timing error is much higher than the error in the distance so we can ignore the latter.
 
 The uncertainty in the average speed can then be estimated. As the lecture question hints, we will ignore the uncertainty due to error in the distance measurement, because the timing error is much greater.
 
@@ -340,16 +306,15 @@ Just as velocity is the change in position, acceleration is the change in \emph{
 
 The dimension of acceleration, as mentioned previously, is length per time${}^2$, or [L] [T]${}^{-2}$, with $\text{m/s}^2$ being the most common unit, at least in this course.
 
-Just as before, we can simplify this by using delta notation, with the same caveat: make sure to use the correct signs, or the result may end up incorrect.
+Just as before, we can simplify this by using delta notation.
 
 \begin{equation}
 \overbar{a} = \frac{\Delta v}{\Delta t}
 \end{equation}
 
-As an example, let's use the following lecture question. We define the direction of increasing $x$ as upwards (towards the sky). A tennis ball is thrown towards the ground at a velocity of about $\SI{-5}{m/s}$ - i.e. the speed is 5 m/s, downwards. It is in contact with the ground for about 1/100 second, after which it is moving at $\SI{+5}{m/s}$, i.e. upwards.\\
+Let's do an experiment where we have an ball that is throught towards the ground.
+We define the direction of increasing $x$ as upwards (towards the sky). A tennis ball is thrown towards the ground at a velocity of about $\SI{-5}{m/s}$ - i.e. the speed is 5 m/s, downwards. It is in contact with the ground for about 1/100 second, after which it is moving at $\SI{+5}{m/s}$, i.e. upwards.\\
 What is the average acceleration of the tennis ball?
-
-Well, we have the formula above, so this should be fairly easy!
 
 \begin{equation}
  \overbar{a_{ball}} = \frac{\SI{5}{m/s} - (\SI{-5}{m/s})}{\SI{0.01}{s}} = \frac{\SI{10}{m/s}}{\SI{0.01}{s}} = \SI{1000}{m/s^2}
@@ -361,7 +326,6 @@ The professor adds another example of acceleration. There is a limit to the amou
 The impact time will probably be much greater (perhaps 1/4 second), and the change in velocity will be only 5 m/s rather than 10, as neither the egg nor the tomato would bounce back up.\\
 Despite that, clearly, both would break, even though the acceleration is a more modest $20 \text{ m/s}^2$ or so.
 
-The next example was that of a human skull on a marble floor, from a Sherlock Holmes movie. Even at a relatively small velocity, a skull hitting such a hard floor, with no ``give'', the impact time would be extremely short. Since the impact time is in the denominator, a shorter time will result in a higher acceleration, and a skull can break despite the low speeds involved. 
 
 \subsubsection{Instantaneous acceleration}
 
@@ -375,7 +339,7 @@ Just as we did with velocity, we now want a way to calculate the acceleration at
 \endgroup
 
 We could also write this as $x''(t)$ or $v'(t)$, but I wanted to reduce the amount of clutter above somewhat.\\
-Since acceleration is the time derivative of velocity, and velocity itself is the time derivative of position, acceleration is the \emph{second} time derivative of position, as shown above.
+
 
 \subsection{General forms for one-dimensional motion}
 
@@ -386,9 +350,8 @@ x(t) &= x_0 + v_0 t + \frac{1}{2} a_x t^2\\
 v(t) &= v_0 + a_x t
 \end{align}
 
-... where $x_0$ is the initial $x$ position, $v_0$ is the initial velocity, and $a_x$ is the acceleration in the positive $x$ direction.\\
-Each of these three numbers can independently be negative, zero, or positive, and produce valid physical situations.\\
-The same formula can be used in a situation with a constant velocity: simply set $a_x = 0$, and the equations are valid. (The second equation becomes trivial, of course, so only the equation for $x(t)$ will be useful.)
+where $x_0$ is the initial $x$ position, $v_0$ is the initial velocity, and $a_x$ is the acceleration in the positive $x$ direction.
+
 
 \section{Lecture 3: Vectors}
 
