@@ -230,9 +230,16 @@ and so the two agree on the timing of the monkey's unfortunate demise.
 
 Consider an object moving at a constant speed $v$ around a circle of radius $r$:
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec5_centripetal_acceleration}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \fill[black](0,0) circle (2pt) node[below=2mm] {$r$};
+  \draw[fill=none](0,0) circle (2.0);
+  \draw[red, ->](-1.5,1.35) -- (-2.5,0) node[above=2mm] {$\overline{v}$};
+  \draw[red, ->](1.8,0.9) -- (1.1,1.9) node[midway, right=1mm] {$\overline{v}$};
+  \draw[red, ->](1.8,0.9) -- (0.7,0.3) node[midway, below=2mm] {$a_c$};
+\end{tikzpicture}
+\end{figure}
 
 We can define a few variables that relate to this motion. First out is $T$, the \emph{period} in seconds it takes the object to travel along the entire circumference once. Second is the \emph{frequency} $f$, which measures how many times it travels around the circle per second. The two are then inverses, so that $f = 1/T$ and $T = 1/f$.\\
 The SI unit for frequency is Hertz; the dimension is then $\text{dim Hertz} = \displaystyle \frac{1}{[T]}$, and $\SI{1}{Hertz} = \SI{1}{s^{-1}}$.
@@ -319,9 +326,52 @@ Unsurprisingly, we get the same answer. Still, we have now double-checked, and h
 
 Now, let's have a look at the orbits of various planets -- their mean distance to the sun (mean, since the orbits are not truly circular) and periods, and let's compare the centripetal acceleration of various planets. What we find can be seen on this plot below:
 
-\begin{center}
-\includegraphics[scale=0.5]{\pIImages/lec5_gravity_inverse_r2}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  % Logarithmic plot settings
+  \begin{loglogaxis}[
+      width=10cm,
+      height=8cm,
+      xlabel={$\overline{R}$ ($10^6$ km) $\longrightarrow$},
+      ylabel style={align=center},
+      ylabel={$a_c$ $\longrightarrow$\\(weird units)},
+      xmin=4e1, xmax=1e5,
+      ymin=1e-3, ymax=4e1,
+      xtick={1e2, 1e3, 1e4},
+      ytick={1e-2, 1e-1, 1e0, 1e1},
+      axis x line=bottom,
+      axis y line=left,
+      extra x ticks={1e2, 1e3, 1e4},
+      extra x tick labels={\phantom{}, \phantom{}, \phantom{}},
+      tick label style={font=\small},
+      grid=major,
+      grid style={dashed, gray!50}
+  ]
+
+  % Red line representing ac ∝ 1/R^2
+  \addplot[red, thick, domain=1e2:1e4] {1/x^2};
+
+  % Points for planets
+  \node[circle, draw=black, fill=white, inner sep=1.5pt] at (axis cs:6e1,2e1) {};
+  \node[above right] at (axis cs:6e1,2e1) {Mercury};
+
+  \node[circle, draw=black, fill=white, inner sep=1.5pt] at (axis cs:15e1,4e0) {};
+  \node[above right] at (axis cs:15e1,4e0) {Earth};
+
+  \node[circle, draw=black, fill=white, inner sep=1.5pt] at (axis cs:1e3,15e-2) {};
+  \node[above right] at (axis cs:1e3,15e-2) {Jupiter};
+
+  \node[circle, draw=black, fill=white, inner sep=1.5pt] at (axis cs:8e3,4e-3) {};
+  \node[above right] at (axis cs:8e3,4e-3) {Pluto};
+
+  % Annotation for the red line
+  \draw[red] (axis cs:6e1,2e1) -- (axis cs:8e3,4e-3) node[midway, below=7mm] {$a_c \propto \frac{1}{R^2}$};
+
+  \end{loglogaxis}
+\end{tikzpicture}
+\end{figure}
+
 
 (It's a bit fun to note that Pluto was still considered a planet when the lecture was recorded! Little has changed in classical mechanics since then, but that one thing certainly has.)
 
@@ -336,10 +386,74 @@ We will discuss gravity further in the coming weeks, but let's leave it here for
 
 Let's now look at the rotation of a glass tube, with a marble inside. The glass tube starts out horizontal, with the marble inside it (see the first picture below):
 
-\begin{center}
-$\vcenter{\hbox{\includegraphics[scale=0.6]{\pIImages/lec5_centripetal_acceleration_1}}}$
-$\vcenter{\hbox{\includegraphics[scale=0.6]{\pIImages/lec5_centripetal_acceleration_2}}}$
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{subfigure}[b]{0.4\textwidth}
+\begin{tikzpicture}[scale=0.7]
+  % Draw the dashed circular path
+  \draw[dashed, thick] (0,0) circle [radius=2cm];
+
+  \pgfmathsetmacro{\x}{0}
+  \pgfmathsetmacro{\r}{0.4}
+  \pgfmathsetmacro{\l}{5}
+
+  \draw[thick] (\x,\r) -- (\x+\l,\r);
+  \draw[thick] (\x+\l,\r) arc[start angle=90, end angle=-90, radius=\r cm];
+  \draw[thick] (\x,-\r) -- (\x+\l,-\r);
+
+  % Draw the small circle at the end of the bar
+  \draw[thick] (2,0) circle [radius=0.2cm];
+
+  % Radial arrow (vertical)
+  \draw[->, thick, red] (2,0) -- (2,2);
+
+  % Angular velocity arrow
+  \draw[->, thick, blue] (-1.5,2) arc[start angle=120, end angle=170, radius=2cm];
+  \node[above left, blue] at (-1.5,2) {$\mathbf{\omega}$};
+
+\end{tikzpicture}
+\
+\end{subfigure}
+\begin{subfigure}[b]{0.4\textwidth}
+\begin{tikzpicture}[scale=0.7]
+  % Draw the dashed circular path
+  \draw[dashed, thick] (0,0) circle [radius=2cm];
+
+  \pgfmathsetmacro{\x}{0}
+  \pgfmathsetmacro{\r}{0.4}
+  \pgfmathsetmacro{\l}{5}
+
+  \draw[thick] (\x,\r) -- (\x+\l,\r);
+  \draw[thick] (\x+\l,\r) arc[start angle=90, end angle=-90, radius=\r cm];
+  \draw[thick] (\x,-\r) -- (\x+\l,-\r);
+
+  \begin{scope}[rotate around={45:(0,0)}]
+  \draw[dotted] (\x,\r) -- (\x+\l,\r);
+  \draw[dotted] (\x+\l,\r) arc[start angle=90, end angle=-90, radius=\r cm];
+  \draw[dotted] (\x,-\r) -- (\x+\l,-\r);
+  \end{scope}
+
+  \begin{scope}[rotate around={65:(0,0)}]
+  \draw[dotted] (\x,\r) -- (\x+\l,\r);
+  \draw[dotted] (\x+\l,\r) arc[start angle=90, end angle=-90, radius=\r cm];
+  \draw[dotted] (\x,-\r) -- (\x+\l,-\r);
+  \end{scope}
+
+  % Draw the small circle at the end of the bar
+  \draw[thick] (2,0) circle [radius=0.2cm];
+  \draw[thick] (2,2) circle [radius=0.2cm];
+  \draw[thick] (2,4.2) circle [radius=0.2cm];
+
+  % Radial arrow (vertical)
+  \draw[->, thick, red] (2,0) -- (2,2);
+
+  % Angular velocity arrow
+  \draw[->, thick, blue] (-1.5,2) arc[start angle=120, end angle=170, radius=2cm];
+  \node[above left, blue] at (-1.5,2) {$\mathbf{\omega}$};
+
+\end{tikzpicture}
+\end{subfigure}
+\end{figure}
 
 Because the glass and the marble are both very smooth, the glass can neither push nor pull on the marble, and so cannot provide any centripetal acceleration. What happens? Well, the glass tube will still rotate, of course -- we assume it's powered by a motor of some kind. The marble, on the other hand, will continue on moving according to its still unchanged velocity vector.
 
