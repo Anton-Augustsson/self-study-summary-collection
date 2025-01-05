@@ -686,9 +686,71 @@ What does happen is rather bizarre, and perhaps the most nonintuitive thing in t
 As an important note on notation. any time I use ``spin'' below, I am talking about the wheel spinning like a bicycle wheel is meant to do.\\
 Any time I use ``rotate'', I am talking about rotating about a different axis; one that never happens when it is attached to an actual bicycle going in a straight line.
 
-\begin{center}
-\includegraphics[scale=0.65]{\pIImages/lec24_wheel_directions}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{subfigure}[b]{0.4\textwidth}
+\begin{tikzpicture}[->] %(x,z,y)
+  \draw (0,-2,0) -- (xyz spherical cs:radius=3) node[above] {$z$};
+  \draw (0,0,-2) -- (xyz spherical cs:radius=3,latitude=90) node[above] {$y$};
+  \draw (-2,0,0) -- (xyz spherical cs:radius=3,longitude=90) node[above] {$x$};
+
+  % Cylinder Base (bottom circle)
+  \begin{scope}[canvas is yz plane at x=-0.1]
+      \filldraw[fill=white, draw=black, thick] (0,0) circle [radius=1.5];
+  \end{scope}
+  
+  % Cylinder Top (top circle)
+  \begin{scope}[canvas is yz plane at x=0]
+      \filldraw[fill=white, draw=black, thick] (0,0) circle [radius=1.5];
+  \end{scope}
+
+  \draw[green, thick, ->] (0,1.1,0) to[out=-130, in=90] (0,0,0.9);
+
+  \pgfmathsetmacro{\Ax}{-1.5};
+  \coordinate (A) at (\Ax,0,0);
+  \fill[black] (A) circle (0.4mm) node[above] {$A$};
+  \draw[blue] (A) -- (\Ax,0,1) node[below] {$F$};
+
+  \pgfmathsetmacro{\Bx}{1.5};
+  \coordinate (B) at (\Bx,0,0);
+  \fill[black] (B) circle (0.4mm) node[below] {$B$};
+  \draw[blue] (B) -- (\Bx,0,-1) node[above] {$F$};
+
+  \pgfmathsetmacro{\Tz}{1.8};
+  \draw[blue] (0,\Tz,0) -- (0,\Tz+0.7,0) node[right] {$\uptau = \ell F$};
+
+  \draw[red, ->] (0,0,0) -- (0.8,0,0) node[below] {$L$};
+
+  \node at (-1.6,2,0) {$AB=\ell$};
+
+\end{tikzpicture}
+\end{subfigure}
+\begin{subfigure}[b]{0.4\textwidth}
+\begin{tikzpicture}[rotate around x=10] %(x,y,z)
+  % Cylinder Base (bottom circle)
+  \begin{scope}[canvas is plane={O(0,0,0)x(-1,0.7,0)y(0,0,1)}]
+    \filldraw[fill=white, draw=black, thick] (0,0.2) circle [radius=1.5];
+  \end{scope}
+   
+  % Cylinder Top (top circle)
+  \begin{scope}[canvas is plane={O(0,0,0)x(-1,0.7,0)y(0,0,1)}]
+    \filldraw[fill=white, draw=black, thick] (0,0) circle [radius=1.5];
+  \end{scope}
+
+  %\draw[green, thick, ->] (0,1.1,0) to[out=-130, in=90] (0,0,0.9);
+  \draw[dashed,->] (-2,0,0) -- (3,0,0) node[right]{$x$};
+  \draw[dashed,->] (0,-2,0) -- (0,3,0) node[above]{$z$};
+  \draw[dashed,->] (0,0,-2) -- (0,0,3) node[below left]{$y$};
+
+  \draw[red, -{Stealth[scale=0.5]}] (0,0,0) -- (2,1,0) node[above] {$L$};
+  \draw[red, -{Stealth[scale=0.5]}] (2,0,0) -- (2,1,0) node[midway, right] {$\Delta L = \uptau \Delta t$};
+
+  \draw[green, thick, ->] (-1.2,1.0,0) to[out=-130, in=160] (0,0,1.0);
+
+\end{tikzpicture}
+\end{subfigure}
+\end{figure}
+
 
 As can be seen from this picture, which describes this exact situation, the torque is upwards. The spin angular momentum will ``follow'' this torque, and \emph{tilt the wheel} so that the angular spin momentum vector gets closer to the initial position of the torque.\\
 That might not sound so strange, unless you keep the conditions in mind: the professor is doing a forwards/backwards push/pull on each side of the wheel, respectively, and instead of turning in the horizontal plane, it \emph{tilts} to the side! This is something that perhaps must be seen to be believed.
