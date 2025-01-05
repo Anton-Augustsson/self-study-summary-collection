@@ -446,9 +446,28 @@ The other star is a neutron star, or a black hole (or in some cases, a white dwa
 
 Consider what happens if the two have the same mass. There will then be a point, right in the middle between them, where the gravitational pull is the same in both directions. We call this the inner Lagrangian point. If instead this point is inside the larger star, matter will fall from that star onto the neutron star, since the gravitational pull for all matter outside that point will have a stronger gravitational force towards the neutron star.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec23_xray_binary}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \begin{scope}[yscale=-1]
+  \draw[domain=0:25.1327,variable=\t,smooth,samples=75]
+    plot ({\t r}: {0.002*\t*\t});
+  \end{scope}
+
+  \fill (0,0) circle (0.5mm) node[above=2mm] {ns};
+
+  \draw (2.3,0) circle (9.5mm);
+  \draw[red, <->] (0.4,0) -- (1.9,0);
+  \draw[dotted] (0,0) -- (2.3,0);
+
+  \draw[thick, ->] (0,-0.2) to[out=-90, in=180] (0.4,-0.8);
+  \draw[thick, ->] (2.3,0.95) to[out=90, in=-20] (1.95,1.5);
+
+  \node at (1.1, 0) {x};
+  \node at (1.4, 0) {x};
+
+\end{tikzpicture}
+\end{figure}
 
 Here, we see the larger star as the ring to the right, with the arrow indicating how it is orbiting. The neutron star is the small dot at the center of the spiral; the spiral is made up by the infalling matter, and is called the \emph{accretion disk}. Matter cannot fall radially inwards towards the neutron star, because of the fact that the two are orbiting each other (or their common center of mass, rather).
 
