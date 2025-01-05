@@ -103,9 +103,24 @@ Every object, regardless of shape or size, has a center of mass; a single point,
 
 We take any object, of any size (greater that zero, however, or the entire point is lost), and think of it as being composed by a practically infinite amount of small masses $m_i$. Each mass has a position vector $\vec{r_i}$ from the origin, which we are free to choose.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec15_cm}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+\node [cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=2, inner ysep=2em] at (4, 2) {};
+
+\coordinate (P1) at (0.5,0.3);
+\coordinate (P2) at (3.2,2.2);
+\coordinate (P3) at (4.5,1.8);
+
+\draw[thick] (0,0) circle [radius=2mm];
+\fill[black] (P1) circle (0.7mm);
+\draw[thick, ->] (P1) -- (P2) node[midway, above=1mm] {$\overline{r}_i$};
+\draw[thick, red, ->] (P1) -- (P3) node[midway, below=1.5mm] {$\overline{r}_{cm}$};
+\draw[thick] (P2) circle [radius=1mm] node[above=2mm] {$m_i$};
+\draw[thick, red] (P3) circle [radius=1mm] node[above=2mm] {$cm$};
+\end{tikzpicture}
+\end{figure}
+
 
 It is then true that the 
 
