@@ -1,6 +1,5 @@
 \section{Lecture 4: The motion of projectiles}
 
-This lecture doesn't really contain anything new, and instead mostly consists of applications of the material covered last week.\\
 Let's revisit this trajectory shown in \ref{fig:motion-of-projectiles}
 
 For now, ignore the green parts, which are the location of the position vector after a certain time has passed.
@@ -52,10 +51,12 @@ We can then find the highest point $h$ that it ever reaches, by substituting the
 h &= (v_0 \sin \alpha) \frac{v_0 \sin \alpha}{g} - \frac{1}{2} g \left(\frac{v_0 \sin \alpha}{g}\right)^2\\
 h &= \frac{v_0^2 \sin^2 \alpha}{g} - \frac{v_0^2 \sin^2 \alpha}{2g}\\
 h &= \frac{v_0^2 \sin^2 \alpha}{g} \left(1 - \frac{1}{2}\right)\\
-h &= \frac{(v_0 \sin \alpha)^2}{2g}
+h &= \frac{(v_0 \sin \alpha)^2}{2g}\label{eq:lec3_height}
 \end{align}
 
-Next up: at what time does the object return to $y = 0$? We could simply set up that equation, solve it, and pick the larger solution (since it will be true at $t = 0$ as well), but we can do it a bit faster. Because the curve is symmetric, the time must be exactly twice that to reach the curve's apex at $t_p$. (The lecture labels the points O at the origin, P at the peak and S where the object lands, but the illustration I used doesn't have them written down.)
+When $y=0$, $t$ will be the time the object lands on ground. We will also get $t=0$ since the trajectory
+started at the origin O. A trick we can use since the trajectory starts at O and there is no air dag,
+i.e., the parabola is semetrical. We can calculate the time to reach the highest position and multiply it by two.
 
 \begin{align}
 t_s = 2 t_p\\
@@ -76,46 +77,29 @@ $2 \sin \alpha \cos \alpha = \sin 2 \alpha$ via a trigonometric identity, so:
 \text{OS} = \frac{v_0^2 \sin 2\alpha}{g} \label{eq:lec3_os}
 \end{align}
 
-If we want to maximize the horizontal distance, what angle should we fire it at? Well, we could use calculus and attempt to maximize the function, but it can be done much faster (and easier) by simply looking at the equation. $\sin \alpha$ is maximized when $\alpha = \ang{90}$, so $\sin 2\alpha$ must be maximized when $2\alpha = \ang{90}$ or $\alpha = \ang{45}$.
+Thus, to maximize horizontal distance $\sin{2\alpha}$ should maximize, which it is when $2\alpha=90^{\circ}$.
+Therefore, the horizontal distance is largest when $\alpha=45^{\circ}$
 
-I would not call that immediately obvious, but it is obvious that the answer must be somewhere between 0 and 90 degrees, excluding both of those extremes. At 90 degrees, OS is zero, since the entire trajectory will be one-dimensional in $y$.\\
-It cannot be 0 degrees, either, because in that case, it hits the ground instantly after it is fired, so OS is again zero! It's fired completely parallel to the ground, so that $y$ never goes above 0 -- but gravity starts pulling it downwards instantly.\\
-The angle must be somewhere between 0 and 90 degrees, and as it turns out, it's exactly in between.
 
 \subsection{Trajectory demonstrations}
 
-We will now try to validate these results in real life, by firing a small projectile (a small metal pellet) at various angles, recording the horizontal distance traveled -- keeping the uncertainties in mind.
+By firing a small projectile we can demonstrate the trajectory. 
+To calculate the horizontal distance we can use equation~\ref{eq:lec3_os},
+but we need $v_0^2$ first which we can get from equation~\ref{eq:lec3_height}
+which is derived to:
+\begin{eqnarray*}
+  v_0^2 &= \frac{2gh}{\sin^2 \alpha}
+\end{eqnarray*}
 
-First, we measure the maximum height that the pellet can be fired to, a few times. We make an estimate of the height, with an uncertainty, and can use that together with $g$ to calculate $v_o^2$. That is then used in the equation for OS as shown above, to calculate where the pellet should land.
+However, we have to measure the height, which can be done firing straight up, i.e., $\alpha = \ang{90}$.
+Giving us $v_0^2=2gh$. The professor measures max height to be approximately $h_{max}=3.07(15)$ with an error of $5\%$.
+Thus, $v_0^2 = 2\cdot9.81\cdot\SI{3.07(15)}{m^2/s^2} =  \SI{60.2(30)}{m^2/s^2}$.
 
-The measurement, along with many others the professor did in preparation, showed the height to be approximately $h_{max} = \SI{3.07(15)}{m}$, so the error is about 5\%.\\
-We can solve for $v_0^2$:
-
-\begin{align}
-h &= \frac{(v_0 \sin \alpha)^2}{2g}\\
-h &= \frac{v_0^2 \sin^2 \alpha}{2g}\\
-v_0^2 &= \frac{2gh}{\sin^2 \alpha}
-\end{align}
-
-With the value of $h_{max}$ and the error, we find $v_0^2 = \SI{60.2 \pm 3}{m^2/s^2}$. A strange unit, but this is the value we need, rather than $v_0$ itself.
-
-Next, we need to set the angle. There will be uncertainty here, as well -- the professor assumes $\pm \ang{1}$ in his ability to set it up. Since the answer depends on the sine of twice the angle, we may be off by about 2 degrees. However, $\sin{\ang{88}} \approx \sin{\ang{90}}$: the error is about 0.06\%, which pales in comparison to the 5\% error above, so we can completely ignore this source of uncertainty.
-
-Now, using equation \eqref{eq:lec3_os} for OS, we can calculate the predicted horizontal travel distance:
-
+When we use an angle of $\ang{45}$ we get:
 \begin{equation}
 \ang{45}\text{ OS} = \frac{\SI{60.2}{m^2/s^2} \sin \ang{90}}{\SI{9.81}{m/s^2}} = \SI{6.14(31)}{m}
 \end{equation}
 
-The pellet is fired, and it indeed hits inside the uncertainty range, by the looks of it at more or less 6.05 meters.
-
-Next up, we want to do the same, but at a 30 degree angle, instead. This time, the uncertainty due to the sine of the angle is no longer negligible. What previously was a 0.06\% error suddenly becomes about a 2\% error -- the sine function is roughly ``flat'' around 90 degrees, but far from it around 60 degrees ($2 \times \ang{30}$).
-
-Making the same calculation as we did above, but with the different angle, we find $5.31$ m, but with an uncertainty of 7\% (using an easy  but perhaps not 100\% correct way of calculating uncertainties). That gives us a prediction of $\SI{5.31(37)}{m}$ for the 30 degree angle.\\
-Not only did the pellet hit within the uncertainty range, but it actually hit the indicator at the 5.31 meter mark!
-
-Next up: 60 degrees. It turns out that the horizontal distance traveled should be exactly equal to that at 30 degrees, because $\sin({2\cdot\ang{30}}) = \sin({2\cdot\ang{60}})$. $v_0^2$ and $g$ certainly didn't change, so this should indeed be true.\\
-The pellet yet again lands within the uncertainty range, though fairly close to being short. This is likely more indicative of the pellet gun's uncertainty and the exact angle than anything else, however -- but it's important to keep in mind that while it was close, it still was \emph{within} the uncertainty. This was certainly no failure.
 
 \subsection{A story about a monkey}
 
@@ -163,12 +147,9 @@ Imagine a monkey, sitting in a tree. A short bit away, a hunter places a golf ba
 \end{tikzpicture}
 \end{figure}
 
-We already know that unless the golf ball's velocity is very high, gravity will pull it down in a parabola such that it misses the monkey. Only if the vertical distance traveled due to gravity is smaller than the height of the monkey can it hit.\\
 Because the horizontal velocity is the same regardless of whether there is gravity, we know that at a certain time $t$, the golf ball will be at the same $x$ position regardless; only the height will differ.
 
 The dotted line above shows how the ball would travel in the absence of gravity, while the filled line shows the parabolic trajectory it would take on Earth. As we can see, it falls a distance of $\frac{1}{2} g t_1^2$ during a time interval $t_1$ after being fired -- basic 1D kinematics.
-
-However, that is true at all times $t$ after $t = 0$, assuming it has not yet hit the ground (or anything else, for that matter).
 
 Now, there's an additional crux in this problem: as soon as the monkey sees the cannon fire, he lets go and starts falling. The monkey will fall with exactly the same acceleration as the golf ball, and since they started falling at the same time, the golf ball will hit the poor monkey despite his attempt to flee. Had he instead stayed where he was, all would probably be well!
 
