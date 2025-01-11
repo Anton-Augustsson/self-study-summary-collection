@@ -225,7 +225,7 @@ Consider an object moving at a constant speed $v$ around a circle of radius $r$:
 We can define a few variables that relate to this motion. First out is $T$, the \emph{period} in seconds it takes the object to travel along the entire circumference once. Second is the \emph{frequency} $f$, which measures how many times it travels around the circle per second. The two are then inverses, so that $f = 1/T$ and $T = 1/f$.\\
 The SI unit for frequency is Hertz; the dimension is then $\text{dim Hertz} = \displaystyle \frac{1}{[T]}$, and $\SI{1}{Hertz} = \SI{1}{s^{-1}}$.
 
-We can consider how fast it moves in a different way, in measuring velocity in \emph{radians per second}, instead of meters per second (or other units of ``regular'' velocity). We call this \emph{angular velocity}, symbol $\omega$ (Greek letter lowercase omega). Since there are $2\pi$ radians in a circumference, this implies that
+We can consider how fast it moves in a different way, in measuring velocity in \emph{radians per second}, instead of meters per second (or other units of ``regular'' velocity). We call this \emph{angular velocity}, symbol $\omega$. Since there are $2\pi$ radians in a circumference, this implies that
 
 \begin{equation}
 \omega = \frac{2 \pi}{T}
@@ -237,11 +237,10 @@ As for the speed $v$ (not the velocity $\vec{v}$ just yet), we can write
 v = \frac{2 \pi r}{T} = \omega r
 \end{equation}
 
-considering the relation shown in the previous equation. These two last equations are important to remember.
 
 \subsection{Centripetal acceleration}
 
-Note that as the object moves around in a circle, the direction of the velocity vector in constantly changing. This can only happen if there is a nonzero acceleration. This acceleration is called the \emph{centripetal acceleration}, often denoted by $\vec{a_c}$. This acceleration vector always points towards the center of the motion. Because the velocity vector is always tangent to the circle at any given point, the acceleration vector is always perpendicular to the velocity, assuming a constant \emph{speed} around the circle. (If the speed is \emph{not} constant, there will also be a tangential acceleration component, which means the net acceleration vector will not be exactly perpendicular to the velocity vector; the centripetal acceleration by itself is however always perpendicular to the velocity vector.)
+Note that as the object moves around in a circle, the direction of the velocity vector in constantly changing. This can only happen if there is a nonzero acceleration. This acceleration is called the \emph{centripetal acceleration}, often denoted by $\vec{a_c}$. This acceleration vector always points towards the center of the motion. Because the velocity vector is always tangent to the circle at any given point, the acceleration vector is always perpendicular to the velocity, assuming a constant \emph{speed} around the circle. 
 
 The magnitude of the centripetal acceleration can be stated as
 
@@ -250,7 +249,7 @@ The magnitude of the centripetal acceleration can be stated as
 \end{equation}
 
 \subsubsection{Proportionality of $r$}
-Be careful when it comes to the proportionality of $r$, though! If $T$ is held constant, $v$ is a function of $r$, being equal to
+Be careful when it comes to the proportionality of $r$. If $T$ is held constant, $v$ is a function of $r$, being equal to
 
 \begin{equation}
 v = \frac{2 \pi r}{T}
@@ -272,12 +271,6 @@ However, let's not fool ourselves into believing that $a_c \propto r$ is always 
 
 Here, holding $v$ constant, it's clear that the centripetal acceleration goes \emph{down} as we increase the radius of the circle we travel in.
 
-\subsubsection{The cause of acceleration}
-
-Something must be causing this acceleration, however. We will introduce \emph{force} next lecture, but for this lecture, we will talk about ``push'' and ``pull'' instead. Suppose you sat on a chair bolted onto a spinning disk. You would feel a ``push'' from the back of the chair, pushing you towards the center of the disk. If you instead tied a rope to a stick at the center, or just held on to a bolted-down stick in front of you, you would feel the rope/stick pulling you inwards. Note that in either case, the pull or push is towards the center.
-
-If the pull/push was suddenly removed somehow, the object would simply continue forward in a straight line, along its velocity vector, unless there are other forces (pushes/pulls) acting on it, such as gravity. This is demonstrated by a spinning disk with a ball tied to a string. The string is cut as the ball's velocity vector points straight upward, and the ball flies several meters straight up in the air, and then falls straight down again.\\
-Had it been cut at a different location, it would have followed a parabolic trajectory, as we have studied previously, with $v_0 = v$ and horizontal and vertical components being found by multiplying $v_0$ with the cosine and the sine, respectively, of the angle made with the ground.
 
 \subsection{Planetary orbits}
 
@@ -358,10 +351,6 @@ Now, let's have a look at the orbits of various planets -- their mean distance t
 
 Here, we see the centripetal acceleration on the vertical axis, and the mean distance to the sun on the horizontal. It's clear that the $1/R^2$ fit is rather brilliant! The closer a planet is to the sun, the stronger the centripetal acceleration is, and it falls off following the inverse square law.
 
-We've seen centripetal acceleration being proportional to $r$, and inversely proportional to $r$, but now it's inversely proportional to $r^2$! What gives? We will talk more about gravity and planetary orbits soon later in the course. Admittedly, I'm not sure about the exact answer, but looking up data on planetary orbits, I found that planets with larger $r$ also have smaller $v$; the further out you go, the slower planets move through space, in addition to having a lot more distance to cover.
-
-As with the previous examples of centripetal force, if we simply removed the sun (or somehow else removed its gravitational influence), the planets would simply continue on in straight lines, based on their previous velocity vectors.\\
-We will discuss gravity further in the coming weeks, but let's leave it here for now: as the distance to the sun is increased by a factor $x$, the effect of gravity is $x^2$ times less. The same is true for e.g. Earth's gravity too, of course, which is why the gravity is weaker further from the surface. (This is however \emph{not} the reason astronauts experience weightlessness, as gravity is still about 90\% as strong on the space station as it is on the surface. They are instead in constant free-fall around the Earth, which is essentially the meaning of an orbit!)
 
 \subsection{Centrifuges and more on centripetal acceleration}
 
@@ -444,17 +433,84 @@ A moment later in time (second picture above), the tube has rotated such that th
 
 Let's now look at ``perceived gravity'', or artificial gravity.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec5_gravity}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{subfigure}[b]{0.4\textwidth}
+  \centering
+\begin{tikzpicture}[scale=0.7]
 
+  \node at (0, 0) {\Strichmaxerl[3]};
+  \draw[thick] (-0.2,0.05) -- (0,0.8);
+  \draw[thick] (0.2,0.05) -- (0,0.8);
+  \draw[thick] (0,0.8) -- (0,2);
+  \draw[thick, red, ->] (0,0.6) -- (0,1.6) node[midway, right] {Pull};
+  \draw[thick, green, ->] (0,0) -- (0,-1) node[midway, right] {Gravity};
+
+\end{tikzpicture}
+\end{subfigure}
+\
+\begin{subfigure}[b]{0.4\textwidth}
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \node at (0, 0) {\Strichmaxerl[3]};
+  \draw (-1,-0.35) -- (1,-0.35);
+  \draw[thick, red, ->] (0.01,-0.35) -- (0.01,0.65) node[midway, right] {Push};
+  \draw[thick, green, ->] (-0.01,0) -- (-0.01,-1) node[midway, right] {Gravity};
+
+\end{tikzpicture}
+\end{subfigure}
+\end{figure}
 As the illustration shows, we will always experience gravity opposite to any pull or push. The same is true if we somehow hang on to a rope and spin around -- or ride a merry-go-round or something to that effect. We will have a centripetal force inwards, and feel a ``pull'' inwards, but perceive gravity in exactly the opposite direction, as if we were drawn outwards.
 
 Let us now consider a large, circular space station, which experiences almost no gravity (as it is in orbit, essentially in perpetual free fall). It is a big ``wheel'', with a radius of 100 m. We want the centripetal acceleration to be about \SI{10}{m/s^2} for a person standing on the outer wall. How fast should it rotate (what should be the period)?
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec5_space_station}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[thick] (2,0) circle [radius=25mm];
+  \fill (2,0) circle [radius=0.5mm];
+
+  \pgfmathsetmacro{\rotate}{130}
+  \begin{scope}[xshift=35mm, yshift=15mm]
+  \begin{scope}[rotate=\rotate]
+    \node at (0, 0) {\rotatebox{\rotate}{\Strichmaxerl[3]}};
+    \draw[thick, orange, ->] (-0.02,-0.5) -- (-0.02,1) node[left] {$a_c$};
+    \draw[thick, red, ->] (0,0) -- (1,0) node[above] {$\overline{v}$};
+    \draw[thick, green, ->] (0.02,0) -- (0.02,-1) node[right] {Gravity};
+  \end{scope}
+  \end{scope}
+
+  \pgfmathsetmacro{\rotate}{-135}
+  \begin{scope}[xshift=4mm, yshift=14mm]
+  \begin{scope}[rotate=\rotate]
+    \node at (0, 0) {\rotatebox{\rotate}{\Strichmaxerl[3]}};
+    \draw[thick, orange, ->] (-0.02,-0.5) -- (-0.02,1) node[left] {$a_c$};
+    \draw[thick, red, ->] (0,0) -- (1,0) node[above] {$\overline{v}$};
+    \draw[thick, green, ->] (0.02,0) -- (0.02,-1) node[right] {Gravity};
+  \end{scope}
+  \end{scope}
+
+  \draw[thick, ->] (2,3.5) arc[start angle=90, end angle=180, radius=35mm] node[below] {$\omega$};
+
+  \draw[thick] (1.65,1.7) arc[start angle=100, end angle=170, radius=17mm];
+  \draw[thick] (2.30,1.7) arc[start angle=80, end angle=10, radius=17mm];
+  \draw[thick] (2.30,-1.7) arc[start angle=-80, end angle=-10, radius=17mm];
+  \draw[thick] (1.65,-1.7) arc[start angle=-100, end angle=-170, radius=17mm];
+
+  \draw[thick] (1.65,-1.7) -- (1.65, -0.3);
+  \draw[thick] (1.65,1.7) -- (1.65, 0.3);
+  \draw[thick] (2.30,1.7) -- (2.30, 0.3);
+  \draw[thick] (2.30,-1.7) -- (2.30, -0.3);
+
+  \draw[thick] (0.25,0.3) -- (1.65,0.3);
+  \draw[thick] (0.25,-0.3) -- (1.65,-0.3);
+  \draw[thick] (2.30,-0.3) -- (3.70,-0.3);
+  \draw[thick] (2.30,0.3) -- (3.70,0.3);
+
+\end{tikzpicture}
+\end{figure}
 
 We can use $\omega^2 r$ here; it should equal \SI{10}{m/s^2}, so we find
 
@@ -474,51 +530,8 @@ T &= \frac{2 \pi}{\sqrt{0.1}} \approx \SI{20}{s}
 
 So if we rotated the space station with a period of about/just over 20 seconds, we would perceive it as if we had Earth's gravity.
 
-Now consider how the station might be arranged. The centripetal force is proportional to the distance to the center, so it is strongest at the outer wall. In the exact center of the station, there will be no perceived gravity at all. How does one get there, though? Considering the fact that gravity is perceived as being radially outwards, walking to the center is the same concept as walking to the ceiling in a regular house. You will simply need stairs, ladders, or something similar.
+The gravitational acceleration is zero at the center, but it grows as you come closer to the outer edge. If you were to ``jump'' down the shaft, you would end up crashing into the outer wall at a velocity great enough that you may well be killed!
 
-For the same reason, you would have to use the stairs when going back ``down'' as well! The gravitational acceleration may be zero at the center, but it grows as you come closer to the outer edge. If you were to ``jump'' down the shaft, you would end up crashing into the outer wall at a velocity great enough that you may well be killed!
-
-\subsection{More on centrifuges}
-
-Let's have another look at centrifuges.\\
-Say we have a liquid filled with very tiny and very light particles; tiny and light enough that they don't sink to the bottom.
-
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec5_centrifuge}
-\end{center}
-
-When we spin it around at a high speed, causing a high centripetal acceleration, the light particles are not so light any longer (as we will soon see, weight is the product of mass and acceleration, the latter of which just increased by a lot), and they sink to the bottom -- where the centripetal acceleration is the greatest.
-
-Let's make a quick calculation based on a lecture question:
-
-``The frequency of a centrifuge is 60 Hz and its radius is 0.15 m. What is the centripetal acceleration of an object in the centrifuge at a distance of 0.15 m from the center?''
-
-60 Hz is 3600 rpm, so it's spinning rather quickly. We can once again use $\omega^2 r$:
-
-\begin{equation}
-|a_c| = \omega^2 r = (2 \pi (\SI{60}{Hz}))^2 \times \SI{0.15}{m} = 21318.3 \approx \SI{21e3}{m/s^2}
-\end{equation}
-
-That's over 2000 \emph{times} the acceleration due to gravity, so the particles now experience such an acceleration that they weigh over 2000 times as much as they do in regular gravity!
-
-This is then put to the test in a demonstration. A solution of silver nitrate and sodium chloride is mixed, to produce a milky-white liquid of (most importantly) suspended silver chloride. A part of the solution is put in the centrifuge mentioned above, with a counterbalance of water on the opposite side, to provide stability.\\
-The centrifuge is started, and we temporarily move on to other type of centrifuge.
-
-Say we have a bucket of water attached to a rope. We swing it around such that it will be upside down at the top of its motion, with a velocity high enough that $|a_c| > g$. In other words, the bucket experiences an inwards pull due to the centripetal acceleration, which translates into it experiencing gravity in the opposite direction, outwards.\\
-Therefore, if we spin it fast enough, the water will be forced into the bottom of the bucket, even when upside down, and no water will come out.
-
-How fast do we have to swing it, if the rope is 1 meter long? (The question also states that the water's mass is 4 kg, which we didn't need to know to solve the problem.)
-
-\begin{align}
-\frac{v^2}{\SI{1}{m}} > \SI{9.8}{m/s^2}\\
-v^2 > \SI{9.8}{m^2/s^2}\\
-v > \sqrt{9.8} \text{ m/s}
-\end{align}
-
-We need to swing it faster than about 3.13 meters per second, or the water will start falling.\\
-Quickly returning to the silver chloride centrifuge, everything worked out as planned: the liquid is now clear, and there is a collection of white particles at the bottom of the tube, rather than spread out everywhere.
-
-Finally, the water bucket swing is put into practice, and it indeed works.
 
 \section{Lecture 6: Newton's first, second, and third laws}
 

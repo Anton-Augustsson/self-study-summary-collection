@@ -7,13 +7,32 @@
 
 \begin{document}
 
-%\setmathfont{Latin Modern Math}
 
 \maketitle
 \newpage
 \tableofcontents
+\newpage
 
 
+\begin{tikzpicture}[
+  every node/.style={draw, circle, minimum size=1cm, inner sep=0pt},
+  level distance=2cm,
+  sibling distance=3cm
+]
+
+% Root nodes
+\node (A) {Root 1}
+  child { node (C) {Shared Child} }; % Temporary connection to structure
+\node[right=4cm of A] (B) {Root 2};
+
+% Connect Root 2 to the shared child
+\draw (B) -- (C);
+
+\end{tikzpicture}
+
+
+\input{diagrams/study-plan/study-plan.latex}
+  
 % Basic physics
 \input{chapter1-Physics-1/p1-summary.tex} \newpage
 \input{chapter2-Finite-Element-Method/fem-summary.tex} \newpage
