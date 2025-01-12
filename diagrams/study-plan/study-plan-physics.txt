@@ -1,0 +1,44 @@
+@startuml
+class "Physics I" as MIT801 {
+  {field} Based on MIT8.01
+}
+class "Physics II" as MIT802 {
+  {field} Based on MIT8.02
+}
+class "Physics III" as MIT803 {
+  {field} Based on MIT8.03
+}
+class "Quantum Physics I" as MIT804 {
+  {field} Based on MIT8.04
+}
+class "Classical Mechanics II" as MIT8223 {
+  {field} Based on MIT8.223
+}
+class "Classical Mechanics III" as MIT809 {
+  {field} Based on MIT8.09
+}
+class "Quantum Computation" as MIT18435 {
+  {field} Based on MIT18.435
+}
+class "Quantum Physics II" as MIT805 {
+  {field} Based on MIT8.05
+}
+class "Quantum Theory I" as MIT8321 {
+  {field} Based on MIT8.321
+}
+class "Relativistic Quantum Field Theory I" as MIT8323 {
+  {field} Based on MIT8.323
+}
+
+
+MIT801 <.. MIT802
+MIT802 <.. MIT803
+MIT802 <.. MIT8223
+MIT803 <.. MIT804
+MIT803 <.. MIT809
+MIT804 <.. MIT18435
+MIT804 <.. MIT805
+MIT805 <.. MIT8321
+MIT8321 <.. MIT8323
+
+@enduml

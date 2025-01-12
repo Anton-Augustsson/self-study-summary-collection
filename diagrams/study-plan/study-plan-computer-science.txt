@@ -1,0 +1,7 @@
+@startuml
+class "Introduction to Deep Learning" as MIT6S191
+class "Computer Vision" as CS231n
+
+MIT6S191 -- CS231n
+
+@enduml

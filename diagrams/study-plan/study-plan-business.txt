@@ -1,0 +1,4 @@
+@startuml
+class "Financial Markets" as ECON252
+
+@enduml

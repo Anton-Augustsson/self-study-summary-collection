@@ -1,0 +1,11 @@
+@startuml
+class "Differential equations" as MIT1803
+class "Fundamentals of Material Science" as MIT302
+class "Electronic, Optical and Magnetic Properties of Materials" as MIT3024
+class "Economic & Environmental Issues in Materials Selection" as MIT3080
+
+MIT1803 <.. MIT302
+MIT302 <.. MIT3024
+MIT3024 <.. MIT3080
+
+@enduml

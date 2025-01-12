@@ -1,0 +1,31 @@
+@startuml
+class "Principles Of Chemical Science" as MIT5111 {
+  {field} Based on MIT5.111
+}
+class "Organic Chemistry I" as MIT512 {
+  {field} Based on MIT5.12
+}
+/'class "Introductory Biology" as MIT7016 {
+  {field} Based on MIT7.016
+}
+'/
+class "Biological Chemistry I" as MIT507 {
+  {field} Based on MIT5.07
+}
+class "Biological Chemistry II" as MIT508 {
+  {field} Based on MIT5.08
+}
+class "Graduate Biochemistry" as MIT751 {
+  {field} Based on MIT7.51
+}
+class "Introduction To Bioengineering" as MIT20010 {
+  {field} Based on MIT20.010
+}
+
+MIT5111 <.. MIT512
+MIT507 <.. MIT512
+MIT507 <.. MIT508
+MIT508 <.. MIT751
+MIT512 <.. MIT20010
+
+@enduml
