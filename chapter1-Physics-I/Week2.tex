@@ -546,7 +546,9 @@ Newton wrote it as
 Every body perseveres in its state of rest, or uniform motion in a right line, unless it is compelled to change that state by forces impressed upon it.
 \end{quote}
 
-We have seen this in effect already, when decomposing 2D motion: the motion along the horizontal axis has thus far had a constant velocity, since we have ignoring air drag, which acts as a force to slow the object down. Along the vertical axis, on the other hand, we've always had gravity accelerating things downward.
+This means that if we perceive ourselves to be at rest unless we experience an unbalanced force such as an acceleration
+of a car we are in. We do experience forces we stand still: the gravitational force and the normal force. However,
+those cancel each other out.
 
 Newton's first law, however, is not valid in all reference frames. It is only valid in inertial references frames, the definition of which is a reference frame where the motion of a particle not under any forces moves in a straight line at constant speed. In particular, this is not true in a reference frame which is being accelerated in any way.
 
@@ -600,12 +602,11 @@ In equation form, Newton's second law -- one of the most important equations in 
 
 As shown above, force is a vector. The direction of the acceleration caused by a force is always in the same direction as the force.
 
-There are other ways of stating it, such as the force being equal to the rate of change of momentum, but we have not yet introduced momentum and so will forget about that for now.\\
 The SI unit for force is the newton, in honor of Newton himself, of course. Because the product $m a$ is in units of $\displaystyle \text{kg} \cdot \frac{\text{m}}{\text{s}^2}$, 1 newton equals 1 $\displaystyle \text{kg} \cdot \frac{\text{m}}{\text{s}^2}$.
 
 Just as with the first law, we cannot truly prove Newton's second law. Like the first, it is only valid in inertial reference frames, and we cannot provide such a reference frame to conduct our experiments in.
 
-Note that no statement is made regarding speed or velocity, only acceleration. The law holds equally well at 0 m/s, 5 m/s and 5000 m/s. However, once speeds start becoming noteworthy in relation to the speed of light, Newtonian mechanics becomes more and more inaccurate, and we instead need to use Einstein's relativity for accurate results. This tends to not be an issue in daily life, however, as the two agree very closely at speeds far lower than the speed of light. Even for speeds of 10000 kilometers per second, Newton's equations work quite well (to within about 0.1\%). For speeds below 1000 km/s, in other words all everyday speeds, there is practically no difference at all.
+Note that no statement is made regarding speed or velocity, only acceleration. The law holds equally well at 0 m/s, 5 m/s and 5000 m/s. However, once speeds start becoming noteworthy in relation to the speed of light, Newtonian mechanics becomes more and more inaccurate, and we instead need to use Einstein's relativity for accurate results. 
 
 \subsection{Newton's third law}
 
@@ -629,14 +630,6 @@ where $\vec{F_{ab}}$ means the force exerted \emph{by} object a \emph{on} object
 
 Unlike the first and second laws, the third laws always holds, including in accelerated reference frames.
 
-Also unlike the first law, there are many intuitive examples of the third:
-
-\begin{itemize}
-\item A garden hose left on its own, with the water on, will start moving backwards. The hose sprays out water by a force, and so the water pushes back on the hose with a force of equal magnitude, and the hose moves backwards.
-\item You blow up a balloon, and then let it go. The balloon pushes the air out, so the air pushes on the balloon with an equal but opposite force, propelling the balloon backwards.
-\item When you fire a gun, the gun exerts a force on the bullet, and the bullet exerts a force back on the gun: recoil, causing the gun to move backwards unless held steadily.
-\item Even when you \emph{walk}, you exert a backwards force on the Earth, which then exerts a force back on you, propelling you forward.
-\end{itemize}
 
 \subsection{Examples of Newton's laws in use}
 
@@ -666,46 +659,26 @@ Now, what about the sum of forces on object 2? Don't we have 15 N towards the ri
 
 It's important to note and understand that the two forces $\vec{F_{12}}$ and $\vec{F_{21}}$ act on different bodies. They don't cancel each other out on an individual object. $\vec{F_{21}}$ is a force that object 2 exerts on object 1 -- that fact does \emph{not} in any way negate the force exerted by 1 on 2! If that were the case, object 2 could not accelerate, since its net force would be zero.
 
-Newton's third law has an interesting, if immeasurable effect: not only do things we drop fall to the Earth, but the Earth always falls towards the things, as well. If we drop an apple from a certain height, there will be a gravitational force on the apple due to the Earth, causing a downward acceleration. However, the third law states that there must be an equal but opposite force on the Earth, due to the apple! The reason we never notice is that the Earth's mass is so extremely large, that the acceleration is on the order of $10^{-24} \text{ m/s}^2$ (or slightly less) or so in the case of an apple, with a total distance moved smaller than $10^{-23}$ m, even for an apple falling from 100 meters above the Earth's surface.\\
-Such tiny movements and accelerations are impossible to measure, but they should occur.
-
-
-\subsection{Newton's laws: summary}
-
-Let's summarize Newton's laws, and point out a few possible pitfalls.
-
-\textbf{Newton's first law} states that a body with no external forces (or no \emph{net} external force) on it will remain as it is, either at rest or moving at constant velocity in a straight line. This only holds true in inertial reference frames! If you are in a car, moving at a \emph{constant velocity} past a street lamp, from your (inertial) frame of reference, the street lamp moves with constant velocity -- and there certainly shouldn't be any net force on it, so all is well.\\
-If you accelerate, however, you will see the street lamp appear to accelerate without any net force on it. This is because your car is no longer an inertial reference frame, since it is accelerating with respect to the reference frame of the Earth (and the lamp), so the first law does not hold.
-
-\textbf{Newton's second law} states (in one form) that the acceleration of a body is equal to the \emph{net} force on that body, divided by the body's mass. The acceleration vector is in the same direction as the force vector.\\
-Mass is a measure of inertia, i.e. how much a body resists changes in motion. The larger the mass, the smaller the acceleration, for a given magnitude of force.
-
-\textbf{Newton's third law} states that whenever an object $a$ exerts a force on a body $b$ (an ``action force''), there is an equal but opposite force (a ``reaction force'') exerted by object $b$ back an $a$.\\
-This implies that when you are pulled downwards by the Earth, you also pull the Earth upwards.\\
-However, it does \emph{NOT} imply that when you sit on a chair, and the Earth pulls you down, the chair pushes you up! This is a \emph{very} important distinction. An action-reaction pair \emph{always} acts on different bodies, but note that the gravitational force and the chair's force both act on you!\\
-The \emph{second} law implies that if you don't move, the chair\footnote{Or something else, or a combination of things, such that the net force is zero.} must push you back up with a force of equal magnitude but opposite direction, because the net force on you must be zero if your acceleration is zero.
-
-\textbf{Another possible pitfall} is to say that force is the cause of motion -- not true! Force is the cause of \emph{change} in motion, that is, acceleration. You can travel at any velocity with no forces on you whatsoever -- in fact, the first law tells us that.\\
-On a related note, keep in mind that while in daily speech, acceleration refers to increasing your speed, while in physics, acceleration simply means change in speed. You accelerate when stopping your car -- the acceleration is in the opposite direction of the velocity (and will thus be negative if the velocity is positive), but it's an acceleration nonetheless.
-
-\textbf{Finally, the kilogram is a unit of \emph{mass}, not of weight}. In daily speech, the two are the same, but in physics, they are distinct quantities, and it's very important to understand how they differ and how they are related.
-
-\emph{Mass} is the measure of how difficult it is to change the motion of an object. Whether we think about pushing something to get it moving, or to try to stop something from moving does not matter: both will become more difficult as mass increases.\\
-The mass of an object is independent of where it is located; it is a property of an object due to its makeup.
-
-\emph{Weight}, on the other hand, is the force exerted on an object by gravity. You can calculate your approximate weight on Earth as $m g$, where $g = \SI{9.8}{m/s^2}$ is the approximate gravitational acceleration at the Earth's surface.\\
-The weight of an object \emph{changes} based on the local gravitational force -- a person weighs much less on the Moon than they do on Earth, but their mass would be the same in either location.
-
-A scale measures weight, not mass, but usually converts the measurement to a mass by dividing the measured force by $g$, which then via Newton's second law yields the mass.\\
-This means that if you bring a regular bathroom scale to the Moon, and weigh yourself on it, it will report about 1/6 of your actual mass, as the force of gravity is so much smaller on the Moon, but the scale doesn't know that it has moved: it will still divide the measured weight in newtons by \SI{9.8}{m/s^2}, and find an incorrect answer. The weight it \emph{measures} is correct, but the mass it reports is not.
 
 \subsection{Tension and another example of Newton's laws in use}
 
 Say we hang a mass $m$ from two strings, suspended at different heights. The leftmost string makes an angle of 45 degrees with the roof above, while the rightmost string makes an angle of 60 degrees. We call the tension in the rightmost string $T_1$, and in the leftmost $T_2$. We consider increasing $x$ to be towards the right, and increasing $y$ to be upwards.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec6_tension}
-\end{center}
+\begin{figure}[H]
+     \centering
+\begin{tikzpicture}
+     \draw (0,2) -- (2,0);
+     \draw (2,0) -- (3,2);
+     \draw[thick] (-1,2) -- (4,2);
+     \draw[thick, red, -{Stealth[scale=1.5]}] (2,0) -- (1.5,0.5) node[below = 4mm] {$T_2$};
+     \draw[thick, red, -{Stealth[scale=1.5]}] (2,0) -- (2.5,1) node[below = 4mm] {$T_1$};
+     \draw[thick, red, -{Stealth[scale=1.5]}] (2,0) -- (2,-1.5) node[below = 2mm] {$mg$};
+     \draw[dotted, -{Stealth[scale=1.5]}] (-1,0) -- (-1,1) node[midway, right = 2mm] {$+y$};
+     \draw[-{Stealth[scale=1.5]}] (3,-0.5) -- (4,-0.5) node[below = 2mm] {$+x$};
+     \draw[dotted] (0,0) -- (4,0);
+ \end{tikzpicture}
+\end{figure}
+
 
 There will be a gravitational force of magnitude $m g$ downwards. Because the object is in equilibrium, sitting still with no acceleration, the \emph{net force} on the object must be zero -- that is clear from Newton's second law.\\
 Therefore, we conclude that the two tensions $T_1$ and $T_2$ perfectly balance the gravitational force $m g$, so that the net force on the object is zero.
