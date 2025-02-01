@@ -1,0 +1,93 @@
+\chapter{Git}
+
+\section*{Abstract}
+Git is a distributed version control system designed to handle everything from small to large projects efficiently. This document provides a detailed and fundamental explanation of how Git works, including its architecture, core concepts, and the mechanics behind its operations.
+
+\section{Introduction}
+Git is a powerful tool for managing source code and collaborating on software development projects. Unlike centralized version control systems, Git is distributed, meaning each developer has a complete copy of the repository, including its history. This section introduces the architecture of Git and explains its core concepts.
+
+\section{Key Concepts in Git}
+
+\subsection{Snapshots vs. Deltas}
+Unlike many version control systems that track changes (deltas) between file versions, Git records the state of the repository at each commit. Each commit in Git is a snapshot of the project at a given point in time. If a file remains unchanged, Git stores a reference to the previous file rather than duplicating it.
+
+\subsection{Three States in Git}
+Git operates on three primary states:
+\begin{itemize}
+    \item \textbf{Working Directory:} The local directory where files are edited.
+    \item \textbf{Staging Area:} An index where changes are staged before committing.
+    \item \textbf{Repository:} The .git directory where committed snapshots and metadata are stored.
+\end{itemize}
+
+\subsection{Git's Data Model}
+Git's data model is built on three core components:
+\begin{itemize}
+    \item \textbf{Blobs:} Store the content of files.
+    \item \textbf{Trees:} Represent directory structures and reference blobs.
+    \item \textbf{Commits:} Point to trees and contain metadata, such as author, timestamp, and parent commits.
+\end{itemize}
+
+\section{How Git Works}
+
+\subsection{Commits and Hashes}
+Each commit in Git is identified by a unique SHA-1 hash, which is generated based on the commit's content, including:
+\begin{itemize}
+    \item The tree object representing the project's directory structure.
+    \item The parent commit(s).
+    \item Metadata such as author, timestamp, and commit message.
+\end{itemize}
+This ensures that any change to a commit's content results in a completely new hash, maintaining integrity.
+
+\subsection{Branches}
+Branches are pointers to specific commits. The default branch in Git is \texttt{main} (formerly \texttt{master}).
+\begin{itemize}
+    \item Creating a branch creates a new pointer to a commit.
+    \item Switching branches updates the working directory to match the snapshot of the commit the branch points to.
+    \item Merging combines changes from one branch into another.
+\end{itemize}
+
+\subsection{Staging and Committing}
+\begin{enumerate}
+    \item \textbf{Staging:} Use \texttt{git add} to move changes to the staging area.
+    \item \textbf{Committing:} Use \texttt{git commit} to save a snapshot of staged changes. Git creates a commit object that references the current tree and parent commit(s).
+\end{enumerate}
+
+\subsection{Distributed Architecture}
+Each Git repository is complete and self-contained. This allows developers to work offline and perform all operations locally. Collaboration is achieved through pushing and pulling changes to/from remote repositories.
+
+\section{Git Workflow}
+
+\subsection{Cloning a Repository}
+To start working on a project, clone the repository using:
+\begin{verbatim}
+    git clone <repository_url>
+\end{verbatim}
+
+\subsection{Typical Workflow}
+A typical workflow in Git includes the following steps:
+\begin{enumerate}
+    \item \textbf{Modify Files:} Make changes in the working directory.
+    \item \textbf{Stage Changes:} Use \texttt{git add} to stage the changes.
+    \item \textbf{Commit Changes:} Create a snapshot using \texttt{git commit}.
+    \item \textbf{Push Changes:} Share changes with a remote repository using \texttt{git push}.
+    \item \textbf{Pull Updates:} Fetch and integrate changes from the remote repository using \texttt{git pull}.
+\end{enumerate}
+
+\section{Common Git Commands}
+\begin{itemize}
+    \item \texttt{git status} - Check the status of files in the working directory and staging area.
+    \item \texttt{git diff} - View changes in the working directory or staging area.
+    \item \texttt{git log} - View the history of commits.
+    \item \texttt{git branch} - Manage branches.
+    \item \texttt{git merge} - Combine branches.
+    \item \texttt{git rebase} - Reapply commits on top of another base.
+\end{itemize}
+
+\section{Conclusion}
+Git is a robust and versatile version control system that underpins modern software development workflows. Its distributed architecture, snapshot-based model, and powerful branching capabilities make it an essential tool for developers.
+
+\section*{References}
+\begin{itemize}
+    \item \href{https://git-scm.com/}{Git Official Documentation}
+    \item \href{https://www.atlassian.com/git/tutorials}{Atlassian Git Tutorials}
+\end{itemize}
