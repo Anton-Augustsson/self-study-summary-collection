@@ -3,13 +3,12 @@
 
 This lecture will discuss weight, its relation to mass, and other related topics.
 
-A regular scale, say a bathroom scale, measures weight -- which is a \emph{force}. Therefore, it measures in newtons, if we stick to SI units. We can only use a scale to find \emph{mass} in kilograms by knowing the local gravitational acceleration, and dividing that out of the measured result.
+A regular scale, say a bathroom scale, measures weight -- which is a \emph{force}.
+The force of the scale is $F_s=mg$, the scale uses the gravitational constant of earth $g$.
+Thus, there is only one unknown $m$, which can be derived from $m=\frac{F_s}{g}$.
 
-As a result of this, such a bathroom scale would measure a mass only 1/6 as great on the moon, where the local gravitational acceleration is about 1/6 of Earth's. This is because the \emph{weight} of the object being weighed has decreased, since the gravitational force is weaker. However, the \emph{mass} of the object has not changed. If the scale made the calculation using the local gravitational acceleration, the measured/calculated mass would be correct. Most don't, of course, and assume the Earth's gravitational acceleration of about $g \approx \SI{9.8}{m/s^2}$, and so display a much too small value for the mass when they divide the smaller weight by the incorrect gravitational acceleration, which is only valid on Earth's surface.
-
-In other words, if the scale displayed weight in newtons, it would display the correct value everywhere, only that the correct value would differ based on location. The person's mass would not change with location, however, so a scale that is used to measure mass should always display the same value for a particular person.
-
-So, you stand on a bathroom scale. Gravity is acting on you to pull you downwards, and as you are not being accelerated, there must be a net force on zero on you. Therefore, we conclude that the scale is pushing you up, with a force of the same magnitude, $F_{S} = m $g. This force that the scale exerts on you is the definition of your \emph{weight}.
+If we were to use the same scale on the moon, which has a mass of $1/6$ of earth, the 
+scale would show that your mass is $1/6$ of what it is since it uses $g$ of earth.
 
 Now, we move the scale and you into an elevator.
 
@@ -21,12 +20,13 @@ Now, we move the scale and you into an elevator.
   \pgfmathsetmacro{\bx}{\ax + 2}
   \pgfmathsetmacro{\by}{\ay + 3}
   \pgfmathsetmacro{\cx}{\ax + 1}
-  \pgfmathsetmacro{\cy}{\ay+0.9}
+  \pgfmathsetmacro{\cy}{\ay+1.1}
   \pgfmathsetmacro{\ddx}{\bx-\ax}
   \pgfmathsetmacro{\dx}{\ax + \ddx/2}
 
   \draw[thick] (\dx, \by) -- (\dx, \by+1);
   \draw[thick] (\ax, \ay) rectangle (\bx, \by);
+  \draw[thick] (\ax+0.3, \ay) rectangle (\bx-0.3, \ay+0.2); % Scale
   \node at (\cx, \cy) {\Strichmaxerl[8]};
 
   \draw[thick, ->] (0, 1) -- (0, 2.6) node[above] {$a$};
@@ -67,12 +67,25 @@ In short, weightlessness is when the forces acting on you are exclusively gravit
 
 Let's now look at another type of scale:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec7_hanging}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[thick] (0,2) circle (8pt);
+  \node at (0,0) {\Strichmaxerl[7]};
+  \draw[thick] (0,1.8) -- (0,0.9);
+  \draw[thick] (0.4,0.0) -- (0,1.5);
+  \draw[thick] (-0.4,0.0) -- (0,1.5);
+  \draw[thick] (-0.4,0.0) -- (0,1.5);
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (0,0.1) -- (0,2) node[midway, right = 2mm] {$T=mg$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (0,-0.1) -- (0,-2) node[midway, right = 2mm] {$mg$};
+
+\end{tikzpicture}
+\end{figure}
 
 The scale in this case is a tension meter, inside the string we are hanging from. Because we are hanging still, not accelerating, the tension in the string must equal the force of gravity pulling us down. Therefore, the tension meter reads $m g$, same as it would on a regular scale standing on the floor.\\
-Thus we see that it makes no difference whether we measure the force a scale is pushing us up with, or the force a rope/tension meter \emph{pulls} us up with.
+Thus, we see that it makes no difference whether we measure the force a scale is pushing us up with, or the force a rope/tension meter \emph{pulls} us up with.
 
 Let's now accelerate this system. We accelerate it upwards, which must mean the tension in the string goes up -- it must be greater in magnitude than $m g$ or we wouldn't accelerate upwards.\\
 Just as with the elevator, we find $T - m g = m a$ or $T = m(a + g)$. Same as before, only we use $T$ for tension instead of $F_S$ for force exerted by the scale.\\
@@ -80,9 +93,24 @@ If we instead accelerate downwards, we again find the same result as before, as 
 
 Say we have the following system:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec7_pulley}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[thick] (0,2) circle (3mm);
+  \fill[thick] (-0.3,0) circle (3pt);
+  \fill[thick] (0.3,-0.2) circle (3pt);
+
+  \draw (-0.3,2) -- (-0.3,0) node[left] {$m_1$};
+  \draw (0.3,2) -- (0.3,-0.2) node[right] {$m_2$};
+
+  \node at (2,2) {$m_2>m_1$};
+
+  \draw[thick, ->] (-0.6,2) arc[start angle=180, end angle=0, radius=6mm] node[below] {$\omega$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 The string is massless, the pin/pulley is massless, but the two objects hanging an each end are not; the right one at mass $m_2$ has a greater mass than that of $m_1$ to the left.
 
