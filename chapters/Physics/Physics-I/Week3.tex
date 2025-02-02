@@ -191,13 +191,26 @@ We will talk more about gravity later in the course, including how $g$ is calcul
 
 \section{Lecture 8: Frictional forces}
 
-Let's talk about friction. Thus far, we have ignored friction (and air drag) in all problems we've solved; that will now start to change.
-
 Let's look at a simple case to begin with. We have an object at rest, on a flat surface:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec8_friction}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[thick] (-1,0) rectangle (1,1);
+  \draw[thick] (-2,0) -- (2,0);
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (0.1,0) -- (0.1,2) node[right = 2mm] {$N=mg$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (-0.1,0.5) -- (-0.1,-1.5) node[right = 2mm] {$mg$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (0,0) -- (-1.5,0) node[below = 2mm] {$F_F$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (-2.5,0.5) -- (-1,0.5) node[midway, above = 2mm] {$F_{WL}$};
+
+  \draw[thick, -{Stealth[scale=1.5]}] (-4,2) -- (-2,2) node[above = 2mm] {$x$};
+  \draw[thick, -{Stealth[scale=1.5]}] (-3,2) -- (-3,3) node[above = 2mm] {$y$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 There is a gravitational force of magnitude $m g$ pulling the object down, and a \emph{normal force} $N = m g$ (also in magnitude) from the surface on the object, or it could not be at rest; Newton's second law. (Again, however, note that this is NOT a case of Newton's third law; there two forces both act on the object, and so they are not an action-reaction pair.)
 
@@ -219,9 +232,33 @@ We know from experience that it takes more force to get something to move in the
 
 We can calculate a friction coefficient by putting an object on an incline, and measure the angle of incline required to get the object to move (due to the gravitational force downwards, of course).
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec8_friction_incline}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \begin{scope} [rotate=30]
+
+  \draw[thick] (0,0) -- (5,0);
+
+  \draw[thick, -{Stealth[scale=1.5]}] (1,1) -- (0,1) node[above = 2mm] {$x$} node[left] {$+$};
+  \draw[thick, -{Stealth[scale=1.5]}] (1,1) -- (1,2) node[left = 1mm] {$y$};
+
+  \draw[thick] (2.5,0) rectangle (4.5,1);
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (3.6,0) -- (3.6,2) node[right=2mm] {$N=mg\cos{\alpha}$};
+  \draw[thick, green, -{Stealth[scale=1.5]}] (3.5,0.5) -- (2,0.5) node[above=4mm] {$mg\sin{\alpha}$};
+  \draw[thick, green, -{Stealth[scale=1.5]}] (3.5,0.5) -- (3.5,-2) node[right=2mm] {$mg\cos{\alpha}$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (3.5,0.5) -- (2.4,-1.9) node[right=2mm] {$mg$};
+
+  \end{scope}
+
+  \draw[thick] (0,0) -- (2,0);
+  \draw (1,0) arc (0:30:1) node[midway, right] {$\alpha$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 Note the choice of coordinate system, which is tilted such that the acceleration (and movement) in the $y$ direction will always be zero, but more importantly such that the $y$ axis is exactly perpendicular to the surface of the incline.\\
 The downside to this approach is then that we need to decompose the gravitational force, since it is no longer strictly in one axis.
@@ -239,26 +276,54 @@ We also know that $F_F = \mu_s N$, as we mentioned earlier.
 
 Therefore, we set the two equal, and we can solve for $\mu_s$. $N = m g \cos \alpha$, so
 
-\begin{align}
-\mu_s m g \cos (\alpha_{max}) = m g \sin(\alpha_{max})\\
-\mu_s = \frac{m g \sin(\alpha_{max})}{m g \cos (\alpha_{max})}\\
-\mu_s = \frac{\sin(\alpha_{max})}{\cos (\alpha_{max})} = \tan(\alpha_{max})
-\end{align}
+\begin{align*}
+\mu_s m g \cos (\alpha_{max}) &= m g \sin(\alpha_{max})\\
+\mu_s &= \frac{m g \sin(\alpha_{max})}{m g \cos (\alpha_{max})}\\
+\mu_s &= \frac{\sin(\alpha_{max})}{\cos (\alpha_{max})} = \tan(\alpha_{max})
+\end{align*}
 
 So finding the static friction coefficient is truly simple: measure the maximum angle possible before the object starts to slide, take the tangent of that angle, and you're done! And, since the incline makes a triangle with the vertical height, horizontal length and the incline itself (the hypotenuse), we can measure this even without knowing angles; we can calculate the angle even if we can only measure distances.
 
 Note that two seemingly important quantities are nowhere to be seen in this result: the mass of the object does not matter, and neither does the amount surface area that is in contact with the incline!\\
 This means that two parked cars -- a large truck and a small car,will start to slide at the same angle, if they were tilted together, so to speak. Not only does the mass not matter, but the width of the tires (or the number of tires) also does not matter.
 
-These two facts are then demonstrated qualitatively, by sliding a few objects down a wooden plank. Indeed, adding a few times the mass to a plastic container didn't change the result by much (but by a little -- because the plank is not exactly uniform, the containers may not be identical, etc.). Neither did it make a noticeable difference to slide down two small pieces of wood, one lying down (large contact area) and one standing on the edge (small contact area).
 
 \subsection{Friction on a block with a pulley}
 
 Let's look at a different, but related example. We have the following setup:
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec8_friction_pulley}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \begin{scope} [rotate=30]
+
+  \draw[thick] (0,0) -- (7,0);
+
+  \draw[thick, -{Stealth[scale=1.5]}] (0,1) -- (1,1) node[above = 2mm] {$x$};
+  \draw[thick, -{Stealth[scale=1.5]}] (0,1) -- (0,2) node[left = 1mm] {$y$};
+
+  \draw[thick] (2.5,0) rectangle (4.5,1);
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (3.6,0) -- (3.6,2) node[right=2mm] {$N=mg\cos{\alpha}$};
+  \draw[thick, green, -{Stealth[scale=1.5]}] (3.5,0.5) -- (2,0.5) node[above=4mm] {$mg\sin{\alpha}$};
+  \draw[thick, green, -{Stealth[scale=1.5]}] (3.5,0.5) -- (3.5,-2) node[right=2mm] {$mg\cos{\alpha}$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (3.5,0.5) -- (2.4,-1.9) node[right=2mm] {$m_1g$};
+
+  \draw[thick] (7,0.25) circle (2.5mm);
+  \draw (4.5,0.5) -- (7,0.5);
+  \draw (7.25,0.18) -- (6,-2);
+
+  \end{scope}
+
+  \draw[thick] (0,0) -- (2,0);
+  \draw (1,0) arc (0:30:1) node[midway, right] {$\alpha$};
+  \fill (6.19,1.2) circle (1mm) node[right] {$m_2$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (6.19,1.2) -- (6.19,-0.5) node[right=2mm] {$m_2g$};
+
+\end{tikzpicture}
+\end{figure}
 
 A block of mass $m_1$ is sitting on an incline, with the same gravitational force, decomposed as previously.\\
 However, this time, a second mass $m_2$ hangs on a massless and fixed-length string (increasing tension doesn't increase the length of the string), over a pulley (which itself is massless and frictionless).
