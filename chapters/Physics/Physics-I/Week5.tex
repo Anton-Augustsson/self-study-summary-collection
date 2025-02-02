@@ -25,9 +25,32 @@ Assuming we work in SI units, the units of the spring constant must then be in n
 
 If we instead change the masses, we will get a plot that is a straight line, assuming Hooke's law holds. We can then find $k$ as the slope of this line:
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec10_measure}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[decorate, decoration={aspect=0.5, segment length=5mm, amplitude=3.5mm, coil}] 
+      (0,0) -- (0,5);
+  \fill[black] (0,0) circle (2mm);
+  \draw[thick] (-1,5) -- (1,5);
+  \draw[thick, red, -{Stealth[scale=1.5]}] (0,0) -- (0,1) node[midway, right = 3mm] {$F=mg$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (0,0) -- (0,-1) node[midway, right = 3mm] {$mg$};
+  \draw[dotted] (-1,1) -- (1,1);
+  \draw[dotted] (-1,0) -- (1,0);
+ 
+  \draw[thick] (2.5,0) -- (8,0) node[below] {$\longrightarrow x$};
+  \draw[thick] (3,-0.5) -- (3,4) node[left] {$F$};
+
+  \draw[dashed] (3,0) -- (7,4);
+  \draw[thick] (4,1) -- (6.8,1);
+  \draw[thick] (6.8,1) -- (6.8,3.8);
+  \draw[red, decorate, decoration = {brace, amplitude=3mm}] (6.8,3.8) -- (6.8,1) node[midway, right=3mm] {$\Delta F$} node[midway, right=14mm] {$k =\frac{\Delta F}{\Delta x}$};
+  \draw[red, decorate, decoration = {brace, amplitude=3mm}] (6.8,1) -- (4,1) node[midway, below=3mm] {$\Delta x$};
+ 
+\end{tikzpicture}
+\caption{}\label{fig:lec10-oscillation}
+\end{figure}
+
 
 This is probably a more reliable test than the single calculation above, since it will show if Hooke's law doesn't hold for the particular spring, instead of silently assuming that it does.
 
@@ -35,13 +58,32 @@ Hooke's law has its limitations, as you might expect. It's possible to stretch a
 
 Let's look at a second way of measuring the spring constant of a given spring. Say we have another spring, again with $x = 0$ at the end of spring's relaxed length. We extend the spring further, and attach a mass $m$ to the end of the spring. The mass rests on a frictionless surface.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec10_sho}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[decorate, decoration={aspect=0.5, segment length=5mm, amplitude=3.5mm, coil}] 
+      (0,0) -- (5,0);
+  \draw[thick] (5,-0.5) rectangle (6,0.5);
+  \draw[thick] (0,-1) -- (0,1);
+  \draw[dotted] (3,-1) -- (3,1);
+  \draw[-{Stealth[scale=1.5]}] (-1,-0.5) -- (-1,0.5) node[right=1mm] {$y$};
+  \draw[-{Stealth[scale=1.5]}] (3,-1) -- (5.5,-1) node[right] {$x$} node[at start, below=1mm] {$x=0$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (5.6,-0.5) -- (5.6,1) node[right=2mm] {$N$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (5.5,0) -- (5.5,-1.5) node[right=2mm] {$mg$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (5.5,0) -- (4,0) node[above=2mm] {$F$};
+ 
+  \node at (1,-2) {$T=2\pi\frac{m}{k}$};
+ 
+\end{tikzpicture}
+\caption{}
+\end{figure}
+
 
 When we let the mass go, this system will begin to oscillate. The spring force pulls the mass towards the left until it is relaxed, but when that happens, the mass is already moving towards the left, and has inertia in that direction. The spring will be compressed, and now push on the mass, which eventually comes to a halt, accelerates back towards the right, etc.
 
-Because of the relationship shown, which will be derived shortly, we can either calculate a spring constant from a known mass (while using a stopwatch), or me can measure a mass, if we know the spring constant, even in the absence of gravity! Note that there is no relation to $g$ in the formula. The only place where it appears is in the pull of gravity and the normal force, but since the surface is taken to be frictionless, neither force matters for the oscillation period.
+Because of the relationship shown, which will be derived shortly, we can either calculate a spring constant from a known mass (while using a stopwatch), or we can measure a mass, if we know the spring constant, even in the absence of gravity! Note that there is no relation to $g$ in the formula. The only place where it appears is in the pull of gravity and the normal force, but since the surface is taken to be frictionless, neither force matters for the oscillation period.
 
 It's interesting to note that the amplitude of the oscillation, i.e. how far it moves horizontally from the center point, does not affect the period at all. If the amplitude is small, it will move slowly back and forth, but if the amplitude is large, it will move at much greater speed, to keep the period constant -- assuming Hooke's Law holds.
 
@@ -178,9 +220,35 @@ x(t) = 0.3 \cos(10 t - \frac{\pi}{2})
 
 Next up, we have a look at the equations that govern a pendulum's motion.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec10_pendulum}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[dotted] (0,0) arc (240:300:50mm);
+  \draw[dotted] (2.5,4.3) -- (2.5,-0.7) node[below] {$x=0$};
+  \draw[thick] (2.5,4.3) -- (4.6,-0.2) node[midway, right] {$\ell$};;
+  \fill (4.6,-0.2) circle (2mm);
+  \draw (2.5,3.3) arc (270:295:10mm) node[midway, below] {$\theta$} ;
+  \draw[dotted] (4.6,-0.2) -- (0.4,-0.2);
+  
+  \draw[-{Stealth[scale=1.5]}] (0,1) -- (0,2) node[right=1mm] {$y$};
+  \draw[-{Stealth[scale=1.5]}] (0,1) -- (1,1) node[right=1mm] {$x$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4,1.1) node[right=2mm] {$T$};
+  \draw[thick, red, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4.6,-1.5) node[right=2mm] {$mg$};
+
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4,-0.2) node[below=2mm] {$T\sin{\theta}$};
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4.6,1.1) node[right=2mm] {$T\cos{\theta}$};
+ 
+  \draw[dotted, thick, orange] (4.6,1.1) -- (4,1.1);
+  \draw[dotted, thick, orange] (4,-0.2) -- (4,1.1);
+  %\node at (1,-2) {$T=2\pi\frac{m}{k}$};
+ 
+\end{tikzpicture}
+\caption{}\label{fig:lec10-oscillation}
+\end{figure}
+
+
 
 We have a mass $m$ attached to a string of length $\ell$, which is swinging back and forth. We choose a coordinate system with its origin at the pendulum's center, decompose the forces, and write down Newton's second law for the system.
 
@@ -201,7 +269,7 @@ m \ddot{y} = T(\theta) \cos \theta - m g
 We then have two coupled differential equations to solve, which is above this course's level... but we can simplify things a bit.\\
 We start out by making some approximations. First out is the small angle approximation, which is usually used to imply that $\sin \theta \approx \theta$ and $\cos \theta \approx 1$ if $\theta \ll 1$ radian (it works quite well up to 0.2 rad $\approx \ang{11.5}$ or so, at least, where $\cos(0.2) \approx 0.98$ and $\sin(0.2) \approx 0.1987$).
 
-There is a second important approximation we can make if we assume the angle will always be small. Have a look at the diagram above, and note how the $x$ amplitude is much greater than the $y$ amplitude. For a 5 degree swing, the $x$ motion is about 25 times as large as the $y$ motion, and it is still 11 times as large at 10 degrees.\\
+There is a second important approximation we can make if we assume the angle will always be small. Have a look at the diagram above (fig~\ref{fig:lec10-oscillation}), and note how the $x$ amplitude is much greater than the $y$ amplitude. For a 5 degree swing, the $x$ motion is about 25 times as large as the $y$ motion, and it is still 11 times as large at 10 degrees.\\
 We can therefore approximate the acceleration in the $y$ direction to be zero, so we find
 
 \begin{align}
@@ -246,7 +314,6 @@ Again, this can be shown quite easily. If $m$ doubles, $m g$ doubles, and so the
 Next, $k$ and $g$. If $k$ is high, the period is short, which makes sense: the acceleration is proportional to $\sqrt{k}$, so for very large $k$ (meaning a very stiff/strong spring -- remember that it's in newtons per meter of displacement) the acceleration is high, and the period low.\\
 As for the pendulum, it is \emph{inversely} proportional to $\sqrt{g}$, so if $g$ is low, the period is very large, and it goes to infinity as $g \to 0$. A pendulum could not work in weightlessness, where the perceived gravity is zero, since it relies on gravity to swing. (This too is easy to see: the restoring force is proportional to $g$, so with $g \approx 0$, there shouldn't be any restoring force, nor any string tension.)
 
-``All'' that remains in the lecture is one of the best demonstrations in this class, which means no notes taken, but careful watching instead!
 
 \section{Lecture 11: Work, energy and universal gravitation}
 
