@@ -48,7 +48,7 @@ If we instead change the masses, we will get a plot that is a straight line, ass
   \draw[red, decorate, decoration = {brace, amplitude=3mm}] (6.8,1) -- (4,1) node[midway, below=3mm] {$\Delta x$};
  
 \end{tikzpicture}
-\caption{}\label{fig:lec10-oscillation}
+\caption{}
 \end{figure}
 
 
@@ -317,7 +317,6 @@ As for the pendulum, it is \emph{inversely} proportional to $\sqrt{g}$, so if $g
 
 \section{Lecture 11: Work, energy and universal gravitation}
 
-Let's get started right away.\\
 \emph{Work} is a measure of the amount of energy a force uses when moving an object. In simple applications, it can be defined as $W = F d$, where $F$ is the magnitude of the force, and $d$ is the distance the object moves.
 
 A more useful definition, still in one dimension, is an integral, which then can take care of non-constant forces as well:
@@ -386,9 +385,30 @@ Likewise, we can get tired from holding an object perfectly still (try holding s
 
 We can extend what we have above to three dimensions. Say we apply a force $\vec{F}$ over a path. For each tiny point of this path, we can find a vector $\vec{dr}$, which represents a infinitesimal displacement along the line; so small that we can approximate it as a straight line, rather than some form of curve.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec11_work_3d}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \begin{axis}[view={-30}{30},no markers,hide axis,zmax=10,
+    z post scale=0.5,
+    x post scale=1,
+    enlargelimits=false,
+    ymax=5,ymin=-5,
+    xmax=5,xmin=-5]
+    \addplot3+[domain=-0:30,samples=200,samples y=0,ultra thick](x-5,{1.8*sin(deg(2*x))},1*x);
+  \end{axis}
+
+  \fill (1.29,0.75) circle (0.8mm) node[right] {$A$};
+  \fill (5.2,3.55) circle (0.8mm) node[right] {$B$};
+
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (2.7,1.1) -- (1.3,2.4) node[above] {$\overline{F}$};
+  \draw[thick, orange, |-|] (2.6,1.0) -- (2.84,1.24) node[below=2mm] {$d\overline{r}$};
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (3.3,2.0) -- (5.0,2.8) node[above] {$\overline{F}$};
+  \draw[thick, orange, |-|] (3.1,2.0) -- (3.4,1.9) node[below=1mm] {$d\overline{r}$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 The net work done by the force over the entire path is
 
@@ -436,9 +456,41 @@ W_AB &= \frac{1}{2} m \left( v_{Bx}^2 + v_{By}^2 + v_{Bz}^2 \right) - \frac{1}{2
 
 Let's as an example calculate the work done by gravity while moving an object around in 3D space.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec11_3d_path}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  % 3D coordinate axes
+  \draw (0,0,0) -- (4,0,0) node[right] {\textbf{x}};
+  \draw (0,0,0) -- (0,3,0) node[above] {\textbf{y}};
+  \draw (0,0,0) -- (0,0,3) node[left] {\textbf{z}};
+ 
+  % Points A and B
+  \filldraw[black] (1,1,1) circle (2pt) node[right] {\textbf{A}};
+  \filldraw[black] (3,2.5,2.5) circle (2pt) node[right] {\textbf{B}};
+ 
+  % Wavy 3D path from A to B
+  \draw[thick, smooth] 
+  (1,1,1) 
+  to[out=-30, in=-180] (0.7,0.2,0.6) 
+  to[out=10, in=220] (0.8,1.6,1.5) 
+  to[out=40, in=160] (2.3,1.2,1.8) 
+  to[out=-20, in=200] (2.3,2.2,2.1) 
+  to[out=-30, in=-90] (3,2.5,2.5);
+ 
+  % Dashed projection lines to XY plane
+  %\draw[dashed] (1,1,1) -- (1,1,0);
+  %\draw[dashed] (2,2,2) -- (2,2,0);
+  \draw[dotted] (3,2.5,2.5) -- (3,0,2.5);
+  \draw[dotted] (3,0,2.5) -- (3,0,0);
+  \draw[dotted] (1,1,1) -- (1,0,1);
+  \draw[dotted] (1,0,1) -- (1,0,0);
+ 
+  % Gravity force vector
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (2.3,1.2,1.8) -- (2.3,0,1.8) node[right=2mm] {$-mg\hat{y}$};
+
+\end{tikzpicture}
+\end{figure}
 
 We move from a point $A$ to a point $B$, where $y_B - y_A = h > 0$, in other words, point B is higher up than point A.
 
@@ -484,9 +536,55 @@ What about potential energy? That is zero where $y = 0$, but where is that? It i
 
 \subsubsection{Example problem}
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec11_conservation}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw (0,0) arc (225:315:50mm);
+  \draw[thick] (3.5,-0.65) circle (8mm);
+
+  \draw[thick, -{Stealth[scale=1.5]}] (0,-1.45) -- (0,-0.4) node[midway, left] {$y$};
+  \draw[dotted] (0,-1.5) -- (8,-1.5) node[above] {$u=0,y=0$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (3.5,-1.45) -- (5,-1.45) node[right=2mm] {$v_C$};
+  \fill (3.5,-1.45) circle (0.5mm) node[below] {$C$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (3.5,0.15) -- (2.5,0.15) node[above] {$v_D$};
+  \fill (3.5,0.15) circle (0.5mm) node[above] {$D$};
+
+  \draw[thick, red, -{Stealth[scale=1.5]}] (1.5,-1.03) -- (2.3,-1.4);
+  \fill (1.5,-1.03) circle (0.5mm) node[above] {$B$};
+
+  \fill (0,0) circle (0.5mm) node[left] {$A$} node[right=2mm] {$v_A=0$};
+
+  \draw[decorate, decoration = {brace, amplitude=1mm}] (-0.5,-1.45) -- (-0.5,0) node[midway, left] {$h$};
+
+  \draw (3.5,-0.725) -- (2.8,-1.0) node[midway, above] {$R$};
+  \fill (3.5,-0.725) circle (0.25mm);
+
+  %\draw[thick] (2.5,4.3) -- (4.6,-0.2) node[midway, right] {$\ell$};;
+  %\fill (4.6,-0.2) circle (2mm);
+  %\draw (2.5,3.3) arc (270:295:10mm) node[midway, below] {$\theta$} ;
+  %\draw[dotted] (4.6,-0.2) -- (0.4,-0.2);
+  
+  %\draw[-{Stealth[scale=1.5]}] (0,1) -- (0,2) node[right=1mm] {$y$};
+  %\draw[-{Stealth[scale=1.5]}] (0,1) -- (1,1) node[right=1mm] {$x$};
+
+  %\draw[thick, red, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4,1.1) node[right=2mm] {$T$};
+  %\draw[thick, red, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4.6,-1.5) node[right=2mm] {$mg$};
+
+  %\draw[thick, orange, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4,-0.2) node[below=2mm] {$T\sin{\theta}$};
+  %\draw[thick, orange, -{Stealth[scale=1.5]}] (4.6,-0.2) -- (4.6,1.1) node[right=2mm] {$T\cos{\theta}$};
+ 
+  %\draw[dotted, thick, orange] (4.6,1.1) -- (4,1.1);
+  %\draw[dotted, thick, orange] (4,-0.2) -- (4,1.1);
+  %%\node at (1,-2) {$T=2\pi\frac{m}{k}$};
+ 
+\end{tikzpicture}
+\caption{}
+\end{figure}
+
+
 
 We place an object on this ``roller coaster'', at point A, which is $h$ above the line where we choose $y = 0$ and $U = 0$. It gains speed, by converting gravitational potential energy to kinetic energy, until it reaches point C, where the velocity (and the kinetic energy) is at a maximum, while the potential energy is zero, by our definition.
 
@@ -523,8 +621,6 @@ h &\ge \frac{5}{2} R
 So if we find a point along the roller coaster where this condition is met, and perhaps add a small amount due to friction, the ball will ``make the loop'', so to speak. Without friction, air resistance etc., it would come up to the exact same height as it started rolling down from.
 
 \subsection{Newton's law of universal gravitation}
-
-Like the previous laws we've learned with Newton's name attached to them, the law of universal gravitational is quite simple.
 
 Say we have two masses, often named $m$ and $M$ (where it's often the case that $M$ e.g. a planet, and $m$ is smaller; this is of course no requirement, however). The two point masses\footnote{This also works for masses of nonzero size in some cases, more on that at a later time.} are separated by a distance $r$. The force that $m$ experiences because of $M$ is then
 
@@ -567,11 +663,11 @@ Note how the value will always be zero ``at'' infinity, and grow larger (\emph{l
 
 \subsubsection{Example calculation}
 
-Lecture question: A mass $M$ is released at zero speed, $2 \cdot 10^6$ km from the center of the Earth. At what speed does it hit the Earth, ignoring the gravitational forces from all other objects in the solar system?
+Lecture question: A mass $M$ is released at zero speed, $2 \cdot 10^6$ km from the center of the Earth. At what speed does it hit Earth, ignoring the gravitational forces from all other objects in the solar system?
 
-We could integrate the acceleration to find the answer, but that is dependent on time, so that seems more trouble than it's worth.
+We could integrate the acceleration to find the answer, but that is dependent on time, so that seems more trouble than it's worth. 
+Instead we attempt to do this by conservation of energy.
 
-Let's instead attempt to do this by conservation of energy -- I'm fairly sure that was the intention, anyway.\\
 If we assume mechanical energy will be conserved, which ought to be a fairly good approximation here, 100\% of the change in the potential energy is converted to kinetic energy. What is the change in potential energy, $\Delta U$? Using the formula for potential energy above, and using A for the initial location and B at the surface at the Earth, it must be
 
 \begin{align}
