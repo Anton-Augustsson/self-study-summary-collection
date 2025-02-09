@@ -1,19 +1,16 @@
 
 \section{Lecture 13: Equation of motion for simple harmonic oscillators}
 
-The lecture begins with what is really a review of gravitational potential energy, which is still certainly worth watching, to make sure that you everything everything clearly. In addition, the explanation for the potential energy (below) is compared to gravitational potential energy.
 
-First, the potential energy of a spring is derived, which I did in homework 4 (week 5), problem 5.
-
-As a quick refresher: we set $x = 0$ at the relaxed length of the spring, and extend it a distance $x$ further. The spring force is $-k x$, and the force we need to provide to overcome that is $+ k x$. The work we do in extending the spring is all stored as potential energy in the spring, so
+As a quick refresher: we set $x = 0$ at the relaxed length of the spring, and extend it a distance $x$. The spring force is $-k x$, and the force we need to provide to overcome that is $+ k x$. The work we do in extending the spring is all stored as potential energy in the spring, so
 
 \begin{equation}
 U_{spring} = W = \int_0^x k x \mathop{dx} = \Big[\frac{1}{2} k x^2\Big]_0^x = \frac{1}{2} k x^2
 \end{equation}
 
-It follows, then, that $U_{spring} = 0$ at $x = 0$. As usual, we can define this however we want, but any other definition would only cause problems in most cases, and therefore be silly to make.
+It follows, then, that $U_{spring} = 0$ at $x = 0$. As usual, we can define this how we want, but any other definition would only cause problems in most cases, and therefore be silly.
 
-As is the case with gravity, as stated in the beginning of the lecture (of which I took no notes), the force is always in the direction \emph{opposite} that of increasing potential energy. For gravity, this turns out to be an always-attracting force. For springs, this turns out to be a restoring force: if you stretch the spring, the force is always such that it pulls to spring back together. If you instead compress the spring, the force reverses, and now tries to push it back to its original length. In both these cases, the force is in the opposite direction of increasing potential energy, since potential energy increases both when the spring is compressed and when it is extended.
+As is the case with gravity, as stated in the beginning of the lecture, the force is always in the direction \emph{opposite} that of increasing potential energy. For gravity, this turns out to be an always-attracting force. For springs, this turns out to be a restoring force: if you stretch the spring, the force is always such that it pulls to spring back together. If you instead compress the spring, the force reverses, and now tries to push it back to its original length. In both these cases, the force is in the opposite direction of increasing potential energy, since potential energy increases both when the spring is compressed and when it is extended.
 
 Let's now look at the reverse situation. Can we go from knowing only the potential energy, to finding the spring's force? Yes, we can, and it's very easy: we take the derivative of the potential energy, with respect to $x$:
 
@@ -23,28 +20,16 @@ U &= \frac{1}{2} k x^2\\
 \frac{dU}{dx} &= -F_x
 \end{align}
 
-Since the force is one-dimensional, we can write $F_x$ for the force. The minus sign is important, and means what we mentioned above: the force is in the direction \emph{opposite} the increase in potential energy. If $\frac{dU}{dx}$ is positive, you are moving in that direction, and you get a minus sign for the force -- it is opposite our motion, since the motion is towards increasing potential energy.\\
+Since the force is one-dimensional, we can write $F_x$ for the force. The minus sign is important, and as mentioned above: the force is in the direction \emph{opposite} the increase in potential energy. If $\frac{dU}{dx}$ is positive, you are moving in that direction, and you get a minus sign for the force -- it is opposite to our motion, since the motion is towards increasing potential energy.\\
 If $\frac{dU}{dx}$ is negative, we are moving towards decreasing value of potential energy, and the force is positive (in the same direction as the $x$ motion).
 
-In multiple dimensions, we can find a similar result. If we know the potential energy as a function of $x$, $y$ and $z$, we can find the force components along each axis by taking partial derivatives. So given $U(x, y, z)$, we can find force components $F_x$, $F_y$ and $F_z$:
+In multiple dimensions, we can find a similar result. If we know the potential energy as a function of $x$, $y$ and $z$, we can find the force components along each axis by taking partial derivatives. So given $U(x, y, z)$, we can find the force components $F_x$, $F_y$ and $F_z$:
 
 \begin{align}
 \frac{\partial U}{\partial x} = - F_x\\
 \frac{\partial U}{\partial y} = - F_y\\
 \frac{\partial U}{\partial z} = - F_z
 \end{align}
-
-Partial derivatives are quite simple; you calculate them for one function argument at a time. So you essentially first find $\displaystyle \frac{d}{dx} U(x,y,z)$, while \emph{treating y and z as constants}; that gives you the negative of the force along the $x$ axis.\\
-In other words, as an example:
-
-\begin{equation}
-\frac{\partial}{\partial x}\left(2x^2 - 3y + 2 x y - 3z\right) = 4x + 2y
-\end{equation}
-
-The $-3 y$ term disappears, since we consider it constant. Likewise, $2 x y$ becomes $2 y$, since $\displaystyle \frac{d}{dx}(2 x y) = 2 y \frac{d}{dx} (x)$ if $y$ is a constant. Similarly, the $z$ term disappears, since we treat it as a constant.\\
-If this polynomial was $U(x, y, z)$, then we just found $-F_x = 4x + 2 y$, so $F_x = -4 x - 2 y$.
-
-You then simply repeat the process for the $y$ and $z$ components, keeping the other two axes constant, and you are done.
 
 Two more realistic examples are covered in the lecture. First, for one-dimensional gravitational potential energy:
 
@@ -70,9 +55,39 @@ Again, we find a familiar result.
 
 Next up, let's look at equilibrium. Say we have a surface, that may look like this:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec13_equilibrium}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[thick, smooth] 
+  (0,1) 
+  to[out=-60, in=180] (0.5,0.5)
+  to[out=0, in=180] (1.5,2)
+  to[out=0, in=180] (2.5,1)
+  to[out=0, in=180] (4,3)
+  to[out=0, in=180] (6,0)
+  to[out=0, in=180] (7,1)
+  to[out=0, in=180] (8,0.5)
+  to[out=0, in=180] (8.5,0.5);
+
+  \draw[dotted] (0,0) -- (8,0) node[right] {$y$} node[at start, left] {$u=0$};
+
+  \filldraw[black] (1.5,2) circle (2pt);
+  \filldraw[black] (2.5,1) circle (2pt);
+  \filldraw[black] (4,3) circle (2pt);
+  \filldraw[black] (6,0) circle (2pt);
+  \filldraw[black] (7,1) circle (2pt);
+
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (1.5,2) -- (1.5,0.5) node[right=2mm] {$mg$};
+  \draw[thick, orange, -{Stealth[scale=1.5]}] (1.5,2) -- (1.5,3.5) node[right=2mm] {$N$};
+
+  \draw[-{Stealth[scale=1.5]}] (-1,2) -- (-1,3) node[right=1mm] {$y$};
+  \draw[-{Stealth[scale=1.5]}] (-1,2) -- (0,2) node[above=1mm] {$x$};
+
+\end{tikzpicture}
+\end{figure}
+
+
 
 The points along the curve have a gravitational potential energy which is $U = m g y$, since we defined $U = 0$ at $y = 0$ (the $= 0$ part is just outside the screen grab above). Since the plot is of $y = f(x)$, for some function $f$, we can also write that $U = m g f(x)$.
 
@@ -81,30 +96,51 @@ There are then points along this curve where $\displaystyle \frac{dU}{dx} = 0$. 
 From the definition we found before, that then means that $-F_x = 0$, so the net force in the $x$ direction is zero.\\
 At such a point, there is a force $-m g$ in the $y$ direction, and a normal force $N = + m g$, so that there is no net force there, either.
 
-Since there is no net force on the object at one of these points, and we can put it in such a situation at rest, it will stay exactly where it is.\\
+Since there is no net force on the object at one of these points, and we can put it at rest, it will stay exactly where it is.\\
 However, there is an important difference between these two types of points  (peaks and valleys). If we try to balance a marble at the top of such a peak, just about any tiny vibration, small amount of wind etc. will get it moving. Being at the top of a large downwards slope, in either direction, it will then clearly begin to accelerate downwards -- and again, the force is in the direction of decreasing potential energy (which of course is the same thing as being in the \emph{opposite} direction as \emph{increasing} potential energy).
 
 However, if we put a marble in one of the valleys, what happens? If there is a small force, causing a motion in any direction, it will be forced back into the valley. The force is yet again in the direction opposing the increase in potential energy, and potential energy increases both to the left \emph{and} to the right! Therefore, the force is such that the marble is returned to the middle of the valley again, to the point of lowest potential energy.
 
 The difference between these two zero points are that the peaks provide \emph{unstable equilibrium}, while the valleys provide \emph{stable equilibrium}. If there is a disturbance in the first case, it goes out of control. In the second case, in the valleys, any small disturbance is automatically countered, and the object goes back to where it was, at the bottom.
 
-We can find out which of these two cases a point is mathematically, by looking at the second derivative. If the second derivative of potential energy with respect to $x$ is positive, it's a point of stable equilibrium. If it is negative, it's instead a point of unstable equilibrium.
+We can find out which of these two cases a point is, mathematically, by looking at the second derivative. If the second derivative of potential energy with respect to $x$ is positive, it's a point of stable equilibrium. If it is negative, it's instead a point of unstable equilibrium.
 
 \subsection{Another look at a spring oscillator}
 
 Let's have another look at the oscillation of a mass on a spring, this time from an energy perspective. We know that $\displaystyle U = \frac{1}{2} k x^2$, so a plot of $U(x)$ would be a parabola:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec13_spring_pe}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
 
-Say we have a mass attached to a spring, as usual, and we extend it to $x_{max}$, and let it go, with zero speed.
+  \draw[thick] (0,-1) -- (0,4) node[left] {$u$};
+  \draw[thick] (-3,0) -- (3,0) node[right] {$x$};
+
+  \fill (-1.5,0) circle (0.5mm) node[below] {$-x_{max}$};
+  \fill (0.75,0) circle (0.5mm) node[below] {$x$};
+  \fill (1.5,0) circle (0.5mm) node[below] {$x_{max}$};
+
+  \draw[dotted] (1.5,0) -- (1.5,3);
+  \draw[dotted] (0.75,0) -- (0.75,1);
+
+  \draw[black, line width = 0.50mm] plot[smooth,domain=-2:2] (\x, {(\x)^2}) node[right] {$\frac{1}{2}kx^2$};
+
+  \draw[orange, -{Stealth[scale=0.8]}] (0.75,-0.35) -- (0.2,-0.35) node[midway, below] {$v$};
+  \draw[orange, -{Stealth[scale=0.8]}] (0.75,-0.35) -- (1.2,-0.35);
+
+\end{tikzpicture}
+\caption{}
+\end{figure}
+
+
+Say we have a mass attached to a spring, as usual, and we extend it to $x_{max}$, and let it go with zero speed.
 
 We know that it will oscillate between $+x_{max}$ and $-x_{max}$, but we can now gain a second insight into this oscillation (albeit one mentioned earlier). Say we release the mass at an extension $x_{max}$ beyond the spring's natural length. That means the potential energy in the spring at that time is
 
 \begin{equation}
 U_{initial} = \frac{1}{2} k x_{max}^2
 \end{equation}
+
 
 Since we know that the force will be in the direction opposing the increase in potential energy, the mass will be pulled inwards, towards $x = 0$. Once it crosses the zero point, the force switches directions, since the current \emph{velocity} vector is towards increasing potential energy (the spring is being compressed to be shorter than its natural length). That means the force (and thus the acceleration) instantly flips over, and the mass starts slowing down. The new force is once again in the direction opposing the increase in potential energy, which is again towards $x = 0$, which is now towards the right in the figure.
 
@@ -115,7 +151,7 @@ Because spring forces are conservative (for ideal springs), we can use conservat
 \end{equation}
 
 This equation must \emph{always} hold for this system, unless there are other forces, such as friction, which we ignore for now.\\
-Because $v = \dot{x}$, we can rewrite this equation a bit, by making that substitution, and getting rid of all of the one-halves, and dividing through by $m$:
+Because $v = \dot{x}$, we can rewrite this equation, by making that substitution, and getting rid of all the one-halves, and dividing by $m$:
 
 \begin{align}
 \frac{1}{2} m \dot{x}^2 + \frac{1}{2} k x^2 = \frac{1}{2} k x_{max}^2\\
@@ -129,7 +165,7 @@ We can then take the time derivative of this. Keep in mind that since the equati
 2 \dot{x} \ddot{x} + 2 \frac{k}{m} x \dot{x} - 0 = 0
 \end{align}
 
-We can simplify this equation by dividing through by $2 \dot{x}$:
+We can simplify this equation by dividing by $2 \dot{x}$:
 
 \begin{equation}
 \ddot{x} + \frac{k}{m} x = 0
@@ -149,9 +185,29 @@ T           &= \frac{2 \pi}{\omega} = 2 \pi \sqrt{\frac{m}{k}}
 
 Say we have a circular (or at least semicircular) track of radius $R$. We define $y = 0$ and $U = 0$ to be at the bottom of the track.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec13_bowl}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw (0,0) arc (180:360:30mm);
+  \draw (3,-0.62) arc (270:340:5mm) node[below=2mm] {$\theta$};
+  \draw (3,0) -- (5.5,-1.65) node[midway, above] {$R$};
+  \draw[dashed] (3,-1.65) -- (5.5,-1.65);
+  \draw[dotted] (3,0) -- (3,-3);
+
+  \fill (3,-3) circle (0.5mm);
+  \fill (5.5,-1.65) circle (0.5mm);
+
+  \draw[dotted] (0,-3) -- (6,-3) node[right] {$y=0$} node[at start, left] {u=0};
+  \draw[-{Stealth}] (5.5,-3) -- (5.5,-1.65) node[right] {$y$};
+
+  \draw[decorate, decoration = {brace, amplitude=1.5mm}] (3,-1.65) -- (3,0) node[midway, left=2mm] {$R\cos{\theta}$};
+  \draw[decorate, decoration = {brace, amplitude=1.5mm}] (3,-3) -- (3,-1.65) node[midway, left=2mm] {};
+
+\end{tikzpicture}
+\caption{}
+\end{figure}
+
 
 When the ball is at some random location $y$, we can find the angle made with the vertical, $\theta$, via trigonometry.\\
 First, we find that the radius $R$ acts as the hypotenuse of a right triangle, where the $x$ component $R \sin \theta$ is at the bottom, and the left side has height $R \cos \theta$. Note that the $y$ coordinate fits $y = R - R\cos \theta$, so that $y = R (1 - \cos \theta)$.
@@ -188,13 +244,13 @@ As a short aside, we can, as a small-angle approximation, use
 \cos \theta \approx 1 - \frac{\theta^2}{2}
 \end{equation}
 
-This approximation uses the first two terms of a Taylor expansion for $\cos \theta$. If you are unfamiliar with Taylor expansions, you could look them up (even the basics are a bit too much to cover in what is already an aside). In short, they provide for a way to approximate about any function as a polynomial, or -- with an infinite amount of terms -- exactly equal those functions.
+This approximation uses the first two terms of a Taylor expansion for $\cos \theta$. 
 
 Last time we used such an approximation, we used only the first term, $\cos \theta \approx 1$. That's too inexact for this case, though -- we would end up with $U = m g R (1 - 1) = 0$ for all $\theta$!
 
 Even for angles of about 11.5 degrees, the error caused by this approximation is way, way less than 1\% (less than 0.01\%, actually). In fact, for as much as 30 degrees, we have $\cos(\ang{30}) \approx 0.8660254$, while the approximation gives $0.862922$. It's off by about 0.3\% -- still not a lot, all things considered.
 
-Let's return to the problem at hand. Using this approximation, we apply the conservation of mechanical energy to this system. The total mechanical energy must be a constant. If we release the object as zero speed, and thus zero kinetic energy, the total energy (kinetic + potential) must always equal that value:
+Let's return to the problem at hand. Using this approximation, we apply the conservation of mechanical energy to this system. The total mechanical energy must be a constant. If we release the object as zero speed, and thus zero kinetic energy, the total energy (kinetic + potential) must always equal:
 
 \begin{equation}
 M_E = \frac{1}{2} m v^2 + m g R(1 - \cos \theta)
@@ -237,7 +293,6 @@ Finally, on to an important detail. Nowhere in this derivation did we consider t
 
 It turns out that yes, we can ignore it, because in the case of this circular track, it is always perpendicular to the direction of motion. A force perpendicular to a motion \emph{cannot} do work, because of the definition of the dot product: an angle of $\ang{90}$ between force and displacement always means zero work.
 
-Next, a very interesting demonstration follows, that might cause some sleeplessness until we find the answer to what's going on, likely in two weeks or so.
 
 \section{Lecture 14: Orbits and escape velocity}
 
