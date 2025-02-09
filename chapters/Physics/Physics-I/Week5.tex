@@ -687,19 +687,19 @@ From the previous formula, we can find the kinetic energy as it hits, as that is
 
 \section{Lecture 12: Resistive forces}
 
-This lecture introduces resistive forces and \emph{drag} forces, such as air drag -- a concept we have previously ignored while solving problems. In many cases, it cannot be ignored without yielding wildly incorrect results, something we may be equipped to handle sooner rather than later now.
+This lecture introduces resistive forces and \emph{drag} forces, such as air drag -- a concept we have previously ignored while solving problems. In many cases, it cannot be ignored without yielding wildly incorrect results.
 
-Unlike friction, drag forces depend not only on the medium the object moves though (which we could perhaps liken to the friction coefficient), but also the object's shape, size and speed. In addition, the object's mass also matters for its movement, though the drag forces don't depend on it. More on that later.
+Unlike friction, drag forces depend not only on the medium the object moves though (which we could perhaps compare to the friction coefficient), but also the object's shape, size and speed. In addition, the object's mass also matters for its movement, though the drag forces don't depend on it. More on that later.
 
-The fact that it depends on the medium is obvious, perhaps unlike some of the above. We know from experience that the drag force is much greater in water than it is in air, as it's very hard to make fast movements underwater, compared to in air. Oil has an even greater drag force than water.
+The fact that it depends on the medium is obvious, perhaps unlike some of the above. We know from experience that the drag force is much greater in water than it is in air, as it's very hard to make fast movements underwater, compared to air. Oil has an even greater drag force than water.
 
 In general, we can write resistive forces as
 
 \begin{equation}
-\vec{F_{res}} = -\left( k_1 v + k_2 v^2 \right) \hat{v}
+\vec{F}_{res} = -\left( k_1 v + k_2 v^2 \right) \hat{v}
 \end{equation}
 
-In other words, it is always in the \emph{opposite} direction of the velocity, \emph{relative to the medium}. $v$ is the speed, however, i.e. it is always a positive number, as is of course $v^2$.\\
+In other words, it is always in the \emph{opposite} direction of the velocity, \emph{relative to the medium}. $v$ is the speed, i.e. it is always a positive number, as is of course $v^2$.\\
 $k_1$ and $k_2$ depend on the medium, the shape and size of the object, etc.
 
 This lecture will focus exclusively on spheres for the shape, which means we can describe their size as a single variable, the radius $r$. We can write the magnitude of the drag force as
@@ -708,13 +708,13 @@ This lecture will focus exclusively on spheres for the shape, which means we can
 |F_{res}| = C_1 r v + C_2 r^2 v^2
 \end{equation}
 
-$C_1$ is referred to as the viscous term, as it has to do with the viscosity (essentially ``thickness'') of the medium. A low liquid of low viscosity flows easily; water is a good example. The higher the viscosity, the thicker a fluid is; oil has a higher viscosity than water, and honey an even higher viscosity. The units of $C_1$ is $\text{kg}/(\text{m} \cdot \text{s})$, or $\text{Pa} \cdot \text{s}$ where Pa for pascal is the SI unit of pressure; $\SI{1}{Pa} = \SI{1}{N/m^2}$.
+$C_1$ is referred to as the viscous term, i.e., the ``thickness'' of the medium. A low liquid of low viscosity flows easily; water is a good example. The higher the viscosity, the thicker a fluid is; oil has a higher viscosity than water, and honey even higher viscosity than oil. The units of $C_1$ is $\text{kg}/(\text{m} \cdot \text{s})$, or $\text{Pa} \cdot \text{s}$ where Pa for pascal is the SI unit of pressure; $\SI{1}{Pa} = \SI{1}{N/m^2}$.
 
 $C_2$ is referred to as the pressure term. It is closely related to the density of the medium; the units of $C_2$ is also in kilograms per cubic meter ($\text{kg} \cdot \text{m}^{-3}$). It is not identical to the density, but closely related.
 
 \subsection{Terminal velocity}
 
-If an object is in free fall, it will be accelerated downwards by gravity, with a constant force $m g$ (assuming the fall is small enough that $g$ can be considered constant). The resistive force upwards will not be constant, however, since it is a function of the speed. Since the resistive force will grow as the object falls, there comes a time where the resistive force is equal to the downwards force by gravity, and the net force on the object is zero. Since there is no net force, and thus no acceleration (Newton's second law), via Newton's \emph{first} law, the object will maintain a constant velocity.\\
+If an object is in free fall, it will be accelerated downwards by gravity, with a constant force $m g$ (assuming the fall is small enough that $g$ can be considered constant). The resistive force upwards will not be constant, since it is a function of the speed. Since the resistive force will grow as the object falls, there comes a time where the resistive force is equal to the downwards force by gravity, and the net force on the object is zero. Since there is no net force, and thus no acceleration (Newton's second law), via Newton's \emph{first} law, the object will maintain a constant velocity.\\
 We call this velocity the \emph{terminal velocity}; it is then the highest velocity (or speed) that object can achieve given a certain value of $g$, in that medium. We can then find that velocity by setting the two forces equal, and solving for $v$. In doing so, we get two answers (since the equation is quadratic), though one of the solutions is unphysical and must be ignored.
 
 In many cases, one of these two terms is dominating. In the first case, which we will call regime I or the viscous regime, the first term dominates, so that
@@ -736,7 +736,7 @@ C_2 r^2 v_{crit}^2 &= C_1 r v_{crit}\\
 v_{crit} &= \frac{C_1}{C_2 r}
 \end{align}
 
-In regime I, which implies $v \ll v_{crit}$, the terminal velocity $v_{term}$ can be found as approximately
+In regime, I, which implies $v \ll v_{crit}$, the terminal velocity $v_{term}$ can be found as approximately
 
 \begin{align}
 C_1 r v_{term} &= m g\\
@@ -766,13 +766,10 @@ v_{term} = \sqrt{\frac{4}{3} \pi \rho_{obj} r^3} \sqrt{\frac{ g}{C_2 r^2}} = \sq
 
 ... so that $v_{term} \propto \sqrt{r}$ instead.
 
-Much of this lecture is hard to take good notes of, but the course does provide handouts which are very useful, under each lecture video segment. I did not write anything down during the excellent demonstration of ball bearings falling through syrup, though I would recommend watching it and having a close look at the transparencies provided.
 
 \subsection{Trajectories with air drag}
 
-After the demonstration, which was exclusively in regime I, we start looking at motion through air (at standard temperature and pressure, i.e. indoor conditions).
-
-Here, we find values of $C_1 \approx 3.1 \cdot 10^{-4}$ pascal-seconds, while $C_2 \approx 0.85 \text{ kg/m}^3$.\\
+Looking at motion through air, we find values of $C_1 \approx 3.1 \cdot 10^{-4}$ pascal-seconds, while $C_2 \approx 0.85 \text{ kg/m}^3$.
 We earlier found the critical velocity as $C_1/(C_2 r)$, so for air, it is about 
 
 \begin{equation}
@@ -790,9 +787,9 @@ In the $y$ direction, we have a similar situation, but we also have gravity whic
 
 Because of this asymmetry, it will take \emph{longer} for the ball to fall down from its peak back to the ground (or back to the height from which it was launched, to be more precise), than it will for it to actually reach it. This can be seen fairly easily, at least once you know how to think about the problem.
 
-We can neglect horizontal motion for a second, and only think about how it travels in the $y$ direction, since that alone decides whether when it reaches the peak / hits the ground. We launch it with an initial velocity upwards, say 10 m/s. Without air drag, it takes 1 second (using $g \approx \SI{10}{m/s^2}$) to reach the peak at 5 meters up ($y = y_0 + v_0t - 0.5 g t^2 = 0 + 10\cdot1 - 0.5\cdot10\cdot1^2$), after which it falls down, and hits the ground at 10 m/s again, having accelerated at $g$ for one second.
+We can neglect horizontal motion for a second, and only think about how it travels in the $y$ direction, since that alone decides when it reaches the peak / hits the ground. We launch it with an initial velocity upwards, say 10 m/s. Without air drag, it takes 1 second (using $g \approx \SI{10}{m/s^2}$) to reach the peak at 5 meters up ($y = y_0 + v_0t - 0.5 g t^2 = 0 + 10\cdot1 - 0.5\cdot10\cdot1^2$), after which it falls down, and hits the ground at 10 m/s again, having accelerated at $g$ for one second.
 
-With air drag, it doesn't reach as high, since there is an additional downwards force now, due to air drag. Say it reaches 3 meters instead, so that at $y = 3$ m, the velocity is zero. In then begins to fall downwards, with gravity pulling it down, and air drag pushing it upwards (opposing the motion relative to the air). It is clear, then, that the net acceleration must be \emph{less} than $g$, so the velocity it hits the ground with is also \emph{less} than the 10 m/s we launched it at. Even if it \emph{did} accelerate at $g$, it only has 3 meters to do so at, and so the maximum possible velocity, if we \emph{neglect} air drag for the downwards portion only, can be found by solving the equation
+With air drag, it doesn't reach as high, since there is an additional downwards force now, due to air drag. Say it reaches 3 meters instead, so that at $y = 3$ m, the velocity is zero. It then begins to fall downwards, with gravity pulling it down, and air drag pushing it upwards (opposing the motion). It is clear, then, that the net acceleration must be \emph{less} than $g$, so the velocity it hits the ground with is also \emph{less} than the 10 m/s we launched it at. Even if it \emph{did} accelerate at $g$, it only has 3 meters to do so. The maximum possible velocity, if we \emph{neglect} air drag for the downwards portion only, can be found by solving the equation
 
 \begin{align}
 \SI{3}{m} - \frac{1}{2} g t^2 = 0\\
