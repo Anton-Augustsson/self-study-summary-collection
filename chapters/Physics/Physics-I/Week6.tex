@@ -296,9 +296,7 @@ It turns out that yes, we can ignore it, because in the case of this circular tr
 
 \section{Lecture 14: Orbits and escape velocity}
 
-As we know, the gravitational force has infinite range. Its strength at a distance is limited, though, due to the inverse square relationship. Because of this, there is a speed, the \emph{escape velocity}, that lets you escape from a body's gravitational field. That is, if you start out with that speed, you will escape it forever, even with no additional outwards force (no engines required). Of course, if you \emph{do} have engines, you certainly don't need to stay above the escape velocity the entire time to get away; all you need to do is overcome the force of the gravitational pull.
-
-We can find this velocity for a given body (such as the Earth) quite easily, using conservation of energy. The kinetic energy at launch must be $\displaystyle \frac{1}{2} m v_{esc}^2$, and since the problem definition is that in never adds to that kinetic energy (no engines). That must therefore be the total energy of the object, at all times. The total energy at any given time is the sum of the kinetic energy at some point $r$, which we call $\displaystyle \frac{1}{2} m v_r^2$, and the potential energy at that point, $\displaystyle - \frac{G M m}{r}$, with $M$ being the mass of the Earth (or the body), and $m$ the mass of the object trying to escape.
+We can find the \textit{escape velocity} for a given body (such as the Earth) quite easily, using conservation of energy. The kinetic energy at launch must be $\displaystyle \frac{1}{2} m v_{esc}^2$, and since the problem definition is that in never adds to that kinetic energy (no engines). That must therefore be the total energy of the object, at all times. The total energy at any given time is the sum of the kinetic energy at some point $r$, which we call $\displaystyle \frac{1}{2} m v_r^2$, and the potential energy at that point, $\displaystyle - \frac{G M m}{r}$, with $M$ being the mass of the Earth (or the body), and $m$ the mass of the object trying to escape.
 
 \begin{equation}
 \frac{1}{2} m v_{esc}^2 + \left(-\frac{G M m}{R_{Earth}}\right) = \frac{1}{2} m v_r^2 + \left(-\frac{G M m}{r}\right)
@@ -321,8 +319,6 @@ where, again, $M$ is the mass of the Earth. For Earth, this value is then about 
 If the initial velocity is greater, then you will still have kinetic energy (and thus speed) left when you've escaped. In the case you do ``escape'', with the condition $E_{init} \ge 0$, you are in an \emph{unbound orbit}. In the case that $E_{init} < 0$, you enter a \emph{bound orbit}, and will never escape the gravitational pull of the Earth (or the body in question).
 
 \subsection{Circular orbits}
-
-Elliptical orbits will be covered later in the course, along with Kepler's laws and other fun stuff, but for now, let's introduce circular orbits, as a simplified case.
 
 Say we have a mass $m$ orbiting the Earth, with Earth's mass being $M$, and say that $m \ll M$.\\
 It moves in a circle around the Earth at constant (tangential) speed, but not constant velocity -- there is a constant centripetal acceleration, or it wouldn't be moving in a circle. Centripetal acceleration is provided by centripetal force, which in this case is the attractive force of gravity of the Earth on the mass.
@@ -417,70 +413,3 @@ As a reference, ice has a specific heat of about 0.5, compared to liquid water's
 
 James Joule first found that mechanical work and heat energy are equivalent in 1845, though he was not the first to begin research on the topic. This research, among other things, led to the naming of the joule in his honor.
 
-\subsection{Power and the human body}
-
-The human body radiates heat, infrared radiation, at a rate of about 100 watts -- 100 joules per second. That is about $10^7$ joules per day, which then is about 2.4 (or $\approx 2$) million calories.\\
-Clearly, then, we need to input an equivalent amount of energy, or we would run dry sooner rather than later! We get this energy from food, of course.\\
-Food labels are usually in kilocalories, which is sometimes written as either Cal (capital c) or kcal. They often mention the equivalent value in kilojoules as well.\\
-So when a food label says 400 (kilo)calories, that that is enough for a power output of 100 watts for about 4 hours.
-
-Normal, daily activities use almost no energy at all, compared to the rate of energy use of the body that occurs either way. Walking up 10 meters (vertically) of stairs, 5 times a day, is an average power use of about 1 W, if spread out over over 10 hours or so. That's only about 1\% of the heat energy produced by the body when essentially at rest.
-
-On the other hand, if you climb a mountain of 5000 feet (about 1500 meters), you might do about a million joules worth of mechanical work just to overcome gravity, which is not negligible compared to the $10^7$ joules daily. In other words, you need to eat more, in order to stay the same weight (or mass, rather!).\\
-Because the conversion from food energy to mechanical work is quite inefficient, eating 10\% more won't do it, though; you may have to eat 40\%+ more in order to account for the increased energy use.
-
-\subsection{More heat, and electric energy}
-
-Consider taking a bath: we might need to heat 100 kg of water, by about 50 degrees C. (I'm not so sure I agree with that number, though! Even if the water was $0 {}^\circ$C to begin with, it would probably be painfully hot! Anyway, let's work with the number from the lecture.)
-
-With $C = 1 \text{ cal/(g} {}^\circ \text{C})$ for water, the answer is then simply the mass (in grams!) times $C = 1$ times 50 degrees $C$, or about $5 \cdot 10^6$ calories, which is about $\SI{2e7}{J}$.
-
-It's fairly difficult to produce 120 watts of work in turning a crank on a generator that then produces electric energy; a student was unsuccessful, and the professor says he is also unable to do so. Still, you would need to produce those 120 watts for 48 hours in order to heat up the water in that bath by 50 degrees!
-
-Next, a demonstration of a simple battery is shown; four cells consisting of a zinc anode and a copper cathode in a sulfuric acid solution are wired in series to power a small light bulb.
-
-After that, some more numbers: the global energy consumption (in 1999, when the lectures were recorded) is/was about $\SI{4e20}{J}$ per year.\\
-The USA consumes about 1/5 of that, with 1/30 of the world's population.
-
-The Sun has a power output of about $\SI{4e26}{W}$, radiated in mostly visible light and infrared. Of course, it radiates a roughly equal amount in all directions, so only a small fraction of that reaches the Earth. We can calculate how large Earth's cross section is, and find the ratio of that divided by $4 \pi R^2$, with $R$ being the mean distance between the Earth and the Sun. We find about 1400 watts per square meter, that reaches the Earth's atmosphere.\\
-The measured value at the ground varies greatly, for many reasons: the Sun's altitude above the horizon (i.e. day/night cycle, seasons, location on the Earth), cloud cover, and more.
-
-If we try put solar panels on a horizontal roof, then clearly they will not do anything useful when the sun is just at the horizon.
-
-Taking all this into account, along with solar cell inefficiency, we could perhaps provide enough energy to power the planet continuously by having a 400 mile by 400 mile solar grid -- not a small area! That area is three times that of England. Clearly, we cannot sustain our current energy use by solar power alone.
-
-Lecture question time:\\
-``When the sun is in the zenith and the sky is perfectly clear, the solar power we receive on the surface of the earth is roughly 1 kW per square meter (on a horizontal surface that is normal to the direction of the sun).
-
-Calculate the average solar power per square meter (in Watts) on a horizontal surface for a day when the sun goes through the zenith at noon.
-
-The sun goes through the zenith exactly twice a year on latitudes that are close to the equator. Take the angle to the sun into account.''
-
-Okay, let's see. Let's imagine one single square meter somewhere on the Earth. First we have sunrise, where the sun is at $-\pi/2$ radians compared to the zenith. At noon, it is at 0 rad (straight above), and at sunset, at $+\pi/2$ radians. The power at a given angle $\theta$ should be $P = (\SI{1000}{W})\cos\theta$. Next, we need to find an average.
-
-We can do find the average by an integral:
-
-\begin{equation}
-\overbar{P} = \frac{1}{b - a} \int_a^b 1000 \cos \theta d \theta
-\end{equation}
-
-where $a = -\pi/2$ and $b = \pi/2$. However, that is only exactly half a day -- the other 12 hours, there is zero sunlight, so we need to divide our answer by two, which causes the additional factor of 1/2 below. We find
-
-\begin{align}
-1000 \frac{1}{\pi} \frac{1}{2} \int_{-\pi/2}^{\pi/2} \cos \theta d \theta &= \frac{1000}{2 \pi} \int_{-\pi/2}^{\pi/2} \cos \theta d \theta = \frac{1000}{2\pi} \Big[ \sin \theta \Big]_{-\pi/2}^{\pi/2}\\
-                                                              &= \frac{1000}{2\pi} \times 2 = \frac{1000}{\pi} \approx \SI{318.3}{W}
-\end{align}
-
-I do believe I'm missing a simplification, but at least this gets us the correct answer.
-
-Finally, a small note on the current energy crisis.\\
-We are using fossil fuels at a rate which is about one \emph{million} times greater than nature's production. At this rate, we will run out in less than 100 years. Fossil fuels account for a bit over 80 percent of human energy consumption, so clearly we need to start producing a \emph{lot} of energy from other sources, or we will simply run out. While solar power is very useful, we have already ruled it out as a full replacement. We can combine many energy sources, though, and have solar power be one of them.
-
-Nuclear fusion is often touted as the ``energy source of the future''. And indeed, if we can create an efficient reactor (current designs are not usable in practice, and mostly use more power than they provide back), it could provide practically limitless energy. One possible fuel source is deuterium and tritium, isotopes of hydrogen, present in sea water. We have enough water to provide the current world's energy usage for about 25 billion years, so if it could work, the energy problem would be solved.
-
-Not only that, but fusion is both clean and intrinsically safe. Most of us know of Chernobyl or Fukushima -- rare accidents, but they do happen, and can be very problematic.\\
-(Though as of late 2013, the death toll due to Fukushima is still zero (but the lifetime rate of cancer has likely increased in some people), and fission energy has a lower death rate per unit energy produced than even wind and solar energy. I'm not trying to sell some propaganda here, but I do feel that nuclear fission has a worse reputation than it deserves, even though there obviously are risks.)
-
-If a tsunami or an earthquake were to hit a \emph{fusion} reactor, however, not a lot can happen. In magnetic containment fusion, the magnetic field would collapse if power was cut, and the reactor would automatically shut down. Not automatically as in a safety protocol, but rather without the containment, the reaction cannot be sustained, and stops all by itself. That's in contrast with a fission reactor, which must rely on safety measures to stop the reaction, so that it doesn't go out of control.\\
-(Newer fission reactor designs are safer than ones in use, but few new designs are actually put into use, likely in part due the rather vocal opposition to nuclear energy.)\\
-In addition, a fission reactor usually has many tons of fuel inside, while a fusion reactor can be powered off just grams of fuel, and use well below 1 ton of fuel in a year -- and the fuel is just hydrogen isotopes. Granted, tritium is radioactive, and there are some radioactive byproducts, but nowhere near the many tons a year of poisonous, radioactive material that fission reactors produce per year.
