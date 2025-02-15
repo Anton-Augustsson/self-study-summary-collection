@@ -142,17 +142,17 @@ x_{cm} = \frac{m_1 x_1 + m_2 x_2}{m_1 + m_2}
 
 This gives a result where the center of mass is closer to the more massive of the two objects. If they are equally massive, the center of mass is at the midpoint between the two.
 
-Returning to the first equation solved for $\vec{r_{cm}}$, we can take the time derivative of both sides of this equation. $\vec{r_{cm}}$ becomes $\vec{v_{cm}}$, and $\vec{r_i}$ becomes $\vec{v_i}$, since velocity is the time derivative of position.
+Returning to the first equation solved for $\vec{r_{cm}}$, we can take the time derivative of both sides of this equation. $\vec{r}_{cm}$ becomes $\vec{v_{cm}}$, and $\vec{r_i}$ becomes $\vec{v_i}$, since velocity is the time derivative of position.
 
 \begin{equation}
 \vec{v_{cm}} = \frac{1}{M_{tot}} \sum_i m_i \vec{v_i}
 \end{equation}
 
-However, note that $\sum_i m_i \vec{v_i}$ is the sum of the mass-velocity products: it is the total momentum of the system. In other words,
+However, note that $\sum_i m_i \vec{v}_i$ is the sum of the mass-velocity products: it is the total momentum of the system. In other words,
 
 \begin{align}
-\vec{v_{cm}} &= \frac{1}{M_{tot}} \vec{p_{tot}}\\
-\vec{p_{tot}} &= M_{tot} \vec{v_{cm}}
+\vec{v}_{cm} &= \frac{1}{M}_{tot} \vec{p}_{tot}\\
+\vec{p}_{tot} &= M_{tot} \vec{v}_{cm}
 \end{align}
 
 This second result is an important one: the total momentum of a system can be found by knowing its total mass and the velocity of its center of mass, and is the same regardless of what the rest of the system is doing.
@@ -240,7 +240,7 @@ With $m_1 = m_2$, this yields a funny result: the two essentially trade speeds w
 
 We can choose our reference frame such that the center of mass has zero velocity in our frame. This is referred to as the ``center of mass frame'', ``center of momentum frame'' or COM frame.
 
-In this frame, total momentum is always zero. We found last lecture that $\vec{p_{tot}} = M_{tot} \vec{v_{cm}}$, and \emph{in the COM frame}, $v_{cm} = 0$ by definition. That definition is what makes it the COM frame.
+In this frame, total momentum is always zero. We found last lecture that $\vec{p}_{tot} = M_{tot} \vec{v}_{cm}$, and \emph{in the COM frame}, $v_{cm} = 0$ by definition. That definition is what makes it the COM frame.
 
 Using the definition for the velocity of the center of mass
 
@@ -265,7 +265,6 @@ The sum $\sum_i m_i u_i$ is the net momentum in the COM frame. $u_i = (v_i - v_{
 
 The denominator in the fraction becomes $1$, and we then have the subtraction of two equal quantities that equals the total momentum, as seen from the COM frame, since the indices $i$ and $j$ are equivalent.
 
-Now that we can hopefully accept the above as being true (I had trouble seeing it until I did the above)...\\
 Say we are in this frame, and there are two particles with velocities inward toward the center of mass; one mass $m_1$ with speed $u_1$, and one mass $m_2$ with speed $u_2$ -- again with those speeds being in the COM frame. Also say $Q = 0$ for this collision, i.e. it is an elastic collision.
 
 Momentum is zero both before and after the collision. In addition, because this is an elastic collision, we can also write down an equation relating kinetic energy before and after the collision. Altogether, we have:
@@ -326,17 +325,15 @@ $v_{cm} = v'$; that can be seen very easily by looking at the equation for $v_{c
 
 Next, we can calculate the difference is potential energy before ($K$) and after ($K'$) the collision. This is the $Q$ we had in a previous equation (see the note just below; I made a small mistake):
 
-\begin{align}
-Q = K' - K &= \frac{1}{2} m_1 v_1^2 - \frac{1}{2} (m_1 + m_2) \left(\frac{m_1 v_1}{m_1 + m_2}\right)^2\\
-           &= \frac{1}{2} m_1 v_1^2 - \frac{m_1^2 v_1^2}{2(m_1 + m_2)}\\
-           &= \frac{m_1 v_1^2(m_1 + m_2)}{2(m_1 + m_2)} - \frac{m_1^2 v_1^2}{2(m_1 + m_2)}\\
-           &= \frac{m_1 v_1^2(m_1 + m_2) - m_1^2 v_1^2}{2(m_1 + m_2)}\\
-           &= - \frac{m_1 m_2}{2(m_1 + m_2)} v_1^2 \text{ (see below re: minus)}
-\end{align}
+\begin{align*}
+Q = K' - K &= \frac{1}{2} (m_1 + m_2) \left(\frac{m_1 v_1}{m_1 + m_2}\right)^2 - \frac{1}{2} m_1 v_1^2\\
+           &= \frac{m_1^2 v_1^2}{2(m_1 + m_2)} - \frac{1}{2} m_1 v_1^2 \\
+           &= \frac{m_1^2 v_1^2}{2(m_1 + m_2)} - \frac{m_1 v_1^2(m_1 + m_2)}{2(m_1 + m_2)} \\
+           &= \frac{m_1^2 v_1^2 - m_1 v_1^2(m_1 + m_2)}{2(m_1 + m_2)}\\
+           &= - \frac{m_1 m_2}{2(m_1 + m_2)} v_1^2 
+\end{align*}
 
-Phew! This is then, from the external reference frame, the amount of kinetic energy lost in the collision.\\
-As it turns out, I accidentally calculated $K - K'$ instead. The only difference is a minus sign, of course, so the actual answer should be \emph{minus} what I actually found; I added the sign in the last step above, instead of re-writing the code for this mess; sorry about that.\\
-So the last line in the equation above is correct.
+Phew! This is then, from the external reference frame, the amount of kinetic energy lost in the collision.
 
 Next, we do the same calculation in the center of mass frame. We know $v_{cm}$, $v_1$ and $v_2$, so we can jump straight to converting the velocities. Using $u_i$ for the velocities as seen from the center of mass frame,
 
