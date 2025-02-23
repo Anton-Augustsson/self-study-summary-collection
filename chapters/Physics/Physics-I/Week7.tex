@@ -410,7 +410,7 @@ With this in mind, we could theoretically fire a bullet into the block, measure 
 
 So if we set the origin at the equilibrium position, we can call the maximum horizontal displacement of the pendulum $x$. Via trigonometry, we can find that $x = \ell \sin \theta$, and $h = \ell - \ell \cos \theta = \ell(1 - \cos \theta)$.
 
-Using the same small-angle approximations we have used previously, that $\displaystyle \cos \theta \approx 1 - \frac{\theta^2}{2}$ and $\sin \theta \approx \theta$ (both only valid for radians), $\displaystyle h \approx \ell \frac{\theta^2}{2}$.
+Using the same small-angle approximations we have used previously, that $\displaystyle \cos \theta \approx 1 - \theta^2/2$ and $\sin \theta \approx \theta$ (both only valid for radians), $\displaystyle h \approx \ell \theta^2/2$.
 
 For $\ell = 1$ meter and $\theta = \ang{2}$, we find that $h \approx 0.6$ mm, far to small to measure with any useful accuracy. However, $x \approx \ell \theta \approx 3.5$ cm, which is much more reasonable. 
 
@@ -488,12 +488,12 @@ Car 1 of mass $m_1$ is moving along the +$x$-axis with speed $v_1$ towards car 2
 
 The magnitude of the average force acting upon the driver of mass $m_{dr1}$ in car 1 by her seat belt during the collision is given by:
 
-\begin{align}
+\begin{align*}
 F_{dr1} &= \frac{m_1}{m_1 + m_2} (v_1 - v_2) \frac{m_{dr1}}{\Delta t}\\
 F_{dr1} &= \frac{m_1}{m_1 + m_2} (v_1 + v_2) \frac{m_{dr1}}{\Delta t}\\
 F_{dr1} &= \frac{m_2}{m_1 + m_2} (v_1 - v_2) \frac{m_{dr1}}{\Delta t}\\
 F_{dr1} &= \frac{m_2}{m_1 + m_2} (v_1 + v_2) \frac{m_{dr1}}{\Delta t}
-\end{align}
+\end{align*}
 
 If $v_1 = v_2$, considering the two are \emph{speeds} in opposite directions, the driver will most certainty not experience zero force, so the two options with minus signs should both be wrong. Still, let's solve this the proper way.
 
