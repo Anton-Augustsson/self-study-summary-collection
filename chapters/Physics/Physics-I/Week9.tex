@@ -62,7 +62,7 @@ The total kinetic energy is then the sum
 K = \sum_i \frac{1}{2} m_i \omega^2 r_i^2 = \frac{1}{2} \omega^2 \sum_i m_i r_i^2
 \end{equation}
 
-We can factor out the $\displaystyle \frac{1}{2} \omega^2$, since it is the same for all elements. The sum we have above is known as the \emph{moment of inertia}, $I$ (not to be confused with impulse, which is unrelated).
+We can factor out the $(1/2) \omega^2$, since it is the same for all elements. The sum we have above is known as the \emph{moment of inertia}, $I$ (not to be confused with impulse, which is unrelated).
 
 \begin{equation}
 I_C = \sum_i m_i r_i^2
@@ -79,7 +79,7 @@ The same thing can be said about the moment of inertia, in the case of rotationa
 
 We now know how to calculate kinetic energy, given we know the moment of inertia. The professor recommends looking those up in tables in books, rather than memorizing, since they depend not only on the shape of the object, but also on about which axis you rotate it, and whether that axis is centered or not.
 
-Let's try to calculate that of the disk, though. Say we rotate it as mentioned, about the perpendicular axis, through its center (i.e. in the most obvious way there is). Also, let's actually model it as a cylinder, since the height may matter, so that we get a more general result. The height is $h$, radius $R$. The volume is then $\pi R^2 h$, and the density $\displaystyle \rho = \frac{M}{\pi R^2 h}$, assuming uniform density.
+Let's try to calculate that of the disk, though. Say we rotate it as mentioned, about the perpendicular axis, through its center (i.e. in the most obvious way there is). Also, let's actually model it as a cylinder, since the height may matter, so that we get a more general result. The height is $h$, radius $R$. The volume is then $\pi R^2 h$, and the density $\rho = M/(\pi R^2 h)$, assuming uniform density.
 
 The derivation is fairly long if we don't skip any steps, so to be clear, I will spell many of them out. We begin with the definition of the moment of inertia, and take the limit to get an integral, via the definition of the integral:
 
@@ -111,7 +111,7 @@ So in the end, we find the moment of inertia of a cylinder (or disk) with unifor
 I_C = \frac{1}{2} M R^2
 \end{equation}
 
-Never forget that this result is only valid for the conditions above, though! The moment of inertia for other shapes, or even the same shape but different axes or off-center rotation are all different, as we'll see rather soon. I'm starting to see why the professor didn't derive any examples in class!
+Never forget that this result is only valid for the conditions above, though! The moment of inertia for other shapes, or even the same shape but different axes or off-center rotation are all different, as we'll see rather soon. 
 
 What about for a sphere, again of uniform density, rotating around an axis through its center?\\
 This derivation may seem very simple, but if you start from the definition for the moment of inertia of a point mass, it's actually a rather ugly triple integral. The reason is that the $r_i$ in $\int r_i^2 \mathop{dm}$ is not the distance from the sphere's center, but the distance from the \emph{axis of rotation}. Consider a point near the ``north pole'' of the sphere. It is $R$ from the center of the sphere, but much closer to the axis of rotation, so a simple integral doesn't give us the correct answer.
