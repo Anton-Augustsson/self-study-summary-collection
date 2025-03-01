@@ -11,8 +11,9 @@ However, we can now allow $v$ to change in magnitude. Previously, only the direc
 $v = \omega R$, as we have seen before. $\omega = \dot{\theta}$ (that is, the first time derivative of theta), so $v = \dot{\theta} R$ also.\\
 If we take the time derivative of the angular velocity $\omega$, we find the angular acceleration, $\alpha = \dot{\omega} = \ddot{\theta}$. We use the symbol lowercase alpha for angular acceleration, and the units are $\text{rad/s}^2$.
 
-There are now two accelerations that this object experiences. One is the radial acceleration, that is, the inwards (centripetal) acceleration $a_c$ required for it to change direction so that the motion is circular. There is also the tangential acceleration $\alpha$, which changes the angular velocity of the object as it moves along the circle.\\
-Note that the two have different units, however. The centripetal acceleration will, in MKS units, be in $\text{m/s}^2$, while the angular acceleration is in $\text{rad/s}^2$. In order for them to have the same set of units, we need to convert the angular acceleration tangential acceleration via $a_{tan} = \alpha R$. Only then can we add the two to find the net acceleration vector.
+There are now two accelerations that this object experiences. One is the radial acceleration, that is, the inwards (centripetal) acceleration $a_c$ required for it to change direction so that the motion is circular. There is also the tangential acceleration $\alpha$, which changes the angular velocity of the object as it moves along the circle.
+Note that the two have different units, however.\\
+The centripetal acceleration will, in MKS units, be in $\text{m/s}^2$, while the angular acceleration is in $\text{rad/s}^2$. In order for them to have the same set of units, we need to convert the angular acceleration tangential acceleration via $a_{tan} = \alpha R$. Only then can we add the two to find the net acceleration vector.
 
 By making some very simple substitutions, we can use the same equations we used previously. We replace $x$ with $\theta$, $v$ with $\omega$ and $a$ with $\alpha$, and that's it! These equations can be derived the same way as the kinematics equations, by assuming a constant angular acceleration $\alpha$ and integrating that with respect to time.
 
@@ -48,7 +49,7 @@ The disk has a mass $m$, and a radius $R$, and rotates with angular velocity $\o
 
 In order to find the rotational kinetic energy, we add up the kinetic energy of each tiny portion of the disk. Say we divide it into tiny pieces, each with a mass $m_i$, at a distance $r_i$ from the center of the disk.  It is clear that the elements very near the edge of the disk move at a high velocity, while ones near the center barely move at all, making tiny tiny circles.
 
-The kinetic energy of one such mass piece is simply $\displaystyle K_i = \frac{1}{2} m_i v_i^2$, where we can find the velocity as $v_i = \omega r_i$ -- something that always holds for circular motion. Because of this relationship, we can re-write the kinetic energy in turns of $\omega r_i$ instead of $v_i$, and find
+The kinetic energy of one such mass piece is simply $\displaystyle K_i = (1/2) m_i v_i^2$, where we can find the velocity as $v_i = \omega r_i$ -- something that always holds for circular motion. Because of this relationship, we can re-write the kinetic energy in turns of $\omega r_i$ instead of $v_i$, and find
 
 \begin{equation}
 K_i = \frac{1}{2} m_i \omega^2 r_i^2
@@ -154,7 +155,6 @@ is the moment of inertia for a solid sphere of uniform density.
 Note that the moments of inertia we've found so far are only valid along exactly one axis. That axis must always be exactly through the center of mass of the object. There are two useful theorems that we can use to find the moment of inertia about other axes.
 
 First out is the parallel axis theorem, which we can use the find the moment of inertia for an off-center axis, that is parallel to the original one (thus the name!).\\
-Unfortunately, the lecture video refuses to play properly (on the 8.01x site and on YouTube as well), so I can't grab a screenshot.
 
 Imagine the disk rotating as before, around an axis through its center of mass. We move this axis a distance $d$ from the disk's center, so that the disk is now wobbling back and forth as it rotates. The new moment inertia for this off-center axis is
 
@@ -748,3 +748,7 @@ T = 2 \pi \sqrt{\frac{I_{cm} + m d^2}{m g d}} = 2 \pi \sqrt{\frac{I_{cm}}{m g d}
 \end{equation}
 
 There is then a demonstration of the hula hoop, and a simple pendulum (an apple hanging on a lightweight string), to show that their periods are almost synchronized. (Most of the error likely comes from a small difference in length.)
+
+%%% Local Variables:
+%%% TeX-master: "../../../main"
+%%% End:
