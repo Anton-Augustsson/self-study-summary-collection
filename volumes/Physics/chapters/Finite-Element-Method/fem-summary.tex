@@ -1,0 +1,55 @@
+\chapter{Finite Element Mehod (FEM)}
+
+\section{TODO}
+\cite{2014/35/EU}
+
+\section{Introduction}
+The \textbf{Finite Element Method (FEM)} is a numerical technique for solving boundary value problems in engineering and mathematical physics. It subdivides a large problem into smaller, simpler parts called \textit{finite elements}, and then systematically reassembles them into a global solution.
+
+\section{Key Concepts}
+\begin{itemize}
+    \item \textbf{Domain Discretization:} The problem domain is divided into finite elements (triangles, quadrilaterals, tetrahedra, etc.).
+    \item \textbf{Shape Functions:} Interpolation functions (often denoted by $\phi_i$) that approximate the solution within each element.
+    \item \textbf{Weak Formulation:} The problem is reformulated into a \textit{weak} or \textit{variational form}, typically by applying the method of weighted residuals.
+    \item \textbf{Stiffness Matrix:} A system of algebraic equations is derived from the weak form, resulting in a global stiffness matrix $\mathbf{K}$.
+\end{itemize}
+
+\section{Steps in FEM}
+\begin{enumerate}
+    \item \textbf{Discretization of the Domain:} Divide the domain into finite elements.
+    \item \textbf{Selection of Shape Functions:} Choose shape functions $\phi_i$ to approximate the solution.
+    \item \textbf{Derivation of Element Equations:} Formulate the element stiffness matrix $\mathbf{K}_e$ and force vector $\mathbf{F}_e$.
+    \item \textbf{Assembly of Global System:} Assemble all element equations into a global system:
+    \[
+    \mathbf{K} \mathbf{u} = \mathbf{F}
+    \]
+    where $\mathbf{K}$ is the global stiffness matrix, $\mathbf{u}$ is the nodal displacement vector, and $\mathbf{F}$ is the global force vector.
+    \item \textbf{Application of Boundary Conditions:} Apply constraints and boundary conditions to the system.
+    \item \textbf{Solution of Algebraic Equations:} Solve the resulting system of equations for nodal values.
+    \item \textbf{Post-Processing:} Compute derived quantities (stresses, strains) and visualize results.
+\end{enumerate}
+
+\section{Mathematical Formulation}
+\textbf{Weak Form:} For a general PDE of the form:
+$\mathcal{L}(u) = f \quad \text{in } \Omega$
+with boundary conditions:
+$u = u_D \quad \text{on } \Gamma_D \quad \text{and} \quad \nabla u \cdot \mathbf{n} = q \quad \text{on } \Gamma_N$
+The weak form is:
+$\int_{\Omega} \phi \mathcal{L}(u) \, d\Omega = \int_{\Omega} \phi f \, d\Omega + \int_{\Gamma_N} \phi q \, d\Gamma$
+for all test functions $\phi$.
+
+\section{Advantages and Applications}
+\begin{itemize}
+    \item \textbf{Advantages:}
+    \begin{itemize}
+        \item Can handle complex geometries and boundary conditions.
+        \item Applicable to various types of problems (structural, thermal, fluid dynamics).
+    \end{itemize}
+    \item \textbf{Applications:}
+    \begin{itemize}
+        \item Structural analysis (stress and deformation).
+        \item Heat transfer.
+        \item Fluid flow.
+        \item Electromagnetic fields.
+    \end{itemize}
+\end{itemize}
