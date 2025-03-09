@@ -622,9 +622,7 @@ The idea behind these notes is not to provide a transcript, and as such, as I do
 
 \section{Lecture 21: Torque}
 
-The lecture begins with a review of the last week. I didn't find anything in particular to take notes of again. After all, being able to review is sort of the point of these notes!
-
-Still, here are a few equations given:
+Some equations that are useful are listed below.
 
 \begin{align}
 \vec{L_Q} &= \vec{r_Q} \times \vec{p}\\
@@ -652,9 +650,25 @@ In all other cases, it is crucial to specify the point of origin chosen, since a
 Let's now look at a case where angular momentum is conserved for exactly one point, but is not conserved for any other.\\
 We have a rod, that we rotate about a point P, which is a distance $d$ from the center of mass C. It has a mass $M$ and a length $\ell$, and we rotate it with an angular velocity $\omega$.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec21_rod}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \begin{scope} [rotate=8]
+  \draw (0,0) rectangle (3,0.3);
+  \fill (0.5,0.15) circle (1pt) node[above=3mm] {$P$};
+  \fill (1.5,0.15) circle (1pt) node[above=3mm] {$C$};
+  \draw[dotted] (0.5,0.15) -- (0.5,-1);
+  \draw[dotted] (1.5,0.15) -- (1.5,-1);
+  \draw[{Stealth}-{Stealth}] (0.5,-1) -- (1.5,-1) node[midway, above=1mm] {$d$};
+  \draw[-{Stealth}] (3.4,0.5) arc[start angle=30, end angle=-45, radius=0.8cm] node[midway, right] {$M\ell$} node[right] {$\omega$};
+  \end{scope}
+
+
+\end{tikzpicture}
+\end{figure}
+
+
 
 The moment of inertia for rotation about the center of axis of a rod of uniform density is $\displaystyle \frac{1}{12} M \ell^2$, so angular momentum relative to point P is
 
@@ -683,9 +697,27 @@ for all points in space.
 
 Let's now consider a ruler, lying flat on a frictionless table. It has a uniform mass density, and so its center of mass C is located at the geometric center. We give it an impulse $I$, in other words, a force that acts for a certain amount of time (a very short amount of time in this case, but that is not strictly necessary for this to hold).
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec21_ruler_rotation}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw (-0.2,-2) rectangle (0.2,2);
+  \fill (0,0) circle (1pt) node[midway, left=2mm] {$C$};
+  \draw[red, -{Stealth}] (-1,1.5) -- (-0.2,1.5) node[midway, above=1mm] {$I$};
+  \draw[red, -{Stealth}] (0.2,0) -- (1,0) node[midway, below=1mm] {$v_{cm}$};
+  \draw[dotted] (-0.2,1.5) -- (1,1.5);
+  \draw[dotted] (-0.2,0) -- (6,0) node[midway, above=16mm] {$M\ell$};
+  \draw [decorate, decoration = {brace, amplitude=2mm}] (0.2, 1.5) -- (0.2, 0) node[midway, right=2mm] {$d$};
+  \draw[red, -{Stealth}] (0.5,2.2) arc[start angle=90, end angle=0, radius=0.8cm] node[right] {$\omega_{cm}$};
+
+  \draw[rotate around={-45:(4.2,0)}] (4,-2) rectangle (4.4,2);
+  \draw[red, -{Stealth}] (5.8,2) arc[start angle=90, end angle=0, radius=0.8cm] node[right] {$\omega_{cm}$};
+  \fill (4.2,0) circle (1pt);
+  \draw[red, -{Stealth}] (4.2,0) -- (5,0) node[midway, below=1mm] {$v_{cm}$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 What will happen? Clearly, it is going to move towards the right. It will also rotate, assuming you don't aim for the center of mass (i.e. assuming $d \neq 0$).
 
@@ -701,8 +733,7 @@ Since $\vec{p} = \vec{I}$, the above equation also says that
 \vec{v_{cm}} = \frac{\vec{I}}{m}
 \end{equation}
 
-$\omega$, on the other hand, clearly depends on the distance $d$. If $d = 0$, then $\omega = 0$; that much is clear. It is also clear that $\omega$ grows as $d$ grows. The reason is that the amount of torque (relative to the center of mass) provided depends on $d$ and the amount of force provided during the impulse. (The amount of angular impulse, i.e. change in angular momentum, depends on the average torque and the time, $J = \tau \Delta t$, just like how the linear impulse is given by $I = F \Delta t$.)\\
-($\omega$ was calculated in this week's homework: week 9/homework 7, problem 9.)
+$\omega$, on the other hand, clearly depends on the distance $d$. If $d = 0$, then $\omega = 0$; that much is clear. It is also clear that $\omega$ grows as $d$ grows. The reason is that the amount of torque (relative to the center of mass) provided depends on $d$ and the amount of force provided during the impulse. (The amount of angular impulse, i.e. change in angular momentum, depends on the average torque and the time, $J = \tau \Delta t$, just like how the linear impulse is given by $I = F \Delta t$.)
 
 However, note that if we instead look at the torque relative to a point P on the line of the impulse, i.e. a distance $d$ up from the center of mass, this torque is zero! Zero torque means angular momentum will be conserved, and so angular momentum \emph{relative to point P} is zero not only before, but also after the object starts to rotate. It is therefore conserved, unlike angular momentum relative to the center of mass!
 
@@ -713,9 +744,29 @@ We will now consider a related yet different type of oscillator, called a physic
 
 In this case, we have a ruler, though the solution is valid for other shapes as well. We drill a hole through it at point P, and hang it on a small pin. The point P is located a distance $b$ from the center of mass, point C.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec21_physical_pendulum}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \begin{scope} [rotate=25]
+  \draw (-0.2,-2) rectangle (0.2,2);
+  \fill (0,1) circle (1pt);
+  \fill (0,0) circle (1pt) node[left=2mm] {$C$};
+  \draw[red, -{Stealth}] (0,1) -- (0,0) node[midway, left=4mm] {$\vec{r}_P$};
+  \draw[{Stealth}-{Stealth}] (0.5,1) -- (0.5,0) node[midway, right=2mm] {$\ell$};
+  \draw[dotted] (0,1) -- (1,1);
+  \draw[dotted] (0,0) -- (1,0);
+  \end{scope}
+
+  \pgfmathsetmacro{\Px}{-0.45}
+  \coordinate (P) at (\Px,0.9);
+  \draw (\Px,-1) arc[start angle=270, end angle=320, radius=0.8cm] node[midway, below] {$\theta$};
+  \draw[dotted] (\Px,-2) -- (P) node[left=4mm] {$P$};
+  \draw[red, -{Stealth}] (0,0) -- (0,-0.8) node[midway, right=4mm] {$Mg$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 The ruler makes an angle $\theta$ with the vertical. Using the concept of the center of mass, we can consider gravity acting only at the center of mass; the magnitude is $M g$, where $M$ is the total mass of the ruler.
 
@@ -768,15 +819,44 @@ The largest possible time should be when $\ell$ and $b$ are both maximized, whic
 The uncertainty is about 0.0065 seconds or so; call it 0.01 s.\\
 It turns out the professor used $g = \SI{9.8}{m/s^2}$, which is probably a good idea if you're going to time this in the real world. In either case, he found $T = 1.565$ seconds, which is very close to these numbers.
 
-This is then demonstrated, and the timing indeed works out.
-
 Next, we look at the same type of oscillation, but we use a hula hoop as the pendulum, instead of the ruler. The derivation is almost identical, and except for some variable names, we can still use the general equation we found earlier.
 
 The center of mass of the hoop is at the geometric center, i.e. in the middle of empty space. We again hang it on a pin, at point P, which clearly is at the very top of the hoop.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec21_hoop_pendulum}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \pgfmathsetmacro{\diameter}{3.5};
+  \pgfmathsetmacro{\radius}{\diameter/2};
+  \pgfmathsetmacro{\alpha}{15};
+  \pgfmathsetmacro{\radAlpha}{\alpha * pi / 180};
+  \pgfmathsetmacro{\Ax}{\radius*cos(\alpha)};
+  \pgfmathsetmacro{\Ay}{\radius*sin(\alpha)};
+  \pgfmathsetmacro{\Sty}{\diameter/2}; // Start theta y
+  \pgfmathsetmacro{\Dpc}{\diameter/2}; // Diameter P C
+  \pgfmathsetmacro{\Dc}{\diameter}; // Diameter C
+  \pgfmathsetmacro{\Aa}{300}; // Alpha angle
+  \coordinate (A) at (\Ax,\Ay);
+  \coordinate (C) at (0,0);
+  \coordinate (P) at (0,\diameter);
+
+  \draw (C) circle (\diameter cm);
+  \fill (C) circle (1pt) node[left] {$C$};
+  \fill (P) circle (1pt) node[left=6mm] {$P$};
+  \fill (A) circle (1pt);
+  \draw[red, -{Stealth}] (P) -- (A) node[midway, right=4mm] {$\vec{r}_P$};
+  \draw[red, -{Stealth}] (A) -- (\Ax, -1) node[midway, right=2mm] {$Mg$};
+
+  \draw (0,\Sty) arc[start angle=270, end angle=\Aa, radius=\Dpc cm] node[midway, below] {$\theta$};
+  \draw (0,0) arc[start angle=270, end angle=\Aa, radius=\Dc cm];
+  \draw[dotted] (P) -- (C);
+  \draw[dotted] (C) -- (0,-\diameter) node[midway, right] {R};
+
+  
+\end{tikzpicture}
+\end{figure}
+
 
 As before, we consider the force of gravity as acting solely on the center of mass, with a force $M g$ downwards. Again as before, the position vector $\vec{r_P}$ acts as the lever arm, and the torque relative to point P is
 
@@ -803,9 +883,45 @@ This is the same result as we have found previously for a pendulum with a massle
 
 Time for an interesting lecture question.
 
-\begin{center}
-\includegraphics[scale=0.5]{\pIImages/lec21_physical_pendulum_2}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  % Draw the pendulum shape
+  \path[fill=gray!20, draw=black]
+    plot[smooth cycle, tension=1] coordinates {
+      (0,0.2) % Top pivot
+      (0.4,-1.5) % Right middle
+      (0.8,-2.5) % Right lower bulge
+      (0,-3.0) % Bottom tip
+      (-0.8,-2.5) % Left lower bulge
+      (-0.4,-1.5) % Left middle
+    };
+
+  % Mark the pivot point
+  \fill (0,0) circle (1.5pt);
+  \node[above right] at (0,0) {\textbf{S}};
+
+  % Mark center of mass
+  \fill (0,-2.2) circle (1.5pt);
+  \node[right] at (0,-2.2) {\textbf{cm}};
+
+  % Dashed line connecting S to center of mass
+  \draw[dashed] (0,0) -- (0,-2.2) node[midway, left] {\textbf{d}};
+
+  % Gravity vector
+  \draw[thick,->] (2,-0.5) -- (2,-1.5) node[midway, right] {\Huge$\vec{\mathbf{g}}$};
+
+  % Axis indicators
+  \draw[thick] (-2.2,-3) -- (-1.5,-3) node[right] {\textbf{+x}};
+  \draw[thick] (-2.2,-3) -- (-2.2,-2.3) node[above] {\textbf{+y}};
+
+  % Label "Pivot"
+  \draw[thick] (-0.5,0) to[out=180, in=90] (-1, -0.5);
+  \node[left] at (-1,-0.5) {\textit{Pivot}};
+
+\end{tikzpicture}
+\end{figure}
 
 ``A physical pendulum consists of a body of mass m contained in the xy-plane. The moment of inertia of the object about an axis perpendicular to the plane and passing through the object's center of mass is Icm.
 
