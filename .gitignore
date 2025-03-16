@@ -12,3 +12,5 @@
 
 # Emacs spesific
 *.~undo-tree~
+auto/
+emacs-desktop

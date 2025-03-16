@@ -41,9 +41,29 @@ Kepler's third law says that $T^2 \propto \text{(mean distance)}^3$. This is oft
 
 Let's now consider the case of elliptical orbits.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec22_elliptical_orbit}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \begin{scope}[rotate=40]
+    \coordinate (P) at (1, 0);
+    \coordinate (A) at (4, 0);
+    \fill (P) circle (1pt) node[left] {Perigee};
+    \fill (A) circle (1pt) node[right] {Apogee};
+    \draw (2.5,0) ellipse (1.5 and 0.8);
+    \draw[dotted] (P) -- (A);
+    \draw[dotted] (P) -- (1, 1);
+    \draw[dotted] (A) -- (4, 1);
+    \draw[dotted, <->] (1,1) -- (4, 1) node[midway, above] {$2a$};
+  \end{scope}
+
+  \coordinate (M) at (1.4, 1.2);
+  \coordinate (m) at (2.7, 1.2);
+  \fill (M) circle (1pt) node[above] {$M$} node[below] {$Q$};
+  \node[above] at (m) {$m$};
+  \draw[->] (M) -- (m) node[midway, above] {$\vec{r_Q}$};
+  \draw[red, ->] (m) -- (2.2, 0.6) node[midway, right] {$v$};
+\end{tikzpicture}
+\end{figure}
 
 Say $M$ here represents the Earth, located an one focus of the ellipse. $m$ is perhaps a satellite or such that orbits the Earth, with velocity $\vec{v}$, with the position vector $\vec{r_Q}$ from Earth.\\
 When the satellite is at the closest point to Earth, we say it is at \emph{perigee}. At the farthest point, it is at \emph{apogee}. The distance between apogee and perigee is $2a$, i.e. the major axis of the orbit.
@@ -54,7 +74,7 @@ We can now re-write a few of our equations:
 
 \begin{align}
 T^2 &= \frac{4 \pi^2 a^3}{G M}\\
-v_{esc} &= \sqrt{\frac{2 M G}{r(t)}} \text{(by setting $E_{tot} = 0$)}\\
+v_{esc} &= \sqrt{\frac{2 M G}{r(t)}} \quad \text{(by setting $E_{tot} = 0$)}\\
 E_{total} = K + U &= \frac{1}{2} m v(t)^2 - \frac{m M G}{r(t)} = - \frac{m M G}{2a} = \frac{1}{2} U
 \end{align}
 
@@ -65,9 +85,15 @@ The gravitational potential energy also changes with time, since the distance to
 
 The escape velocity now also changes with time, though the expression looks about the same as it did for circular orbits, only that the constant radius $R$ has been replaced by the current distance to the sun, $r(t)$.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec22_equivalent_orbits}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \draw (1.6,0) ellipse (2.2 and 0.8);
+  \draw (0,0) circle (20mm);
+  \fill (0,0) circle (1pt);
+\end{tikzpicture}
+\end{figure}
+
 
 These two orbits were drawn to have the same semi-major axis ($R = a$). This means that not only is the total mechanical energy the same for the two, but the time taken to complete one orbit is also exactly the same for either orbit.\\
 What about angular momentum? Is it the same for both orbits, and if not, which one has more?
@@ -78,14 +104,32 @@ We can write the angular momentum relative to point $Q$ (the center of orbit) as
 
 The answer is that it is smaller. Using the above information, consider a very elongated orbit, with a semi-major axis the same as the circular orbit we compare it to of course, but with a smaller semi-minor axis. Since angular momentum is constant, we can calculate the angular momentum at a point where it is very far from the Sun. Here, the position vector is large, but the velocity vector is small, and the angle between them is also small. This makes the cross product, proportional to the sine of the angle, small.\\
 Alternatively, consider the case where the two orbits overlap. For the circular orbit, the position vector and velocity vector are always constant, and always at 90 degree angles.\\
-In the case of the elliptical orbit, the position vector is the same (of course, it's the same point), but the velocity vector differs, and makes a smaller angle with the position vector. I find it reasonable that the cross product is then smaller in this case, but I wouldn't call it completely obvious.
+In the case of the elliptical orbit, the position vector is the same, but the velocity vector differs, and makes a smaller angle with the position vector.
 
 Let's now try to find some information about an orbit, given some initial conditions. We are have an object moving at a velocity $v_0$ near the Earth, which makes an angle $\varphi_0$ with the position vector $\vec{r_0}$ from the Earth, at some $t = 0$. Given these details plus the mass $M$ of the Earth, can we find all the details about the orbit, such as: the semi-major axis, the velocity at any given point, the perigee and apogee (closest and furthest distances from the Earth), and so on? The answer is yes, we can.\\
-(Needless to say, we can do this for orbits around the Sun, too; the Earth is merely an example.)
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec22_initial_conditions}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \begin{scope}[rotate=40]
+    \draw (0,0) ellipse (2.0 and 1.4);
+    \draw[dotted] (-2,0) -- (2,0);
+    \draw (-2,0) rectangle (-1.8,0.2);
+    \draw[red, ->] (-2,0) -- (-2,1.5) node[right] {$v_P$};
+    \draw[red, ->] (2,0) -- (2,-1) node[right] {$v_A$};
+    \fill (-2,0) circle (1pt) node[below] {$P$};
+    \fill (2,0) circle (1pt) node[above] {$A$};
+  \end{scope}
+
+  \fill (-0.5,-0.4) circle (1pt) node[above] {$M$} node[below] {$Q$};
+  \fill (1.48,-0.4) circle (1pt) node[above] {$m$};
+  \draw[dotted] (1.48,-0.4) -- (2.48,-0.4);
+  \draw[->] (-0.5,-0.4) -- (1.48,-0.4) node[midway, above] {$\vec{r_0}$};
+  \draw (1.7,-0.4) arc[start angle=0, end angle=-140, radius=0.2] node[right=2mm] {$\varphi$};
+  \draw[red, ->] (1.48,-0.4) -- (0.8,-1.4) node[midway, right] {$v_0$};
+\end{tikzpicture}
+\end{figure}
+
 
 We start out by finding the total mechanical energy, which we can use to find the semi-major axis. One of our equations for elliptical orbits is
 
@@ -155,9 +199,21 @@ Say we begin at the ``top'' of the orbit (in a diagram), at point X. We fire the
 
 Because our velocity is now greater, and we are at a certain distance $R$ from the planet (or star, or whatever), our velocity is no longer the correct velocity for a circular orbit at this distance. Instead, we go into an elliptical orbit, where $a > R$. The total mechanical energy has increased, which means $a$ must increase; total mechanical energy is $-\frac{m M G}{2 a}$, and for mechanical energy to increase, that number must become less negative. A larger $a$ does exactly that. Via the relationship in $T^2$, this also implies that the period of this new orbit is greater than the old period, despite the increase in speed.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec22_orbit_change}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+    \draw[green] (0,-1.2) ellipse (1.0 and 1.2);
+    \draw[green, ->] (0,0) -- (-1,0);
+    \draw (0,-1.6) ellipse (1.4 and 1.6);
+    \draw[->] (0,0) -- (-1.5,0);
+    \draw[red] (0,-2.0) ellipse (1.6 and 2.0);
+    \draw[red, ->] (0,0) -- (-2,0) node[left] {$v$};
+    \node[above] at (0,0) {$X$};
+    \fill (0,-1.6) circle (1pt);
+    \draw (0,-1.6) -- (-0.9,-2.8) node[midway, below] {$R$};
+    \draw[->] (-1.4,-1.6) -- (-1.4,-1.61);
+\end{tikzpicture}
+\end{figure}
 
 In this graphic, the original orbit (fully circular) is in white. We are orbiting counterclockwise, as seen here.\\
 For the red orbit, we have increased our tangential velocity, and so the orbit grows, and becomes elliptical. $E_{tot} > E_{tot,circular}$, and so the semi-major axis is greater than the original radius, and the period is greater than the original, since $T^2 \propto a^3$.
@@ -170,9 +226,17 @@ The rest of this lecture will focus on a ``practical'' (fun, at least) example o
 
 Two astronauts, Peter and Mary, are in orbit around the Earth. They are both moving at the same speed, and are at the same distance from Earth, sharing a circular orbit. They are not moving along it together, however. Peter is at one place along this circular orbit, point X, while Mary is at a point M, a distance further along. We can specify this separation as a fraction of the circumference $2 \pi R$ of the orbit, using $f$ as the fraction. The distance between the two is then $f\ 2 \pi R$. The rest of the orbit must then be $(1-f) 2 \pi R$, which is the amount of distance Mary must move before she ends up at point X (which she recently passed).
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec22_peter_mary_orbit}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+    \draw[*-*] (0,1.5) arc[start angle=90, end angle=160, radius=15mm] node[at start, above] {$PX$} node[at end, left=1mm] {$M$};
+    \draw[->] (0,1.5) arc[start angle=90, end angle=200, radius=15mm];
+    \draw[green, thick] (0,0) circle (15mm);
+    \draw[red, thick] (0,1.5) arc[start angle=90, end angle=160, radius=15mm] node[midway, left] {$F2\pi R$};
+\end{tikzpicture}
+\end{figure}
+
+
 
 Say the radius of this shared orbit is $R = 7000$ km ($\SI{7e6}{m}$), and $f = 0.05$, which makes the separation between the two about 2200 km. (The actual separation as a straight line is smaller, but we don't really care about that.)\\
 Given these parameters, there is a only one possible circular orbit: the radius of the orbit puts a demand on the velocity and period of the orbit. This velocity is about 7.55 km/s, and the period is about 97 minutes.
