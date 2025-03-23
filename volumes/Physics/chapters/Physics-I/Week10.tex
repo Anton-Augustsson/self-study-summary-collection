@@ -787,9 +787,33 @@ In the end, I figured the effects cancel, and $\alpha$ and $a$ are the same.
 
 Let's look at the analytical answer. First, here is the situation will all the forces and such drawn:
 
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/lec24_cylinder_roll}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{scope}[rotate=-20]
+      \draw (-3,0) -- (4,0);
+      \draw (0,1) circle (10mm);
+
+      \draw[green, ->] (0,1) -- (2,1) node[right] {$v_t$};
+      \draw[->] (0.5,3) -- (1.5,3) node[right] {$a$};
+
+      \fill (0,1) circle (2pt) node[left] {$Q$};
+
+      \draw[->] (0,1) -- (0,-0.5) node[left] {$Mg\cos{\beta}$};
+      \draw[->] (0,1) -- (1.5,1) node[above] {$Mg\sin{\beta}$};;
+      \draw[red, ->] (0,0) -- (-1.5,0) node[below] {$F_f$};
+      \draw[red, ->] (0,0) -- (0,2) node[above] {$N$};
+      \draw[red, ->] (0,1) -- (1.5,-0.5);
+      \draw[dotted] (0,-0.5) -- (1.5,-0.5);
+      \draw[dotted] (1.5,1) -- (1.5,-0.5);
+
+      \draw[->] (-1.5,1) arc[start angle=180, end angle=140, radius=1.5] node[right=1mm] {$\omega_t$};
+    \end{scope}
+
+     \draw (-2.8,-1.4) -- (3.75,-1.4);
+     \draw (2,-1.4) arc[start angle=210, end angle=150, radius=0.7] node[midway, left=1mm] {$\beta$};
+  \end{tikzpicture}
+\end{figure}
 
 For pure roll, we can say that the velocity of the center, point Q, must equal the tangential velocity:
 
@@ -828,7 +852,7 @@ With this, we can eliminate $F_f$ in the first equation and find $a$:
 \begin{align}
 a &= g \sin \beta - \frac{I_Q a}{M R^2}\\
 a \left(1 + \frac{I_Q}{M R^2}\right) &= g \sin \beta\\
-a &= \frac{g \sin beta}{1 + \frac{I_Q}{M R^2}}\\
+a &= \frac{g \sin \beta}{1 + \frac{I_Q}{M R^2}}\\
 a &= \frac{M R^2 g \sin \beta}{M R^2 + I_Q}
 \end{align}
 
@@ -868,9 +892,6 @@ By the way, keep in mind that this result is also, in a way, independent of geom
 \subsection{Gyroscopes and precession}
 
 ``We now come to the most non-intuitive part of all of 8.01. And arguably, perhaps, the most difficult part in all of physics, and that has to do with gyroscopes.''
-
-I believe this lecture might be the hardest one yet to take proper notes of... and for technical reasons, I cannot view the videos on my computer, either, but am forced to do so on my smartphone. Not very ideal.\\
-In any case, everything important is in 3D, and so video is a much, much better format than screenshots here either way. I will still try, though.
 
 Say we are somewhere in outer space (to escape any noteworthy gravitational force). We have a bicycle wheel with us, which is mounted such that there an axle sticking out on both sides. That is, we can hold the wheel while it rotates practically freely.
 
@@ -980,9 +1001,36 @@ Next, we change the experiment up a bit. Instead of holding the wheel, we attach
 
 Here's what the setup looks like:
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec24_wheel_gravity}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[rotate around x=5] %(x,y,z)
+  % Cylinder Base (bottom circle)
+  \begin{scope}[canvas is plane={O(0,0,0)x(0,1,0)y(0,0,1)}]
+    \filldraw[fill=white, draw=black, thick] (0.1,0.2,0) circle [radius=1.5];
+  \end{scope}
+   
+  % Cylinder Top (top circle)
+  \begin{scope}[canvas is plane={O(0,0,0)x(0,1,0)y(0,0,1)}]
+    \filldraw[fill=white, draw=black, thick] (0,0,0) circle [radius=1.5];
+  \end{scope}
+
+  %\draw[green, thick, ->] (0,1.1,0) to[out=-130, in=90] (0,0,0.9);
+  %\draw[dashed,->] (-2,0,0) -- (3,0,0) node[right]{$x$};
+  %\draw[dashed,->] (0,-2,0) -- (0,3,0) node[above]{$z$};
+  %\draw[dashed,->] (0,0,-2) -- (0,0,3) node[below left]{$y$};
+
+  \draw[->] (0,2,0) to[out=-190, in=90] (-0.5,1.5,0) node[below] {$\omega_s$};
+  \draw[red,->] (0,0,0) -- (1.5,0,0) node[right] {$L_s$};
+  \draw[green,->] (0,0,0) -- (0,-1.5,0) node[midway, right=2mm] {$Mg$};
+  \draw (-2,0,-0.1) -- (0,0,-0.1);
+  \draw (-2,0,0.1) -- (0,0,0.1);
+  \draw (-2,0,0) -- (-2,2,0) node[at start, above left] {$P$};
+  \draw (-2,0,0) -- (-2,2,0) node[at start, above right] {$r$};
+  \fill (0,0,0) circle (2pt) node[above] {$Q$};
+  \node at (1,1) {$R$};
+
+\end{tikzpicture}
+\end{figure}
 
 The thicker part of the wheel is towards the viewer.
 
@@ -1023,9 +1071,7 @@ We can attempt to calculate the period of the precession. Using the above equati
 \end{equation}
 
 The period is as always $T_{pr} = \frac{2 \pi}{\omega_{pr}} \approx \SI{10}{s}$. So the wheel will spin with at about 5 turns per second (300 rpm), and rotate due to precession with about one turn per ten seconds.\\
-This is then demonstrated, in one of the more interesting demonstrations of the course so far.
 
-Finally, the last lecture segment demonstrates a toy gyroscope, and a 3-axis gimbal gyroscope; on this last one, the spinning disk is mounted such that external forces do not cause a torque on the spinning disk, but rather, it is mounted such that the frames it is mounted in will rotate instead. Therefore, the spin angular momentum vector is always pointing in one direction, no matter how you turn the outer part of the gyroscope. This is used in gyrocompasses, and inertial guidance systems, etc.
 
 %%% Local Variables:
 %%% TeX-master: "../../main"
