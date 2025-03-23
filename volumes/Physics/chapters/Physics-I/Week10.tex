@@ -349,17 +349,47 @@ So we still hear the sound, in this case. If you find that nonintuitive, think a
 
 Let's now consider the case where the transmitter is moving around in a circle. Now, the perceived frequency, assuming the receiver is still stationary, will vary sinusoidally around the base frequency of $f$ that the transmitter is sending out.
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec23_doppler}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \draw (0,0) ellipse (2 and 0.8);
+    \draw[red, ->] (0, 0.8) -- (1, 0.8);
+    \draw[red, ->] (0, -0.8) -- (-1, -0.8);
+    \draw[red, ->] (2, 0) -- (1.5, -1) node[left] {$v$};;
+    \draw[red, ->] (-2, 0) -- (-1.5, 1);
+
+    \node at (2,0) [right] {$f'_{max}>f$};
+    \node at (-2,0) [left] {$f'_{min}<f$};
+    \node at (2,0.8) [above] {$f'=f$};
+    \node at (0,-0.8) [below=1mm] {$f'=f$};
+  \end{tikzpicture}
+\end{figure}
+  
 
 When the source is moving straight towards you, $f'$ is at a maximum; the opposite is true when it is moving straight away from you. At the other two extremes, when it is at 90 degree angles, $f' = f$, and so there is no change in frequency at those times. In between, as you might expect, there is a gradual change between these extremes.
 
 If we, as the receiver, plotted the frequency we heard as a function of time, we would get something like this:
 
-\begin{center}
-\includegraphics[scale=0.5]{\pIImages/lec23_doppler_circle}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \draw (0,1) cos (1,0) sin (2,-1) cos (3,0) sin (4, 1) cos (5,0) sin (6,-1) cos (7,0) sin (8, 1) cos (9,0);
+
+    \draw[dotted] (0,0) -- (10,0);
+    \draw (-1,-2) -- (10,-2);
+    \draw (0,-3) -- (0,2.5);
+
+    \fill (0,0) circle (2pt) node[left=1mm] {$f$};
+    \draw[thick] (-0.2,1) -- (0.2,1) node[left=1mm] {$f'_{max}$};
+    \draw[thick] (-0.2,-1) -- (0.2,-1) node[left=1mm] {$f'_{min}$};
+    \draw[dotted] (0,-1) -- (2,-1);
+
+    \draw[->] (8,-2.5) -- (9,-2.5) node[right] {$t$};
+
+  \end{tikzpicture}
+\end{figure}
+ 
+
 
 If we have this curve, we can calculate an impressive number of things. First, we know ${f'}_{max}$ and $f$, which means we can calculate the velocity of the transmitter.\\
 We can also measure the period of one rotation, by measuring the time from one peak to the next (or one valley to the next, etc). Knowing that, we can find the radius $R$ of the circle the transmitter is moving in:
@@ -371,16 +401,79 @@ R = \frac{T v_{tr}}{2 \pi}
 
 So from simply listening to/measuring the sound over time, we can calculate these three things, rather easily.
 
-How do we intuitively explain the Doppler effect? It is actually quite simple, but is best shown using animated graphics, which I can't really use here. I suggest looking it up online. Wikipedia has some very nice animated figures, for example.\\
-In short, when moving towards a transmitter (or the transmitter is moving towards you), the wave fronts become ``compressed'', and the wavelength becomes shorter (meaning that for sound, the pitch increases; for light, it becomes \emph{blueshifted}; more on that soon). When the distance between is increasing, the wave fronts become separated from each other, and the wavelength becomes longer (sound: lower pitch; light: ``redder'' color, or redshift).
+% For doppler ilustration
+\def\R{1.5}      % radius
+\def\N{5}        % number of wave fronts
+\def\lam{\R/\N}  % wavelength
+\def\angmin{30}  % min. angle velocity arrow
+\def\angmax{330} % min. angle velocity arrow
+\def\waves#1{
+  \foreach \i in {1,...,\N}{
+    \draw[myblue,thick] ({-(\i-0.25)*#1*\lam},0) circle ({\lam*(\i-0.25)});
+  }
+  \foreach \a in {\angmin,90,150,210,270,\angmax}{
+    \draw[myarr,vcol] ({-(\N-0.25)*#1*\lam},0)++(\a:\R-0.50*\lam) --++ (\a:\lam);
+  }
+  \fill[myred] (0,0) circle (0.06);
+}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \def\s{0.61}
+  \draw[myblue!20,dashed,very thin,dash pattern=on 1 off 1]
+    ({-(\N-0.25)*\s*\lam},0) -- (0,0);
+  \fill[myred!20] ({-(\N-0.25)*\s*\lam},0) circle (0.06);
+  \waves{\s}
+  \node[vcol] at (30:{1.15*\R-\s*\R} and 1.2*\R) {$c$};
+  \draw[mydoublearr]
+    (-0.9*\R-\s*\R,-0.8*\R) node[left=-1,scale=0.7] {$y$}
+    |-++ (0.15*\R,-0.15*\R) node[right=-1,scale=0.7] {$x$};
+  %\draw[dashed] (\R-\s*\R,0) --++ (0,-1.3*\R);
+  %\draw[dashed] (0,0) --++ (0,-1.3*\R);
+  %\draw[dashed] (-\R-\s*\R,0) --++ (0,-1.3*\R);
+  \pic at ( 1.25*\R-\s*\R,0) {eye={180}};
+  \pic at (-1.15*\R-\s*\R,0) {eye={0}};
+  \draw[-{Latex[length=4.8,width=3.8]},white,line width=1.2]
+    (0.05,0) -- (0.22*\R+0.02,0);
+  \fill[myred] (0,0) circle (0.06);
+  \draw[-{Latex[length=4,width=3]},thick,vcol,line cap=round]
+    (0.05,0) -- (0.22*\R,0); %node[right=-1] {$v$};
+  \begin{scope}[shift={(0,-1.35*\R)}]
+    \draw[myblue,thick,samples=100,smooth,variable=\x]
+      plot[domain=-(\s+1)*(\R):0](\x,{0.1*\R*sin(360/(\s+1)/(\lam)*\x)}) %--
+      plot[domain=0:(1-\s)*(\R)](\x,{-0.1*\R*sin(360/(1-\s)/(\lam)*\x)});
+    \fill[myred] (0,0) circle (0.05);
+    \draw[myarr,vcol] ({-(\s+1)*(\R-0.25*\lam)},0.04*\R) --++ (-\lam,0);
+    \draw[myarr,vcol] ({(1-\s)*(\R-0.25*\lam)},0.04*\R) --++ (\lam,0);
+    \draw[mydoublearr]
+      (-\R-\s*\R-2.3*\lam,0.06*\R) node[left=-1,scale=0.7] {$z$}
+      |-++ (0.15*\R,-0.15*\R) node[right=-1,scale=0.7] {$x$};
+  \end{scope}
+  %\draw[<->] (0,-1.5*\R) --++ (\R-\s*\R,0)
+  %  node[midway,right=2,below=1,scale=0.6] {$\sim c-v$}; %{$\sim\dfrac{c}{c+v}$};
+  %\draw[<->] (0,-1.5*\R) --++ (-\R-\s*\R,0)
+  %  node[midway,below=1,scale=0.6] {$\sim c+v$}; %{$\sim\dfrac{c}{c-v}$};
+\end{tikzpicture}
+\end{figure}
+% Taken from https://tikz.net/wave_doppler/
 
 \subsection{The Doppler effect and electromagnetic waves/light}
 
 Let's look more at the Doppler effect in light (and other EM radiation).
 
-\begin{center}
-\includegraphics[scale=0.6]{\pIImages/lec23_doppler_em}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+
+    \draw[*-*] (0,0) -- (5,0) node[right] {$f'$};
+    \node at (0,0) [left] {$tr_f$};
+    \draw[red, ->] (0,0) -- (2,1) node[right] {$v_{tr}$};
+    \draw[red, ->] (0,0) -- (2,0) node[below] {$v\cos{\theta}$};
+
+    \draw (1,0.5) arc[start angle=40, end angle=-10, radius=0.6] node[midway, right] {$\theta$};
+  \end{tikzpicture}
+\end{figure}
+ 
 
 The equation given in lecture, which is only valid for $v \ll c$, i.e. when the relative velocity between transmitter and receiver is much smaller than the speed of light, is:
 
@@ -432,9 +525,9 @@ In case the above is written in a confusing manner: blueshift is called as such 
 We can look at the light spectra of stars, and look at the intensity of the light as a function of wavelength. When plotting that, we will not see a continuous distribution, as we might expect. Instead, we see a mostly smooth curve, with some sharp spikes downwards. That is, light intensity is sharply reduced for certain wavelengths.\\
 We call these \emph{absorption lines}. Each absorption line is due to some element present in the atmosphere of the star. Through the process of figuring out which elements and isotopes cause which absorption lines here on Earth, we can use the lines to figure out which elements are present in the star.
 
-Here is an example of \emph{emission lines}, in this case of hydrogen:
 
 %TODO: add images
+%Here is an example of \emph{emission lines}, in this case of hydrogen:
 %\begin{center}
 %\includegraphics[scale=0.75]{\pIImages/lec23_hydrogen_emission}
 %\end{center}
@@ -472,9 +565,42 @@ This is only possible to see if we are in the plane of their orbit, however. If 
 
 Just as in the case with sound, we can measure and calculate the period of this shift, and therefore calculate their velocities, the orbital period, and the orbital speed.
 
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/lec23_binary_spectrum}
-\end{center}
+%TODO: 
+%\begin{center}
+%\includegraphics[scale=0.75]{\pIImages/lec23_binary_spectrum}
+%\end{center}
+%\begin{figure}[H]
+%\begin{tikzpicture}
+%
+%    % Draw two vertical lines representing the waveguides or boundaries
+%    \draw[thick] (-2,4) -- (-2,-4);
+%    \draw[thick] (2,4) -- (2,-4);
+%
+%    % Draw horizontal segment dividers
+%    \foreach \y in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5} {
+%        \draw[-, thick] (-2.5,\y) -- (2.5,\y);
+%    }
+%
+%    % Draw standing wave pattern
+%    \foreach \x in {-1.5, -0.5, 0.5, 1.5} {
+%        \draw[thick, dashed] (\x, 4) to[out=270, in=90] (-\x, 3)
+%                            to[out=270, in=90] (\x, 2)
+%                            to[out=270, in=90] (-\x, 1)
+%                            to[out=270, in=90] (\x, 0)
+%                            to[out=270, in=90] (-\x, -1)
+%                            to[out=270, in=90] (\x, -2)
+%                            to[out=270, in=90] (-\x, -3)
+%                            to[out=270, in=90] (\x, -4);
+%    }
+%
+%    % Small tick marks inside each section
+%    \foreach \y in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5} {
+%        \draw[thick] (-2.2,\y) -- (-1.8,\y);
+%        \draw[thick] (2.2,\y) -- (1.8,\y);
+%    }
+%
+%\end{tikzpicture}
+%\end{figure}
 
 Above is an illustration on the Doppler shift in the spectrum of a binary star system. On the left, we have the case where we can only see one of the two stars. As time passes, we see the spectral lines shift left and right (as time passes, downwards in the picture) in unison.\\
 On the right, we have the case where we can see both stars. In this simplified case, we only show the same two spectral lines. In this case, when we see the spectral lines of one star redshifting, the other will be blueshifted, and vice versa, in the case that one is moving from you, and the other towards you. This means that one set of lines will move towards the left, as pictured, while the other moves towards the right, doubling the number of spectral lines we observe.
@@ -483,10 +609,29 @@ As mentioned previously, based on this data, we can then calculate the orbital r
 
 Let's now consider a binary system. They orbit their common center of mass, and are in different circular orbits, of radii $r_1$ and $r_2$, respectively. The stars have masses $m_1$ and $m_2$, and velocities $v_1$ and $v_2$.
 
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/lec23_binary_orbit}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
 
+    \draw (0,0) circle (20mm);
+    \draw (0,0) circle (10mm);
+
+    \fill (-2,0) circle (2pt) node[left] {$m_2$};
+    \fill (0,0) circle (2pt) node[below] {$cm$};
+    \fill (1,0) circle (2pt) node[right] {$m_1$};
+
+    \draw[red, ->] (-2,0) -- (-2,-1) node[left] {$v_2$};
+    \draw[red, ->] (1,0) -- (1,1) node[right] {$v_1$};
+    \draw[dotted, ->] (0,0) -- (2,-2) node[right] {observer};
+
+    \draw (0,0) -- (1,0) node[midway, below] {$r_1$};
+    \draw[dotted] (-2,0) -- (0,0);
+    \draw [decorate, decoration = {brace, amplitude=2mm}] (-2,0) -- (0, 0) node[midway, above=2mm] {$r_2$};
+
+
+  \end{tikzpicture}
+\end{figure}
+ 
 Via the definition of center of mass, $m_1 r_1 = m_2 r_2$.\\
 We, as an observer, are somewhere in the plane of this orbit, but far away from it.
 
