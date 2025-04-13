@@ -14,9 +14,35 @@ For the net force to be zero, the net force must be zero along any axis by itsel
 
 It might be easy to think that if the net force on a rigid object is zero, then it is in static equilibrium. That is far from true, though! If we have two forces of equal magnitude, acting in opposite directions, and they don't act along the same line, then they cause a net torque! The object will rotate, but will \emph{not} have any linear motion, since there is no net force.
 
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/lec25_couple}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+  \path[fill=gray!20, draw=black]
+    plot[smooth cycle, tension=1] coordinates {
+      (0,0)
+      (1,0.4)
+      (1.2,-0.5)
+      (0.6,-1.2)
+      (0,-1.4)
+      (-0.8,-1)
+      (-1.2,-0.3)
+      (-0.6,0.5)
+    };
+
+  \fill (0.3,-0.5) circle (1pt) node[left] {$\ell$};
+  \node[right] at (2.5,-0.2) {\Large$\tau = \ell\,\vec{F}$};
+
+  \begin{scope}[shift={(-0.3,-0.9)}, rotate=60]
+    \draw[<->, thick] (0,0.6) -- (0,-0.6);
+    \draw[->, thick, red] (0,0.6) -- (-1,0.6) node[below left] {\large$\vec{F}$};
+    \draw[->, thick, red] (1,-0.6) -- (2,-0.6) node[above right] {\large$\vec{F}$};
+    \draw[dotted, red] (0,-0.6) -- (1,-0.6);
+  \end{scope}
+
+\end{tikzpicture}
+\end{figure}
+
 
 (We can think of each force along causing a torque $(b/2) F \sin \theta$, where $\theta = \pi/2$ so $\sin(\theta) = 1$. They cause a torque in the same direction, so the total torque is $b F$.)
 
@@ -27,9 +53,28 @@ In this lecture, a ladder will be used for the calculations and examples regardi
 
 We put this ladder against a wall, at an angle $\alpha$ ($\alpha = 0$ meaning it is on the ground, while $\alpha = \ang{90}$ means it is standing straight up, parallel to the wall). Say there is no friction against the wall, but there is static friction $\mu$ at point Q, where the ladder touches the ground. We call the ladder's total mass $M$ and its length $\ell$.
 
-\begin{center}
-\includegraphics[scale=0.85]{\pIImages/lec25_ladder}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+  \draw[thick] (0,3) -- (0,0);
+  \draw[thick] (0,0) -- (5,0);
+  \draw (0,2.5) -- (4,0);
+
+  \fill (0,2.5) circle (2pt) node[left] {$P$};
+  \fill (4,0) circle (2pt) node[below] {$Q$};
+  \fill (2,1.25) circle (2pt) node[above] {$C$};
+
+  \draw[->, red] (0,2.5) -- (1.5,2.5) node[above right] {$N_P$};
+  \draw[->, red] (2,1.25) -- (2,-0.5) node[right] {$Mg$};
+  \draw[->, red] (4,0) -- (4,1.5) node[above right] {$N_Q$};
+  \draw[->, red] (4,0) -- (3.3,0) node[below] {$F_f$};
+
+  \draw (3,0) arc[start angle=200, end angle=120, radius=4mm];
+  \node[left] at (2.9,0.4) {\large$\alpha$};
+  
+\end{tikzpicture}
+\end{figure}
 
 The center of mass of the ladder is in the middle.\\
 Now... what forces act on this ladder?
@@ -99,9 +144,32 @@ Here (a bit unlike the previous case) I find it intuitively clear that this is \
 
 We add a person of mass $m$ to the ladder, a distance $d$ away from point Q, measured diagonally along the ladder.
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec25_ladder_person}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+  \draw[thick] (0,3) -- (0,0);
+  \draw[thick] (0,0) -- (5,0);
+  \draw (0,2.5) -- (4,0);
+
+  \fill (0,2.5) circle (2pt) node[left] {$P$};
+  \fill (4,0) circle (2pt) node[below] {$Q$};
+  \fill (2,1.25) circle (2pt) node[above] {$C$};
+
+  \draw[->, red] (0,2.5) -- (1.5,2.5) node[above right] {$N_P$};
+  \draw[->, red] (2,1.25) -- (2,-0.5) node[left] {$Mg$};
+  \draw[->, red] (4,0) -- (4,1.5) node[above right] {$N_Q$};
+  \draw[->, red] (4,0) -- (3.3,0) node[below] {$F_f$};
+
+  \draw (3,0) arc[start angle=200, end angle=120, radius=4mm];
+  \node[left] at (2.9,0.4) {\large$\alpha$};
+  
+  \fill[red] (2.9,0.7) circle (2pt);
+  \draw [decorate, decoration = {brace, amplitude=2mm}] (0,0) -- (0,2.5);
+  \draw [decorate, decoration = {brace, amplitude=2mm}] (2.9,0.7) -- (4,0) node[midway, above=2mm] {$d$};
+  \draw[->, red] (2.9,0.7) -- (2.9,-0.2) node[left] {$mg$};
+\end{tikzpicture}
+\end{figure}
 
 We then re-do the above calculations considering this extra mass.
 
@@ -163,18 +231,112 @@ Quite an awesome result -- though perhaps one that could have been guessed, all 
 
 We can often use friction to our advantage. One example of such a case is often used by sailors: by wrapping a rope around a cylinder, we can use friction forces as a ``substitute'' for string tension. We can have a very large force pulling on one end of the rope, which is countered in part by tension on the other side of the rope, but in larger part due to friction between the rope and the cylinder it is wrapped around.
 
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/lec25_capstan}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+\begin{scope}[x={(.7cm,-.2cm)}]
+\path (1,0,0);
+\pgfgetlastxy{\cylxx}{\cylxy}
+\path (0,1,0);
+\pgfgetlastxy{\cylyx}{\cylyy}
+\path (0,0,1);
+\pgfgetlastxy{\cylzx}{\cylzy}
+\pgfmathsetmacro{\cylt}{(\cylzy * \cylyx - \cylzx * \cylyy)/ (\cylzy * \cylxx - \cylzx * \cylxy)}
+\pgfmathsetmacro{\ang}{atan(\cylt)}
+\pgfmathsetmacro{\ct}{1/sqrt(1 + (\cylt)^2)}
+\pgfmathsetmacro{\st}{\cylt * \ct}
+\fill[white] (\ct,\st,0) -- ++(0,0,-8) arc[start angle=\ang,delta angle=180,radius=1] -- ++(0,0,8) arc[start angle=\ang+180,delta angle=-180,radius=1];
+\begin{scope}[every path/.style={ultra thick}]
+\draw (0,0,0) circle[radius=1];
+\draw (\ct,\st,0) -- ++(0,0,-8);
+\draw (-\ct,-\st,0) -- ++(0,0,-8);
+\draw (\ct,\st,-8) arc[start angle=\ang,delta angle=180,radius=1];
+\draw[dashed] (\ct,\st,-8) arc[start angle=\ang,delta angle=-180,radius=1];
+\draw[red] (\ct-0.18,\st+0.3,-5) arc[start angle=0,delta angle=120,radius=1];
+\draw[red] (\ct,\st,-3) arc[start angle=\ang,delta angle=180,radius=1];
+\draw[red] (\ct,\st,-2) arc[start angle=\ang,delta angle=180,radius=1];
+\end{scope}
+\end{scope}
+
+\draw[ultra thick, red] (2.265,-0.5) -- (2.265,1.38) node[black, midway, right] {$T_1=mg$};
+\draw[ultra thick, red] (-0.2,-2.5) -- (-0.2,-0.9) node[black, midway, left] {$T_2=Mg$};
+
+\draw[ultra thick] (-1.2,-4.0) rectangle (1.0,-2.5) node[midway] {$M$};
+\draw[ultra thick] (1.5,-1.8) rectangle (3.0,-0.2) node[midway] {$m$};
+
+
+\end{tikzpicture}
+\end{figure}
 
 Here, we have two masses attached to either end of a rope. The middle part of the rope is wrapped several times around a cylinder.\\
 If the system is at rest, $T_1 = M g$ and $T_2 = m g$. The mass $M$ is much greater than the mass $m$.
 
 The reason the system can be at rest under these circumstances is that friction between the cylinder and the rope is trying to hold the rope in place. 
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec25_capstan2}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+  \draw[thick] (0,0) circle (20mm);
+
+  \begin{scope}[rotate=45]
+  \draw (-2,0) -- (0,0) node[midway, below] {$R$};
+  \draw[dotted] (0,0) -- (2,0);
+  \draw[dotted] (0,0) -- (0,2);
+  \draw (0.4,0) arc[start angle=0,delta angle=90,radius=0.4] node [midway, above] {$\theta_0$};
+
+  \draw[ultra thick, red] (0,2.05) arc[start angle=90,end angle=0,radius=2.05];
+  \draw[ultra thick, red] (0,2.05) -- (-3,2.05) node[black, below] {$T_2$};
+  \draw[ultra thick, red] (2.05,0) -- (2.05,-3) node[black, above] {$T_1$};
+
+  \draw[ultra thick, ->] (0.8,3) arc[start angle=70,end angle=100,radius=3.0] node[left] {slip};
+  \end{scope}
+
+  \begin{scope}[rotate=55]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=65]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=75]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=85]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=85]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=95]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=105]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=115]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=125]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  \begin{scope}[rotate=135]
+    \draw (1.8,0) -- (2.2,0);
+    \draw[thick, ->, red] (2.4,0) arc[start angle=0,end angle=-8,radius=2.4];
+  \end{scope}
+  
+
+\end{tikzpicture}
+\end{figure}
 
 If we consider the friction at the surface of each tiny length element of the rope, it is clear that the rope wants to slip towards the left (counterclockwise), and therefore, friction is attempting to oppose this motion. $T_2$ is pulling towards the right, but $T_1$ \emph{plus} the total frictional force is pulling towards the right. With enough friction, $T_1$ can be very small compared to $T_2$ and we can still have static equilibrium.
 
@@ -211,9 +373,43 @@ Consider an object of some shape (any shape), hanging on a pin somewhere (somewh
 \includegraphics[scale=0.75]{\pIImages/lec25_com_position}
 \end{center}
 
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+  % Shape of the object
+  \path[draw=black, fill=gray!10]
+    plot[smooth cycle, tension=1] coordinates {
+      (0,0) (1,0.5) (1.4,-0.3)
+      (0.8,-1.2) (-0.2,-1.3)
+      (-1.2,-0.7) (-1,0.3)
+    };
+
+  % Pivot point P
+  \fill[thick] (-0.6,-0.4) circle (2pt) node[black, above] {\Large$P$};
+
+  % Center of mass
+  \node at (0.5,-1.0) {x};
+  \node at (0.9, -1.0) {CM};
+  %\node at (0,5,-1.0) {\small\textbf{CM}};
+
+  % Vector from P to CM (r_P)
+  \draw[->, thick, red] (-0.6,-0.4) -- (0.5,-1.0) node[midway, above] {$\vec{r}_P$};
+
+  % Gravity vector
+  \draw[->, thick, red] (0.5,-1.0) -- (0.5,-2.5) node[below] {\small$mg$};
+
+  % Dashed vertical from pivot
+  \draw[dotted] (0.5,-1.0) -- (1.5,-1.8);
+
+  \draw (0.5,-1.8) arc[start angle=-90,end angle=-20,radius=0.6];
+
+\end{tikzpicture}
+\end{figure}
+
 Gravity acts on the center of mass, which is not located at point P, so there will clearly be a torque. The object will start to rotate, and practically become a pendulum. Suppose we either wait until friction takes care of that, or we stop it manually. Clearly, at some point, it will reach a static equilibrium and stand completely still.
 
-This can only happen when the center of mass is on a straight, vertical line with the point P from which it is suspended. In any other case, $\vec{r_P} \times \vec{F_{grav}} \neq 0$ and so there is a torque relative to point P, causing it to rotate.\\
+This can only happen when the center of mass is on a straight, vertical line with the point P from which it is suspended. In any other case, $\vec{r}_P \times \vec{F}_{grav} \neq 0$ and so there is a torque relative to point P, causing it to rotate.\\
 More specifically, the only stable situation occurs when the center of mass is straight \emph{below} the point of suspension. Any time it is straight \emph{above}, any tiny disturbance will of course cause it to turn 180 degrees and then (once stopped) be in static equilibrium like that, instead.
 
 We can then use this information to determine the center of mass very easily (at least in the case of a practically two-dimensional object). We hang it from one location, and draw a line from the pin (that we hang it from) and straight downwards.\\
