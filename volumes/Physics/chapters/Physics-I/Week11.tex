@@ -493,9 +493,30 @@ Before the material breaks, our equation will stop working, as the strain will n
 
 Let's have a look of what a stress vs strain plot may look like.
 
-\begin{center}
-\includegraphics[scale=0.75]{\pIImages/lec26_stress_vs_strain}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  	\draw (0,0) -- (0,4);
+	\draw (0,0) -- (7,0) node[at start, below] {$0$} node[below=1mm] {$\rightarrow\Delta\ell/\ell$} node[midway, below] {strain};
+
+	\node at (-2,3) {$\frac{F}{A}$};
+	\node at (-2,2) {Stress};
+
+  \draw[thick, smooth] 
+  (0,0) 
+  to[out=60, in=180] (1.5,2.5)
+  to[out=-10, in=180] (4.5,3.2)
+  to[out=0, in=120] (6,2);
+
+	\filldraw[black] (6,2) circle (2pt) node[right] {break!};
+
+  	\draw[-{Stealth}] (1.8,1.9) -- (1.2,2.45) node[midway, below=4mm] {elastic limit};
+  	\draw[-{Stealth}] (4,2) -- (3,2.8) node[midway, below=4mm] {plastic flow};
+
+\end{tikzpicture}
+\end{figure}
+
 
 The first part of the curve is linear: this is where Hooke's law applies. The next part of the curve is nonlinear, and goes to a point known as the \emph{elastic limit}. Even though it is not linear, as long as we do not pass the elastic limit, the material will return to its original length after we return the force.
 
