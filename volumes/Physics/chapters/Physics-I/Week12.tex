@@ -3,9 +3,28 @@
 Say we have a vessel containing a fluid, where a fluid is either a liquid \emph{or} a gas\footnote{Or more rarely other states of matter; we will only discuss liquids and gases, however.}. That is, a fluid does \emph{not} refer exclusively to a liquid, unlike colloquial usage of the word.\\
 It has an opening of area $A$, where we apply a force $F$.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec27_container}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+	\draw[very thick] (0,0) -- (0,1);
+	\draw[very thick] (0.7,0) -- (0.7,1);
+
+	\draw[very thick] (0,0) arc[start angle=110, end angle=430, radius=10mm];
+  
+  \draw (0,0.6) -- (0.7,0.6);
+  \draw (0,0.4) -- (0.7,0.4);
+
+	\draw[very thin] (-0.15,-0.6) -- (0.5,-0.2);
+	\draw[very thin] (-0.35,-1.2) -- (0.8,-0.5);
+	\draw[very thin] (-0.1,-1.5) -- (0.9,-0.9);
+
+    \draw[->, thick, red] (0.2,1.5) -- (0.2,0.6) node[at start, left] {\large$\vec{F}$};
+	\draw[->, thick] (1.3,1.4) arc[start angle=90, end angle=180, radius=8mm] node[at start, right] {\large$A$};
+    
+\end{tikzpicture}
+\end{figure}
+
 
 The pressure at the opening is by definition $\displaystyle P = \frac{F}{A}$, measured in pascal (1 Pa = 1 $\text{N/m}^2$).\\
 In the absence of gravity, the pressure everywhere inside this vessel in the same; this is known as \emph{Pascal's principle}.
@@ -27,9 +46,72 @@ Pascal's principle leads has many interesting consequences, some of which are no
 
 We have a container, containing a fluid (a practically incompressible liquid); see drawing:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec27_hydraulic_jack}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+	\draw[very thick] (0,3) -- (0,2);
+	\draw[very thick] (0,2) -- (1,2);
+	\draw[very thick] (1.5,2) -- (2.5,2);
+	\draw[very thick] (2.5,2) -- (2.5,3);
+	\draw (0,2.8) -- (2.5,2.8);
+	\draw (0,2.7) -- (2.5,2.7);
+	\node at (0.6,3) {$A_1$};
+
+	\draw[very thick] (1,2) -- (1,0);
+	\draw[very thick] (1.5,2) -- (1.5,0.5);
+	\draw[very thick] (1,0) -- (8,0);
+	\draw[very thick] (1.5,0.5) -- (7.5,0.5);
+	\draw[very thick] (7.5,0.5) -- (7.5,2);
+	\draw[very thick] (8,0) -- (8,2);
+
+	\draw[very thick] (8,2) -- (10,2);
+	\draw[very thick] (7.5,2) -- (5.5,2);
+	\draw[very thick] (5.5,2) -- (5.5,3);
+	\draw[very thick] (10,2) -- (10,3);
+	\draw (5.5,2.8) -- (10,2.8);
+	\draw (5.5,2.7) -- (10,2.7);
+	\node at (6.1,3) {$A_2$};
+
+	\draw[->, thick, red] (1.25,3.5) -- (1.25,2.8) node[midway, right] {\large$F_1$};
+	\draw[->, thick, red] (7.75,4.5) -- (7.75,2.8) node[midway, right] {\large$F_2$};
+
+	\begin{scope}[shift={(0.35,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(0.8,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(1.35,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(1.8,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+
+	\begin{scope}[shift={(1.28,1.85)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(1.28,1.35)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(1.28,0.85)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(1.28,0.35)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+
+	\begin{scope}[shift={(2.0,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(2.5,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(3.0,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(3.5,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(4.0,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(4.5,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(5.0,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(5.5,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(6.0,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(6.5,0.25)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+
+	\begin{scope}[shift={(7.72,1.85)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(7.72,1.35)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(7.72,0.85)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+	\begin{scope}[shift={(7.72,0.35)}, rotate=45] \draw (-0.2,0) -- (0.2,0); \end{scope}
+
+	\begin{scope}[shift={(6.35,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(6.8,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(7.35,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(7.8,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(8.35,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+	\begin{scope}[shift={(8.8,2.35)}, rotate=45] \draw (-0.25,0) -- (0.25,0); \end{scope}
+    
+\end{tikzpicture}
+\end{figure}
+
 
 The left side has a piston of area $A_1$, and the right area a piston of area $A_2$.\\
 We apply a downwards force $F_1$ on the left side, and a downwards force $F_2$ on the right side.
@@ -76,9 +158,32 @@ We look at a piece of area $A$, height $\Delta y$ and density $\rho_y$ -- i.e. t
 We have increasing values of $y$ upwards. The call the coordinate at the bottom of the slab $y$, and the one at the top is then $y + \Delta y$.\\
 The pressures at the two depths are then $P_y$ and $P_{y + \Delta y}$, respectively.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec27_hydrostatic}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+	\pgfmathsetmacro{\cubex}{3}
+	\pgfmathsetmacro{\cubey}{1}
+	\pgfmathsetmacro{\cubez}{3}
+
+	\draw[Very thick] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,-\cubey,0) -- ++(\cubex,0,0) -- cycle;
+	\draw[Very thick] (0,0,0) -- ++(0,0,-\cubez) -- ++(0,-\cubey,0) -- ++(0,0,\cubez) -- cycle;
+	\draw[Very thick] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,0,-\cubez) -- ++(\cubex,0,0) -- cycle;
+
+	\draw[->] (-6,-2,0) -- ++(0,2,0) node[left] {\Large$y$};
+
+	\draw (0,0,-\cubez) -- ++(1,0,0) node[right] {\Large$y+\Delta y$} node[right=20mm] {\Large$P_{y+\Delta y}$};
+	\draw (0,-\cubey,-\cubez) -- ++(1,0,0) node[right] {\Large$y$} node[right=8mm] {\Large$P_{y}$};
+	\draw[->, red] (-\cubex/2,1,-\cubez/2) -- ++(0,-1,0) node[at start, right] {\Large$F_2$};
+	\draw[->, red] (-\cubex/2-0.1,-0.1,-\cubez/2) -- ++(0,-2,0) node[right] {\Large$\Delta mg$};
+	\draw[->, red] (-\cubex/2,-2,0) -- (-\cubex/2,-\cubey/2,0) node[midway, left] {\Large$F_1$};
+
+	\draw (-\cubex,0,-\cubez/2) -- (-\cubex-0.2,0.4,-\cubez/2) node[left] {\Large$A$};
+	\draw (-\cubex,0,-\cubez) -- (-\cubex-0.2,0.8,-\cubez) node[above] {\Large$\Delta m=A\Delta y\rho_y$};
+	\node at (-3.5,-0.5,0) {$\rho_y$};
+
+\end{tikzpicture}
+\end{figure}
+
 
 The mass of this ``element'' of liquid is $\Delta m = A \Delta y \rho_y$, i.e. simply the volume times the density.\\
 Now, what are the forces on this element? First, there is gravity, $\Delta m g$, acting downwards. There is then a force $F_1$ upward, due to the pressure on this element. Keep in mind that the pressure is everywhere perpendicular to a surface -- even on imaginary surfaces like this one.\\
@@ -151,9 +256,45 @@ This result is known as \emph{Pascal's law}.
 
 Consider a strange-shaped vessel containing a liquid:
 
-\begin{center}
-\includegraphics[scale=0.7]{\pIImages/lec27_strange_container}
-\end{center}
+\begin{figure}[H]
+  \centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{tikzpicture}
+\tikzstyle{every node}=[font=\LARGE]
+	\draw[->, >=Stealth] (4.75,28) -- (4.75,33) node[midway, right] {$y$};
+	\draw[<->, >=Stealth, dashed] (8,28.5) -- (8,33.5) node[midway, right] {$h$};
+	\draw[dashed] (8,28.5) -- (9.75,28.5) node[at start, left] {$y_1$};
+	\draw[short] (11.75,31) -- (12.75,35);
+	\draw[short] (11.75,31) -- (9.75,31);
+	\draw[short] (9.75,31) -- (9.75,28.5);
+	\draw[short] (9.75,28.5) -- (22.25,28.5);
+	\draw[short] (15.5,31) -- (17.75,31);
+	\draw[short] (15.5,31) -- (14.5,35);
+	\draw[short] (17.75,31) -- (21.25,35.25);
+	\draw[short] (19.75,31) -- (22.5,34.75);
+	\draw[short] (19.75,31) -- (22.25,31);
+	\draw[short] (22.25,31) -- (22.25,28.5);
+	\draw[short] (22.25,34.25) -- (20.5,34.25);
+	\draw[short] (14.75,34.25) -- (12.5,34.25);
+	\draw[dashed] (20.5,34.25) -- (11.5,34.25) node[left] {$y_2$};
+	\draw[short] (13.25,34.25) -- (13.25,28.5);
+	\draw[short] (13.75,34.25) -- (13.75,28.5);
+	\draw[short] (13.25,28.5) .. controls (13.25,28.75) and (13.75,28.75) .. (13.75,28.5);
+
+	\fill (10.7,28.6) circle (3pt);
+	\fill (12.3,28.6) circle (3pt) node[above=2mm] {$\rho$};
+	\fill (16.0,28.6) circle (3pt) node[above=2mm] {$P_1$};
+	\fill (20.3,28.6) circle (3pt);
+
+	\draw (13.5,34.2) circle (6pt);
+	\draw (13.5,34.2) -- ++(1,2) node[above] {$A$};
+	\node at (21, 36) {Weight $=$ $Ah\rho g$.};
+
+\end{tikzpicture}
+}%
+
+\end{figure}
+
 
 According to Pascal's law, the pressure at the bottom must be the same, at all points along the bottom (assuming the liquid is static).\\
 However, consider the point just below the marked cylinder: the water column has a weight $A h \rho g$ -- its volume $A h$, times the density $\rho$ which gives its mass, times $g$ which gives its weight. The pressure at the bottom is this weight divided by the area, i.e $\rho h g$.
@@ -185,9 +326,44 @@ We can measure the atmospheric pressure in a rather different way. We emerge a h
 
 Consider now instead a glass tube instead of a hose, and mercury instead of water. Mercury is way denser than water, so the height required will also be way less than the 10 meters required for water.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec27_barometer}
-\end{center}
+\begin{figure}[H]
+\centering
+\resizebox{0.3\textwidth}{!}{%
+\begin{tikzpicture}
+\tikzstyle{every node}=[font=\LARGE]
+	\draw[line width=1pt, short] (7.5,26.5) -- (7.5,20.5);
+	\draw[line width=1pt, short] (7.5,20.5) -- (14,20.5);
+	\draw[line width=1pt, short] (14,20.5) -- (14,26.75);
+	\draw[short] (7.5,25.5) -- (10,25.5);
+	\draw[short] (14,25.5) -- (11.25,25.5);
+	\draw[line width=1pt, short] (10,24.25) -- (10,33);
+	\draw[line width=1pt, short] (11.25,24.25) -- (11.25,33);
+	\draw[line width=1pt, short] (10,33) .. controls (10.25,34) and (11,34) .. (11.25,33);
+	\draw[short] (10.75,33.25) -- (12.75,34.5) node[right] {$MT$};;
+	\draw[short] (10.5,32.75) .. controls (10.25,33.75) and (10,33.75) .. (8.5,34) node[left] {$P_2=0$};
+	\draw[short] (10,32.75) -- (11.25,32.75);
+	\draw[dashed] (11.25,32.75) -- (13.75,32.75) node[right] {$y_2$};
+	\fill (12.5,25.5) circle (4pt) node[above=2mm] {$P_1$};
+	\draw[dashed] (14,25.5) -- (15.5,25.5) node[right] {$y_1$};
+	\draw[short] (10.25,31.75) -- (11,32.25);
+	\draw[short] (10.25,30.75) -- (11,31.25);
+	\draw[short] (10.25,29.75) -- (11,30.25);
+	\draw[short] (10.25,28.75) -- (11,29.25);
+	\draw[short] (10.25,27.5) -- (11,28);
+	\draw[short] (10.25,26.5) -- (11,27);
+	\draw[short] (10.25,25.75) -- (11,26.25);
+	\draw[short] (10.25,24.75) -- (11,25.25);
+	\draw[short] (7.75,24.75) -- (8.5,25.25);
+	\draw[short] (8.25,23.75) -- (9.5,24.75);
+	\draw[short] (8.5,22.5) -- (9.75,23.75);
+	\draw[short] (8.75,21.25) -- (12,24.5);
+	\draw[short] (10.75,21.25) -- (13.5,24.25);
+	\draw[short] (12.25,21.5) -- (13.25,22.75);
+\end{tikzpicture}
+}%
+\label{fig:my_label}
+\end{figure}
+
 
 (MT means empty, nothing more; I'm not sure why it is written in short.)
 
@@ -238,9 +414,56 @@ By the way, the way divers get around this is to have pressurized breathing gas.
 
 A manometer is a very simple device that can be used to measure pressure. We have a U-shaped tube, plastic in this case, which is partially filled with water.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec27_manometer}
-\end{center}
+\begin{figure}[H]
+\centering
+\resizebox{0.4\textwidth}{!}{%
+\begin{tikzpicture}
+\tikzstyle{every node}=[font=\LARGE]
+	\draw[short] (6.5,31.75) -- (6.5,31.75);
+	\draw[short] (6,31.5) -- (7.75,31.5);
+	\draw[short] (7.75,31.5) .. controls (8.75,31.25) and (8.5,31) .. (8.75,30.5);
+	\draw[short] (8.75,30.5) -- (8.75,24.25);
+	\draw[short] (8.75,24.25) .. controls (8.75,23.75) and (9,23.75) .. (9.25,23.75);
+	\draw[short] (9.25,23.75) -- (12,23.75);
+	\draw[short] (12,23.75) .. controls (12.25,23.75) and (12.5,23.75) .. (12.5,24.25);
+	\draw[short] (12.5,24.25) -- (12.5,32.5);
+	\draw[short] (6,30.75) -- (7.75,30.75);
+	\draw[short] (7.75,30.75) .. controls (8,30.75) and (8,30.5) .. (8,30.5);
+	\draw[short] (8,30.5) -- (8,24.25);
+	\draw[short] (8,24.25) .. controls (8.25,23.25) and (8.25,23.25) .. (9.25,23);
+	\draw[short] (9.25,23) -- (12,23);
+	\draw[short] (12,23) .. controls (12.75,23) and (13.25,23.5) .. (13.25,24.25);
+	\draw[short] (13.25,24.25) -- (13.25,32.5) node[above] {open};
+	\draw[->, >=Stealth, red] (5.5,31.25) -- (6.5,31.25);
+	\draw [short] (6,31.25) .. controls (5.5,31.25) and (5.5,31.25) .. (5.25,32) node[above] {open};
+	\draw[short] (8,27.5) -- (8.75,27.5);
+	\draw[short] (12.5,27.5) -- (13.25,27.5);
+	\draw[short, red] (12.5,29) -- (13.25,29);
+	\draw[short, red] (8,26.25) -- (8.75,26.25);
+	\draw[short] (8.25,25.25) -- (7,25) node[left] {$\rho$};
+	\draw[dashed] (8.75,26.25) -- (14.75,26.25);
+	\draw[dashed] (13.25,29) -- (14.5,29);
+	\draw[<->, >=Stealth, red] (14,29) -- (14,26.25) node[midway, right] {$h$};
+	\draw[short] (8.25,27) -- (8.5,27.25);
+	\draw[short] (8.25,26.5) -- (8.5,26.75);
+	\draw[short] (8.25,25.75) -- (8.5,26);
+	\draw[short] (8.25,25) -- (8.5,25.25);
+	\draw[short] (8.25,24.25) -- (8.5,24.5);
+	\draw[short] (8.5,23.75) -- (8.75,24);
+	\draw[short] (9,23.25) -- (9.25,23.5);
+	\draw[short] (9.75,23.25) -- (10,23.5);
+	\draw[short] (10.5,23.25) -- (10.75,23.5);
+	\draw[short] (11.25,23.25) -- (11.5,23.5);
+	\draw[short] (12,23.25) -- (12.25,23.5);
+	\draw[short] (12.75,24) -- (13,24.25);
+	\draw[short] (12.75,24.75) -- (13,25);
+	\draw[short] (12.5,23.5) -- (12.75,23.75);
+	\draw[short] (12.75,25.5) -- (13,25.75);
+	\draw[short] (12.75,26.5) -- (13,26.75);
+	\draw[short] (12.75,27) -- (13,27.25);
+\end{tikzpicture}
+}%
+\end{figure}
 
 By blowing (or sucking) on one end, we can measure the height difference in the liquid, and calculate the amount of underpressure/overpressure we managed to produce in our lungs.\\
 Call the top height $y_2$ with pressure $P_2$, and the bottom $y_1$ with pressure $P_1$, we have
