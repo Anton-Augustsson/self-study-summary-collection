@@ -105,9 +105,61 @@ We have a liquid in a U-shaped tube. The entire mass of the liquid is $M$, the d
 
 The tube has a cross-sectional area $A$ everywhere along it.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec30_utube}
-\end{center}
+\begin{figure}[H]
+\centering
+\resizebox{0.5\textwidth}{!}{%
+\begin{tikzpicture}
+\tikzstyle{every node}=[font=\LARGE]
+	\draw [short] (3.75,25) -- (3.75,16);
+	\draw [short] (4.75,25) -- (4.75,16);
+	\draw [short] (11.5,25.25) -- (11.5,16);
+	\draw [short] (12.5,25.25) -- (12.5,16);
+	\draw [short] (11.5,16) .. controls (10.5,12.5) and (6,12.5) .. (4.75,16);
+	\draw [short] (3.75,16) .. controls (5.25,11.25) and (11,11.25) .. (12.5,16);
+	\draw [short] (3.75,18) -- (4.75,18);
+	\draw [short] (11.5,19.75) -- (12.5,19.75);
+	\draw [short] (11.5,22.25) -- (12.5,22.25);
+	\draw [short] (3.75,25) .. controls (4,24.75) and (4.5,24.75) .. (4.75,25);
+	\draw [short] (11.5,25.25) .. controls (11.75,25) and (12.25,25) .. (12.5,25.25);
+	\draw [short] (11.5,25.25) .. controls (11.75,25.5) and (12.25,25.5) .. (12.5,25.25);
+	\draw [short] (3.75,25) .. controls (4,25.25) and (4.5,25.25) .. (4.75,25);
+	\draw [short, red] (4.25,18) .. controls (4.25,16) and (3.75,15.75) .. (5.75,13.75);
+	\draw [short, red] (5.75,13.75) .. controls (8,12) and (10,13) .. (11.25,14.5);
+	\draw [short, red] (11.25,14.5) .. controls (12,15.5) and (12.25,15.75) .. (12,17.5);
+	\draw [->, >=Stealth, red] (12,17.5) -- (12,19.75);
+	\draw [->, >=Stealth, green] (4.5,15.25) -- (5.25,14.25) node[at start, below=8mm] {$v$};
+	\draw [->, >=Stealth, green] (7.25,13) .. controls (8,12.75) and (8.25,12.75) .. (9,13) node[midway, below=5mm] {$v$};
+	\draw [->, >=Stealth, green] (10.75,14) .. controls (11.25,14.25) and (11.25,14.25) .. (11.5,15) node[right=6mm] {$v=\dot{y}$};
+	\draw [->, >=Stealth, green] (11.75,19.5) -- (11.75,21.25) node[at start, right=7mm] {$v$};
+	\draw [dashed, red] (12,18.5) -- (13.25,18.5) node[right] {$\ell$};
+\draw [dashed] (12.5,19.75) -- (13.5,19.75);
+	\draw [->, >=Stealth] (13.25,19.75) -- (13.25,22.25) node[midway, right] {$y$};
+\draw [->, >=Stealth] (5.25,20) -- (5.25,18);
+	\draw [short] (12,25.25) .. controls (12.5,25.75) and (12.5,25.5) .. (13,25.75) node[right] {$A$};
+	\draw [short] (4,17.5) -- (4.5,17.75);
+	\draw [short] (4,16.75) -- (4.5,17);
+	\draw [short] (4,15.75) -- (4.5,16);
+	\draw [short] (4.5,15) -- (4.75,15.25);
+	\draw [short] (5.25,13.75) -- (5.75,14);
+	\draw [short] (6.25,13.25) -- (6.75,13.5);
+	\draw [short] (7.75,12.75) -- (8.25,13.25);
+	\draw [short] (9.5,13) -- (10,13.75);
+	\draw [short] (10.5,13.5) -- (11,14.5);
+	\draw [short] (11.75,15.5) -- (12,15.75);
+	\draw [short] (11.75,16.75) -- (12.25,17.25);
+	\draw [short] (11.75,18) -- (12.25,18.25);
+	\draw [short] (11.75,19) -- (12.25,19.25);
+	\draw [short] (11.75,20) -- (12.25,20.25);
+	\draw [short] (11.75,20.25) -- (12.25,20.5);
+	\draw [short] (11.75,20.75) -- (12.25,21);
+	\draw [short] (11.75,21) -- (12.25,21.25);
+	\draw [short] (11.75,21.5) -- (12.25,21.75);
+	\draw [short] (11.75,21.75) -- (12.25,22);
+	\node at (17,23) {$M=A\ell\rho$};
+	\node at (17,24) {$M\rho A\ell$};
+\end{tikzpicture}
+}%
+\end{figure}
 
 As shown above, we displace the liquid so that it is at a height $y$ above equilibrium height on one side, and a height $y$ below at the other. We also denote the velocity of the liquid as $v = \dot{y}$, which is the same everywhere, at one instant.\\
 Say we denote the equilibrium point as $U = 0$ for the system, where $U$ is the gravitational potential energy.\\
@@ -164,9 +216,33 @@ Like a simple spring pendulum, a torsional pendulum has a period that is indepen
 
 Consider this system:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec30_torsional_pendulum}
-\end{center}
+\begin{figure}[H]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{tikzpicture}
+\tikzstyle{every node}=[font=\LARGE]
+	\draw [short] (10,29) -- (10,20.75) node[midway, right] {$\ell$};
+\draw [short] (9.5,29) -- (10.5,29);
+\draw [short] (9.75,29) -- (10,29.25);
+\draw [short] (10.25,29) -- (10.5,29.25);
+\draw [short] (6.5,20.75) -- (13.5,20.75);
+\draw [short] (6.5,20.75) -- (6.5,20.25);
+\draw [short] (13.5,20.75) -- (13.5,20.25);
+\draw [short] (6.5,20.25) -- (13.5,20.25);
+\draw  (7.25,20) circle (0.5cm);
+\draw  (12.75,20) circle (0.5cm);
+\draw [short] (15.75,24) -- (24.25,24);
+\draw [short] (15.75,24.75) -- (24.25,24.75);
+\draw [short] (15.75,24) -- (15.75,24.75);
+\draw [short] (24.25,24) -- (24.25,24.75);
+	\fill  (19.75,24.4) circle (3pt) node[below=3mm] {$P$};
+\fill  (10,20.5) circle (3pt) node[below=3mm] {$P$};
+\draw [dashed] (16.25,21.75) -- (23.75,27.5);
+	\draw [short] (21.25,25.5) .. controls (21.5,25.25) and (21.75,25) .. (21.75,24.75) node[midway, right] {$\theta$};
+\end{tikzpicture}
+}%
+\end{figure}
+
 
 (Left: as seen from the front; right: as seen from above, after giving the mass a small twist.)
 
@@ -209,9 +285,31 @@ We ignore the moment of inertia of the wire, since it's very thin, and has a nea
 
 Here's a closeup of the part of the system with a non-negligible moment of inertia:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec30_torsional_pendulum2}
-\end{center}
+\begin{figure}[H]
+\centering
+\resizebox{0.6\textwidth}{!}{%
+\begin{tikzpicture}
+\tikzstyle{every node}=[font=\LARGE]
+	\draw [short] (3.5,26.75) -- (19.25,26.75);
+	\draw [short] (3.5,26.75) -- (3.5,25);
+	\draw [short] (3.5,25) -- (19.25,25);
+	\draw [short] (19.25,25) -- (19.25,26.75);
+	\draw [short] (3.5,25) -- (3.5,23.5);
+	\draw [short] (3.5,23.5) -- (5.75,23.5);
+	\draw [short] (5.75,23.5) -- (5.75,25);
+	\draw [short] (19.25,25) -- (19.25,23.5);
+	\draw [short] (19.25,23.5) -- (16.75,23.5);
+	\draw [short] (16.75,23.5) -- (16.75,25);
+	\draw [dashed] (11,21.5) -- (11,28.75);
+	\draw [dashed] (4.5,21.75) -- (4.5,25);
+	\draw [dashed] (18,23.5) -- (18,25);
+	\draw [<->, >=Stealth, dashed] (4.5,22.25) -- (11,22.25) node[midway, below] {$30$cm};
+	\draw [<->, >=Stealth, dashed] (11,24) -- (18,24) node[midway, below] {$30$cm};
+	\draw [short] (4.5,24.25) -- (2.5,23.25) node[left] {$0.2$};
+	\draw [short] (18,24.25) -- (20.75,24) node[right] {$0.2$kg};;
+\end{tikzpicture}
+}%
+\end{figure}
 
 We can approximate the masses as point particles, each having a moment of inertia of $M R^2$ about the center axis (point P), so the total moment of inertia is approximately $I_P \approx 2 M R^2 = 2(\SI{0.2}{kg})(\SI{0.3}{m})^2 = \SI{0.036}{kg m^2}$.
 
