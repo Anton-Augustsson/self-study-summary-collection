@@ -324,9 +324,26 @@ There is a reasonable amount of uncertainty in the measurements, as it's hard to
 
 We have talked considerably about springs in the past, but we will now add a new twist: instead of just setting a spring system off equilibrium and then leave it be, we apply a time-varying force at some fixed frequency that we choose -- which does not have to be the same frequency that the system would oscillate at on its own.
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec31_forced}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+  \draw[decorate, decoration={aspect=0.5, segment length=5mm, amplitude=3.5mm, coil}] 
+      (0,0) -- (5,0);
+  \draw[-{Stealth}, red] (5,1.0) -- (3,1.0) node[midway, above=1mm] {$-kx$};
+	\draw[-{Stealth}, red] (5,0) -- (7.5,0) node[above=1mm] {$F_0\cos{(\omega t)}$};
+  \fill (5,0) circle (3mm);
+  \draw[thick] (0,-1) -- (0,1);
+  \draw[dotted] (3,1) -- (3,-1) node[below] {$x=0$};
+  \draw[dotted] (5,0) -- (5,-1) node[below] {$x$};
+ 
+\end{tikzpicture}
+\caption{}
+\end{figure}
+
+
+
+
 
 An shown, we have a simple system with a mass $m$ connected to a spring. We drive it with some frequency $F_0 \cos (\omega t)$, where $F_0$ is the amplitude of the applied force.\\
 We apply Newton's second law to the system, with $a = \ddot{x}$:
@@ -367,17 +384,39 @@ Frictional forces etc. limit the actual amplitude in practice.
 
 If we plot the amplitude $A$ versus the driving (angular) frequency $\omega$, we find something like this:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec31_amplitude}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+	\begin{axis}[axis lines=middle,samples=200,ticks=none,xlabel={$\omega$},ylabel={$A$}]
+		\addplot[domain=-0.4:1.85] {1/(2-x)};
+\addplot[domain=2.15:6] {1/(2-x)};
+		\draw[dashed] (axis cs:2,-8) -- (axis cs:2,10) node[midway, left] {$\omega_0$};
+\end{axis}
+	\node at (-0.3, 3.1) {$\frac{F_0}{k}$};
+	\node at (0, 2.6) {$0$};
+\end{tikzpicture}
+\end{figure}
+
 
 The negative values mean that the object is now 180 degrees out of phase with the driver, which we don't go into any detail about in this lecture.
 
 If we take a more realistic case (where the amplitude stays finite), and also plot the absolute value of the amplitude to get rid of the discontinuity of the phase shift, we get something like this:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec31_amplitude2}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, ymin=-0.3,samples=200,ticks=none,xlabel={$F$},ylabel={$|A|$}]
+	\addplot[green,domain=-0.4:2.0] {0.1+1/(1.1*sqrt(2*pi)*e^((1/2)*((x-2)/1.1)^2))};
+	\addplot[green,domain=2.0:3.85] {1/(0.85*sqrt(2*pi)*e^((1/2)*((x-2)/0.85)^2))};
+	\addplot[green,domain=-0.4:2.0] {0.1+1/(0.4*sqrt(2*pi)*e^((1/2)*((x-2)/0.4)^2))};
+	\addplot[green,domain=2.0:3.85] {1/(0.364*sqrt(2*pi)*e^((1/2)*((x-2)/0.364)^2))};
+	\addplot[pink,domain=-0.4:2.0] {0.1+1/(0.3*sqrt(2*pi)*e^((1/2)*((x-2)/0.3)^2))};
+	\addplot[pink,domain=2.0:3.85] {1/(0.28*sqrt(2*pi)*e^((1/2)*((x-2)/0.28)^2))};
+\draw[dashed] (axis cs:2,-0.1) -- (axis cs:2,10) node[at start, right] {$f_0$};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
 
 The less damping there is, the narrower the resonance peak is (shown in pink). With lots of damping, the peak becomes just a small bump (in green).
 
@@ -393,9 +432,20 @@ Sound is a longitudinal wave; at least in air, there appears to be some discussi
 
 Let's look now at the example of shaking a string. As mentioned earlier, there will be many, many resonance frequencies. Consider the first few:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec31_harmonics}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+	\begin{axis}[axis lines=middle,ymin=-0.3,xmax=8.5,samples=200,ticks=none,x label style={at={(axis cs:8.3,-0.0)},anchor=north},xlabel={$F$},y label style={at={(axis cs:-0.4,1.7)},anchor=north},ylabel={$|A|$}]
+	\addplot[domain=-0.4:2.5] {0.1+1/(0.25*sqrt(2*pi)*e^((1/2)*((x-1)/0.25)^2))};
+	\addplot[domain=2.5:5.0] {0.1+1/(0.3*sqrt(2*pi)*e^((1/2)*((x-3.5)/0.3)^2))};
+	\addplot[domain=5.0:8.0] {0.1+1/(0.27*sqrt(2*pi)*e^((1/2)*((x-6)/0.27)^2))};
+\draw[dashed] (axis cs:1,-0.1) -- (axis cs:1,10) node[at start, right] {$f_1$};
+\draw[dashed] (axis cs:3.5,-0.1) -- (axis cs:3.5,10) node[at start, right] {$f_2$};
+\draw[dashed] (axis cs:6,-0.1) -- (axis cs:6,10) node[at start, right] {$f_3$};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
 
 We start off by shaking the string up and down at a low frequency, which we slowly increase. At one point, we will hit the first resonance frequency, also known as the first harmonic, or the fundamental. We denote this frequency as $f_1$.\\
 At that point, the amplitude will be much greater than it was just before, and we will have a \emph{standing wave}. Each point of the curve will bob up and down, but that is all that happens. The movement is the greatest at the center, and zero at the two ends where the string is held.\\
@@ -408,9 +458,19 @@ Animated graphics are extremely useful here, so I suggest looking some up. Wikip
 
 Here is a still image from the lecture, which is about the best I can do in these notes (in the lecture, Prof. Lewin also did a demonstration):
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec31_nodes}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+	\begin{axis}[height=6cm, width=14cm, ticks=none, axis y line=none, axis x line=center, xmin=0, xmax=2*pi, ymin=-1.1, ymax=1.1]
+		\addplot[domain=0:2*pi, samples=200] { sin(0.5*deg(x)) } node[midway, right=14mm] {$n=1$};
+	\addplot[domain=0:2*pi, samples=200] { -sin(0.5*deg(x)) };
+	\addplot[green, domain=0:2*pi, samples=200] { -0.5*sin(1.5*deg(x)) } node[midway, right=6mm] {$n=3$};
+	\addplot[pink, domain=0:2*pi, samples=200] { 0.6*sin(deg(x)) } node[midway, below=2mm] {$n=2$};
+\end{axis}
+	\draw[<->] (-0.4,1.5) -- (-0.4,3);
+\end{tikzpicture}
+\end{figure}
+
 
 The first harmonic, $n=1$ (in white) just has the string being either all high, all low, or in transition between the two states.\\
 The second harmonic, $n=2$ (in pink) has a node at the center, with the antinodes out of phase.\\
