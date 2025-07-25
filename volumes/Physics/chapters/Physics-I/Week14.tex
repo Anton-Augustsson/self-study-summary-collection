@@ -65,7 +65,7 @@ As expected, we find $R \approx 12.42$ cm, half (ignoring rounding) the length o
 Finally, we do this for a solid disk (solid except for a negligibly small hole where it's fixed, of course). Here, $I_{cm} = (1/2) M R^2$, and so adding $M R ^2$ for the parallel axis theorem gives us $(3/2) M R^2$.
 
 \begin{equation}
-T_{disk} = 2 \pi \sqrt{\frac{(3R}{2g}}
+T_{disk} = 2 \pi \sqrt{\frac{3R}{2g}}
 \end{equation}
 
 Or, solved for $R$:
@@ -107,58 +107,56 @@ The tube has a cross-sectional area $A$ everywhere along it.
 
 \begin{figure}[H]
 \centering
-\resizebox{0.5\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.5]
 \tikzstyle{every node}=[font=\LARGE]
-	\draw [short] (3.75,25) -- (3.75,16);
-	\draw [short] (4.75,25) -- (4.75,16);
-	\draw [short] (11.5,25.25) -- (11.5,16);
-	\draw [short] (12.5,25.25) -- (12.5,16);
-	\draw [short] (11.5,16) .. controls (10.5,12.5) and (6,12.5) .. (4.75,16);
-	\draw [short] (3.75,16) .. controls (5.25,11.25) and (11,11.25) .. (12.5,16);
-	\draw [short] (3.75,18) -- (4.75,18);
-	\draw [short] (11.5,19.75) -- (12.5,19.75);
-	\draw [short] (11.5,22.25) -- (12.5,22.25);
-	\draw [short] (3.75,25) .. controls (4,24.75) and (4.5,24.75) .. (4.75,25);
-	\draw [short] (11.5,25.25) .. controls (11.75,25) and (12.25,25) .. (12.5,25.25);
-	\draw [short] (11.5,25.25) .. controls (11.75,25.5) and (12.25,25.5) .. (12.5,25.25);
-	\draw [short] (3.75,25) .. controls (4,25.25) and (4.5,25.25) .. (4.75,25);
-	\draw [short, red] (4.25,18) .. controls (4.25,16) and (3.75,15.75) .. (5.75,13.75);
-	\draw [short, red] (5.75,13.75) .. controls (8,12) and (10,13) .. (11.25,14.5);
-	\draw [short, red] (11.25,14.5) .. controls (12,15.5) and (12.25,15.75) .. (12,17.5);
-	\draw [->, >=Stealth, red] (12,17.5) -- (12,19.75);
-	\draw [->, >=Stealth, green] (4.5,15.25) -- (5.25,14.25) node[at start, below=8mm] {$v$};
-	\draw [->, >=Stealth, green] (7.25,13) .. controls (8,12.75) and (8.25,12.75) .. (9,13) node[midway, below=5mm] {$v$};
-	\draw [->, >=Stealth, green] (10.75,14) .. controls (11.25,14.25) and (11.25,14.25) .. (11.5,15) node[right=6mm] {$v=\dot{y}$};
-	\draw [->, >=Stealth, green] (11.75,19.5) -- (11.75,21.25) node[at start, right=7mm] {$v$};
-	\draw [dashed, red] (12,18.5) -- (13.25,18.5) node[right] {$\ell$};
-\draw [dashed] (12.5,19.75) -- (13.5,19.75);
-	\draw [->, >=Stealth] (13.25,19.75) -- (13.25,22.25) node[midway, right] {$y$};
-\draw [->, >=Stealth] (5.25,20) -- (5.25,18);
-	\draw [short] (12,25.25) .. controls (12.5,25.75) and (12.5,25.5) .. (13,25.75) node[right] {$A$};
-	\draw [short] (4,17.5) -- (4.5,17.75);
-	\draw [short] (4,16.75) -- (4.5,17);
-	\draw [short] (4,15.75) -- (4.5,16);
-	\draw [short] (4.5,15) -- (4.75,15.25);
-	\draw [short] (5.25,13.75) -- (5.75,14);
-	\draw [short] (6.25,13.25) -- (6.75,13.5);
-	\draw [short] (7.75,12.75) -- (8.25,13.25);
-	\draw [short] (9.5,13) -- (10,13.75);
-	\draw [short] (10.5,13.5) -- (11,14.5);
-	\draw [short] (11.75,15.5) -- (12,15.75);
-	\draw [short] (11.75,16.75) -- (12.25,17.25);
-	\draw [short] (11.75,18) -- (12.25,18.25);
-	\draw [short] (11.75,19) -- (12.25,19.25);
-	\draw [short] (11.75,20) -- (12.25,20.25);
-	\draw [short] (11.75,20.25) -- (12.25,20.5);
-	\draw [short] (11.75,20.75) -- (12.25,21);
-	\draw [short] (11.75,21) -- (12.25,21.25);
-	\draw [short] (11.75,21.5) -- (12.25,21.75);
-	\draw [short] (11.75,21.75) -- (12.25,22);
+	\draw (3.75,25) -- (3.75,16);
+	\draw (4.75,25) -- (4.75,16);
+	\draw (11.5,25.25) -- (11.5,16);
+	\draw (12.5,25.25) -- (12.5,16);
+	\draw (11.5,16) .. controls (10.5,12.5) and (6,12.5) .. (4.75,16);
+	\draw (3.75,16) .. controls (5.25,11.25) and (11,11.25) .. (12.5,16);
+	\draw (3.75,18) -- (4.75,18);
+	\draw (11.5,19.75) -- (12.5,19.75);
+	\draw (11.5,22.25) -- (12.5,22.25);
+	\draw (3.75,25) .. controls (4,24.75) and (4.5,24.75) .. (4.75,25);
+	\draw (11.5,25.25) .. controls (11.75,25) and (12.25,25) .. (12.5,25.25);
+	\draw (11.5,25.25) .. controls (11.75,25.5) and (12.25,25.5) .. (12.5,25.25);
+	\draw (3.75,25) .. controls (4,25.25) and (4.5,25.25) .. (4.75,25);
+	\draw[red] (4.25,18) .. controls (4.25,16) and (3.75,15.75) .. (5.75,13.75);
+	\draw[red] (5.75,13.75) .. controls (8,12) and (10,13) .. (11.25,14.5);
+	\draw[red] (11.25,14.5) .. controls (12,15.5) and (12.25,15.75) .. (12,17.5);
+	\draw[->, >=Stealth, red] (12,17.5) -- (12,19.75);
+	\draw[->, >=Stealth, green] (4.5,15.25) -- (5.25,14.25) node[at start, below=8mm] {$v$};
+	\draw[->, >=Stealth, green] (7.25,13) .. controls (8,12.75) and (8.25,12.75) .. (9,13) node[midway, below=5mm] {$v$};
+	\draw[->, >=Stealth, green] (10.75,14) .. controls (11.25,14.25) and (11.25,14.25) .. (11.5,15) node[right=6mm] {$v=\dot{y}$};
+	\draw[->, >=Stealth, green] (11.75,19.5) -- (11.75,21.25) node[at start, right=7mm] {$v$};
+	\draw[dashed, red] (12,18.5) -- (13.25,18.5) node[right] {$\ell$};
+	\draw[dashed] (12.5,19.75) -- (13.5,19.75);
+	\draw[->, >=Stealth] (13.25,19.75) -- (13.25,22.25) node[midway, right] {$y$};
+	\draw[->, >=Stealth] (5.25,20) -- (5.25,18);
+	\draw (12,25.25) .. controls (12.5,25.75) and (12.5,25.5) .. (13,25.75) node[right] {$A$};
+	\draw (4,17.5) -- (4.5,17.75);
+	\draw (4,16.75) -- (4.5,17);
+	\draw (4,15.75) -- (4.5,16);
+	\draw (4.5,15) -- (4.75,15.25);
+	\draw (5.25,13.75) -- (5.75,14);
+	\draw (6.25,13.25) -- (6.75,13.5);
+	\draw (7.75,12.75) -- (8.25,13.25);
+	\draw (9.5,13) -- (10,13.75);
+	\draw (10.5,13.5) -- (11,14.5);
+	\draw (11.75,15.5) -- (12,15.75);
+	\draw (11.75,16.75) -- (12.25,17.25);
+	\draw (11.75,18) -- (12.25,18.25);
+	\draw (11.75,19) -- (12.25,19.25);
+	\draw (11.75,20) -- (12.25,20.25);
+	\draw (11.75,20.25) -- (12.25,20.5);
+	\draw (11.75,20.75) -- (12.25,21);
+	\draw (11.75,21) -- (12.25,21.25);
+	\draw (11.75,21.5) -- (12.25,21.75);
+	\draw (11.75,21.75) -- (12.25,22);
 	\node at (17,23) {$M=A\ell\rho$};
 	\node at (17,24) {$M\rho A\ell$};
 \end{tikzpicture}
-}%
 \end{figure}
 
 As shown above, we displace the liquid so that it is at a height $y$ above equilibrium height on one side, and a height $y$ below at the other. We also denote the velocity of the liquid as $v = \dot{y}$, which is the same everywhere, at one instant.\\
@@ -218,29 +216,27 @@ Consider this system:
 
 \begin{figure}[H]
 \centering
-\resizebox{1\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.6]
 \tikzstyle{every node}=[font=\LARGE]
-	\draw [short] (10,29) -- (10,20.75) node[midway, right] {$\ell$};
-\draw [short] (9.5,29) -- (10.5,29);
-\draw [short] (9.75,29) -- (10,29.25);
-\draw [short] (10.25,29) -- (10.5,29.25);
-\draw [short] (6.5,20.75) -- (13.5,20.75);
-\draw [short] (6.5,20.75) -- (6.5,20.25);
-\draw [short] (13.5,20.75) -- (13.5,20.25);
-\draw [short] (6.5,20.25) -- (13.5,20.25);
-\draw  (7.25,20) circle (0.5cm);
-\draw  (12.75,20) circle (0.5cm);
-\draw [short] (15.75,24) -- (24.25,24);
-\draw [short] (15.75,24.75) -- (24.25,24.75);
-\draw [short] (15.75,24) -- (15.75,24.75);
-\draw [short] (24.25,24) -- (24.25,24.75);
-	\fill  (19.75,24.4) circle (3pt) node[below=3mm] {$P$};
-\fill  (10,20.5) circle (3pt) node[below=3mm] {$P$};
-\draw [dashed] (16.25,21.75) -- (23.75,27.5);
-	\draw [short] (21.25,25.5) .. controls (21.5,25.25) and (21.75,25) .. (21.75,24.75) node[midway, right] {$\theta$};
+	\draw (10,29) -- (10,20.75) node[midway, right] {$\ell$};
+	\draw (9.5,29) -- (10.5,29);
+	\draw (9.75,29) -- (10,29.25);
+	\draw (10.25,29) -- (10.5,29.25);
+	\draw (6.5,20.75) -- (13.5,20.75);
+	\draw (6.5,20.75) -- (6.5,20.25);
+	\draw (13.5,20.75) -- (13.5,20.25);
+	\draw (6.5,20.25) -- (13.5,20.25);
+	\draw (7.25,20) circle (0.5cm);
+	\draw (12.75,20) circle (0.5cm);
+	\draw (15.75,24) -- (24.25,24);
+	\draw (15.75,24.75) -- (24.25,24.75);
+	\draw (15.75,24) -- (15.75,24.75);
+	\draw (24.25,24) -- (24.25,24.75);
+	\fill (19.75,24.4) circle (3pt) node[below=3mm] {$P$};
+	\fill (10,20.5) circle (3pt) node[below=3mm] {$P$};
+	\draw[dashed] (16.25,21.75) -- (23.75,27.5);
+	\draw (21.25,25.5) .. controls (21.5,25.25) and (21.75,25) .. (21.75,24.75) node[midway, right] {$\theta$};
 \end{tikzpicture}
-}%
 \end{figure}
 
 
@@ -287,28 +283,26 @@ Here's a closeup of the part of the system with a non-negligible moment of inert
 
 \begin{figure}[H]
 \centering
-\resizebox{0.6\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.6]
 \tikzstyle{every node}=[font=\LARGE]
-	\draw [short] (3.5,26.75) -- (19.25,26.75);
-	\draw [short] (3.5,26.75) -- (3.5,25);
-	\draw [short] (3.5,25) -- (19.25,25);
-	\draw [short] (19.25,25) -- (19.25,26.75);
-	\draw [short] (3.5,25) -- (3.5,23.5);
-	\draw [short] (3.5,23.5) -- (5.75,23.5);
-	\draw [short] (5.75,23.5) -- (5.75,25);
-	\draw [short] (19.25,25) -- (19.25,23.5);
-	\draw [short] (19.25,23.5) -- (16.75,23.5);
-	\draw [short] (16.75,23.5) -- (16.75,25);
-	\draw [dashed] (11,21.5) -- (11,28.75);
-	\draw [dashed] (4.5,21.75) -- (4.5,25);
-	\draw [dashed] (18,23.5) -- (18,25);
-	\draw [<->, >=Stealth, dashed] (4.5,22.25) -- (11,22.25) node[midway, below] {$30$cm};
-	\draw [<->, >=Stealth, dashed] (11,24) -- (18,24) node[midway, below] {$30$cm};
-	\draw [short] (4.5,24.25) -- (2.5,23.25) node[left] {$0.2$};
-	\draw [short] (18,24.25) -- (20.75,24) node[right] {$0.2$kg};;
+	\draw (3.5,26.75) -- (19.25,26.75);
+	\draw (3.5,26.75) -- (3.5,25);
+	\draw (3.5,25) -- (19.25,25);
+	\draw (19.25,25) -- (19.25,26.75);
+	\draw (3.5,25) -- (3.5,23.5);
+	\draw (3.5,23.5) -- (5.75,23.5);
+	\draw (5.75,23.5) -- (5.75,25);
+	\draw (19.25,25) -- (19.25,23.5);
+	\draw (19.25,23.5) -- (16.75,23.5);
+	\draw (16.75,23.5) -- (16.75,25);
+	\draw[dashed] (11,21.5) -- (11,28.75);
+	\draw[dashed] (4.5,21.75) -- (4.5,25);
+	\draw[dashed] (18,23.5) -- (18,25);
+	\draw[<->, >=Stealth, dashed] (4.5,22.25) -- (11,22.25) node[midway, below] {$30$cm};
+	\draw[<->, >=Stealth, dashed] (11,24) -- (18,24) node[midway, below] {$30$cm};
+	\draw (4.5,24.25) -- (2.5,23.25) node[left] {$0.2$};
+	\draw (18,24.25) -- (20.75,24) node[right] {$0.2$kg};;
 \end{tikzpicture}
-}%
 \end{figure}
 
 We can approximate the masses as point particles, each having a moment of inertia of $M R^2$ about the center axis (point P), so the total moment of inertia is approximately $I_P \approx 2 M R^2 = 2(\SI{0.2}{kg})(\SI{0.3}{m})^2 = \SI{0.036}{kg m^2}$.
@@ -340,8 +334,6 @@ We have talked considerably about springs in the past, but we will now add a new
 \end{tikzpicture}
 \caption{}
 \end{figure}
-
-
 
 
 
@@ -588,9 +580,23 @@ The professor then demonstrates the expansion of a brass bar, by using an ``ampl
 
 Bimetals are a very useful type of material. We take two metals with different linear expansion coefficients, and put them together (perhaps using welding):
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec32_bimetal}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+	\draw[thick] (0,0) rectangle (7,0.5);
+	\draw[thick] (0,0.5) rectangle (7,1);
+	\draw (0,0.5) -- (-1,0.5);
+	\draw (0,1) -- (-1,1);
+	\draw[->] (-0.5,0) -- (-0.5,0.5);
+	\draw[->] (-0.5,1.5) -- (-0.5,1);
+	\node at (-1.5,1.5) {$L$};
+	\node at (-1.5,0.8) {$2mm$};
+	\draw (6,0.8) -- (8,1.7) node[right] {Invar};
+	\draw (6,0.2) -- (8,-0.8) node[right] {Cu};
+\end{tikzpicture}
+\end{figure}
+
+
 
 When we heat this system, what happens? The copper must get longer, but the change in the invar's length is much less. Since we join them such that one can not expand without affecting the other, it will bend upwards, so that the invar is on the inside of an arc, and the copper is along the (longer!) outside. The difference in the length change of the two materials is
 
@@ -606,9 +612,22 @@ They can also be used for safety devices. Gas stoves sometimes use a ``pilot lig
 
 We can build thermometers of bimetals. We could have a construction like this:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec32_bimetal_thermometer}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[scale=1]
+
+% Spiral
+\draw[thick, domain=0:6*pi, variable=\t, samples=200]
+  plot ({(\t r)*cos(\t r)/500}, {(\t r)*sin(\t r)/500});
+
+% Central arrow (outward)
+\draw[very thick, red, ->] (0,0) -- (0,2.5);
+
+% Little handle-like bar
+\draw[thick] (2.0,0) -- ++(0.4,0);
+
+\end{tikzpicture}
+\end{figure}
 
 The outer end is attached to some casing and cannot move. The pink arrow is some form of indicator, attached at the center.\\
 When the bimetal is heated, it will try to curl up even tighter than it already is, and the arrow moves clockwise. When the bimetal is cooled, the arrow moves towards the left. All we need, then, is to calculate how much it will turn, and then add a temperature scale around this.
@@ -650,9 +669,52 @@ The reason we can use the linear term only is that the next term in the Taylor s
 We can now look at how a(nother) simple thermometer can work, e.g. a mercury thermometer, though other fluids are used these days, for safety reasons.\\
 Mercury has a $\beta$ of about $18 \times 10^{-5}/{}^\circ$C, while Pyrex has a value of roughly $\num{1e-5}$ (3 times the value of $\alpha$ we had earlier). A Pyrex container with mercury inside will then barely expand when heated, but the mercury inside certainly will -- about 18 times as much. If we make a reservoir of mercury at the bottom, and then a very narrow column upwards, we get this:
 
-\begin{center}
-\includegraphics[scale=0.8]{\pIImages/lec32_mercury_thermometer}
-\end{center}
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+
+	% Bulb
+  \draw[thick] (0,0) arc[start angle=102, end angle=438, radius=1];
+	%\draw[thick] (0,0) circle (1);
+	
+	% Mercury label
+	\node at (-0.1,-1) {\small Hg};
+	\draw[thick] (0.6,-0.4) -- ++(1,0) node[right] {\small 1\,cm$^3$};
+	
+	% Capillary tube
+	\draw[thick] (0,0) -- (0,4);
+	\draw[thick] (0.4,0) -- (0.4,4);
+	
+	% Top opening
+	\draw[thick] (0,4) arc[start angle=180,end angle=0,radius=0.2];
+	
+	% Shaded height (Δh)
+	\draw[decorate, decoration={brace, mirror, amplitude=3mm}] (0,2.7)-- (0,0.5) node[midway, left=2mm] {\small $\Delta h$};
+	\draw (0,2.7) -- ++(0.4,0);
+	\draw (0,0.5) -- ++(0.4,0);
+
+	\draw (0.1,0.6) -- ++(0.2,0.1);
+	\draw (0.1,0.8) -- ++(0.2,0.1);
+	\draw (0.1,1.0) -- ++(0.2,0.1);
+	\draw (0.1,1.2) -- ++(0.2,0.1);
+	\draw (0.1,1.4) -- ++(0.2,0.1);
+	\draw (0.1,1.6) -- ++(0.2,0.1);
+	\draw (0.1,1.8) -- ++(0.2,0.1);
+	\draw (0.1,2.0) -- ++(0.2,0.1);
+	\draw (0.1,2.2) -- ++(0.2,0.1);
+	\draw (0.1,2.4) -- ++(0.2,0.1);
+
+	\draw (-0.3,-0.3) -- ++(0.8,0.1);
+	\draw (-0.1,-0.6) -- ++(0.8,0.1);
+	\draw (0.2,-0.9) -- ++(0.7,0.1);
+	\draw (0.2,-1.2) -- ++(0.7,0.1);
+	\draw (0.0,-1.5) -- ++(0.7,0.1);
+	
+	% Radius label
+	\draw[thick] (0.2,3.5) -- ++(1,0) node[right] {\small $r = 0.1\,\text{mm}$};
+	
+\end{tikzpicture}
+\end{figure}
 
 When the mercury/liquid expands, it has nowhere to go except up the display tube. We calculate how much the column will grow per degree, and create the scale accordingly. All that remains is then to fill it up to the correct level, and nature takes care of the rest.
 

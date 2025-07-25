@@ -165,9 +165,9 @@ The pressures at the two depths are then $P_y$ and $P_{y + \Delta y}$, respectiv
 	\pgfmathsetmacro{\cubey}{1}
 	\pgfmathsetmacro{\cubez}{3}
 
-	\draw[Very thick] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,-\cubey,0) -- ++(\cubex,0,0) -- cycle;
-	\draw[Very thick] (0,0,0) -- ++(0,0,-\cubez) -- ++(0,-\cubey,0) -- ++(0,0,\cubez) -- cycle;
-	\draw[Very thick] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,0,-\cubez) -- ++(\cubex,0,0) -- cycle;
+	\draw[very thick] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,-\cubey,0) -- ++(\cubex,0,0) -- cycle;
+	\draw[very thick] (0,0,0) -- ++(0,0,-\cubez) -- ++(0,-\cubey,0) -- ++(0,0,\cubez) -- cycle;
+	\draw[very thick] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,0,-\cubez) -- ++(\cubex,0,0) -- cycle;
 
 	\draw[->] (-6,-2,0) -- ++(0,2,0) node[left] {\Large$y$};
 
@@ -258,28 +258,27 @@ Consider a strange-shaped vessel containing a liquid:
 
 \begin{figure}[H]
   \centering
-\resizebox{0.8\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.8]
 \tikzstyle{every node}=[font=\LARGE]
 	\draw[->, >=Stealth] (4.75,28) -- (4.75,33) node[midway, right] {$y$};
 	\draw[<->, >=Stealth, dashed] (8,28.5) -- (8,33.5) node[midway, right] {$h$};
 	\draw[dashed] (8,28.5) -- (9.75,28.5) node[at start, left] {$y_1$};
-	\draw[short] (11.75,31) -- (12.75,35);
-	\draw[short] (11.75,31) -- (9.75,31);
-	\draw[short] (9.75,31) -- (9.75,28.5);
-	\draw[short] (9.75,28.5) -- (22.25,28.5);
-	\draw[short] (15.5,31) -- (17.75,31);
-	\draw[short] (15.5,31) -- (14.5,35);
-	\draw[short] (17.75,31) -- (21.25,35.25);
-	\draw[short] (19.75,31) -- (22.5,34.75);
-	\draw[short] (19.75,31) -- (22.25,31);
-	\draw[short] (22.25,31) -- (22.25,28.5);
-	\draw[short] (22.25,34.25) -- (20.5,34.25);
-	\draw[short] (14.75,34.25) -- (12.5,34.25);
+	\draw (11.75,31) -- (12.75,35);
+	\draw (11.75,31) -- (9.75,31);
+	\draw (9.75,31) -- (9.75,28.5);
+	\draw (9.75,28.5) -- (22.25,28.5);
+	\draw (15.5,31) -- (17.75,31);
+	\draw (15.5,31) -- (14.5,35);
+	\draw (17.75,31) -- (21.25,35.25);
+	\draw (19.75,31) -- (22.5,34.75);
+	\draw (19.75,31) -- (22.25,31);
+	\draw (22.25,31) -- (22.25,28.5);
+	\draw (22.25,34.25) -- (20.5,34.25);
+	\draw (14.75,34.25) -- (12.5,34.25);
 	\draw[dashed] (20.5,34.25) -- (11.5,34.25) node[left] {$y_2$};
-	\draw[short] (13.25,34.25) -- (13.25,28.5);
-	\draw[short] (13.75,34.25) -- (13.75,28.5);
-	\draw[short] (13.25,28.5) .. controls (13.25,28.75) and (13.75,28.75) .. (13.75,28.5);
+	\draw (13.25,34.25) -- (13.25,28.5);
+	\draw (13.75,34.25) -- (13.75,28.5);
+	\draw (13.25,28.5) .. controls (13.25,28.75) and (13.75,28.75) .. (13.75,28.5);
 
 	\fill (10.7,28.6) circle (3pt);
 	\fill (12.3,28.6) circle (3pt) node[above=2mm] {$\rho$};
@@ -291,8 +290,6 @@ Consider a strange-shaped vessel containing a liquid:
 	\node at (21, 36) {Weight $=$ $Ah\rho g$.};
 
 \end{tikzpicture}
-}%
-
 \end{figure}
 
 
@@ -328,39 +325,38 @@ Consider now instead a glass tube instead of a hose, and mercury instead of wate
 
 \begin{figure}[H]
 \centering
-\resizebox{0.3\textwidth}{!}{%
-\begin{tikzpicture}
+%\resizebox{0.3\textwidth}{!}{%
+\begin{tikzpicture}[scale=0.3]
 \tikzstyle{every node}=[font=\LARGE]
-	\draw[line width=1pt, short] (7.5,26.5) -- (7.5,20.5);
-	\draw[line width=1pt, short] (7.5,20.5) -- (14,20.5);
-	\draw[line width=1pt, short] (14,20.5) -- (14,26.75);
-	\draw[short] (7.5,25.5) -- (10,25.5);
-	\draw[short] (14,25.5) -- (11.25,25.5);
-	\draw[line width=1pt, short] (10,24.25) -- (10,33);
-	\draw[line width=1pt, short] (11.25,24.25) -- (11.25,33);
-	\draw[line width=1pt, short] (10,33) .. controls (10.25,34) and (11,34) .. (11.25,33);
-	\draw[short] (10.75,33.25) -- (12.75,34.5) node[right] {$MT$};;
-	\draw[short] (10.5,32.75) .. controls (10.25,33.75) and (10,33.75) .. (8.5,34) node[left] {$P_2=0$};
-	\draw[short] (10,32.75) -- (11.25,32.75);
+	\draw[line width=1pt] (7.5,26.5) -- (7.5,20.5);
+	\draw[line width=1pt] (7.5,20.5) -- (14,20.5);
+	\draw[line width=1pt] (14,20.5) -- (14,26.75);
+	\draw (7.5,25.5) -- (10,25.5);
+	\draw (14,25.5) -- (11.25,25.5);
+	\draw[line width=1pt] (10,24.25) -- (10,33);
+	\draw[line width=1pt] (11.25,24.25) -- (11.25,33);
+	\draw[line width=1pt] (10,33) .. controls (10.25,34) and (11,34) .. (11.25,33);
+	\draw (10.75,33.25) -- (12.75,34.5) node[right] {$MT$};;
+	\draw (10.5,32.75) .. controls (10.25,33.75) and (10,33.75) .. (8.5,34) node[left] {$P_2=0$};
+	\draw (10,32.75) -- (11.25,32.75);
 	\draw[dashed] (11.25,32.75) -- (13.75,32.75) node[right] {$y_2$};
 	\fill (12.5,25.5) circle (4pt) node[above=2mm] {$P_1$};
 	\draw[dashed] (14,25.5) -- (15.5,25.5) node[right] {$y_1$};
-	\draw[short] (10.25,31.75) -- (11,32.25);
-	\draw[short] (10.25,30.75) -- (11,31.25);
-	\draw[short] (10.25,29.75) -- (11,30.25);
-	\draw[short] (10.25,28.75) -- (11,29.25);
-	\draw[short] (10.25,27.5) -- (11,28);
-	\draw[short] (10.25,26.5) -- (11,27);
-	\draw[short] (10.25,25.75) -- (11,26.25);
-	\draw[short] (10.25,24.75) -- (11,25.25);
-	\draw[short] (7.75,24.75) -- (8.5,25.25);
-	\draw[short] (8.25,23.75) -- (9.5,24.75);
-	\draw[short] (8.5,22.5) -- (9.75,23.75);
-	\draw[short] (8.75,21.25) -- (12,24.5);
-	\draw[short] (10.75,21.25) -- (13.5,24.25);
-	\draw[short] (12.25,21.5) -- (13.25,22.75);
+	\draw (10.25,31.75) -- (11,32.25);
+	\draw (10.25,30.75) -- (11,31.25);
+	\draw (10.25,29.75) -- (11,30.25);
+	\draw (10.25,28.75) -- (11,29.25);
+	\draw (10.25,27.5) -- (11,28);
+	\draw (10.25,26.5) -- (11,27);
+	\draw (10.25,25.75) -- (11,26.25);
+	\draw (10.25,24.75) -- (11,25.25);
+	\draw (7.75,24.75) -- (8.5,25.25);
+	\draw (8.25,23.75) -- (9.5,24.75);
+	\draw (8.5,22.5) -- (9.75,23.75);
+	\draw (8.75,21.25) -- (12,24.5);
+	\draw (10.75,21.25) -- (13.5,24.25);
+	\draw (12.25,21.5) -- (13.25,22.75);
 \end{tikzpicture}
-}%
 \label{fig:my_label}
 \end{figure}
 
@@ -416,53 +412,51 @@ A manometer is a very simple device that can be used to measure pressure. We hav
 
 \begin{figure}[H]
 \centering
-\resizebox{0.4\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.4]
 \tikzstyle{every node}=[font=\LARGE]
-	\draw[short] (6.5,31.75) -- (6.5,31.75);
-	\draw[short] (6,31.5) -- (7.75,31.5);
-	\draw[short] (7.75,31.5) .. controls (8.75,31.25) and (8.5,31) .. (8.75,30.5);
-	\draw[short] (8.75,30.5) -- (8.75,24.25);
-	\draw[short] (8.75,24.25) .. controls (8.75,23.75) and (9,23.75) .. (9.25,23.75);
-	\draw[short] (9.25,23.75) -- (12,23.75);
-	\draw[short] (12,23.75) .. controls (12.25,23.75) and (12.5,23.75) .. (12.5,24.25);
-	\draw[short] (12.5,24.25) -- (12.5,32.5);
-	\draw[short] (6,30.75) -- (7.75,30.75);
-	\draw[short] (7.75,30.75) .. controls (8,30.75) and (8,30.5) .. (8,30.5);
-	\draw[short] (8,30.5) -- (8,24.25);
-	\draw[short] (8,24.25) .. controls (8.25,23.25) and (8.25,23.25) .. (9.25,23);
-	\draw[short] (9.25,23) -- (12,23);
-	\draw[short] (12,23) .. controls (12.75,23) and (13.25,23.5) .. (13.25,24.25);
-	\draw[short] (13.25,24.25) -- (13.25,32.5) node[above] {open};
+	\draw (6.5,31.75) -- (6.5,31.75);
+	\draw (6,31.5) -- (7.75,31.5);
+	\draw (7.75,31.5) .. controls (8.75,31.25) and (8.5,31) .. (8.75,30.5);
+	\draw (8.75,30.5) -- (8.75,24.25);
+	\draw (8.75,24.25) .. controls (8.75,23.75) and (9,23.75) .. (9.25,23.75);
+	\draw (9.25,23.75) -- (12,23.75);
+	\draw (12,23.75) .. controls (12.25,23.75) and (12.5,23.75) .. (12.5,24.25);
+	\draw (12.5,24.25) -- (12.5,32.5);
+	\draw (6,30.75) -- (7.75,30.75);
+	\draw (7.75,30.75) .. controls (8,30.75) and (8,30.5) .. (8,30.5);
+	\draw (8,30.5) -- (8,24.25);
+	\draw (8,24.25) .. controls (8.25,23.25) and (8.25,23.25) .. (9.25,23);
+	\draw (9.25,23) -- (12,23);
+	\draw (12,23) .. controls (12.75,23) and (13.25,23.5) .. (13.25,24.25);
+	\draw (13.25,24.25) -- (13.25,32.5) node[above] {open};
 	\draw[->, >=Stealth, red] (5.5,31.25) -- (6.5,31.25);
-	\draw [short] (6,31.25) .. controls (5.5,31.25) and (5.5,31.25) .. (5.25,32) node[above] {open};
-	\draw[short] (8,27.5) -- (8.75,27.5);
-	\draw[short] (12.5,27.5) -- (13.25,27.5);
-	\draw[short, red] (12.5,29) -- (13.25,29);
-	\draw[short, red] (8,26.25) -- (8.75,26.25);
-	\draw[short] (8.25,25.25) -- (7,25) node[left] {$\rho$};
+	\draw (6,31.25) .. controls (5.5,31.25) and (5.5,31.25) .. (5.25,32) node[above] {open};
+	\draw (8,27.5) -- (8.75,27.5);
+	\draw (12.5,27.5) -- (13.25,27.5);
+	\draw[red] (12.5,29) -- (13.25,29);
+	\draw[red] (8,26.25) -- (8.75,26.25);
+	\draw (8.25,25.25) -- (7,25) node[left] {$\rho$};
 	\draw[dashed] (8.75,26.25) -- (14.75,26.25);
 	\draw[dashed] (13.25,29) -- (14.5,29);
 	\draw[<->, >=Stealth, red] (14,29) -- (14,26.25) node[midway, right] {$h$};
-	\draw[short] (8.25,27) -- (8.5,27.25);
-	\draw[short] (8.25,26.5) -- (8.5,26.75);
-	\draw[short] (8.25,25.75) -- (8.5,26);
-	\draw[short] (8.25,25) -- (8.5,25.25);
-	\draw[short] (8.25,24.25) -- (8.5,24.5);
-	\draw[short] (8.5,23.75) -- (8.75,24);
-	\draw[short] (9,23.25) -- (9.25,23.5);
-	\draw[short] (9.75,23.25) -- (10,23.5);
-	\draw[short] (10.5,23.25) -- (10.75,23.5);
-	\draw[short] (11.25,23.25) -- (11.5,23.5);
-	\draw[short] (12,23.25) -- (12.25,23.5);
-	\draw[short] (12.75,24) -- (13,24.25);
-	\draw[short] (12.75,24.75) -- (13,25);
-	\draw[short] (12.5,23.5) -- (12.75,23.75);
-	\draw[short] (12.75,25.5) -- (13,25.75);
-	\draw[short] (12.75,26.5) -- (13,26.75);
-	\draw[short] (12.75,27) -- (13,27.25);
+	\draw (8.25,27) -- (8.5,27.25);
+	\draw (8.25,26.5) -- (8.5,26.75);
+	\draw (8.25,25.75) -- (8.5,26);
+	\draw (8.25,25) -- (8.5,25.25);
+	\draw (8.25,24.25) -- (8.5,24.5);
+	\draw (8.5,23.75) -- (8.75,24);
+	\draw (9,23.25) -- (9.25,23.5);
+	\draw (9.75,23.25) -- (10,23.5);
+	\draw (10.5,23.25) -- (10.75,23.5);
+	\draw (11.25,23.25) -- (11.5,23.5);
+	\draw (12,23.25) -- (12.25,23.5);
+	\draw (12.75,24) -- (13,24.25);
+	\draw (12.75,24.75) -- (13,25);
+	\draw (12.5,23.5) -- (12.75,23.75);
+	\draw (12.75,25.5) -- (13,25.75);
+	\draw (12.75,26.5) -- (13,26.75);
+	\draw (12.75,27) -- (13,27.25);
 \end{tikzpicture}
-}%
 \end{figure}
 
 By blowing (or sucking) on one end, we can measure the height difference in the liquid, and calculate the amount of underpressure/overpressure we managed to produce in our lungs.\\
@@ -494,8 +488,7 @@ The cylinder is in a liquid of density $\rho_{fl}$, and a height $h = y_2 - y_1$
 
 \begin{figure}[H]
 \centering
-\resizebox{0.4\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.4]
 	\node (A) [cylinder, shape border rotate=90, draw,minimum height=3cm,minimum width=1cm] { };
 	\draw (-2,0.8) -- (-0.5,0.8);
 	\draw (0.5,0.8) -- (2,0.8) node[right] {$y_2$};
@@ -514,12 +507,11 @@ The cylinder is in a liquid of density $\rho_{fl}$, and a height $h = y_2 - y_1$
 	\node at (1.6,1.6) {$M\rho\ell A$};
 	\draw (-0.8,1.9) -- (-0.3,1.5) node[at start, above] {$A$};
 \end{tikzpicture}
-}%
 \end{figure}
 
 
 
-There is a downwards force $F_2 = A P_2$ due to the weight of the air above the cylinder, and an upwards force $F_1 = A P_1$ due to the hydrostatic pressure. �n addition, there is a gravitational force $M g = A \ell \rho g$ downwards.
+There is a downwards force $F_2 = A P_2$ due to the weight of the air above the cylinder, and an upwards force $F_1 = A P_1$ due to the hydrostatic pressure. An addition, there is a gravitational force $M g = A \ell \rho g$ downwards.
 
 Via Pascal's law, $P_1 - P_2 = \rho_{fl} g h$.
 
@@ -686,29 +678,27 @@ Say we have a flow between two different heights, with two different areas, pres
 
 \begin{figure}[H]
 \centering
-\resizebox{1\textwidth}{!}{%
 \begin{tikzpicture}
-	\draw [short] (6.5,31.75) -- (6.5,31.75);
-	\draw [short] (6,31.5) -- (8,31.5);
-	\draw [short] (8,31.5) .. controls (8.75,31.5) and (8.5,31.5) .. (9,32);
-	\draw [short] (9,32) .. controls (9.75,32.75) and (9.5,33.75) .. (10.25,33.75);
-	\draw [short] (10.25,33.75) -- (13.25,33.75);
-	\draw [short] (6,30.5) -- (9,30.5);
-	\draw [short] (9,30.5) .. controls (9.75,30.5) and (9.5,30.5) .. (10,31.25);
-	\draw [short] (10,31.25) .. controls (10.5,31.75) and (10.5,31.5) .. (11,31.75);
-	\draw [short] (11,31.75) -- (13.25,31.75);
-	\draw  (7,31) ellipse (0.25cm and 0.5cm);
-	\draw  (12.75,32.75) ellipse (0.5cm and 1cm);
-	\draw [->, >=Stealth, red] (7,31) -- (9,31) node[above] {$v_1$};
-	\draw [->, >=Stealth, red] (12.75,32.75) -- (13.5,32.75) node[above] {$v_2$};
-	\draw [->, >=Stealth] (5,32) -- (5,33.75) node[right] {$y$};
-	\draw [dashed] (7,31) -- (5.25,31) node[left] {$y_1$};
-	\draw [dashed] (12.75,32.75) -- (15,32.75) node[right] {$y_2$};
-	\draw [short] (12.75,33.5) -- (13.5,34.5) node[above] {$P_1$};
-	\draw [short] (7,31.5) -- (6.75,32.25) node[above] {$A_1$};
-	\draw [short] (7,31.5) -- (7.5,32.25) node[above] {$A_2$};
+	\draw (6.5,31.75) -- (6.5,31.75);
+	\draw (6,31.5) -- (8,31.5);
+	\draw (8,31.5) .. controls (8.75,31.5) and (8.5,31.5) .. (9,32);
+	\draw (9,32) .. controls (9.75,32.75) and (9.5,33.75) .. (10.25,33.75);
+	\draw (10.25,33.75) -- (13.25,33.75);
+	\draw (6,30.5) -- (9,30.5);
+	\draw (9,30.5) .. controls (9.75,30.5) and (9.5,30.5) .. (10,31.25);
+	\draw (10,31.25) .. controls (10.5,31.75) and (10.5,31.5) .. (11,31.75);
+	\draw (11,31.75) -- (13.25,31.75);
+	\draw (7,31) ellipse (0.25cm and 0.5cm);
+	\draw (12.75,32.75) ellipse (0.5cm and 1cm);
+	\draw[->, >=Stealth, red] (7,31) -- (9,31) node[above] {$v_1$};
+	\draw[->, >=Stealth, red] (12.75,32.75) -- (13.5,32.75) node[above] {$v_2$};
+	\draw[->, >=Stealth] (5,32) -- (5,33.75) node[right] {$y$};
+	\draw[dashed] (7,31) -- (5.25,31) node[left] {$y_1$};
+	\draw[dashed] (12.75,32.75) -- (15,32.75) node[right] {$y_2$};
+	\draw (12.75,33.5) -- (13.5,34.5) node[above] {$P_1$};
+	\draw (7,31.5) -- (6.75,32.25) node[above] {$A_1$};
+	\draw (7,31.5) -- (7.5,32.25) node[above] {$A_2$};
 \end{tikzpicture}
-}%
 \label{fig:my_label}
 \end{figure}
 
@@ -745,39 +735,38 @@ Most of us have probably seen a siphon (or syphon) in action. We have a containe
 
 \begin{figure}[H]
 \centering
-\resizebox{0.7\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.7]
 \tikzstyle{every node}=[font=\LARGE]
-	\draw [short] (6.5,31.75) -- (6.5,31.75);
-	\draw [short] (5,33.25) -- (8.5,33.25);
-	\draw [short] (5,33.25) -- (5,35.5);
-	\draw [short] (8.5,33.25) -- (8.5,35.5);
-	\draw [short] (5,35.25) -- (8.5,35.25) node[midway, above] {$P_2=1$};
-	\draw [short] (5.25,34.5) -- (5.75,35);
-	\draw [short] (5.25,34) -- (6.25,35);
-	\draw [short] (5.25,33.5) -- (6.75,35);
-	\draw [short] (6,33.75) -- (7,34.75);
-	\draw [short] (7.5,34.75) -- (7.5,35.75);
-	\draw [short] (8.25,34.75) -- (8.25,35.75);
-	\draw [short] (9.5,35.75) -- (9.5,30.25);
-	\draw [short] (10.25,35.75) -- (10.25,30.25);
-	\draw [short] (8.25,35.75) .. controls (8.5,36.5) and (9.25,36.5) .. (9.5,35.75);
-	\draw [short] (7.5,35.75) .. controls (8,37.5) and (9.75,37.5) .. (10.25,35.75);
-	\draw [short] (6.75,33.75) -- (7.5,34.5);
-	\draw [short] (9.75,31) -- (10,31.25);
-	\draw [short] (9.75,31.75) -- (10,32);
-	\draw [short] (9.75,32.5) -- (10,32.75);
-	\draw [short] (9.75,33.25) -- (10,33.5);
-	\draw [short] (9.75,34) -- (10,34.25);
-	\draw [short] (9.75,34.75) -- (10,35);
-	\draw [short] (9.75,35.5) -- (10,35.75);
-	\draw [short] (7.5,33.75) -- (8,34.25);
-	\draw [short] (7.75,35) -- (8,35.25);
-	\draw [short] (7.75,35.5) -- (8,35.75);
-	\draw [short] (8.5,36.5) -- (8.75,36.75);
-	\draw [short] (9.25,36.5) -- (9.5,36.75);
-	\draw [short] (9.5,36) -- (9.75,36.25);
-	\draw [short] (8,36.25) -- (8.25,36.5);
+	\draw (6.5,31.75) -- (6.5,31.75);
+	\draw (5,33.25) -- (8.5,33.25);
+	\draw (5,33.25) -- (5,35.5);
+	\draw (8.5,33.25) -- (8.5,35.5);
+	\draw (5,35.25) -- (8.5,35.25) node[midway, above] {$P_2=1$};
+	\draw (5.25,34.5) -- (5.75,35);
+	\draw (5.25,34) -- (6.25,35);
+	\draw (5.25,33.5) -- (6.75,35);
+	\draw (6,33.75) -- (7,34.75);
+	\draw (7.5,34.75) -- (7.5,35.75);
+	\draw (8.25,34.75) -- (8.25,35.75);
+	\draw (9.5,35.75) -- (9.5,30.25);
+	\draw (10.25,35.75) -- (10.25,30.25);
+	\draw (8.25,35.75) .. controls (8.5,36.5) and (9.25,36.5) .. (9.5,35.75);
+	\draw (7.5,35.75) .. controls (8,37.5) and (9.75,37.5) .. (10.25,35.75);
+	\draw (6.75,33.75) -- (7.5,34.5);
+	\draw (9.75,31) -- (10,31.25);
+	\draw (9.75,31.75) -- (10,32);
+	\draw (9.75,32.5) -- (10,32.75);
+	\draw (9.75,33.25) -- (10,33.5);
+	\draw (9.75,34) -- (10,34.25);
+	\draw (9.75,34.75) -- (10,35);
+	\draw (9.75,35.5) -- (10,35.75);
+	\draw (7.5,33.75) -- (8,34.25);
+	\draw (7.75,35) -- (8,35.25);
+	\draw (7.75,35.5) -- (8,35.75);
+	\draw (8.5,36.5) -- (8.75,36.75);
+	\draw (9.25,36.5) -- (9.5,36.75);
+	\draw (9.5,36) -- (9.75,36.25);
+	\draw (8,36.25) -- (8.25,36.5);
 	\draw [dashed] (8.5,35.25) -- (11.5,35.25);
 	\draw [dashed] (9,37) -- (11.5,37);
 	\draw [dashed] (5,35.25) -- (3.25,35.25);
@@ -789,7 +778,6 @@ Most of us have probably seen a siphon (or syphon) in action. We have a containe
 	\draw [->, >=Stealth, red] (5.25,35) -- (5.25,36) node[above] {$v_2=0$};
 	\draw [<->, >=Stealth, dashed] (11.25,35.25) -- (11.25,37) node[midway, right] {d};
 \end{tikzpicture}
-}%
 \end{figure}
 
 $v_2$, the velocity of the liquid in the container, can be approximated as zero, if it is much larger than the diameter of the hose.\\
@@ -812,23 +800,21 @@ Consider a funnel, with a ping-pong ball inside:
 
 \begin{figure}[H]
 \centering
-\resizebox{0.4\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.4]
 \tikzstyle{every node}=[font=\LARGE]
-\draw [short] (6,13.75) -- (6,18);
-\draw [short] (6.5,13.75) -- (6.5,18);
-\draw [short] (6,18) -- (4.25,20.5);
-\draw [short] (6.5,18) -- (8.5,20.25);
-\draw [short] (6.25,17.25) .. controls (6,18.75) and (5.5,18.75) .. (5.5,20.75);
-\draw [short] (6.25,17.25) .. controls (6.5,18.5) and (6.75,18) .. (7.5,20.5);
-\draw [short] (11.5,21.5) -- (11.25,16.75);
-\draw [short] (12.25,21.5) -- (12.25,16.75);
-\draw [short] (12.25,16.75) -- (13.75,14.75);
-\draw [short] (9.25,14.75) -- (11.25,16.75);
+\draw (6,13.75) -- (6,18);
+\draw (6.5,13.75) -- (6.5,18);
+\draw (6,18) -- (4.25,20.5);
+\draw (6.5,18) -- (8.5,20.25);
+\draw (6.25,17.25) .. controls (6,18.75) and (5.5,18.75) .. (5.5,20.75);
+\draw (6.25,17.25) .. controls (6.5,18.5) and (6.75,18) .. (7.5,20.5);
+\draw (11.5,21.5) -- (11.25,16.75);
+\draw (12.25,21.5) -- (12.25,16.75);
+\draw (12.25,16.75) -- (13.75,14.75);
+\draw (9.25,14.75) -- (11.25,16.75);
 \draw  (6.25,18.75) circle (0.5cm);
 \draw  (11.75,16.5) circle (0.5cm);
 \end{tikzpicture}
-}%
 \end{figure}
 
 
@@ -846,15 +832,13 @@ It is held up for reasons to do with turbulence, which is more complex than we c
 
 \begin{figure}[H]
 \centering
-\resizebox{0.3\textwidth}{!}{%
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.3]
 \tikzstyle{every node}=[font=\LARGE]
-\draw [short] (8.5,15) .. controls (7.75,18.25) and (7.5,19.25) .. (6,21);
-\draw [short] (9,15) .. controls (10,17.75) and (10.25,18.75) .. (11.75,21.25);
-\draw  (9.25,18) circle (0.75cm);
+\draw (8.5,15) .. controls (7.75,18.25) and (7.5,19.25) .. (6,21);
+\draw (9,15) .. controls (10,17.75) and (10.25,18.75) .. (11.75,21.25);
+\draw (9.25,18) circle (0.75cm);
 \draw [->, >=Stealth] (8.5,15.5) -- (8.25,20.25);
 \end{tikzpicture}
-}%
 \end{figure}
 
 
