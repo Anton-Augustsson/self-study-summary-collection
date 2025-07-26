@@ -471,7 +471,7 @@ The proportionality constant $Y$ (or $E$) is called Young's modulus. The equatio
 
 Because the fraction on the right has no dimension, while the left-hand side has dimension force per unit area, which is pressure, $Y$ also has units of pressure (newtons per square meter).
 
-In this equation, $\displaystyle \frac{F}{A}$ is called the \emph{stress} while $\displaystyle \frac{\Delta \ell}{\ell}$ is known as \emph{strain}.
+In this equation, $F/A$ is called the \emph{stress} while $\Delta \ell/\ell$ is known as \emph{strain}.
 
 If we compare two rods with different value for Young's modulus, the one with the smaller value is easier to stretch out: it gives a larger strain for a given stress. If the Young's modulus is very high, the rod is very stiff.
 
@@ -486,7 +486,7 @@ If we instead use nylon with $Y = \SI{0.36e10}{N/m^2}$, it would stretch 18 mm.
 
 The stress in this case is about $\SI{6.4e7}{N/m^2}$ (for either material -- it does not depend on $Y$, only on the force and the cross-sectional area).
 
-If we keep adding more mass, there is clearly a point where the rod will simply break. That breaking point is at the \emph{ultimate tensile strength}, which is given as a pressure. In other words, when $\displaystyle \frac{F}{A}$ becomes too large, the rod breaks.\\
+If we keep adding more mass, there is clearly a point where the rod will simply break. That breaking point is at the \emph{ultimate tensile strength}, which is given as a pressure. In other words, when $F/A$ becomes too large, the rod breaks.\\
 The ultimate tensile strength of both steel and nylon are such that neither would break given the load we calculated above; even the nylon could tolerate a few times this force. If the bar was made out of aluminium however, which has an ultimate tensile strength of about $\SI{7.8e7}{N/m^2}$, we would be rather close to the breaking point.
 
 Before the material breaks, our equation will stop working, as the strain will no longer be proportional to the stress. Hooke's law no longer holds. If we overload the material like that, it will not return to its original length again, but will be permanently deformed. This also has an analogue with springs: pull too much on a spring, and the restoring force becomes nonlinear, and the spring will eventually be permanently deformed.
@@ -497,11 +497,11 @@ Let's have a look of what a stress vs strain plot may look like.
   \centering
 \begin{tikzpicture}[scale=1]
 
-  	\draw (0,0) -- (0,4);
+  \draw (0,0) -- (0,4);
 	\draw (0,0) -- (7,0) node[at start, below] {$0$} node[below=1mm] {$\rightarrow\Delta\ell/\ell$} node[midway, below] {strain};
 
-	\node at (-2,3) {$\frac{F}{A}$};
-	\node at (-2,2) {Stress};
+	\node at (-1,3) {$\frac{F}{A}$};
+	\node at (-1,2) {Stress};
 
   \draw[thick, smooth] 
   (0,0) 
@@ -509,10 +509,10 @@ Let's have a look of what a stress vs strain plot may look like.
   to[out=-10, in=180] (4.5,3.2)
   to[out=0, in=120] (6,2);
 
-	\filldraw[black] (6,2) circle (2pt) node[right] {break!};
+	\filldraw[black] (6,2) circle (2pt) node[right] {break! (\textit{ultimate tensile strength})};
 
-  	\draw[-{Stealth}] (1.8,1.9) -- (1.2,2.45) node[midway, below=4mm] {elastic limit};
-  	\draw[-{Stealth}] (4,2) -- (3,2.8) node[midway, below=4mm] {plastic flow};
+  	\draw[-{Stealth}] (1.8,1.9) -- (1.2,2.45) node[midway, below=4mm] {\textit{elastic limit}};
+  	\draw[-{Stealth}] (4,2) -- (3,2.8) node[midway, below=4mm] {\textit{plastic flow}};
 
 \end{tikzpicture}
 \end{figure}
@@ -521,7 +521,7 @@ Let's have a look of what a stress vs strain plot may look like.
 The first part of the curve is linear: this is where Hooke's law applies. The next part of the curve is nonlinear, and goes to a point known as the \emph{elastic limit}. Even though it is not linear, as long as we do not pass the elastic limit, the material will return to its original length after we return the force.
 
 Once we pass the elastic limit, however, the material will be permanently deformed.\\
-Past this limit, increasing the stress by small amounts will cause very large amounts of strain: That is, the material will be much easier to stretch. If we then remove the force, the material would not return back to where it was. That also implies that if we create a graph like this one by gradually increasing the force and plotting $\displaystyle \frac{\Delta \ell}{\ell}$, if we gradually remove the force, the strain will not follow the curve back to zero, but will instead return to somewhere to the right of the origin.\\
+Past this limit, increasing the stress by small amounts will cause very large amounts of strain: That is, the material will be much easier to stretch. If we then remove the force, the material would not return back to where it was. That also implies that if we create a graph like this one by gradually increasing the force and plotting $\Delta \ell/\ell$, if we gradually remove the force, the strain will not follow the curve back to zero, but will instead return to somewhere to the right of the origin.\\
 The work we have done in pulling will go in part to deforming the rod, which takes energy, and in part to heat: the rod will heat up, sometimes quite substantially.
 
 Past the elastic limit, but before the breaking point, there is a completely horizontal part of the curve. This implies that with no change at all in the stress ($y$ axis), the strain will increase anyway, and the rod will stretch without any extra force being applied. We call this \emph{plastic flow}. In this region, the material acts almost like a liquid, flowing towards the force.
