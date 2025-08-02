@@ -9,143 +9,58 @@
 \usepackage{xfp}
 \usepackage{xparse}
 
-\NewDocumentEnvironment{timeline}{O{14} O{24} O{-3000} O{2025}}{% width, height, start year, end year
+\NewDocumentEnvironment{timeline}{O{14} O{24} O{250} O{-3000} O{2025}}{% width, height, year step, start year, end year
   % Begin group
   \begingroup
 
   % Local variables
   \def\tlwidth{#1}%
   \def\tlheight{#2}%
-  \def\tlstart{#3}%
-  \def\tlend{#4}%
+  \def\tlyearstep{#3}%
+  \def\tlstart{#4}%
+  \def\tlend{#5}%
   \def\verticallinepos{0.5}%
+  \pgfmathtruncatemacro{\tlsecondstep}{\tlstart + \tlyearstep}
+  \pgfmathtruncatemacro{\numticks}{(\tlend - \tlstart)/\tlyearstep}
 
   \begin{tikzpicture}
 
   % Vertical axis
-  \draw[very thick] (\verticallinepos,0) -- (0,\tlheight);
+  \draw[very thick] (\verticallinepos,0) -- (\verticallinepos,\tlheight);
   \node[rotate=90] at (0, 0.5*\tlheight) {Time};
 
-  % Total span in years
-  \def\yearrange{\fpeval{\tlend - \tlstart}} % 2025 - -3000 = 5025
+  % Loop from i = 0 to numticks
+  \foreach \i in {0,...,\numticks} {
+  % Compute current year
+  \pgfmathtruncatemacro{\year}{\tlstart + \i * \tlyearstep}
 
-  % Ideal spacing to divide into ~20 segments
-  \def\rawinterval{\fpeval{\yearrange / 20}} % 251.25
+  % Calculate position (float)
+  \pgfmathsetmacro{\pos}{(\tlend - \year)/(\tlend - \tlstart) * \tlheight}
 
-  % Round to nearest multiple of 50
-  \pgfmathsetmacro{\tickstep}{round(\rawinterval/50)*50} % 5 * 50 = 250
-  \def\secondstep{\fpeval{round(\tlstart+\tickstep)}}
+  % Only draw if pos is inside the bounds
+  \pgfmathparse{(\pos >= 0) && (\pos <= \tlheight)}
+  \ifnum\pgfmathresult>0
+    % Prepare label
+    \pgfmathtruncatemacro{\absyear}{abs(\year)}
+    \ifnum\year<0
+      \def\labeltext{\absyear~BCE}
+    \else
+      \def\labeltext{\absyear~CE}
+    \fi
 
-  %% start, start + 500, ..., s1, s1 + 300, ..., s2, s2 + 100, ..., s3, s3 + 50, ..., end
-  % s1,s2,s3 is unknown
-  % num(start, start + 500, ..., s1) = num(s1, s1 + 300, ..., s2) = num(s2, s2 + 100, ..., s3) 
-  % = num(s3, s3 + 50, ..., end) = x; end - start = 500x + 300x + 100x + 50x
-  % => ticks = x = ceil((end-start)/950)
-  % => sI   = s1 = start + 500x 
-  % => sII  = s2 = s1 + 300x 
-  % => sIII = s3 = s2 + 100x 
+    % Draw the tick
+    \draw[gray] (\verticallinepos,\pos) -- (\tlwidth,\pos) node[right] {\small \labeltext};
+  \fi
+  }
 
-  % 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 (the horizontol lines)
-  % if we again devided it into 500, 300, 100, and 50 jumps we would get
-  % 20/4=5; i.e., the first 5 has 500 then 300 and 100 and then 50 no,no,no
-  % most likely there needs to be more 500 than 50 
-	
-  % start + 500a + 300b + 100c + 50d + m = end
-  % (start-end)/20 = (500a + 300b + 100c + 50d)/(a+b+c+d)
-  % 20 = a+b+c+d + (m % 50)
-  % a,b,c,d > 0
-  % m < 50
-  % 2d < c
-  % 3c < c
-  % 2b < a
-
-	  % d = 1
-	  % c = 2
-	  % b = 3
-	  % a = 20 - d - c - b
-	  
-
-  	  % m < 50
-	  % a = 1
-	  % b = 2
-	  % c = 3
-	  % d = 20 -a -b -c
-
-  % do 500 until you have over done it
-  % floor((end-start)/20) = a = 250
-  % floor((end-start)/500) = b = 10
-  % floor((end-start)/300) = c = 16
-  % floor((end-start)/100) = d = 50
-  % floor((end-start)/50) = e = 100
-  % b' = 250/500 * 10
-  % b' = 500/250 * 10
-  % 
-
-  \def\tldend{\tlend-\tlstart}
-
-  \pgfmathsetmacro\sI{\tldend/20*0 + \tlstart}
-  \pgfmathsetmacro\sII{\tldend/20*1 + \tlstart}
-  \pgfmathsetmacro\sIII{\tldend/20*2 + \tlstart}
-  \pgfmathsetmacro\sIV{\tldend/20*3 + \tlstart}
-  \pgfmathsetmacro\sV{\tldend/20*4 + \tlstart}
-  \pgfmathsetmacro\sVI{\tldend/20*5 + \tlstart}
-  \pgfmathsetmacro\sVII{\tldend/20*6 + \tlstart}
-  \pgfmathsetmacro\sVIII{\tldend/20*7 + \tlstart}
-  \pgfmathsetmacro\sIX{\tldend/20*8 + \tlstart}
-  \pgfmathsetmacro\sX{\tldend/20*9 + \tlstart}
-  \pgfmathsetmacro\sXI{\tldend/20*10 + \tlstart}
-  \pgfmathsetmacro\sXII{\tldend/20*11 + \tlstart}
-  \pgfmathsetmacro\sXIII{\tldend/20*12 + \tlstart}
-  \pgfmathsetmacro\sXIV{\tldend/20*13 + \tlstart}
-  \pgfmathsetmacro\sXV{\tldend/20*14 + \tlstart}
-  \pgfmathsetmacro\sXVI{\tldend/20*15 + \tlstart}
-  \pgfmathsetmacro\sXVII{\tldend/20*16 + \tlstart}
-  \pgfmathsetmacro\sXVIII{\tldend/20*17 + \tlstart}
-  \pgfmathsetmacro\sXIX{\tldend/20*18 + \tlstart}
-  \pgfmathsetmacro\sXX{\tldend/20*19 + \tlstart}
-
-
-
-
-  %\def\ticks{ceil((\tlend-\tlstart)/950)} % = 5
-  %\def\startStep{ceil(\tlstart+500)}      % = -2500
-  %\def\sI{\tlstart+500*\ticks)}           % = -3000+500*5 = -500
-  %\def\sIstep{\sI+300}                    % = -200
-  %\def\sII{\sI+300*\ticks)}               % = -500+300*5 = 1000
-  %\def\sIIstep{\sII+100} 		  % = 1100
-  %\def\sIII{\sII+100*(\ticks+1))}	  % = 1000+100*6 = 1600
-  %\def\sIIIstep{\sIII+50} 		  % = 1550
-
-  %\foreach \year in {\tlstart,\secondstep,...,\tlend} {
-  %\foreach \year in {\tlstart,\startStep,...,\sI,\sIstep,...,\sII,\sIIstep,...,\sIII,\sIIIstep,...,\tlend} {
-
-  % 20 steps total 100 units with total height is \tlheight => 5 units per step and each step is \tlheight/20
-  \def\unitheight{\tlheight/20/5}
-
-  \foreach \y/\label in {
-    0/\sI, 5/\sII, 10/\sIII, 15/\sIV, 20/\sV, 25/\sVI, 30/\sVII, 35/\sVIII, 40/\sIX, 45/\sX, 50/\sXI, 
-    55/\sXII, 60/\sXIII, 65/\sXIV, 70/\sXV, 75/\sXVI, 80/\sXVII, 85/\sXVIII, 90/\sXIX, 95/\sXX, 100/\tlend}
-    \pgfmathsetmacro{\pos}{\unitheight * \y}
-    \draw[gray] (\verticallinepos,\pos) -- (\tlwidth,\pos) node[right] {\small \label};
-
-
-  %\foreach \year in {-3000,-2500,...,-500,-200,...,1000,1100,...,1600,1650,...,2050} {
-  %  \pgfmathsetmacro{\pos}{(\tlend - \year)/(\tlend - \tlstart) * \tlheight}
-  %  \ifdim \pos pt > 0pt
-  %    \ifdim \pos pt < \tlheight pt
-  %      \draw[gray] (\verticallinepos,\pos) -- (\tlwidth,\pos) node[right] {\small \year};
-  %    \fi
-  %  \fi
-  %}
-
-  %% Define \timelineevent locally inside this environment
-  %\def\timelineevent##1##2##3##4{% year start, year end, name, distance from left line
-  %  \pgfmathsetmacro{\ystart}{(\tlend - ##1)/(\tlend - \tlstart) * \tlheight}
-  %  \pgfmathsetmacro{\yend}{(\tlend - ##2)/(\tlend - \tlstart) * \tlheight}
-  %  \pgfmathsetmacro{\ytext}{(\ystart + \yend)/2}
-  %  \draw[fill=yellow!50] (##4,\ystart) rectangle (##4+1,\yend);
-  %  \node[rotate=90] at (##4+0.5,\ytext) {\tiny ##3};
-  %}%
+  % Define \timelineevent locally inside this environment
+  \def\timelineevent##1##2##3##4{% year start, year end, name, distance from left line
+    \pgfmathsetmacro{\ystart}{(\tlend - ##1)/(\tlend - \tlstart) * \tlheight}
+    \pgfmathsetmacro{\yend}{(\tlend - ##2)/(\tlend - \tlstart) * \tlheight}
+    \pgfmathsetmacro{\ytext}{(\ystart + \yend)/2}
+    \draw[fill=yellow!50] (##4,\ystart) rectangle (##4+1,\yend);
+    \node[rotate=90] at (##4+0.5,\ytext) {\tiny ##3};
+  }%
 }
 {%
   \end{tikzpicture}
@@ -188,9 +103,10 @@ Environment:
 
 aosfidjpowaiejfpoiejs fpoiasje oijespo ifjpoesai jpoijsa pofijesapoi jfpoifjpoiajf poiejsapo ijfpoifjpoijas pofijaspoijf poisa jfpoisajfpoijsa poijpoas ijpofijsa poifjsao ijpoijf paoijfpoeis japofijsa poijesaoifj oisaj poiajs poijfpoijsa poijas poijpsaoijfpoisa jfpoaiesjf poisaj poij sapoijf
 
-\begin{timeline}%[12][20][-3000][2000]
-  %\timelineevent{-3000}{-1000}{Ancient Egypt}{1}
-  %\timelineevent{1760}{1840}{Industrial Rev.}{4}
+%[12][20][-3000][2000]
+\begin{timeline}
+  \timelineevent{-3000}{-1000}{Ancient Egypt}{1}
+  \timelineevent{1760}{1840}{Industrial Rev.}{4}
 \end{timeline}
 
 
