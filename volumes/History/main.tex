@@ -8,8 +8,25 @@
 
 \usepackage{xfp}
 \usepackage{xparse}
+\usetikzlibrary{calc}
 
-\NewDocumentEnvironment{timeline}{O{14} O{24} O{250} O{-3000} O{2025}}{% width, height, year step, start year, end year
+% Creates a timline to ilustrade history
+% There are a number of concepts used that needs to be understood in order to use the environment:
+% - Polity: are the rectangular parts of the time line;
+% - Influence: the width of the rectangle, i.e., how large of an influence a polity has;
+% - Event: is shown as a discrive text of a polity, used for something significant that happend to a polity;
+% - Split: a polity can split into different parts that becomes different politys;
+% - Deviation: a polity that comes from another polity;
+% - Connection: dotted lines that connect politys;
+% - Period: opaque rectangle that encompasses several politys;
+% - Regions: shown as title columns used for the geograpical areas that the polity roams.
+\newsavebox{\tllabelbox}
+\newlength{\tlhorizontallinewidth}
+\newlength{\tllabelwidth}
+\NewDocumentEnvironment{timeline}{O{\textwidth} O{24} O{250} O{-3000} O{2025}}{% width, height, year step, start year, end year
+  % Abrivations used:
+  % - tl: timeline.
+
   % Begin group
   \begingroup
 
@@ -19,15 +36,19 @@
   \def\tlyearstep{#3}%
   \def\tlstart{#4}%
   \def\tlend{#5}%
-  \def\verticallinepos{0.5}%
   \pgfmathtruncatemacro{\tlsecondstep}{\tlstart + \tlyearstep}
   \pgfmathtruncatemacro{\numticks}{(\tlend - \tlstart)/\tlyearstep}
 
-  \begin{tikzpicture}
+  \savebox{\tllabelbox}{\shortstack{\small9999\\\tiny~BCE}}
+  \setlength{\tlhorizontallinewidth}{\tlwidth}
+  \setlength{\tllabelwidth}{\wd\tllabelbox}
+  \addtolength{\tlhorizontallinewidth}{-\wd\tllabelbox}
 
+  \noindent
+  \begin{tikzpicture}[trim left=0pt, trim right=0pt]
+  
   % Vertical axis
-  \draw[very thick] (\verticallinepos,0) -- (\verticallinepos,\tlheight);
-  \node[rotate=90] at (0, 0.5*\tlheight) {Time};
+  \draw[very thick] (0,0) -- (0,\tlheight);
 
   % Loop from i = 0 to numticks
   \foreach \i in {0,...,\numticks} {
@@ -37,19 +58,18 @@
   % Calculate position (float)
   \pgfmathsetmacro{\pos}{(\tlend - \year)/(\tlend - \tlstart) * \tlheight}
 
-  % Only draw if pos is inside the bounds
+   Only draw if pos is inside the bounds
   \pgfmathparse{(\pos >= 0) && (\pos <= \tlheight)}
   \ifnum\pgfmathresult>0
     % Prepare label
     \pgfmathtruncatemacro{\absyear}{abs(\year)}
     \ifnum\year<0
-      \def\labeltext{\absyear~BCE}
+      \def\labeltext{\shortstack{\small\absyear\\\tiny~BCE}}
     \else
-      \def\labeltext{\absyear~CE}
+      \def\labeltext{\shortstack{\small\absyear\\\tiny~CE}}
     \fi
 
-    % Draw the tick
-    \draw[gray] (\verticallinepos,\pos) -- (\tlwidth,\pos) node[right] {\small \labeltext};
+    \draw[gray] (0,\pos) -- (\tlhorizontallinewidth,\pos) node[inner sep=0pt, outer sep=0pt, anchor=west, text width=\tllabelwidth, align=right] {\labeltext};
   \fi
   }
 
@@ -92,6 +112,12 @@
       -- (\xrightbottomstart + ##5,\yend) -- (\xrightbottomstart,\yend)
       -- cycle;
   }%
+
+  % TODO: deviation, i.e., the main line continues and there is one diviation
+  % TODO: connection, i.e., a doted line where you define start and end position
+  % TODO: period, i.e., a rectangel of afected events from start to end year, with a descpription
+  % TODO: descoveries, e.g., paper printing press..
+
 }
 {%
   \end{tikzpicture}
@@ -99,65 +125,37 @@
 }
 
 \begin{document}
-
-\iffalse
-
-Time line and chapter for:
-Europe and Middle East;
-Asia excluding Middle East;
-Oceania;
-Sub-Saharan Africa;
-Americas;
-
 %https://usefulcharts.com/products/timeline-of-world-history?srsltid=AfmBOopS9m5ZgO2ZgwRIQmrdXolLk8MB2rmKRCYCXRPoW1JgQ21a_9G0
 
-I also want to include:
-major bettles and events;
-wide adoption of technology, like paper, printing press, computer...;
-
-
-There should a environmets or command that simplifies creating the time lines.
-The user should be able to define a time line where the user can start, stop, increase 
-or decrease the time line or split it.
-The user can speciy the coller and the text it should display.
-
-Environment:
-- fixed 15 column/timelines.
-- The width of a timeline is given in mm
-- The location/which column and start end is given in the timeline.
-- If the time line need to change the column then a new time line needs to defined.
-- To connect time lines you have "connect" or "transition" which is a dashed line.
-- You can define a split given the start and finish.
-
-
-\fi
 
 \section{Oveview of World History}
 
-\begin{timeline}[14][24][250][-3300][2025]
+\newpage
+\begin{timeline}[\textwidth][24][250][-3300][2025]
   \timelineevent{-3000}{-1000}{1}{\tiny Ancient Egypt}{1}
   \timelineevent{1760}{1840}{1}{\tiny Industrial Rev.}{6}
 \end{timeline}
-
 
 \section{World Pre-Bronze Age}
 
 \section{European and Middle Eastern Bronze Age}
 
 \section{European and Middle Eastern Classic Antiquity}
-\begin{timeline}[13][20][50][-600][500]
 
-  % Roman empire
-  \timelineevent{-600}{-250}{0.5}{\tiny Roman Kingdom}{3+1.5/2+1/2}
-  \timelineeventinfluencechange{-270}{-250}{0.5}{1.5}{3+1.5/2+1/2}
-  \timelineevent{-250}{-40}{1.5}{\small Roman Republic}{3+1.5/2}
-  \timelineeventinfluencechange{-40}{-20}{1.5}{3}{3+1.5/2}
-  \timelineevent{-20}{280}{3}{Roman Empire}{3}
-  \timelineeventsplit{280}{300}{3}{1}{1}{3}{2}
-  \timelineevent{300}{480}{1}{Western Empire}{2.5}
-  \timelineevent{300}{500}{1}{Eastern Empire}{5.5}
-
-\end{timeline}
+%\newpage
+%\begin{timeline}[\textwidth][\textheight][50][-600][500]
+%
+%  % Roman empire
+%  \timelineevent{-600}{-250}{0.5}{\tiny Roman Kingdom}{3+1.5/2+1/2}
+%  \timelineeventinfluencechange{-270}{-250}{0.5}{1.5}{3+1.5/2+1/2}
+%  \timelineevent{-250}{-40}{1.5}{\small Roman Republic}{3+1.5/2}
+%  \timelineeventinfluencechange{-40}{-20}{1.5}{3}{3+1.5/2}
+%  \timelineevent{-20}{280}{3}{Roman Empire}{3}
+%  \timelineeventsplit{280}{300}{3}{1}{1}{3}{2}
+%  \timelineevent{300}{480}{1}{Western Empire}{2.5}
+%  \timelineevent{300}{500}{1}{Eastern Empire}{5.5}
+%
+%\end{timeline}
 
 
 \section{European Dark Ages}
@@ -173,6 +171,8 @@ Environment:
 \section{World Industrialization and End of Colonalism}
 
 \section{World Technological Age}
+
+\section{Oceania Pre-Colonialisation}
 
 
 \end{document}
