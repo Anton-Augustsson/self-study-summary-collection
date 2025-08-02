@@ -53,13 +53,44 @@
   \fi
   }
 
-  % Define \timelineevent locally inside this environment
-  \def\timelineevent##1##2##3##4{% year start, year end, name, distance from left line
+  % A period the object with constant influence
+  \def\timelineevent##1##2##3##4##5{% year start, year end, width, name, distance from left line
     \pgfmathsetmacro{\ystart}{(\tlend - ##1)/(\tlend - \tlstart) * \tlheight}
     \pgfmathsetmacro{\yend}{(\tlend - ##2)/(\tlend - \tlstart) * \tlheight}
     \pgfmathsetmacro{\ytext}{(\ystart + \yend)/2}
-    \draw[fill=yellow!50] (##4,\ystart) rectangle (##4+1,\yend);
-    \node[rotate=90] at (##4+0.5,\ytext) {\tiny ##3};
+    \pgfmathsetmacro{\xtext}{##5 + (##3/2)}
+
+    \draw[fill=yellow!50] (##5,\ystart) rectangle (##5+##3,\yend);
+    \node[rotate=90] at (\xtext,\ytext) {##4};
+  }%
+
+  % A period of change of the object influence
+  \def\timelineeventinfluencechange##1##2##3##4##5{% year start, year end, start width, end width, start distance from left line
+    \pgfmathsetmacro{\ystart}{(\tlend - ##1)/(\tlend - \tlstart) * \tlheight}
+    \pgfmathsetmacro{\yend}{(\tlend - ##2)/(\tlend - \tlstart) * \tlheight}
+    \pgfmathsetmacro{\xbottomstart}{##5 + (##3-##4)/2}
+
+    \filldraw[fill=blue!30]
+      (##5,\ystart) -- (##5+##3,\ystart)
+      -- (\xbottomstart + ##4,\yend) -- (\xbottomstart,\yend)
+      -- cycle;
+  }%
+
+  \def\timelineeventsplit##1##2##3##4##5##6##7{% year start, year end, start width, left width, right width, start distance from left line, distance between left and right
+    \pgfmathsetmacro{\ystart}{(\tlend - ##1)/(\tlend - \tlstart) * \tlheight}
+    \pgfmathsetmacro{\yend}{(\tlend - ##2)/(\tlend - \tlstart) * \tlheight}
+    \pgfmathsetmacro{\xmiddle}{##6+##3/2}
+    \pgfmathsetmacro{\xleftbottomstart}{\xmiddle-##7/2-##4}
+    \pgfmathsetmacro{\xrightbottomstart}{\xmiddle+##7/2}
+
+    \filldraw[fill=blue!30] % Left part of split
+      (##6,\ystart) -- (\xmiddle,\ystart)
+      -- (\xleftbottomstart + ##4,\yend) -- (\xleftbottomstart,\yend)
+      -- cycle;
+    \filldraw[fill=blue!30] % Right part of split
+      (\xmiddle,\ystart) -- (##6+##3,\ystart)
+      -- (\xrightbottomstart + ##5,\yend) -- (\xrightbottomstart,\yend)
+      -- cycle;
   }%
 }
 {%
@@ -101,73 +132,48 @@ Environment:
 
 \fi
 
-aosfidjpowaiejfpoiejs fpoiasje oijespo ifjpoesai jpoijsa pofijesapoi jfpoifjpoiajf poiejsapo ijfpoifjpoijas pofijaspoijf poisa jfpoisajfpoijsa poijpoas ijpofijsa poifjsao ijpoijf paoijfpoeis japofijsa poijesaoifj oisaj poiajs poijfpoijsa poijas poijpsaoijfpoisa jfpoaiesjf poisaj poij sapoijf
+\section{Oveview of World History}
 
-%[12][20][-3000][2000]
-\begin{timeline}
-  \timelineevent{-3000}{-1000}{Ancient Egypt}{1}
-  \timelineevent{1760}{1840}{Industrial Rev.}{4}
+\begin{timeline}[14][24][250][-3300][2025]
+  \timelineevent{-3000}{-1000}{1}{\tiny Ancient Egypt}{1}
+  \timelineevent{1760}{1840}{1}{\tiny Industrial Rev.}{6}
 \end{timeline}
 
 
-\newpage
-\begin{tikzpicture}
-  % Narrow at bottom (x=0..1), wide at top (x=0..2), height=4
-  \filldraw[fill=blue!30]
-    (0.5,0) -- (1.5,0)     % bottom edge (width=1)
-    -- (2,4) -- (0,4)  % top edge (width=2)
-    -- cycle;
-\end{tikzpicture}
+\section{World Pre-Bronze Age}
+
+\section{European and Middle Eastern Bronze Age}
+
+\section{European and Middle Eastern Classic Antiquity}
+\begin{timeline}[13][20][50][-600][500]
+
+  % Roman empire
+  \timelineevent{-600}{-250}{0.5}{\tiny Roman Kingdom}{3+1.5/2+1/2}
+  \timelineeventinfluencechange{-270}{-250}{0.5}{1.5}{3+1.5/2+1/2}
+  \timelineevent{-250}{-40}{1.5}{\small Roman Republic}{3+1.5/2}
+  \timelineeventinfluencechange{-40}{-20}{1.5}{3}{3+1.5/2}
+  \timelineevent{-20}{280}{3}{Roman Empire}{3}
+  \timelineeventsplit{280}{300}{3}{1}{1}{3}{2}
+  \timelineevent{300}{480}{1}{Western Empire}{2.5}
+  \timelineevent{300}{500}{1}{Eastern Empire}{5.5}
+
+\end{timeline}
 
 
-\newpage
-\begin{center}
-\Large Timeline of World Empires (Scaled Dates)
-\end{center}
+\section{European Dark Ages}
 
-\begin{tikzpicture}[xscale=0.1, yscale=-0.2]
+\section{European Renesance}
 
-  % Draw year labels (scaled every 10 units = 500 years)
-  \foreach \y/\label in {
-    0/3000 BCE, 5/2500 BCE, 10/2000 BCE, 15/1500 BCE,
-    20/1000 BCE, 25/500 BCE, 30/0 CE, 35/500 CE,
-    40/700 CE, 45/900 CE, 50/1100 CE, 55/1300 CE,
-    60/1500 CE, 65/1600 CE, 70/1700 CE, 75/1800 CE,
-    80/1850 CE, 85/1900 CE, 90/1950 CE, 95/2000 CE,
-    100/2025 CE}
-    \draw[gray] (0,\y) -- (130,\y) node[right] {\small \label};
+\section{Americas Pre-Colonalisation}
 
-  % Timeline vertical line
-  \draw[very thick] (0,0) -- (0,100);
-  \node[rotate=90] at (-5, 50) {Time};
+\section{Sub-sahara Pre-Colonalisation}
 
-  % Empires (Y = (year + 3000) / 50)
+\section{World Colonalisation and Pre-industrialistation}
 
-  % Ancient Egypt: -3000 to -500 → Y = 0 to 25
-  \draw[fill=yellow!70] (10,0) rectangle (15,25);
-  \node[rotate=90] at (12.5,12.5) {\small Ancient Egypt};
+\section{World Industrialization and End of Colonalism}
 
-  % Roman Empire: -500 to 500 → Y = 25 to 35
-  \draw[fill=red!70] (30,25) rectangle (40,35);
-  \node[rotate=90] at (35,30) {\tiny Roman Empire};
+\section{World Technological Age}
 
-  % Byzantine Empire: 300 to 1453 → Y = 33 to 57
-  \draw[fill=orange!80] (45,33) rectangle (51,57);
-  \node[rotate=90] at (48,45) {\tiny Byzantine};
-
-  % Caliphates: 650–1258 → Y = 38 to 54
-  \draw[fill=green!60] (60,38) rectangle (68,54);
-  \node[rotate=90] at (64,47) {\tiny Caliphates};
-
-  % Mongol Empire: 1206–1368 → Y = 53 to 57
-  \draw[fill=blue!50] (80,53) rectangle (92,57);
-  \node[rotate=90, align=center] at (86,55) {\tiny Mongol \\ \tiny Empire};
-
-  % British Empire: 1700–1900 → Y = 70 to 85
-  \draw[fill=blue!30] (100,70) rectangle (115,85);
-  \node[rotate=90, align=center] at (107.5,77) {\tiny British \\ \tiny Empire};
-
-\end{tikzpicture}
 
 \end{document}
 
