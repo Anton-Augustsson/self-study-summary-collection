@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{c+cp}{\PYGZsh{}define GPIO\PYGZus{}PORT  (*(volatile uint32\PYGZus{}t*)0x40020C00)}
-\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setPinHigh}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
-\PYG{+w}{    }\PYG{n}{GPIO\PYGZus{}PORT}\PYG{+w}{ }\PYG{o}{|=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// Set bit 5}
-\PYG{p}{\PYGZcb{}}
-\end{Verbatim}
