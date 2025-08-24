@@ -1,0 +1,43 @@
+\documentclass{book}
+\usepackage{../../preamble}
+\addbibresource{bibliography.bib}
+
+\volumeTitle{1}{Engineering}
+\author{Anton Augustsson}
+
+\begin{document}
+
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Scope %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: update programme summary so the gap is not to big
+\chapter{Scope}
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COURSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pathENGR}{chapters}
+
+\newcommand{\pathFEM}{\pathENGR/Finite-Element-Method} \input{\pathFEM/fem-summary.tex} \newpage
+\newcommand{\pathCAD}{\pathENGR/Computer-Aided-Design} \input{\pathCAD/cad-summary.tex} \newpage
+\newcommand{\pathMS}{\pathENGR/Material-Science} \input{\pathMS/ms-summary.tex} \newpage
+\newcommand{\pathMACH}{\pathENGR/Machining} \input{\pathMACH/mach-summary.tex} \newpage
+\newcommand{\pathMLDG}{\pathENGR/Molding} \input{\pathMLDG/mldg-summary.tex} \newpage
+\newcommand{\pathEM}{\pathENGR/Electronics-Manufatoring} \input{\pathEM/em-summary.tex} \newpage
+\newcommand{\pathSM}{\pathENGR/Semiconductors-Manufatoring} \input{\pathSM/sm-summary.tex} \newpage
+\newcommand{\pathMETROL}{\pathENGR/Metrology} \input{\pathMETROL/metrol-summary.tex} \newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\printbibliography
+
+
+\end{document}
