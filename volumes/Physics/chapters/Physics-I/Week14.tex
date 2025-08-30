@@ -571,13 +571,13 @@ Having a material with a low thermal expansion coefficient is important for many
 
 Consider a steel railroad track, 1000 meters long. In many climates, it might need to be usable at -15 degrees C, a cold winter's day, and also at +35, a hot summer's day, so $\Delta T = 50$ degrees. Using the formula above, and the value of $\alpha$ of steel, we find $\Delta L = 0.6$ meters. If the rail is continuous and can't expand in the ``forward'' direction, it will start to bulge either sideways or upwards, whichever is easier.
 
-How is this taken care of? The rail needs to be able to expand, or it will deform and become unusable. One solution is very simple: the railroad has gaps in it. We need gaps of up to 60 cm per km, so for example 5 cm per 80 meters gives the rail space to expand. With large enough wheels, this causes a ``clunk'' when riding over it, but nothing more.
+The rail needs to be able to expand, or it will deform and become unusable. One solution is very simple: the railroad has gaps in it. We need gaps of up to 60 cm per km, so for example 5 cm per 80 meters gives the rail space to expand. With large enough wheels, this causes a ``clunk'' when riding over it, but nothing more.
 
 The professor then demonstrates the expansion of a brass bar, by using an ``amplifier'' device to turn the small (millimeter-scale) expansion into something more clearly visible (a large change in the angle of an indicator).
 
 \subsection{Bimetals}
 
-Bimetals are a very useful type of material. We take two metals with different linear expansion coefficients, and put them together (perhaps using welding):
+Bimetals are a very useful type of material. We take two metals with different linear expansion coefficients, and put them together (roll bonding is the most common):
 
 \begin{figure}[H]
   \centering
@@ -597,7 +597,7 @@ Bimetals are a very useful type of material. We take two metals with different l
 
 
 
-When we heat this system, what happens? The copper must get longer, but the change in the invar's length is much less. Since we join them such that one can not expand without affecting the other, it will bend upwards, so that the invar is on the inside of an arc, and the copper is along the (longer!) outside. The difference in the length change of the two materials is
+When we heat this system, the copper must get longer, but the change in the invar's length is much less. Since we join them such that one can not expand without affecting the other, it will bend upwards, so that the invar is on the inside of an arc, and the copper is along the (longer!) outside. The difference in the length change of the two materials is
 
 \begin{equation}
 \Delta L_{Cu} - \Delta L_{invar} = (\alpha_{Cu} - \alpha_{invar}) L \Delta T
@@ -718,7 +718,11 @@ Mercury has a $\beta$ of about $18 \times 10^{-5}/{}^\circ$C, while Pyrex has a 
 When the mercury/liquid expands, it has nowhere to go except up the display tube. We calculate how much the column will grow per degree, and create the scale accordingly. All that remains is then to fill it up to the correct level, and nature takes care of the rest.
 
 Consider a tiny radius of 0.1 mm, as shown, for the display tube. Ignoring the expansion of the Pyrex (which we probably shouldn't do if we actually built this), if our 1 cubic centimeter of mercury/liquid goes up in temperature by 10 degrees C, it expands by $V \beta \Delta T = \SI{0.0018}{cm^3}$.\\
-A very small increase, but hold on. A height $h$ in the tube can hold a volume $\pi r^2 h$, so we find $\displaystyle h = \frac{\SI{0.0018}{cm^3}}{\pi (\SI{0.01}{cm})^2} = 5.73$ cm! That gives us almost 6 mm per degree, which is quite a bit more than most such thermometers I've seen; very easily readable.
+A very small increase, but hold on. A height $h$ in the tube can hold a volume $\pi r^2 h$, so we find:
+\begin{equation*}
+  h = \frac{\SI{0.0018}{cm^3}}{\pi (\SI{0.01}{cm})^2} = \SI{5.73}{cm}
+\end{equation*}
+That gives us almost 6 mm per degree, which is quite a bit more than most such thermometers I've seen; very easily readable.
 
 \subsection{Expansion of water}
 
