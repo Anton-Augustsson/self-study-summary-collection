@@ -346,7 +346,7 @@ m \ddot{x} &= - k x + F_0 \cos (\omega t)\\
 
 Looks like a simple harmonic oscillator, except that the right-hand side is not zero, which of course changes things considerably.\\
 In the beginning, the behavior can be fairly complex; we call this the transient phase, since it is indeed transient: it goes away after a while.\\
-After the transient phase, we enter the \emph{steady state}. Here, the driver has ``won'', and the system oscillates at a steady frequency: that of the driver, so $\displaystyle f = \frac{\omega}{2 \pi}$ for the frequency (unless you prefer the angular frequency $\omega$ as-is). The mass will then move as described by $x = A \cos (\omega t)$, once the transient phase is over. The amplitude $A$ of this oscillation is not known, so let's try to find it.
+After the transient phase, we enter the \emph{steady state}. Here, the driver has ``won'', and the system oscillates at a steady frequency: that of the driver, so $f = \frac{\omega}{2 \pi}$ for the frequency (unless you prefer the angular frequency $\omega$ as-is). The mass will then move as described by $x = A \cos (\omega t)$, once the transient phase is over. The amplitude $A$ of this oscillation is not known, so let's try to find it.
 
 The derivatives of this trial solution are (since we need $\ddot{x}$):
 
@@ -365,7 +365,7 @@ A\left(\omega_0^2 - \omega^2\right)  &=  \frac{F_0}{m}\\
 A &=  \frac{F_0}{m\left(\omega_0^2 - \omega^2\right)}
 \end{align}
 
-Here, we have used $\displaystyle \omega_0 = \sqrt{\frac{k}{m}}$, which we call the natural frequency of the system. It is the $\omega$ we have seen before in spring systems -- the one it oscillates with naturally, if you offset it from equilibrium and then let it be. We add a subscript 0 to denote this, since $\omega$ is now the driving frequency.
+Here, we have used $\omega_0 = \sqrt{\frac{k}{m}}$, which we call the natural frequency of the system. It is the $\omega$ we have seen before in spring systems -- the one it oscillates with naturally, if you offset it from equilibrium and then let it be. We add a subscript 0 to denote this, since $\omega$ is now the driving frequency.
 
 Let's look at some limiting cases. In the case $\omega \ll \omega_0$; in that case, we find $A = F_0/k$.\\
 If $\omega \gg \omega_0$, the amplitude goes to 0. (That it also becomes negative is something we will discuss shortly.)
