@@ -410,12 +410,10 @@ The term
 \gamma = \frac{1}{\sqrt{1 - v^2/c^2}}
 \end{equation}
 
-is called the Lorentz factor, and appears in many special relativity equations, regarding kinetic energy, momentum, time dilation, length contraction and probably other things I'm not yet aware of. It is a useful thing to know even if you only know Newtonian mechanics: the closer $\gamma$ is to 1, the more accurate the physics we've learned so far will be. For everyday speeds below 200 km/h, $\gamma$ is still 1 to within well over 10 decimal points. At 1000 km/s (yes, per second!), it is about 1.00000556, so calculating momentum as $m v$ instead of $m v \gamma$ will yield an error of much less than 1\%. At $10^8$ m/s, 1/3 the speed of light, $\gamma$ is \emph{still} only 1.06, though this is about where it starts to shoot off towards infinity and begins to truly matter.
+is called the Lorentz factor, and appears in many special relativity equations, regarding kinetic energy, momentum, time dilation, length contraction and probably other things I'm not yet aware of. It is a useful thing to know even if you only know Newtonian mechanics: the closer $\gamma$ is to 1, the more accurate the physics we've learned so far will be. For everyday speeds below 200 km/h, $\gamma$ is still 1 to within well over 10 decimal points. At 1000 km/s, it is about 1.00000556, so calculating momentum as $m v$ instead of $m v \gamma$ will yield an error of much less than 1\%. At $10^8$ m/s, 1/3 the speed of light, $\gamma$ is \emph{still} only 1.06, though this is about where it starts to shoot off towards infinity and begins to truly matter.
 
 Now for a much quicker look on gravity.\\
 As an example, the orbit of Mercury cannot be predicted accurately using Newton's law of universal gravitation; its orbit precesses, at a rate of about 1.55 degrees per century relative to the Earth. Einstein's theory of general relativity explains this anomaly, and is currently the best theory of gravity we have. As mentioned, though, classical mechanics is still ``correct enough'' for the vast majority of applications. General relativity is heavily used in astrophysics, where it describes many things that Newtonian mechanics does not (and describes the rest of them more accurately), one of which is gravitational lensing: light bending in gravitational fields.
-
-I had to add a subsection label to this as it became a bit too strongly off topic -- I was going to write a few short sentences on the limits of classical mechanics and simply introduce relativity and quantum mechanics, but got a bit carried away!
 
 \subsection{The smaller world}
 
@@ -545,13 +543,13 @@ Louis de Broglie suggested that matter can act as waves in this manner. He also 
 
 where $p$ is simply the momentum $m v$. We can derive this result ourselves using what we know of the momentum of light.
 
-We know that $E = p c$ and $\displaystyle E = h f = \frac{h c}{\lambda}$; if we put these together, we find
+We know that $E = p c$ and $E = h f = \frac{h c}{\lambda}$; if we put these together, we find
 
 \begin{equation}
 p c = \frac{h c}{\lambda} \Rightarrow  p = \frac{h}{\lambda}
 \end{equation}
 
-or, equivalently, $\displaystyle \lambda = \frac{h}{p} = \frac{h}{m v}$. This wavelength is called the \emph{de Broglie wavelength}, after him. This derivation assumes that the result is equally valid for matter particles as it is for light, though, which is by no means obvious.
+or, equivalently, $\lambda = \frac{h}{p} = \frac{h}{m v}$. This wavelength is called the \emph{de Broglie wavelength}, after him. This derivation assumes that the result is equally valid for matter particles as it is for light, though, which is by no means obvious.
 
 Note that if the momentum is higher, the wavelength is shorter. An electron moving at $10^7$ m/s, and with a rest mass on the order of $10^{-30}$ kg ($9.1\times 10^{-31}$ kg) has a classical momentum of about $\SI{9.1e-24}{kg m/s}$, which translates into a wavelength of about $\lambda = \SI{7.25e-11}{m}$ -- about 73 picometers, several times larger than at atomic nucleus.
 
@@ -576,7 +574,7 @@ One way of writing this down mathematically is
 \Delta p \Delta x \overset{>}{\approx} \frac{\hbar}{2}
 \end{equation}
 
-where again $\displaystyle \hbar = \frac{h}{2\pi} \approx 10^{-34}$ joule-seconds.\\
+where again $\hbar = \frac{h}{2\pi} \approx 10^{-34}$ joule-seconds.\\
 The right-hand side is often written as a factor 2 larger, and I'm not sure which we actually should use. The principle is also often stated in terms of standard deviations. I think we'll have to accept that this is approximate, and take a proper quantum mechanics course for more detail.
 
 Roughly speaking, then, if we know the position to an accuracy $\Delta x$, the momentum is non-determined by an amount
@@ -666,24 +664,6 @@ It has been argued that perhaps this behavior is not random; perhaps it would be
 One more crazy detail in regards to this: it's important to realize that this experiment cannot be adequately explained by photons (particles) interfering with each other. The exact same pattern will build up over time \emph{regardless} of the rate you shoot the photons through. Even if you shoot one photon, wait 5 minutes, shoot the next, etc. the same pattern will emerge over time. The photon must in some way interfere with... itself? This only really makes any kind of sense if we consider waves.
 
 Also, the same experiment can be and has been done with particles, ranging from electrons up to multi-atom structures such as ``buckyballs'' (each of which consists of 60 carbon atoms), and the results are exactly as predicted by quantum mechanics. Photons, electrons or buckyballs -- nature doesn't really care and treats them the same way, it would seem!
-
-\subsection{Some notes on the uncertainty principle}
-
-(This last section is not at all from the lecture, and is (just as the intro section to this lecture) all written by me. That is, you shouldn't take anything in here as hard fact, as I have not studied quantum mechanics to any greater extent than what this course teaches, plus some popular science which often is just as misleading as it is informative.)
-
-A common question (and misconception) is that this uncertainty is a technical limit in our measuring equipment; it is not. It is a physical limit built into nature. I hardly have the expertise (or even basic knowledge) of quantum mechanics to know this myself yet, but many describe the entire notion of perfectly knowing both momentum and position as \emph{meaningless} in quantum mechanics, including that quote in the lecture earlier.
-
-Another common explanation for this uncertainty (one that I've liked myself) is that in order to for example measure the position of an electron, we need to probe it somehow, perhaps using light (sending photons to interact with it). A photon of long wavelength has little energy and thus little momentum, and won't disturb the electron a lot; we get a fairly accurate measurement of its momentum, but since the light wavelength is large, we don't know \emph{exactly} where it is; we only have a fuzzy idea about the position!
-
-If we want to measure the position accurately, we instead need to use light of a shorter wavelength (smaller $\Delta x$), i.e. greater energy (and greater momentum, $p = E/c$ for light). This means we will know where the electron is (was) very accurately, but because we transferred a large amount of momentum to it, we can now not know its momentum exactly.
-
-The above explanation (Heisenberg's microscope) is not technically accurate, though. It is a metaphor, rather than an explanation. In reality, the uncertainty predicted by the uncertainty principle is greater than that in the above experiment.
-
-My current understanding (again, without having actually studied any quantum mechanics -- this is still unlikely to be 100\% correct!) is that the uncertainty arises from the wave nature of matter. That is, the electron doesn't really \emph{have} a perfectly defined position until it is probed; prior to the probing, the electron's position is only a probability distribution. It may be likely to be confined in a small volume, but it is still \emph{possible} for it to be outside it -- even infinitely far away, only with a probability moving closer to 0 the further away you go.
-
-\section{Lecture 35: Professor Lewin's early days at MIT}
-
-I did not take any notes for this lecture. It is as always absolutely worth watching, but it feels pointless to write it down -- professor Lewin is telling \emph{his} story, and I should leave that to \emph{him} to do so! If you want it in text form, his book ``For the Love of Physics'' talks about  these topics and several others!
 
 %%% Local Variables:
 %%% TeX-master: "../../main"
