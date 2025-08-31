@@ -1,5 +1,7 @@
 \documentclass{book}
 \usepackage{../../preamble}
+\addbibresource{bibliography.bib}
+
 
 \volumeTitle{2}{Computer Sciense}
 \author{Anton Augustsson}
@@ -30,7 +32,7 @@ The chapters are in chronological order the courses was taken and as no relation
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COURSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\pathCS}{../../chapters/Computer-Science}
+\newcommand{\pathCS}{chapters}
 
 \newcommand{\pathECPP}{\pathCS/Embedded-C++} \input{\pathECPP/ecpp-summary.tex} \newpage
 \newcommand{\pathCMAKE}{\pathCS/CMake} \input{\pathCMAKE/cmake-summary.tex} \newpage
@@ -40,8 +42,7 @@ The chapters are in chronological order the courses was taken and as no relation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\bibliographystyle{IEEEtran}
-\bibliography{bibliography}
+\printbibliography
 
 
 \end{document}

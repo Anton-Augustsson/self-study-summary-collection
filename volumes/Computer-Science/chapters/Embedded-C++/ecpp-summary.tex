@@ -1,0 +1,557 @@
+\chapter{Embedded C++}
+
+\section*{Introduction}
+C++ is widely used in embedded systems programming due to its balance of high-level features and low-level control. It provides object-oriented programming while maintaining efficiency, critical for resource-constrained environments.
+
+\section{Key Features of C++ for Embedded Systems}
+\begin{itemize}
+    \item \textbf{Low-Level Memory Control:} Access to pointers, memory manipulation, and hardware registers.
+    \item \textbf{Object-Oriented Programming (OOP):} Encapsulation, inheritance, and polymorphism enhance modularity and code reuse.
+    \item \textbf{Templates:} Generic programming with minimal overhead.
+    \item \textbf{Inline Functions:} Eliminate function call overhead for performance-critical code.
+    \item \textbf{RAII (Resource Acquisition Is Initialization):} Ensures safe resource management.
+    \item \textbf{Namespaces:} Prevent naming conflicts in large projects.
+\end{itemize}
+
+\section{Essential C++ Concepts for Embedded Systems}
+\subsection{Memory Management}
+Embedded systems often lack dynamic memory (heap) due to limited resources. C++ allows manual memory management with careful use of:
+\begin{itemize}
+    \item Stack-based allocation (preferred).
+    \item Avoiding the use of dynamic memory (e.g., \texttt{new}/\texttt{delete}).
+\end{itemize}
+
+\subsection{Hardware Access}
+Accessing hardware registers and memory-mapped I/O is crucial. C++ provides:
+\begin{minted}[linenos=true]{cpp}
+#define GPIO_PORT  (*(volatile uint32_t*)0x40020C00)
+void setPinHigh() {
+    GPIO_PORT |= (1 << 5); // Set bit 5
+}
+\end{minted}
+
+\subsection{Inline Functions}
+Inline functions eliminate the overhead of function calls:
+\begin{minted}[linenos=true]{cpp}
+inline void setBit(volatile uint32_t& reg, uint8_t pos) {
+    reg |= (1 << pos);
+}
+\end{minted}
+
+\subsection{Classes and Encapsulation}
+Encapsulation simplifies peripheral drivers:
+\begin{minted}[linenos=true]{cpp}
+class GPIO {
+public:
+    GPIO(uint32_t* port) : port_(port) {}
+    void setPin(uint8_t pos) { *port_ |= (1 << pos); }
+    void clearPin(uint8_t pos) { *port_ &= ~(1 << pos); }
+private:
+    volatile uint32_t* port_;
+};
+
+GPIO gpioA(reinterpret_cast<uint32_t*>(0x40020C00));
+gpioA.setPin(5);
+\end{minted}
+
+\section{Best Practices for Embedded C++}
+\begin{itemize}
+    \item Use \textbf{const} and \textbf{constexpr} to avoid runtime overhead.
+    \item Avoid exceptions and RTTI (Run-Time Type Information) due to memory and performance costs.
+    \item Prefer fixed-size types (e.g., \texttt{uint8\_t}, \texttt{uint16\_t} from \texttt{<cstdint>}).
+    \item Use static memory allocation to avoid fragmentation.
+    \item Leverage compiler optimizations (e.g., \texttt{-O2}, \texttt{-O3} flags).
+    \item Use lightweight libraries or standard subsets (e.g., Embedded STL).
+\end{itemize}
+
+\section{Comparison: C vs C++ for Embedded Systems}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Feature}      & \textbf{C}                    & \textbf{C++}                  \\ \hline
+Encapsulation         & Manual (structs)              & Classes and objects           \\ \hline
+Generic Programming   & Macros                        & Templates                     \\ \hline
+Error Handling        & Return codes                  & Exceptions (avoid in embedded)\\ \hline
+Memory Management     & Manual                        & RAII, smart pointers          \\ \hline
+Namespace Management  & None                          & Namespaces                    \\ \hline
+Code Reusability      & Limited                       & OOP, inheritance              \\ \hline
+\end{tabular}
+\end{center}
+
+\section{Conclusion}
+C++ offers significant advantages for embedded systems, combining performance, safety, and modern programming techniques. By adhering to best practices, developers can write clean, efficient, and maintainable embedded software using C++.
+
+
+\section{Compilation}
+C++ source code goes through multiple stages before becoming an executable program. Understanding the compilation process helps developers write better code, debug efficiently, and optimize performance.
+
+The C++ compilation process can be broken down into the following stages:
+\begin{enumerate}
+    \item Preprocessing
+    \item Compilation
+    \item Assembly
+    \item Linking
+\end{enumerate}
+
+Each of these stages is discussed in detail below.
+
+\section{Stages of the C++ Compilation Process}
+
+\subsection{1. Preprocessing}
+The preprocessor processes the source code before actual compilation. It handles all directives starting with \texttt{\#}, such as:
+\begin{itemize}
+    \item \texttt{\#include}: Include header files.
+    \item \texttt{\#define}: Define macros.
+    \item \texttt{\#ifdef}, \texttt{\#ifndef}, \texttt{\#endif}: Conditional compilation.
+\end{itemize}
+
+The preprocessor outputs an expanded version of the source file, which is sent to the next stage.
+
+\noindent Example:
+\begin{minted}[linenos=true]{cpp}
+#include <iostream>
+#define PI 3.14
+
+int main() {
+    std::cout << "Value of PI: " << PI << std::endl;
+    return 0;
+}
+\end{minted}
+
+After preprocessing:
+\begin{minted}[linenos=true]{cpp}
+int main() {
+    std::cout << "Value of PI: " << 3.14 << std::endl;
+    return 0;
+}
+\end{minted}
+
+Command to see preprocessed output:
+\begin{verbatim}
+g++ -E main.cpp -o main.i
+\end{verbatim}
+
+\subsection{2. Compilation}
+The compiler takes the preprocessed file and translates it into \textbf{assembly language}, which is specific to the target architecture.
+
+\noindent Example:
+\begin{verbatim}
+g++ -S main.i -o main.s
+\end{verbatim}
+
+This produces an assembly file \texttt{main.s}. The assembly file contains low-level instructions that can be understood by the assembler.
+
+\noindent Example (Snippet of \texttt{main.s}):
+\begin{minted}[linenos=true]{cpp}
+.LC0:
+    .string "Value of PI: %f"
+main:
+    pushq   %rbp
+    movq    %rsp, %rbp
+    ...
+\end{minted}
+
+\subsection{3. Assembly}
+The assembler converts the assembly code into **machine code**, which consists of binary instructions the CPU can understand. The output of this stage is an \textbf{object file} (\texttt{.o} or \texttt{.obj}).
+
+\noindent Example:
+\begin{verbatim}
+g++ -c main.s -o main.o
+\end{verbatim}
+
+The \texttt{main.o} file contains machine code but is not yet executable. At this stage, the object file may contain unresolved references to external functions or libraries.
+
+\subsection{4. Linking}
+The linker combines the object file with:
+\begin{itemize}
+    \item Other object files (if any).
+    \item Standard libraries (e.g., \texttt{libstdc++} for C++ Standard Library).
+\end{itemize}
+
+It resolves function calls and creates an executable file.
+
+\noindent Example:
+\begin{verbatim}
+g++ main.o -o main
+\end{verbatim}
+
+The final executable, \texttt{main}, can now be run:
+\begin{verbatim}
+./main
+\end{verbatim}
+
+\section{Summary of Stages}
+The C++ compilation pipeline can be summarized as follows:
+
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{compilation_process.png}
+%\end{center}
+
+\begin{itemize}
+    \item \textbf{Source Code:} \texttt{.cpp}
+    \item \textbf{Preprocessing:} Expands macros, includes headers $\rightarrow$ \texttt{.i}
+    \item \textbf{Compilation:} Translates to assembly code $\rightarrow$ \texttt{.s}
+    \item \textbf{Assembly:} Converts to machine code $\rightarrow$ \texttt{.o}
+    \item \textbf{Linking:} Combines object files and libraries $\rightarrow$ Executable
+\end{itemize}
+
+\section{Compiler Tools}
+Here are some common tools used for the compilation process:
+\begin{itemize}
+    \item \textbf{GCC/G++}: The GNU Compiler Collection.
+    \item \textbf{Clang}: A compiler based on LLVM.
+    \item \textbf{MSVC}: Microsoft Visual C++ Compiler for Windows.
+\end{itemize}
+
+\section{Conclusion}
+Understanding the C++ compilation process helps developers write more efficient code and troubleshoot issues like:
+\begin{itemize}
+    \item Missing header files during preprocessing.
+    \item Syntax or type errors during compilation.
+    \item Linking errors due to unresolved references.
+\end{itemize}
+
+By using tools like \texttt{g++} or \texttt{clang++}, you can observe each step of the compilation pipeline.
+
+
+\section{Pointers in C++}
+Pointers are fundamental in C++ for managing memory, accessing data, and working with low-level hardware. While raw pointers provide direct access to memory, they can lead to issues like memory leaks. Modern C++ introduces smart pointers to manage memory safely and automatically.
+
+\section{Raw Pointers in C++}
+A pointer is a variable that stores the memory address of another variable. Raw pointers require manual memory management.
+
+\subsection{Syntax and Example}
+\begin{minted}[linenos=true]{cpp}
+#include <iostream>
+int main() {
+    int x = 10;
+    int* ptr = &x; // Pointer stores the address of x
+    
+    std::cout << "Value: " << *ptr << std::endl; // Dereference pointer
+    std::cout << "Address: " << ptr << std::endl;
+    
+    return 0;
+}
+\end{minted}
+
+\subsection{Dynamic Memory Allocation}
+Raw pointers can allocate memory dynamically using \texttt{new} and release it using \texttt{delete}.
+\begin{minted}[linenos=true]{cpp}
+#include <iostream>
+int main() {
+    int* ptr = new int(5); // Allocate memory on the heap
+    std::cout << "Value: " << *ptr << std::endl;
+    
+    delete ptr; // Free the allocated memory
+    return 0;
+}
+\end{minted}
+
+\textbf{Caution:}
+\begin{itemize}
+    \item Forgetting to call \texttt{delete} leads to memory leaks.
+    \item Dereferencing null or dangling pointers leads to undefined behavior.
+\end{itemize}
+
+\section{Smart Pointers in Modern C++}
+Smart pointers, introduced in C++11, are wrappers around raw pointers that provide automatic memory management. They are defined in the \texttt{<memory>} header.
+
+\subsection{Types of Smart Pointers}
+\begin{enumerate}
+    \item \textbf{\texttt{std::unique\_ptr}}: A pointer that has sole ownership of an object.
+    \item \textbf{\texttt{std::shared\_ptr}}: A pointer that shares ownership of an object with other smart pointers.
+    \item \textbf{\texttt{std::weak\_ptr}}: A non-owning pointer that observes \texttt{std::shared\_ptr}.
+\end{enumerate}
+
+\subsection{\texttt{std::unique\_ptr}}
+\texttt{std::unique\_ptr} ensures single ownership of a resource. When the pointer goes out of scope, the memory is automatically released.
+
+\begin{minted}[linenos=true]{cpp}
+#include <iostream>
+#include <memory>
+
+int main() {
+    std::unique_ptr<int> ptr = std::make_unique<int>(10); // Create unique_ptr
+    std::cout << "Value: " << *ptr << std::endl;
+
+    // Unique ownership; cannot be copied
+    // std::unique_ptr<int> ptr2 = ptr; // Error!
+    
+    return 0;
+} // Memory is released automatically
+\end{minted}
+
+\subsection{\texttt{std::shared\_ptr}}
+\texttt{std::shared\_ptr} allows multiple smart pointers to share ownership of an object. It uses reference counting to track ownership.
+
+\begin{minted}[linenos=true]{cpp}
+#include <iostream>
+#include <memory>
+
+int main() {
+    std::shared_ptr<int> ptr1 = std::make_shared<int>(20); // Create shared_ptr
+    std::shared_ptr<int> ptr2 = ptr1; // Shared ownership
+
+    std::cout << "Value: " << *ptr1 << ", " << *ptr2 << std::endl;
+    std::cout << "Reference Count: " << ptr1.use_count() << std::endl;
+
+    return 0;
+} // Memory is released when the last shared_ptr goes out of scope
+\end{minted}
+
+\subsection{\texttt{std::weak\_ptr}}
+\texttt{std::weak\_ptr} observes a \texttt{std::shared\_ptr} without contributing to the reference count. It is useful for breaking cyclic references.
+
+\begin{minted}[linenos=true]{cpp}
+#include <iostream>
+#include <memory>
+
+int main() {
+    std::shared_ptr<int> shared = std::make_shared<int>(30);
+    std::weak_ptr<int> weak = shared; // Observes shared_ptr
+
+    if (auto ptr = weak.lock()) { // Check if resource still exists
+        std::cout << "Value: " << *ptr << std::endl;
+    } else {
+        std::cout << "Resource no longer exists." << std::endl;
+    }
+
+    return 0;
+}
+\end{minted}
+
+\section{Comparison of Pointers}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Pointer Type}   & \textbf{Ownership}       & \textbf{Memory Management} \\ \hline
+Raw Pointer             & None                    & Manual (new/delete)        \\ \hline
+\texttt{std::unique\_ptr} & Single Ownership        & Automatic                  \\ \hline
+\texttt{std::shared\_ptr} & Shared Ownership        & Reference Counting         \\ \hline
+\texttt{std::weak\_ptr}   & Observing (Non-owning)  & No ownership               \\ \hline
+\end{tabular}
+\end{center}
+
+\section{Best Practices for Pointers}
+\begin{itemize}
+    \item Prefer \texttt{std::unique\_ptr} for single ownership.
+    \item Use \texttt{std::shared\_ptr} when multiple owners are needed.
+    \item Avoid raw pointers unless working with legacy code or hardware.
+    \item Use \texttt{std::weak\_ptr} to break cyclic references.
+    \item Avoid manual memory management (use smart pointers instead).
+\end{itemize}
+
+\section{Conclusion}
+Pointers are a powerful tool in C++ for managing memory and accessing resources. While raw pointers offer flexibility, they come with risks like memory leaks. Smart pointers in modern C++ provide safer alternatives for automatic and efficient memory management.
+
+
+\section{Lessons from Scott Meyers's Effective C++}
+*Effective C++* by Scott Meyers is a classic book that provides practical guidelines and principles for writing robust, maintainable, and efficient C++ programs. This document summarizes the key guidelines into a concise format for quick reference.
+
+The book is organized into 50 guidelines across several key areas of C++ programming.
+
+\section{Design and Declarations}
+\begin{enumerate}
+    \item \textbf{View C++ as a federation of languages.} \\
+    Understand C++ as a mix of procedural programming, object-oriented programming, templates, and the STL.
+    
+    \item \textbf{Prefer consts, enums, and inlines to \texttt{\#define}.} \\
+    Use \texttt{const} for constants, \texttt{inline} for functions, and \texttt{enum} for integral constants instead of macros.
+
+    \item \textbf{Use const whenever possible.} \\
+    Declare objects, pointers, and member functions as \texttt{const} to improve safety and clarify intent.
+
+    \item \textbf{Prefer \texttt{++i} over \texttt{i++} for iterators and other user-defined types.} \\
+    Pre-increment is generally more efficient than post-increment for iterators and custom types.
+
+    \item \textbf{Declare a virtual destructor in polymorphic base classes.} \\
+    Without a virtual destructor, deleting derived objects through a base class pointer causes undefined behavior.
+
+    \item \textbf{Avoid returning handles to object internals.} \\
+    Don't expose raw pointers or references to private data members as it compromises encapsulation.
+\end{enumerate}
+
+\section{Constructors, Destructors, and Assignment Operators}
+\begin{enumerate}
+    \item \textbf{Prevent resource leaks in constructors.} \\
+    Use smart pointers or RAII (Resource Acquisition Is Initialization) to manage resources.
+    
+    \item \textbf{Explicitly disallow the use of compiler-generated functions you do not want.} \\
+    Declare unwanted copy constructors and assignment operators as \texttt{private} or delete them in C++11.
+
+    \item \textbf{Prefer initialization to assignment in constructors.} \\
+    Initialize member variables in the member initializer list to improve performance.
+
+    \item \textbf{Handle self-assignment in operator=.} \\
+    Ensure assignment operators check for self-assignment to avoid corruption of the object state.
+\end{enumerate}
+
+\section{Resource Management}
+\begin{enumerate}
+    \item \textbf{Use objects to manage resources.} \\
+    Implement RAII for resource management (e.g., smart pointers for dynamic memory).
+
+    \item \textbf{Avoid using raw pointers.} \\
+    Use smart pointers such as \texttt{std::unique\_ptr} or \texttt{std::shared\_ptr} instead of raw pointers to manage dynamic memory.
+
+    \item \textbf{Minimize resource acquisition in constructors.} \\
+    Use helper classes or functions to avoid constructor failures due to resource allocation.
+
+\end{enumerate}
+
+\section{Templates and Generic Programming}
+\begin{enumerate}
+    \item \textbf{Understand the behavior of templates.} \\
+    Templates are instantiated with types at compile time; understand how type deduction works.
+
+    \item \textbf{Prefer function objects over functions for STL algorithms.} \\
+    Function objects (functors) can store state and inline better than function pointers.
+
+    \item \textbf{Familiarize yourself with STL containers and iterators.} \\
+    Use the right container for your task (e.g., \texttt{vector}, \texttt{list}, \texttt{map}).
+
+    \item \textbf{Write generic code with templates.} \\
+    Use templates to write code that works for a wide variety of types.
+\end{enumerate}
+
+\section{Inheritance and Object-Oriented Design}
+\begin{enumerate}
+    \item \textbf{Distinguish between public and private inheritance.} \\
+    Use public inheritance for ``is-a'' relationships; use private inheritance for implementation reuse.
+
+    \item \textbf{Avoid slicing.} \\
+    Always pass objects by reference or pointer to avoid slicing when working with polymorphic classes.
+
+    \item \textbf{Prefer composition over inheritance.} \\
+    Composition provides more flexibility and avoids the complexities of inheritance.
+\end{enumerate}
+
+\section{Miscellaneous Guidelines}
+\begin{enumerate}
+    \item \textbf{Avoid unnecessary inclusion of header files.} \\
+    Use forward declarations when possible to reduce compilation dependencies.
+
+    \item \textbf{Use inline functions carefully.} \\
+    Inline functions can improve performance, but overuse can lead to code bloat.
+
+    \item \textbf{Minimize casting.} \\
+    Avoid explicit casts; use safer alternatives like \texttt{dynamic\_cast}, \texttt{static\_cast}, or C++11's \texttt{auto}.
+    
+    \item \textbf{Pay attention to compiler warnings.} \\
+    Enable and resolve all compiler warnings for better code quality.
+\end{enumerate}
+
+\section{Conclusion}
+*Effective C++* offers valuable, practical advice for writing clean, efficient, and maintainable C++ code. Following these principles can help developers avoid common pitfalls, manage resources effectively, and utilize the full power of C++.
+
+
+\section{Summary of MISRA C++:2008 Guidelines}
+MISRA (Motor Industry Software Reliability Association) provides coding guidelines for developing reliable, maintainable, and safe C++ code. Originally designed for embedded and automotive systems, these rules apply to all safety-critical systems.
+
+This document summarizes key MISRA C++ rules and organizes them into categories for clarity.
+
+\section{General Rules}
+\begin{enumerate}
+    \item \textbf{Avoid implementation-defined behavior.} \\
+    Code must not rely on behavior that varies between compilers or systems.
+    
+    \item \textbf{Avoid undefined behavior.} \\
+    Writing code that leads to undefined behavior (e.g., dereferencing null pointers) is strictly prohibited.
+    
+    \item \textbf{Do not rely on unspecified behavior.} \\
+    Code behavior that depends on compiler or execution order should be avoided.
+\end{enumerate}
+
+\section{Language Restrictions}
+\begin{enumerate}
+    \item \textbf{No use of non-standard libraries.} \\
+    Only standard C++ libraries and approved third-party libraries should be used.
+
+    \item \textbf{Dynamic memory allocation is forbidden.} \\
+    Avoid \texttt{new}, \texttt{delete}, \texttt{malloc}, and \texttt{free} due to fragmentation and reliability concerns.
+
+    \item \textbf{Avoid implicit conversions.} \\
+    Implicit type conversions can result in data loss or unexpected behavior.
+
+    \item \textbf{No use of uninitialized variables.} \\
+    Always initialize variables before use to avoid undefined behavior.
+
+    \item \textbf{No usage of \texttt{goto}.} \\
+    The \texttt{goto} statement reduces code readability and maintainability.
+\end{enumerate}
+
+\section{Object-Oriented Programming Rules}
+\begin{enumerate}
+    \item \textbf{Use polymorphism safely.} \\
+    Virtual functions in base classes must be declared with a virtual destructor.
+
+    \item \textbf{Do not slice derived class objects.} \\
+    Pass objects by pointer or reference, not by value, to avoid object slicing.
+
+    \item \textbf{Use \texttt{explicit} for single-argument constructors.} \\
+    Prevent implicit conversions that occur from single-argument constructors.
+
+    \item \textbf{Avoid multiple inheritance.} \\
+    Multiple inheritance increases complexity and risks ambiguity.
+
+    \item \textbf{Do not hide inherited names.} \\
+    Ensure that base class functions are not unintentionally hidden by derived class functions.
+\end{enumerate}
+
+\section{Templates and STL Rules}
+\begin{enumerate}
+    \item \textbf{Avoid template instantiation errors.} \\
+    Templates must compile cleanly without instantiation errors for all intended types.
+
+    \item \textbf{Use STL carefully.} \\
+    Standard Template Library (STL) containers and algorithms must be used only when their behavior is well-understood and compliant with MISRA guidelines.
+
+    \item \textbf{Avoid exceptions.} \\
+    Exception handling (e.g., \texttt{throw}, \texttt{try}, \texttt{catch}) should be minimized or avoided, as it adds runtime overhead and complexity.
+
+    \item \textbf{No partial specialization.} \\
+    Partial specialization of templates is forbidden, as it can lead to ambiguous or hard-to-maintain code.
+\end{enumerate}
+
+\section{Resource Management}
+\begin{enumerate}
+    \item \textbf{Ensure proper resource cleanup.} \\
+    Use RAII (Resource Acquisition Is Initialization) to manage resources and avoid leaks.
+
+    \item \textbf{Avoid resource exhaustion.} \\
+    Ensure that resource allocation (e.g., files, memory) is properly bounded.
+
+    \item \textbf{No memory leaks.} \\
+    Avoid situations where dynamically allocated memory is not deallocated.
+
+    \item \textbf{Use smart pointers instead of raw pointers.} \\
+    Prefer \texttt{std::unique\_ptr} and \texttt{std::shared\_ptr} to manage dynamic memory.
+\end{enumerate}
+
+\section{Concurrency and Synchronization}
+\begin{enumerate}
+    \item \textbf{Avoid data races.} \\
+    Ensure that concurrent threads do not access shared resources without proper synchronization.
+
+    \item \textbf{Use thread-safe mechanisms.} \\
+    Use mutexes, locks, and other thread-safe constructs to synchronize access to shared resources.
+
+    \item \textbf{Minimize the use of global variables.} \\
+    Global variables lead to hidden dependencies and make code harder to maintain.
+\end{enumerate}
+
+\section{Error Handling}
+\begin{enumerate}
+    \item \textbf{Use error codes instead of exceptions.} \\
+    Return error codes for predictable error handling instead of relying on exceptions.
+
+    \item \textbf{Check return values of all functions.} \\
+    Always validate the return value of functions that may fail.
+
+    \item \textbf{Use assertions sparingly.} \\
+    Assertions (\texttt{assert}) should only be used to check invariants, not for error handling.
+\end{enumerate}
+
+\section*{Conclusion}
+MISRA C++ rules ensure safe, reliable, and maintainable code for critical systems. By following these guidelines, developers can avoid common pitfalls, undefined behavior, and performance issues while ensuring compliance with industry standards.
