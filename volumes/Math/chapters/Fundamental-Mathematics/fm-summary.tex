@@ -1,0 +1,47 @@
+\chapter{Fundamental Mathematics}
+
+\section{Temenology}
+\begin{itemize}
+\item Axiom: ``TODO''~\cite{oed}.
+\item Definition: ``TODO''~\cite{oed}.
+\item Lemma: ``TODO''~\cite{oed}.
+\item Theorem: ``TODO''~\cite{oed}.
+\item Proposition: ``TODO''~\cite{oed}.
+\item Corollary: ``TODO''~\cite{oed}.
+\item Law: ``TODO''~\cite{oed}.
+\end{itemize}
+
+
+\section{Geometry}
+\subsection{Volumes}
+Volumes has a unite of cube, e.g., $m^3$ ``meter cube'', and a cube has a volume of $\text{lenght}\times\text{depth}\times\text{height} = \text{lenght}^3 = \text{depth}^3 = \text{height}^3 = \text{volume}$ since all sides are equal in a kube. For cuboid, however, the sides are different. A cube can express the voulume of three dimentional shapes.
+
+\subsubsection{Pyramid}
+Given a pyramid of height $h$, length $L$, and width $W$, the pyramid's voulume can be expressed in terms of cuboids of height $h/n$ where $n\to\infty$. The lenght of the cuboid layer is $m\times\frac{L}{n}$, where $m\in[1,\ldots,n]$. Likewise, the width is $m\times\frac{W}{n}$, which gives us the sum of all the layer cuboid making up the pyramid is equal to:
+\begin{align*}
+  &\sum_{m=1}^n\frac{h}{n}\times m\frac{L}{n}\times m\frac{W}{n} \\
+  &=\frac{1}{n^3}hWL\sum_{m=1}^n m^2 \\
+  &=\frac{1}{n^3}hWL\frac{n(n+1)(2n+1)}{6} \\
+  &=\frac{1}{n^3}hWL\frac{2n^3+n^2+2n^2+n}{6} \\
+  &=hWL\left(\frac{2n^3}{6n^3}+\frac{3n^2}{6n^3}+\frac{n}{6n^3}\right) \\
+  &=hWL\left(\frac{1}{3}+\frac{1}{2n}+\frac{1}{6n^2}\right) \\
+\end{align*}
+
+Since $n\to\infty$:
+\begin{equation*}
+  \lim_{n\to\infty} hWL\left(\frac{1}{3}+\frac{1}{2n}+\frac{1}{6n^2}\right) = \frac{1}{3}hWL
+\end{equation*}
+
+
+\section{Irational numbers}
+\subsection{Consant $e$}
+\begin{equation*}
+  e = \lim_{n\to\infty} \left( 1 + \frac{1}{n} \right)^n
+\end{equation*}
+\begin{equation*}
+  e = 2 + \cfrac{1}{1+\cfrac{1}{2+\cfrac{1}{1+\cfrac{1}{1+\cfrac{1}{4+\cfrac{1}{1+\cfrac{1}{1+\cfrac{1}{6+\ldots}}}}}}}}
+\end{equation*}
+
+
+
+\subsection{Constant $\pi$}

@@ -12,6 +12,7 @@
 \usepackage{graphicx} % for inserting images
 \usepackage{float} % for image position H
 \usepackage{svg} % for including svg images
+\usepackage[style=ieee]{biblatex}
 
 \usepackage{minted} % for c++ code
 
@@ -39,7 +40,7 @@
 \usepackage{xcolor, colortbl}
 %\usepackage[dvipsnames]{xcolor}
 
-\pgfplotsset{compat=1.18}
+\pgfplotsset{compat=1.17}
 
 \definecolor{Orchid}{HTML}{DA70D6}
 
@@ -53,7 +54,7 @@
 
 
 % Standard model of physics https://texample.net/model-physics/
-\usetikzlibrary{calc,positioning,shadows.blur,decorations.pathreplacing}
+\usetikzlibrary{calc,positioning,decorations.pathreplacing}
 \usepackage{etoolbox}
 \tikzset{%
         brace/.style = { decorate, decoration={brace, amplitude=5pt} },
@@ -71,7 +72,7 @@
 
 \newcommand\particle[7][white]{%
   \begin{tikzpicture}[x=1cm, y=1cm]
-    \path[fill=#1,blur shadow={shadow blur steps=5}] (0.1,0) -- (0.9,0)
+    \path[fill=#1] (0.1,0) -- (0.9,0)
         arc (90:0:1mm) -- (1.0,-0.9) arc (0:-90:1mm) -- (0.1,-1.0)
         arc (-90:-180:1mm) -- (0,-0.1) arc(180:90:1mm) -- cycle;
     \ifstrempty{#7}{}{\path[fill=purple!50!white]
