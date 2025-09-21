@@ -1,0 +1,180 @@
+\chapter{Material Science}
+
+\section{Plastics}
+\subsection{Nylon}
+\subsection{PLA}
+\subsection{ABS}
+
+\section{Composites}
+\subsection{Carbon Fiber}
+\subsection{Kevlar}
+
+\section{Metals}
+\subsection{Aluminum}
+\subsection{Titanium}
+\subsection{Bronze}
+\subsection{Copper}
+\subsection{Iron}
+\subsection{Steal}
+\subsection{Carbon Steel}
+\subsection{Stainless steel}
+\subsection{Metal Alloys}
+
+\newpage
+\section{Metal Hardening}
+
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+\begin{polaraxis}[
+    width = 10cm,
+    height = 10cm,
+    grid = both, % Adds both radial and angular grid lines
+    major grid style = {dotted, gray},
+    minor x grid style = {dotted, lightgray},
+    minor y grid style = {dotted, lightgray},
+    xtick = {0, 90, 180, 270}, % Place labels at these angles
+    xticklabels = {Hardness (HRC), Toughness, Ductility, Wear Resistance}, % Property names
+    ytick = {0.5,1.0,...,4.0}, % Radial axis values
+    ymin = 0, ymax = 4,        % Set the scale from 0 to 4
+    %yticklabels = {,Low,,Medium,,High,,Very High}, % Label the scales qualitatively
+    legend style={at={(0.5, -0.2)}, anchor=north, legend columns=3} % Place legend below
+]
+
+\addplot+ [mark=square*, very thick, color=blue, smooth] coordinates {
+    (0, 3.5)   % Hardness - High
+    (90, 2.5)  % Toughness - Medium-High
+    (180, 1.0) % Ductility - Low
+    (270, 3.0) % Wear Resistance - High
+    (360, 3.5) % Close the circle
+};
+\addlegendentry{Bulk Hardening}
+
+\addplot+ [mark=triangle*, very thick, color=red!70!black, smooth] coordinates {
+    (0, 4.0)   % Hardness - Very High (at surface)
+    (90, 2.0)  % Toughness - Medium (brittle case)
+    (180, 2.0) % Ductility - Moderate (brittle case)
+    (270, 4.0) % Wear Resistance - Very High
+    (360, 4.0) % Close the circle
+};
+\addlegendentry{Case Hardened}
+
+\addplot+ [mark=triangle*, very thick, color=green!70!black, smooth] coordinates {
+    (0, 2.5)   % Hardness - Medium-High
+    (90, 1.5)  % Toughness - Medium-Low (Varies)
+    (180, 1.0) % Ductility - Low
+    (270, 2.5) % Wear Resistance - Medium-High
+    (360, 2.5) % Close the circle
+};
+\addlegendentry{Microstructural Control}
+
+\addplot+ [mark=square*, very thick, color=yellow!70!black, smooth] coordinates {
+    (0, 4.0)   % Hardness - Very High
+    (90, 4.0)  % Toughness - Very High
+    (180, 1.5) % Ductility - Medium-Low
+    (270, 4.0) % Wear Resistance - Very High
+    (360, 4.0) % Close the circle
+};
+\addlegendentry{Thermo-Mechanical Treatments}
+
+\end{polaraxis}
+\end{tikzpicture}
+  \caption{Metal hardening processes and there resulting material properties}
+\end{figure}
+
+
+\subsection{Bulk Hardening}
+These processes change the microstructure throughout the entire part, primarily for ferrous metals (steels).
+\subsubsection{Quenching and Tempering}
+\begin{itemize}
+  \item \textbf{Process}: Austenitizing (heating to a high temperature), then rapidly cooling (quenching) in oil, water, or polymer to form a very hard, brittle martensitic structure. This is followed by tempering (reheating to a lower temperature) to reduce brittleness and achieve the desired toughness/hardness balance.
+  \item \textbf{Result}: High strength and good toughness.
+\end{itemize}
+
+\subsubsection{Austempering}
+\begin{itemize}
+  \item \textbf{Process}: An interrupted quench where the steel is cooled rapidly to a temperature above martensite formation and held (isothermally transformed) to form bainite.
+  \item \textbf{Result}: Good strength and ductility with less distortion than conventional quench and temper.
+\end{itemize}
+
+\subsubsection{Martempering}
+\begin{itemize}
+  \item \textbf{Process}: Similar to austempering, but the part is cooled through the martensite transformation range and then tempered. The martensite transformation range is the specific temperature interval during rapid cooling where austenite in a steel transforms into martensite, starting at the Martensite Start (Ms) temperature and ending at the Martensite Finish (Mf) temperature. The goal is to minimize thermal stress and distortion.
+  \item \textbf{Result}: Martensite structure with reduced risk of cracking and distortion.
+\end{itemize}
+
+
+\subsection{Case Hardening}
+These processes harden only the outer surface ("case") of the part while maintaining a softer, tougher interior ("core"). Ideal for wear-resistant components that must withstand impact.
+\subsubsection{Carburizing}
+\begin{itemize}
+  \item \textbf{Process}: The part is heated in a carbon-rich environment (gas, solid, or liquid). Carbon diffuses into the surface, creating a high-carbon layer. It is subsequently quenched to harden the carbon-rich case.
+  \item \textbf{Result}: A hard, wear-resistant surface over a tough core.
+\end{itemize}
+
+
+\subsubsection{Nitriding}
+\begin{itemize}
+  \item \textbf{Process}: The part is heated in an atmosphere of ammonia gas or plasma (ion nitriding). Nitrogen atoms diffuse into the surface, forming very hard nitride compounds without the need for a quenching step.
+  \item \textbf{Result}: Extremely hard surface, excellent wear and fatigue resistance, minimal distortion.
+\end{itemize}
+
+
+\subsubsection{Carbonitriding}
+\begin{itemize}
+  \item \textbf{Process}: Similar to gas carburizing, but the atmosphere contains both carbon and nitrogen. This allows for hardening at a slightly lower temperature.
+  \item \textbf{Result}: A hard case with better hardenability than carburizing alone.
+\end{itemize}
+
+
+\subsubsection{Induction Hardening}
+\begin{itemize}
+  \item \textbf{Process}: An alternating current is passed through a copper coil, generating a localized magnetic field that rapidly heats the surface of a steel part. The part is then immediately quenched.
+  \item \textbf{Result}: A localized, hard surface layer. Very fast and efficient.
+\end{itemize}
+
+
+\subsubsection{Flame Hardening}
+\begin{itemize}
+  \item \textbf{Process}: Similar to induction hardening, but an oxy-acetylene flame is used to heat the surface instead of an electromagnetic induction.
+  \item \textbf{Result}: A hard surface layer. More suitable for large parts or low-volume production.
+\end{itemize}
+
+
+\subsection{Hardening by Microstructural Control}
+These methods strengthen a material by altering its internal structure through chemistry or processing.
+\subsubsection{Precipitation Hardening}
+\begin{itemize}
+  \item \textbf{Process}: Primarily for aluminum, magnesium, nickel, and stainless steels. The alloy is solution treated, quenched, and then aged (heated to a moderate temperature). Fine particles "precipitate" within the matrix, impeding dislocation movement.
+  \item \textbf{Result}: Very high strength-to-weight ratio.
+\end{itemize}
+
+\subsubsection{Work Hardening}
+\begin{itemize}
+  \item \textbf{Process}: A metal is plastically deformed at a temperature below its recrystallization point (e.g., by cold rolling, hammering, drawing). This deformation increases dislocation density, making further deformation more difficult.
+  \item \textbf{Result}: Increased strength and hardness, but decreased ductility.
+\end{itemize}
+
+\subsubsection{Solid Solution Hardening}
+\begin{itemize}
+  \item \textbf{Process}: The base metal (solvent) has atoms of an alloying element (solute) dissolved within its crystal lattice. The solute atoms distort the lattice, creating stress fields that impede dislocation motion.
+  \item \textbf{Result}: A stronger, harder alloy than the pure metal. (e.g., Brass is harder than pure copper due to zinc atoms in solution).
+\end{itemize}
+
+
+\subsection{Thermo-Mechanical Treatments}
+These combine controlled plastic deformation and heat treatment to achieve superior properties.
+\subsubsection{Ausforming}
+\begin{itemize}
+  \item \textbf{Process}: Steel is plastically deformed in a metastable austenitic condition (after cooling from austenitizing but before transforming to pearlite or bainite) and then quenched to form martensite.
+  \item \textbf{Result}: Exceptional combination of strength and toughness.
+\end{itemize}
+
+
+
+
+
+
+
+
+
