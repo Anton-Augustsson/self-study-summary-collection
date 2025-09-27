@@ -109,25 +109,3 @@
   \large Volume #1 \\
     #2}}
 
-% Doppler effect illustration
-
-\tikzstyle{myarr}=[-{Latex[length=3,width=2]}]
-\tikzstyle{mydoublearr}=[{Latex[length=3,width=2]}-{Latex[length=3,width=2]}]
-\tikzset{
-  pics/eye/.style={
-    code={
-      \draw (#1-180:0.5) to[out=#1,in=#1-240,looseness=0.9] (#1-90:0.25)
-            (#1-180:0.5) to[out=#1,in=#1-130,looseness=0.9] (#1-270:0.25);
-      \clip (#1-180:0.47) to[out=#1,in=#1-240,looseness=0.9] (#1-90:0.24) --
-            (#1-270:0.242) to[out=#1-130,in=#1,looseness=0.9] cycle;
-      \draw[very thin,top color=white,bottom color=red!60!black!20,shading angle=#1-120]
-         (#1-180:0.48) circle(0.45);
-      \fill[brown!30!black,rotate=#1-180]
-        (0.07,0) ellipse({0.05} and 0.12);
-      \fill[black,rotate=#1-180]
-        (0.05,0) ellipse({0.03} and 0.06);
-  }},
-  pics/eye/.default=180
-}
-
-
