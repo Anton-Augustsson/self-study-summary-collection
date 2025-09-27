@@ -1,0 +1,42 @@
+\documentclass{book}
+\usepackage{../../preamble}
+\addbibresource{bibliography.bib}
+
+\volumeTitle{1}{Microbiology and Biochemistry}
+\author{Anton Augustsson}
+
+\begin{document}
+
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STUDY PLAN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Study Plan}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COURSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pathMBaBC}{chapters}
+
+\newcommand{\pathBCI}{\pathMBaBC/Biological-Chemistry-I} \input{\pathBCI/bcI-summary.tex} \newpage
+\newcommand{\pathBCII}{\pathMBaBC/Biological-Chemistry-II} \input{\pathBCII/bcII-summary.tex} \newpage
+\newcommand{\pathIB}{\pathMBaBC/Introductory-Biology} \input{\pathIB/ib-summary.tex} \newpage
+\newcommand{\pathPOCS}{\pathMBaBC/Principles-of-Chemical-Science} \input{\pathPOCS/pocs-summary.tex} \newpage
+\newcommand{\pathSM}{\pathMBaBC/Soil-Microbiology} \input{\pathSM/sm-summary.tex} \newpage
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%\bibliographystyle{IEEEtran}
+%\bibliography{bibliography}
+
+\printbibliography
+
+
+\end{document}
