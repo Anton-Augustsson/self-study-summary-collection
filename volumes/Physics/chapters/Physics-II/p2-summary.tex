@@ -3,8 +3,8 @@ This compendium is based on the course notes of MIT 8.02 2004 \url{https://web.m
 All credits go to Dr. Sen-ben Liao, Dr. Peter Dourmashkin, and Professor John W. Belcher at MIT for the lecture notes and Professor Walter Lewin for the inspiring lectures. I can not guarantee the accuracy of this compendium and that it is a correct interpretation of the material and explanation provided by the lecture notes and lectures. Thus, for accurate information refer to the material that this compendium is based on. If a mistake is in the compendium it is most likely my fault and not the fault of the material in which this compendium is based on.
 
 
-%\section{Introduction}
-\section{Electric Charges}
+\section{Introduction}
+\subsection{Electric Charges}
 %\section{Electric Charges and Forces and Coulomb's Law - Polarization}
 An atom comprises positively charged protons, neutrally charged neutrons, and negatively charged electron.
 An atom or molecule can have a neutral, positive or negative electric charge. A negatively charged atom or molecule is called a \textit{negative ion}, meaning to a surplus of electrons compared to protons.
@@ -16,7 +16,7 @@ An intuitive way of thinking why same changed ions repel each other and why oppo
 
 Conductors allows electrons to flow ``freely'', there is always some resistance. Continuing with our metaphor we can think of it as a channel where the voice of the loud and talkative person can travel far and reach the quite, shy listener. And non-conductors are like a wall where the voice does not travel through.
 
-\section{Polarization}
+\subsection{Polarization}
 
 If we have a positive charge object like we see with the rod in Figure~\ref{fig:charged-rod} placed next to a conductive object like we see with the cloud shaped object next to the rod, the conductive object will have a negative and a positive charged side. Only $10^{13}$ of electrons that was originally on the left side might have moves to the right side.
 
@@ -120,14 +120,15 @@ What happens in Figure~\ref{fig:charged-rod} mostly due to induction where the a
         \label{fig:three graphs}
 \end{figure}
 
-\section{Electric Forces and Coulomb's Law}
+\section{Coulomb's Law}
+\subsection{Electric Forces and Coulomb's Law}
 %31:50 Coulomb's Law 
 %40:00 what holds the world together, the autom scale the neculer force, then the electric force and on the size of planets and galixies it is the gravitational force. why
 Coulomb's law describes the force resulted by two charged points $q_1$ and $q_2$, separated by a distance $r$ in vacuum.
 \begin{equation}
   \vec{\boldsymbol{F}}_{12} = k_e \frac{q_1q_2}{r^2}\hat{\boldsymbol{r}}
 \end{equation}
-where $k_e$ is Coulomb's constant. $\hat{\boldsymbol{r}}$ is the unit vector directed from $q_1$ and $q_2$ defined as $\hat{\boldsymbol{r}}=\vec{\boldsymbol{r}}/r$.
+where $k_e$ is Coulomb's constant. The director $\hat{\boldsymbol{r}}$ is the unit vector directed from $q_1$ and $q_2$ defined as $\hat{\boldsymbol{r}}=\vec{\boldsymbol{r}}/r$. The direction of the force is determined by the sign of $q_1q_2\hat{\boldsymbol{r}}$, $(+)(+)=$ the same direction of $\hat{\boldsymbol{r}}$, $(-)(-)=$ same direction, $(+)(-)=$ opposite direction, and $(-)(+)=$ opposite direction.
 See Figure~\ref{fig:coulomb-illustration} for the illustration of Coulomb's law.
 
 \begin{figure}[H]
@@ -154,8 +155,8 @@ See Figure~\ref{fig:coulomb-illustration} for the illustration of Coulomb's law.
   \end{scope}
 
 	\end{tikzpicture}
-  \caption{Repel.}
-  \label{fig:coulomb-illustration-repel}
+       \caption{Repel (P - P).}
+  \label{fig:coulomb-illustration-repel-p-p}
   \end{subfigure}
      \hfill
   \begin{subfigure}[b]{0.45\textwidth}
@@ -167,6 +168,7 @@ See Figure~\ref{fig:coulomb-illustration} for the illustration of Coulomb's law.
     \draw (0,0) -- (0,-1);
     \draw (4,0) -- (4,-1);
     \draw[<->](0.1,-0.8)--(3.9,-0.8) node[midway,fill=white]{$r$};
+    \draw[thick, ->] (4,0) -- (4.5,0) node[above=0.8mm] {$\hat{\boldsymbol{r}}$}; 
 
     \draw[thick, blue!60, ->] (0,0) -- (1,0) node[above=1mm] {$\vec{\boldsymbol{F}}_{21}$};  
     \draw[thick, blue!60, ->] (4,0) -- (3,0) node[above=1mm] {$\vec{\boldsymbol{F}}_{12}$}; 
@@ -179,13 +181,65 @@ See Figure~\ref{fig:coulomb-illustration} for the illustration of Coulomb's law.
   \end{scope}
 
 	\end{tikzpicture}
-  \caption{Attracted.}
-  \label{fig:coulomb-illustration-attracted}
+  \caption{Attracted (P - N).}
+  \label{fig:coulomb-illustration-attracted-p-n}
+  \end{subfigure}
+\begin{subfigure}[b]{0.45\textwidth}
+    \centering
+  \begin{tikzpicture}
+
+	\begin{scope}[rotate=15] 
+    \draw[thick, blue!60, ->] (0,0) -- (-1,0) node[below=1mm] {$\vec{\boldsymbol{F}}_{21}$};  
+    \draw[thick, blue!60, ->] (2,0) -- (3,0) node[below=1mm] {$\vec{\boldsymbol{F}}_{12}$}; 
+    \draw[thick, ->] (2,0) -- (2.5,0) node[above=0.8mm] {$\hat{\boldsymbol{r}}$}; 
+
+    \draw[dashed] (0,0) -- (2,0); 
+    \draw (0,0) -- (0,-1);
+    \draw (2,0) -- (2,-1);
+    \draw[<->](0.1,-0.8)--(1.9,-0.8) node[midway,fill=white]{$r$};
+
+    \filldraw[color=blue!60, fill=blue!10] (0,0) circle (2mm) node[above=2mm] {$q_1$};
+    \node at (0,0) {$+$}; 
+    \filldraw[color=blue!60, fill=blue!10] (2,0) circle (2mm) node[above=2mm] {$q_2$};
+    \node at (2,0) {$+$}; 
+  \end{scope}
+
+	\end{tikzpicture}
+  \caption{Repel (N - N).}
+  \label{fig:coulomb-illustration-repel-n-n}
+  \end{subfigure}
+     \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+  \begin{tikzpicture}
+
+	\begin{scope}[rotate=15] 
+    \draw[dashed] (0,0) -- (4,0); 
+    \draw (0,0) -- (0,-1);
+    \draw (4,0) -- (4,-1);
+    \draw[<->](0.1,-0.8)--(3.9,-0.8) node[midway,fill=white]{$r$};
+    \draw[thick, ->] (4,0) -- (4.5,0) node[above=0.8mm] {$\hat{\boldsymbol{r}}$}; 
+
+    \draw[thick, blue!60, ->] (0,0) -- (1,0) node[above=1mm] {$\vec{\boldsymbol{F}}_{21}$};  
+    \draw[thick, blue!60, ->] (4,0) -- (3,0) node[above=1mm] {$\vec{\boldsymbol{F}}_{12}$}; 
+
+
+    \filldraw[color=blue!60, fill=blue!10] (0,0) circle (2mm) node[above=2mm] {$q_1$};
+    \node at (0,0) {$-$}; 
+    \filldraw[color=red!70, fill=red!30] (4,0) circle (2mm) node[above=2mm] {$q_2$};
+    \node at (4,0) {$+$}; 
+  \end{scope}
+
+	\end{tikzpicture}
+  \caption{Attracted (N - P).}
+  \label{fig:coulomb-illustration-attracted-n-p}
   \end{subfigure}
 
   \caption{Illustration of Coulomb's Law.}
   \label{fig:coulomb-illustration}
+
 \end{figure}
+
 
 Coulomb's constant $k_e$ is defined as:
 \begin{equation*}
@@ -286,12 +340,26 @@ The angle of the force from the x-axis is
 
 
 \section{Electric Fields}
-%Force fields, shows the vectors of attraction and repelence due to electrical charges
-%7:00 Sum of the individual elements of the charges
-%Are also field lines not just a vector field
-%25:55 Whould be in to have a field shouwing an atom that the electrons want to spend more time on one side than the other
-%Dipole
 
+An electric field $\vec{\boldsymbol{E}}$ is defined as the electric force per unit charge experienced by a small positive test charge placed at a point in space. The small positive test charge will be canceled out in the derivations so the actual value of test charge $q_0$ is not important, but we say that it is infinitesimally small.
+\begin{equation*}
+  \vec{\boldsymbol{E}} = \lim_{q_0\to0}\frac{\vec{\boldsymbol{F}}}{q_0}
+\end{equation*}
+And with Coulomb's law we get:
+\begin{equation*}
+  \vec{\boldsymbol{E}} = \frac{1}{4\pi\varepsilon_0}\frac{Qq_0}{q_0r^2}\hat{\boldsymbol{r}} 
+  = \frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\hat{\boldsymbol{r}} 
+\end{equation*}
+Where $Q$ is a stationary charge.
+
+Now for all charges in a given space $q_i$, we can use the super position principle and get the following electric fields:
+\begin{equation*}
+  \vec{\boldsymbol{E}} = \sum_i\vec{\boldsymbol{E}}_i = \sum_i\frac{1}{4\pi\varepsilon_0}\frac{q_i}{r^2}\hat{\boldsymbol{r}} 
+\end{equation*}
+
+
+\subsection{Electric Fields Lines}
+A convenient way of representing the electric fields are with electric field lines.
 \begin{figure}[H]
 \centering
   \begin{subfigure}[b]{0.45\textwidth}
@@ -405,9 +473,175 @@ The angle of the force from the x-axis is
 \end{figure}
 
 
+\subsection{Force Exerted on a Charged Particle in a Constant Electric Field}
+Consider a charged particle $+q$ in an electric field formed by a positive and negative infinitely large source plates, as shown in Figure~\ref{fig:electric-field-of-source-plates}. 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \filldraw[color=red!70, fill=red!30] (0,3.5) rectangle (7,3.9);
+  \filldraw[color=blue!60, fill=blue!10] (0,0) rectangle (7,0.4);
+  \foreach \x in {0,...,6} {
+	  \node at (\x+0.5,3.7) {$+$};
+	  \node at (\x+0.5,0.2) {$-$};
+  }
+  \draw[<->] (0.2,0.4) -- (0.2,3.5) node[midway, fill=white] {$y$};
+  \draw[red!70, ->] (6.8,3.5) -- (6.8,0.4) node[midway, right] {$\vec{\boldsymbol{E}}$};
+  \draw[dashed] (3.5,3) -- (3.5,0.9);
 
-%\section{Coulomb's Law}
+  \filldraw[color=red!70, fill=red!30] (3.5,3) circle (2mm) node[right=2mm] {$q$};
+  \filldraw[color=red!70, fill=red!30] (3.5,0.9) circle (2mm);
+
+	\node at (2.5,2.8) {$\vec{\boldsymbol{V}}=\vec{\boldsymbol{0}}$};
+  \draw[thick, -Stealth] (4,1.3) -- (4,0.6) node[midway, right] {$\vec{\boldsymbol{V}}$};
+
+\end{tikzpicture}
+  \caption{A charge $q$ moving in a constant electric field formed by two infinity large source plates.}
+  \label{fig:electric-field-of-source-plates}
+\end{figure}
+
+The electric field between the source plates is $\vec{\boldsymbol{E}}=-E_y\hat{\boldsymbol{j}}$, with $E_y>0$. The charge $q$ will experience a downward force
+\begin{equation*}
+  \vec{\boldsymbol{F}}_e = q \vec{\boldsymbol{E}}
+\end{equation*}
+
+With Newton's Second Law $F=ma$, the net force will cause the charge to accelerate with an acceleration
+\begin{equation*}
+  \vec{\boldsymbol{a}} = \frac{\vec{\boldsymbol{F}}_e}{m} = \frac{q\vec{\boldsymbol{E}}}{m}
+  = -\frac{qE_y}{m}\hat{\boldsymbol{j}}
+\end{equation*}
+
+Remember that the standard kinematics is described as $v_f^2=v_i^2+2ad$, where $v_f$ is the final velocity and $v_i$ is the initial velocity. The final velocity of the particle hitting the negative charged plate is therefore:
+\begin{equation*}
+  v_y = \sqrt{2|a_y|y} = \sqrt{\frac{2yqE_y}{m}}
+\end{equation*}
+
+Thus, the kinetic energy of the particle when it hits the plate is:
+\begin{equation*}
+  K = \frac{1}{2}mv_y^2 = qE_yy
+\end{equation*}
+
+
+
+
+% TODO: calculation of electric field of a dipole
+% TODO: calculation of tourque of a dipole
+% TODO: potential energy of a dipole
+% TODO: charge density
+
+
+
 \section{Electric Potential}
+% TODO: electric potential in a uniform field
+% TODO: electric potential compared by two points
+% TODO: electric potential in a system of charges
+% TODO: deriving electric fields from electric potential
+% TODO: Graidiant and endpoints
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+  \centering
+\begin{tikzpicture}
+  \foreach \d in {0,0.5,...,3.5} {
+    \draw[red!70, -Stealth] (-0.2,\d) -- (3.8,\d);
+    \draw[blue!60, dashed] (\d,-0.2) -- (\d,3.8);
+  }
+  \node at (4.1,3.3) {$\vec{\boldsymbol{E}}$};
+\end{tikzpicture}
+  \caption{}
+  %\label{fig:electric-field-line-for-positive}
+\end{subfigure}
+    \hfill
+\begin{subfigure}[b]{0.26\textwidth}
+  \centering
+\begin{tikzpicture}[
+      scale=0.70,
+      attach arrow/.style args={#1}{
+          decoration={
+              markings,
+              mark=at position 0 with {\pgfextra{%
+                  \pgfmathsetmacro{\tmpArrowTime}{\pgfkeysvalueof{/tikz/arc arrow/length}/(\pgfdecoratedpathlength)}%
+                  \xdef\tmpArrowTime{\tmpArrowTime}}},
+              mark=at position {#1-3*\tmpArrowTime} with {\coordinate(@1);},
+              mark=at position {#1-2*\tmpArrowTime} with {\coordinate(@2);},
+              mark=at position {#1-1*\tmpArrowTime} with {\coordinate(@3);},
+              mark=at position {#1+\tmpArrowTime/2} with {\coordinate(@4);
+                  \draw[-{Stealth[length=\pgfkeysvalueof{/tikz/arc arrow/length},bend]}]
+                    plot[smooth] coordinates {(@1) (@2) (@3) (@4)};},
+          },
+          postaction=decorate,
+      },
+      attach arrow/.default=0.5,
+      arc arrow/.cd, length/.initial=2mm,
+  ]
+  \node[draw=red!70, fill=red!30, circle, minimum size=6mm] (Q) {$+$};
+  
+  % Radial inward field lines
+  \foreach \a in {0,30,...,330} {
+    \draw[red!70, thick, attach arrow={1/2}] (Q) -- ++(\a:3);
+  }
+  \draw[blue!60, dashed] (L) circle (8mm);
+  \draw[blue!60, dashed] (L) circle (14mm);
+  \draw[blue!60, dashed] (L) circle (24mm);
+\end{tikzpicture}
+  \caption{}
+  %\label{fig:electric-field-line-for-positive}
+\end{subfigure}
+    \hfill
+\begin{subfigure}[b]{0.4\textwidth}
+    \centering
+\begin{tikzpicture}[
+    scale=0.7,
+    attach arrow/.style={
+        decoration={
+            markings,
+            mark=at position 0 with {\pgfextra{%
+                \pgfmathsetmacro{\tmpArrowTime}{\pgfkeysvalueof{/tikz/arc arrow/length}/(\pgfdecoratedpathlength)}%
+                \xdef\tmpArrowTime{\tmpArrowTime}}},
+            mark=at position {#1-3*\tmpArrowTime} with {\coordinate(@1);},
+            mark=at position {#1-2*\tmpArrowTime} with {\coordinate(@2);},
+            mark=at position {#1-1*\tmpArrowTime} with {\coordinate(@3);},
+            mark=at position {#1+\tmpArrowTime/2} with {\coordinate(@4);
+                \draw[-{Stealth[length=\pgfkeysvalueof{/tikz/arc arrow/length},bend]}] plot[smooth]
+                coordinates {(@1) (@2) (@3) (@4)};},
+        },
+        postaction=decorate,
+    },
+    attach arrow/.default=0.5,
+    arc arrow/.cd,length/.initial=2mm,
+    %nodes={circle,minimum size=2.4em,font=\bfseries\sffamily}
+]
+  \path 
+      node[draw=red!70, fill=red!30, circle, minimum size=4mm] (L){$+$} 
+      (2.5,0) node[draw=blue!60, fill=blue!10, circle, minimum size=4mm] (R){$-$};
+  \foreach \X in {0,...,4}
+   {\draw[red!70, thick, attach arrow] (L) 
+   to[bend left={-70+\X*35},looseness=1.6] 
+   (R);}
+  \foreach \X in {0,...,5}
+   {\draw[red!70, thick,attach arrow/.list={1/2}] (L) to[bend left=16-8*\X] ++ (70+\X*44:3);
+   \draw[red!70, thick,attach arrow/.list={1/2}] (R)+(180+70+\X*44:3) 
+   to[bend right=16-8*\X] 
+    (R);}
+  \draw[blue!60, dashed] (L) ellipse (8mm and 7mm);
+  \draw[blue!60, dashed] ([xshift=-1.4mm]L) ellipse (10mm and 9.5mm);
+  \draw[blue!60, dashed] ([xshift=-3.6mm]L) circle (14mm);
+  \draw[blue!60, dashed] ([xshift=-8.2mm]L) circle (20mm);
+  \draw[blue!60, dashed] (1.2,-3) -- (1.2,3);
+  \draw[blue!60, dashed] (R) ellipse (8mm and 7mm);
+  \draw[blue!60, dashed] ([xshift=1.4mm]R) ellipse (10mm and 9.5mm);
+  \draw[blue!60, dashed] ([xshift=3.6mm]R) circle (14mm);
+  \draw[blue!60, dashed] ([xshift=8.2mm]R) circle (20mm);
+\end{tikzpicture}
+  \caption{}
+  %\label{fig:electric-field-line-negative}
+  \end{subfigure}
+  \caption{A charge $q$ moving in a constant electric field formed by two infinity large source plates.}
+  \label{fig:equipotential-curves-and-electric-field-lines}
+\end{figure}
+
+
+
 \section{Gauss' Law}
 \section{Capacitors}
 \section{Current and Resistance}
