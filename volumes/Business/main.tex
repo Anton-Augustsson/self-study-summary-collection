@@ -1,5 +1,6 @@
 \documentclass{book}
-\usepackage{preamble}
+\usepackage{../../preamble}
+\addbibresource{bibliography.bib}
 
 \title{Self-Study Summary Collection}
 \author{Anton Augustsson}
@@ -26,12 +27,12 @@ The chapters are in chronological order the courses was taken and as no relation
 \newpage
 
 \section{Business}
-\resizebox{0.9\textwidth}{!}{\input{diagrams/study-plan/study-plan-business.latex}} \newpage
+\resizebox{0.9\textwidth}{!}{\input{../../diagrams/study-plan/study-plan-business.latex}} \newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COURSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\pathBU}{../../chapters/Business}
+\newcommand{\pathBU}{chapters}
 
 % CPA 
 \newcommand{\pathAUD}{\pathBU/Auditing-and-Assurance} \input{\pathAUD/aud-summary.tex} \newpage
@@ -59,8 +60,7 @@ The chapters are in chronological order the courses was taken and as no relation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\bibliographystyle{IEEEtran}
-\bibliography{bibliography}
+\printbibliography
 
 
 \end{document}
