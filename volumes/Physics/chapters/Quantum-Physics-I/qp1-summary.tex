@@ -286,7 +286,20 @@ The Standard Model categorizes particles into \textit{fermions} and \textit{boso
 
 \begin{figure}[H]
    \centering 
-    \begin{tikzpicture}[x=1.2cm, y=1.2cm]
+  \begin{tikzpicture}[
+      brace/.style = { decorate, decoration={brace, amplitude=5pt} },
+      mbrace/.style = { decorate, decoration={brace, amplitude=5pt, mirror} },
+      label/.style = { black, midway, scale=0.5, align=center },
+      toplabel/.style = { label, above=.5em, anchor=south },
+      leftlabel/.style = { label,rotate=-90,left=.5em,anchor=north },   
+      bottomlabel/.style = { label, below=.5em, anchor=north },
+      force/.style = { rotate=-90,scale=0.4 },
+      round/.style = { rounded corners=2mm },
+      legend/.style = { right,scale=0.4 },
+      nosep/.style = { inner sep=0pt },
+      generation/.style = { anchor=base },
+      x=1.2cm, y=1.2cm,
+    ]
     \draw[round] (-0.5,0.5) rectangle (4.4,-1.5);
     \draw[round] (-0.6,0.6) rectangle (5.0,-2.5);
     \draw[round] (-0.7,0.7) rectangle (5.6,-3.5);

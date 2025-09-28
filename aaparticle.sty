@@ -1,26 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{aaparticle}[2024/12/19 Custom package]
+\ProvidesPackage{aaparticle}[2025/09/28 Custom package]
 
 \RequirePackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shadows.blur}
-\usetikzlibrary{decorations.pathreplacing}
-\usepackage{etoolbox}
-
-\tikzset{%
-        brace/.style = { decorate, decoration={brace, amplitude=5pt} },
-       mbrace/.style = { decorate, decoration={brace, amplitude=5pt, mirror} },
-        label/.style = { black, midway, scale=0.5, align=center },
-     toplabel/.style = { label, above=.5em, anchor=south },
-    leftlabel/.style = { label,rotate=-90,left=.5em,anchor=north },   
-  bottomlabel/.style = { label, below=.5em, anchor=north },
-        force/.style = { rotate=-90,scale=0.4 },
-        round/.style = { rounded corners=2mm },
-       legend/.style = { right,scale=0.4 },
-        nosep/.style = { inner sep=0pt },
-   generation/.style = { anchor=base }
-}
+\usetikzlibrary{calc,positioning,decorations.pathreplacing}
+\RequirePackage{etoolbox}
 
 \newcommand\particle[7][white]{%
   \begin{tikzpicture}[x=1cm, y=1cm]
@@ -44,3 +27,4 @@
     \ifstrempty{#2}{}{\node at(0.1,-0.5)  [nosep,anchor=west,scale=1.5] {#2};}
   \end{tikzpicture}
 }
+
