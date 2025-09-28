@@ -6,24 +6,41 @@
 %
 % https://tex.stackexchange.com/questions/339923/place-preamble-packages-in-a-different-tex-file
 
+% Fundamental packages
 \usepackage[utf8]{inputenc} % standard english symbols
-\usepackage[english]{babel} % set approbriate languege
+\usepackage[english]{babel} % set appropreate language
 \usepackage[top=1.3in,bottom=1.3in,right=1.3in,left=1.3in]{geometry} % page setup
+\usepackage[style=ieee]{biblatex}
+
+% General packages
+\usepackage{subcaption} % caption for subfigures
+\usepackage{hyperref} % for hyper text link
+\usepackage{booktabs} % enhaned tables
+\usepackage{xcolor} % tints, shades, tones, and a mixes of arbitrary colors
+\usepackage{colortbl} % coloring for tables
+
+% Images packages
 \usepackage{graphicx} % for inserting images
 \usepackage{float} % for image position H
 \usepackage{svg} % for including svg images
-\usepackage[style=ieee]{biblatex}
 
+% Math packages
+\usepackage{amsmath} % general math package
+\usepackage{amssymb} % general math symbols
+\usepackage{amsfonts} % general math fonts
+\usepackage{mathtools} % enhances amsmath
+\usepackage{siunitx} % for SI units
+\usepackage{braket} % for typeset bra-ket notation
+\usepackage{txfonts} % more fonts and symbols
+\usepackage{upgreek} % for symbols starting with \up
+
+% Code packages
 \usepackage{minted} % for c++ code
+\usepackage{listings} % for code
 
-%\usepackage{gensymb}
-\usepackage{upgreek}
-\usepackage{subcaption}
-\usepackage{hyperref}
-\usepackage{listings}
+% Tikz packages and libraries
 \usepackage{tikz}
 \usepackage{tikzsymbols}
-%\usepackage{tikz-uml}
 \usetikzlibrary{shapes}
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{decorations.pathmorphing}
@@ -33,29 +50,13 @@
 \usetikzlibrary{intersections,decorations.markings}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{bending,shapes.misc}
-%\setmathfont{XITS Math}
-\usepackage{pgfplots}
-\usepgfplotslibrary{polar} % This is the key library
-%\usepackage{aeguill}
-%\usepackage[table]{xcolor} % rowcolor
-%\usepackage{}
-\usepackage{booktabs}
-\usepackage{xcolor, colortbl}
-%\usepackage[dvipsnames]{xcolor}
 
+% Pgfplots packages, libraries, and options
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
 \pgfplotsset{compat=1.17}
 
-\definecolor{Orchid}{HTML}{DA70D6}
-
-% Math stuff
-\usepackage{siunitx}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathtools}
-\usepackage{amsfonts}
-\usepackage{braket}
-\usepackage{txfonts}
-
+% Volume Title
 \newcommand{\volumeTitle}[2]{\title{%
   Self-Study Summary Collection \\
   \large Volume #1 \\
