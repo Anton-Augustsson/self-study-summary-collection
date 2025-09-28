@@ -488,7 +488,7 @@ Consider a charged particle $+q$ in an electric field formed by a positive and n
   \draw[red!70, ->] (6.8,3.5) -- (6.8,0.4) node[midway, right] {$\vec{\boldsymbol{E}}$};
   \draw[dashed] (3.5,3) -- (3.5,0.9);
 
-  \filldraw[color=red!70, fill=red!30] (3.5,3) circle (2mm) node[right=2mm] {$q$};
+  \filldraw[dotted, very thick, color=red!70, fill=white] (3.5,3) circle (2mm) node[right=2mm] {$q$};
   \filldraw[color=red!70, fill=red!30] (3.5,0.9) circle (2mm);
 
 	\node at (2.5,2.8) {$\vec{\boldsymbol{V}}=\vec{\boldsymbol{0}}$};
@@ -531,8 +531,132 @@ Thus, the kinetic energy of the particle when it hits the plate is:
 
 
 \section{Electric Potential}
-% TODO: electric potential in a uniform field
-% TODO: electric potential compared by two points
+Electric potential energy is similar to gravitational potential energy. A mass higher up has more potential energy, just like a charge closer to a source charge has more electrical potential energy.
+
+The electric potential (measured in Volts) is the potential energy per unit charge. This is analogous to height in gravity. The height of a cliff is the same for a tennis ball or a gold ball; it's a property of the location. Similarly, electric potential is a property of the point in space, set by the source charge, independent of any test charge placed there.
+\begin{equation*}
+  V=\frac{U}{q}
+\end{equation*}
+where $V$ is the electric potential defined in Volts $(\si{\volt})$, $U$ is the electric potential energy defined in Joules $(\si{\joule})$, and $q$ is the charge defined in Coulombs $(\si{\coulomb})$.
+However, a more useful scale for electric potential is the energy acquires/losses when moving through a potential difference of one volt, we denote it as $(\si{\electronvolt})$.
+
+
+\subsection{Electric Potential in a Uniform Field}
+Consider a positive charge $+q$ moving in the direction of a uniform electric field $\vec{\boldsymbol{E}} = E_0\hat(-{\boldsymbol{j}})$, as shown in Figure~\ref{fig:charge-moving-in-a-uniform-electric-field}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \node[circle, draw=red!70, very thick, dotted, minimum size=2mm, text=black] (start) at (1,4) {$+$};
+  \node[circle, draw=red!70, fill=red!30, minimum size=2mm, text=black] (end) at (1,2) {$+$};
+  \draw[dashed] (start) -- (end);
+  \draw[thick] (start) -- ++(1,0);
+  \draw[thick] (end) -- ++(1,0);
+  \draw[thick, latex-latex] ([xshift=5mm]start.east) -- ([xshift=5mm]end.east) node[midway, fill=white] {$d$};
+  \node at ([xshift=-2mm]start.west) {$A$};
+  \node at ([xshift=-2mm]end.west) {$B$};
+  \node at ([xshift=1.8mm,yshift=1.5mm]end.north) {$q$};
+
+  \node at (0, 1) {$\vec{\boldsymbol{E}}$};
+	\begin{scope}[xshift=4mm] 
+    \foreach \x in {0,1,...,5} {
+      \draw[-latex, thick, red!70] (\x*0.4, 1.5) -- (\x*0.4, 0);
+    }
+	\end{scope}
+
+\end{tikzpicture}
+  \caption{A charge $q$ moving in a uniform electric field}
+  \label{fig:charge-moving-in-a-uniform-electric-field}
+\end{figure}
+
+The potential difference between point $A$ and $B$ is
+\begin{equation*}
+  \Delta V = V_B - V_A = -\int_A^B \vec{\boldsymbol{E}} \cdot d\vec{\boldsymbol{s}} = -E_0\int_A^B ds = -E_0d < 0
+\end{equation*}
+Since $-E_0d < 0$, $B$ has a lower electric potential than $A$. The electric field lines indicate where the electric potential is higher, since the lines points from higher potential to lower.
+
+Figure~\ref{fig:potantial-difference-in-a-uniform-electric-field} illustrates the difference in electric potential between two points $A$ and $B$ where they are not parallel to the electric field $\vec{\boldsymbol{E}}$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+  \node at (3, 0.6) {$\vec{\boldsymbol{E}}$};
+	\begin{scope}[xshift=4mm] 
+    \foreach \x in {0,1,...,5} {
+      \draw[-latex, thick, red!70] (\x*0.5, 4) -- (\x*0.5, 0);
+    }
+	\end{scope}
+
+  \node[circle, fill, inner sep=1.2pt] (A) at (1.2,3.5) {};
+  \node[circle, fill, inner sep=1.2pt] (B) at (2.2,0.7) {};
+  \node[circle, fill, inner sep=1.2pt] (C) at (1.2,0.7) {};
+
+  \draw ([yshift=-7mm]A.south) arc[start angle=-90, end angle=-70, radius=7mm] node[midway, below] {\small $\theta$};
+
+  \draw[very thick, -latex] (A) -- (B) node[midway, right=1mm] {$\vec{\boldsymbol{s}}$};
+  \draw[thick, dashed] (A) -- (C);
+  \draw[thick, dashed] (C) -- (B);
+
+  \node[above] at (A) {$A$};
+  \node[below] at (B) {$B$};
+  \node[below] at (C) {$C$};
+
+	\draw[decorate, decoration={brace, mirror, amplitude=3mm}] (A.west) -- (C.west) node[midway, left=3mm] {\small $y$};
+
+\end{tikzpicture}
+  \caption{Potential difference between two points in a uniform electric field}
+  \label{fig:potantial-difference-in-a-uniform-electric-field}
+\end{figure}
+The difference in electric potential between $C$ and $B$ is zero, since the path is perpendicular to the electric field. Thus, the difference in electric potential does not depend on the angle $\theta$, only the distance between $A$ and $C$, i.e., $y$.
+
+\begin{align*}
+  \Delta V &= V_B - V_A = \Delta V_{CA} + \Delta V_{BC} = \Delta V_{CA} \\
+  &= -\int_A^B \vec{\boldsymbol{E}} \cdot d\vec{\boldsymbol{s}} = -E_0s\cos{\theta} = -E_0y
+\end{align*}
+
+
+\subsection{Electric Potential due to a Point Charge}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+  \coordinate (CQ) at (0, 0);
+  \coordinate (CA) at ({sin(-15)*2}, {cos(15)*2});
+  \coordinate (CB) at ({sin(70)*4}, {cos(70)*4});
+  \coordinate (CR) at ({sin(30)*2.5}, {cos(30)*2.5});
+
+  \node[circle, fill=red!70, inner sep=1.2pt] (Q) at (CQ) {};
+
+  \draw[dashed, blue!30] ([xshift=2cm]Q) arc[start angle=0, end angle=120, radius=2cm];
+  \draw[dashed, blue!30] ([xshift=4cm]Q) arc[start angle=0, end angle=120, radius=4cm];
+
+  \node[circle, fill, inner sep=1.2pt] (A) at (CA) {};
+  \node[circle, fill, inner sep=1.2pt] (B) at (CB) {};
+
+  \draw[orange!70] (A) to[out=30, in=160] (CR) to[out=-20, in=150] (B);
+
+  \node[above] at (A) {$A$};
+  \node[right] at (B) {$B$};
+
+  \draw[thick, -latex] (Q) -- (A) node[midway, left] {$\vec{\boldsymbol{r}}_A$};
+  \draw[thick, -latex] (Q) -- (B) node[midway, below] {$\vec{\boldsymbol{r}}_B$};
+  \draw[thick, -latex] (Q) -- (CR) node[midway, right] {$\vec{\boldsymbol{r}}$};
+  \draw[thick, -latex, blue!60] (CR) -- ($(CR)!0.3!(B)$) node[below] {$d\vec{\boldsymbol{s}}$};
+  \draw[thick, -latex, blue!60] (Q) -- ($(Q)!0.3!(CR)$) node[midway, right] {$\hat{\boldsymbol{r}}$};
+  \draw[thin] (Q) -- ($(Q)!1.3!(CR)$);
+  \draw[thin, dashed] ($(Q)!1.1!(CR)$) -- ($(CR)!0.3!(B)$);
+
+	\draw[decorate, decoration={brace, mirror, amplitude=1mm}] ($(Q)!1.1!(CR)$) -- (CR)  node[near start, left] {\small $dr$};
+  \draw ($(CR)!0.07!(B)$) arc[start angle=-20, end angle=70, radius=2mm] coordinate[midway] (midarc); 
+  \draw (midarc) -- ++(0.5, 0.2) node[right] {\small $\theta$};
+  
+
+\end{tikzpicture}
+  \caption{Potential difference between two points due to a point charge.}
+  \label{fig:potantial-difference-due-to-point-charge}
+\end{figure}
+
+
 % TODO: electric potential in a system of charges
 % TODO: deriving electric fields from electric potential
 % TODO: Graidiant and endpoints
@@ -548,8 +672,8 @@ Thus, the kinetic energy of the particle when it hits the plate is:
   }
   \node at (4.1,3.3) {$\vec{\boldsymbol{E}}$};
 \end{tikzpicture}
-  \caption{}
-  %\label{fig:electric-field-line-for-positive}
+  \caption{} 
+  %\label{fig:electric-field-line-for-positive} 
 \end{subfigure}
     \hfill
 \begin{subfigure}[b]{0.26\textwidth}
@@ -639,6 +763,8 @@ Thus, the kinetic energy of the particle when it hits the plate is:
   \caption{A charge $q$ moving in a constant electric field formed by two infinity large source plates.}
   \label{fig:equipotential-curves-and-electric-field-lines}
 \end{figure}
+
+
 
 
 
