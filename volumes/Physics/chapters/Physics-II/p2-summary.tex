@@ -540,9 +540,18 @@ The electric potential (measured in Volts) is the potential energy per unit char
 where $V$ is the electric potential defined in Volts $(\si{\volt})$, $U$ is the electric potential energy defined in Joules $(\si{\joule})$, and $q$ is the charge defined in Coulombs $(\si{\coulomb})$.
 However, a more useful scale for electric potential is the energy acquires/losses when moving through a potential difference of one volt, we denote it as $(\si{\electronvolt})$.
 
+Similar to gravity where the negative work done, i.e.,
+\begin{equation*}
+  \Delta V_g = \frac{\Delta U_g}{m} = -\int_A^B(\vec{\boldsymbol{F}}_g/m)\cdot d\vec{\boldsymbol{s}} = - \int_A^B\vec{\boldsymbol{g}}\cdot d\vec{\boldsymbol{s}}
+\end{equation*}
+the electric potential difference between two points $A$ and $B$ is 
+\begin{equation}\label{eq:electric-potential-difference}
+  \Delta V = -\int_A^B(\vec{\boldsymbol{F}}_e/q_0)\cdot d\vec{\boldsymbol{s}} = -\int_A^B\vec{\boldsymbol{E}}\cdot d\vec{\boldsymbol{s}}
+\end{equation}
+
 
 \subsection{Electric Potential in a Uniform Field}
-Consider a positive charge $+q$ moving in the direction of a uniform electric field $\vec{\boldsymbol{E}} = E_0\hat(-{\boldsymbol{j}})$, as shown in Figure~\ref{fig:charge-moving-in-a-uniform-electric-field}.
+Consider a positive charge $+q$ moving in the direction of a uniform electric field $\vec{\boldsymbol{E}} = E_0(-\hat{\boldsymbol{j}})$, as shown in Figure~\ref{fig:charge-moving-in-a-uniform-electric-field}.
 
 \begin{figure}[H]
 \centering
@@ -616,6 +625,11 @@ The difference in electric potential between $C$ and $B$ is zero, since the path
 
 
 \subsection{Electric Potential due to a Point Charge}
+Consider a point charge $Q$. The field produced by $Q$ is $\vec{\boldsymbol{E}}=(Q/4\pi\varepsilon_0r^2)\hat{\boldsymbol{r}}$. From Figure~\ref{fig:potantial-difference-due-to-point-charge} we see that $\hat{\boldsymbol{r}}d\vec{\boldsymbol{s}}=ds\cos{\theta}=dr$. The electric potential difference between two points $A$ and $B$ is therefor
+\begin{equation*}
+  \Delta V = V_B - V_A = -\int_A^B\frac{Q}{4\pi\varepsilon_0r^2}\hat{\boldsymbol{r}}d\vec{\boldsymbol{s}} = -\int_A^B\frac{Q}{4\pi\varepsilon_0r^2}dr = \frac{Q}{4\pi\varepsilon_0}\left( \frac{1}{r_B} - \frac{1}{r_A} \right)
+\end{equation*}
+
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -626,6 +640,7 @@ The difference in electric potential between $C$ and $B$ is zero, since the path
   \coordinate (CR) at ({sin(30)*2.5}, {cos(30)*2.5});
 
   \node[circle, fill=red!70, inner sep=1.2pt] (Q) at (CQ) {};
+  \node[below] at (Q) {$Q$};
 
   \draw[dashed, blue!30] ([xshift=2cm]Q) arc[start angle=0, end angle=120, radius=2cm];
   \draw[dashed, blue!30] ([xshift=4cm]Q) arc[start angle=0, end angle=120, radius=4cm];
@@ -657,8 +672,63 @@ The difference in electric potential between $C$ and $B$ is zero, since the path
 \end{figure}
 
 
-% TODO: electric potential in a system of charges
+\subsection{Potential Energy in a System of Charges}
+Imagine a system of charges is assembled by an external agent. If there is only one charge no work is node $W_1=0$. If the external agent brings a second charge in the system the work done is $W_2=q_2V_1$. Generally the work done is $W_{\text{ext}}=\Delta U$, i.e., the work the external agent has to do is the change in the systems potential energy. For two charges it is
+\begin{equation*}
+  U_{1\,2} = W_2 = \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r_{1\,2}}
+\end{equation*}
+And if the external agent brings a third charge the work done for charge $q_3$ is will be
+\begin{equation*}
+  W_3 = q_3(V_1+V_2)=\frac{q_3}{4\pi\varepsilon_0}\left(\frac{q_1}{r_1\,r_3}+\frac{q_2}{r_{2\,3}}\right)
+\end{equation*}
+Thus the potential energy is the sum of the all work done
+\begin{equation*}
+  U = W_2 + W_3 = \frac{1}{4\pi\varepsilon_0}\left(\frac{q_1q_2}{r_{1\,2}}+\frac{q_1q_3}{r_{1\,3}}+\frac{q_2q_3}{r_{2\,3}}\right)
+\end{equation*}
+The general equation the total potential energy, i.e., work done by the external agent, of $N$ charges is
+\begin{equation*}
+  U = \frac{1}{4\pi\varepsilon_0} \sum_{i=1}^N\sum_{\substack{j=1 \\ j > i}}\frac{q_iq_j}{r_{i\,j}}
+\end{equation*}
+
+\subsection{Deriving Electric Fields from the Electric Potential}
 % TODO: deriving electric fields from electric potential
+Consider two points separated with a distance $d\vec{\boldsymbol{d}}$, by using Eq.~\ref{eq:electric-potential-difference} we can derive the following differential from:
+\begin{equation*}
+  dV = -\vec{\boldsymbol{E}}\cdot d\vec{\boldsymbol{s}}
+\end{equation*}
+In Cartesian coordinates, $\vec{\boldsymbol{E}}=E_x\hat{\boldsymbol{i}}+E_y\hat{\boldsymbol{j}}+E_z\hat{\boldsymbol{k}}$ and $d\vec{\boldsymbol{s}}=dx\hat{\boldsymbol{i}}+dy\hat{\boldsymbol{j}}+dz\hat{\boldsymbol{k}}$, we have
+\begin{equation*}
+  dV = \left(E_x\hat{\boldsymbol{i}}+E_y\hat{\boldsymbol{j}}+E_z\hat{\boldsymbol{k}}\right)\cdot\left(dx\hat{\boldsymbol{i}}+dy\hat{\boldsymbol{j}}+dz\hat{\boldsymbol{k}}\right) = E_xdx + E_ydy + E_zdz
+\end{equation*}
+which implies
+\begin{equation*}
+  E_x = -\frac{\partial V}{\partial x},\: E_y = -\frac{\partial V}{\partial y},\: E_z = -\frac{\partial V}{\partial z}
+\end{equation*}
+We now introduce a differential quantity called the ``del (gradient) operator'' to simplifiy the notation.
+\begin{equation*}
+  \nabla \equiv \frac{\partial}{\partial x} \hat{\boldsymbol{i}} + \frac{\partial}{\partial y} \hat{\boldsymbol{j}} + \frac{\partial}{\partial z} \hat{\boldsymbol{k}} 
+\end{equation*}
+We then get 
+\begin{equation*}
+  \vec{\boldsymbol{E}} =  E_x\hat{\boldsymbol{i}} + E_y\hat{\boldsymbol{j}} + E_z\hat{\boldsymbol{k}}
+-\left(\frac{\partial V}{\partial x} \hat{\boldsymbol{i}} + \frac{\partial V}{\partial y} \hat{\boldsymbol{j}} + \frac{\partial V}{\partial z} \hat{\boldsymbol{k}}\right)
+  = 
+  \left(\frac{\partial}{\partial x} \hat{\boldsymbol{i}} + \frac{\partial}{\partial y} \hat{\boldsymbol{j}} + \frac{\partial}{\partial z} \hat{\boldsymbol{k}}\right)V = -\nabla V
+\end{equation*}
+
+\begin{equation*}
+  \vec{\boldsymbol{E}} = -\nabla V
+\end{equation*}
+
+If the charges in the system is having a spherical electric field, the electric field is a function of the radial distance $r$, i.e., $\vec{\boldsymbol{E_r}}=E_r\hat{\boldsymbol{r}}$, when $dV = -E_r dr$. If $V(r)$ the electric field can then be obtained
+\begin{equation*}
+  \vec{\boldsymbol{E}} = E_r\hat{\boldsymbol{r}} = -\left( \frac{dV}{dr} \right)\hat{\boldsymbol{r}}
+\end{equation*}
+For instance, electric potential due to a point charge's electric field can be calculated as $V(r)=q/4\pi\varepsilon_0 r$. Thus, the electric field produced is $\vec{\boldsymbol{E}}=(q/4\pi\varepsilon_0 r^2)\hat{\boldsymbol{r}}$.
+
+
+
+\subsection{Gradient and Equipotentials}
 % TODO: Graidiant and endpoints
 
 \begin{figure}[H]
