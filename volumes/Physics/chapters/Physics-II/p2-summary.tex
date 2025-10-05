@@ -1,4 +1,3 @@
-\chapter{Physics II}
 This compendium is based on the course notes of MIT 8.02 2004 \url{https://web.mit.edu/8.02t/www/802TEAL3D/visualizations/coursenotes/index.htm} and the lectures of MIT 8.02 by Professor Walter Lewin in 2002. The video lectures can be viewed on YouTube from Lectures by ``Walter Lewin. They will make you \ensuremath\varheartsuit~Physics.'' with the playlist name ``8.02x - MIT Physics II: Electricity and Magnetism''
 All credits go to Dr. Sen-ben Liao, Dr. Peter Dourmashkin, and Professor John W. Belcher at MIT for the lecture notes and Professor Walter Lewin for the inspiring lectures. I can not guarantee the accuracy of this compendium and that it is a correct interpretation of the material and explanation provided by the lecture notes and lectures. Thus, for accurate information refer to the material that this compendium is based on. If a mistake is in the compendium it is most likely my fault and not the fault of the material in which this compendium is based on.
 
@@ -849,7 +848,172 @@ An equipotential curve shows the levels of electric potential. The intersection 
 
 
 
-\section{Gauss' Law}
+\section{Gauss's Law}
+\subsection{Electric Flux}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+  \coordinate (x1) at (0,0,0);
+  \coordinate (x2) at (0,3,0);
+  \coordinate (x3) at (0,3,3);
+  \coordinate (x4) at (0,0,3);
+
+  \def\thickness{0.3}
+  \def\startArrow{0.5}
+  \def\endArrow{2.5}
+  
+  \foreach \a in {\startArrow,...,\endArrow} {
+    \foreach \b in {\startArrow,...,\endArrow} {
+      \draw[red!70, thick] (-3,\a,\b) -- (0,\a,\b);
+    }
+  }
+
+  \draw[black, thick] (-3,1.5,1.5) -- (0,1.5,1.5);
+
+  % Back face
+  \fill[black!20, opacity=1] 
+      ([shift={(-\thickness,0,0)}]x1) -- 
+      ([shift={(-\thickness,0,0)}]x2) -- 
+      ([shift={(-\thickness,0,0)}]x3) -- 
+      ([shift={(-\thickness,0,0)}]x4) -- cycle;
+  \draw[black, thick] 
+      ([shift={(-\thickness,0,0)}]x1) -- 
+      ([shift={(-\thickness,0,0)}]x2) -- 
+      ([shift={(-\thickness,0,0)}]x3) -- 
+      ([shift={(-\thickness,0,0)}]x4) -- cycle;
+
+  % Side faces with gradient
+  \foreach \a/\b in {1/2, 2/3, 3/4, 4/1} {
+      \shade[top color=black!15, bottom color=black!5, opacity=1] 
+          (x\a) -- (x\b) -- 
+          ([shift={(-\thickness,0,0)}]x\b) -- 
+          ([shift={(-\thickness,0,0)}]x\a) -- cycle;
+      \draw[black] (x\a) -- ([shift={(-\thickness,0,0)}]x\a);
+  }
+
+  % Front face
+  \fill[black!25, opacity=1] (x1) -- (x2) -- (x3) -- (x4) -- cycle;
+  \draw[black, thick] (x1) -- (x2) -- (x3) -- (x4) -- cycle;
+
+  \foreach \a in {\startArrow,...,\endArrow} {
+    \foreach \b in {\startArrow,...,\endArrow} {
+      \draw[red!70, thick, -latex] (0,\a,\b) -- (3,\a,\b);
+    }
+  }
+
+  \node[red!70, right] at (3,0.5,2.5) {$\vec{\boldsymbol{E}}$};
+  \draw[black, thick, -latex] (0,1.5,1.5) -- (3,1.5,1.5) node[right] {$\vec{\boldsymbol{A}}$};
+ 
+\end{tikzpicture}
+  \caption{}
+  %\label{fig:potantial-difference-due-to-point-charge}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+  \coordinate (x1) at (0,0,0);
+  \coordinate (x2) at (0,3,0);
+  \coordinate (x3) at (0,3,3);
+  \coordinate (x4) at (0,0,3);
+
+  \def\thickness{0.3}
+  \def\startArrow{0.5}
+  \def\endArrow{2.5}
+  
+  \foreach \a in {\startArrow,...,\endArrow} {
+    \foreach \b in {\startArrow,...,\endArrow} {
+      \draw[red!70, thick] (-3,\a+0.5,\b) -- (0,\a,\b);
+    }
+  }
+
+  \draw[black, thick] (-3,1.5,1.5) -- (0,1.5,1.5);
+
+  % Back face
+  \fill[black!20, opacity=1] 
+      ([shift={(-\thickness,0,0)}]x1) -- 
+      ([shift={(-\thickness,0,0)}]x2) -- 
+      ([shift={(-\thickness,0,0)}]x3) -- 
+      ([shift={(-\thickness,0,0)}]x4) -- cycle;
+  \draw[black, thick] 
+      ([shift={(-\thickness,0,0)}]x1) -- 
+      ([shift={(-\thickness,0,0)}]x2) -- 
+      ([shift={(-\thickness,0,0)}]x3) -- 
+      ([shift={(-\thickness,0,0)}]x4) -- cycle;
+
+  % Side faces with gradient
+  \foreach \a/\b in {1/2, 2/3, 3/4, 4/1} {
+      \shade[top color=black!15, bottom color=black!5, opacity=1] 
+          (x\a) -- (x\b) -- 
+          ([shift={(-\thickness,0,0)}]x\b) -- 
+          ([shift={(-\thickness,0,0)}]x\a) -- cycle;
+      \draw[black] (x\a) -- ([shift={(-\thickness,0,0)}]x\a);
+  }
+
+  % Front face
+  \fill[black!25, opacity=1] (x1) -- (x2) -- (x3) -- (x4) -- cycle;
+  \draw[black, thick] (x1) -- (x2) -- (x3) -- (x4) -- cycle;
+
+  \foreach \a in {\startArrow,...,\endArrow} {
+    \foreach \b in {\startArrow,...,\endArrow} {
+      \draw[red!70, thick, -latex] (0,\a,\b) -- (3,\a-0.5,\b);
+    }
+  }
+
+  \node[red!70, right] at (3,0,0) {$\vec{\boldsymbol{E}}$};
+  \draw[black, thick, -latex] (0,1.5,1.5) -- (3,1.5,1.5) node[right] {$\vec{\boldsymbol{A}}$};
+  \draw (1.4,1.5,1.5) arc[start angle=0, end angle=-10, radius=14mm] node[midway, right] {\small $\theta$};
+ 
+\end{tikzpicture}
+  \caption{}
+  %\label{fig:potantial-difference-due-to-point-charge}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+  \coordinate (x1) at (0,0,0);
+
+  \def\r{3}
+
+  \draw (0,0,0) -- (4,0,0) node[right] {$y$};
+  \draw (0,0,0) -- (0,4,0) node[above] {$z$};
+  \draw (0,0,0) -- (0,0,4) node[below left] {$x$};
+
+  % Arc in xy-plane
+  \draw (0,\r,0) arc[start angle=90, end angle=0, radius=\r];
+  
+  % Arc in xz-plane
+  \begin{scope}[rotate around y=-90]
+    \draw (0,\r,0) arc[start angle=90, end angle=0, radius=\r];
+  \end{scope}
+  
+  % Arc in yz-plane  
+  \begin{scope}[rotate around x=90]
+      \draw (0,\r,0) arc[start angle=90, end angle=0, radius=\r];
+      \draw[yellow] (0,{\r*cos(45)},{-\r*sin(45)}) arc[start angle=90, end angle=0, radius={\r*cos(45)}];
+  \end{scope}
+
+ 
+\end{tikzpicture}
+  \caption{}
+  %\label{fig:potantial-difference-due-to-point-charge}
+\end{figure}
+
+
+
+\subsection{Gauss's Law}
+\subsection{Conductors}
+\subsection{Force on a Conductors}
+
+
 \section{Capacitors}
 \section{Current and Resistance}
 \section{Direct Current Circuits}
