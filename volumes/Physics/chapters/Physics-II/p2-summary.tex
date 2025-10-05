@@ -542,12 +542,13 @@ However, a more useful scale for electric potential is the energy acquires/losse
 
 Similar to gravity where the negative work done, i.e.,
 \begin{equation*}
-  \Delta V_g = \frac{\Delta U_g}{m} = -\int_A^B(\vec{\boldsymbol{F}}_g/m)\cdot d\vec{\boldsymbol{s}} = - \int_A^B\vec{\boldsymbol{g}}\cdot d\vec{\boldsymbol{s}}
+  \Delta V_g = \frac{\Delta U_g}{m} = -\int_A^B(\vec{\boldsymbol{F}}_g/m)\cdot d\vec{\boldsymbol{s}} = - \int_A^B\vec{\boldsymbol{g}}\cdot d\vec{\boldsymbol{s}},
 \end{equation*}
 the electric potential difference between two points $A$ and $B$ is 
 \begin{equation}\label{eq:electric-potential-difference}
   \Delta V = -\int_A^B(\vec{\boldsymbol{F}}_e/q_0)\cdot d\vec{\boldsymbol{s}} = -\int_A^B\vec{\boldsymbol{E}}\cdot d\vec{\boldsymbol{s}}
 \end{equation}
+where $d\vec{\boldsymbol{s}}$ is the vector in from $A$ to $B$.
 
 
 \subsection{Electric Potential in a Uniform Field}
@@ -716,9 +717,9 @@ We then get
   \left(\frac{\partial}{\partial x} \hat{\boldsymbol{i}} + \frac{\partial}{\partial y} \hat{\boldsymbol{j}} + \frac{\partial}{\partial z} \hat{\boldsymbol{k}}\right)V = -\nabla V
 \end{equation*}
 
-\begin{equation*}
+\begin{equation}\label{eq:electric-field-del-gradient-potential}
   \vec{\boldsymbol{E}} = -\nabla V
-\end{equation*}
+\end{equation}
 
 If the charges in the system is having a spherical electric field, the electric field is a function of the radial distance $r$, i.e., $\vec{\boldsymbol{E_r}}=E_r\hat{\boldsymbol{r}}$, when $dV = -E_r dr$. If $V(r)$ the electric field can then be obtained
 \begin{equation*}
@@ -730,6 +731,16 @@ For instance, electric potential due to a point charge's electric field can be c
 
 \subsection{Gradient and Equipotentials}
 % TODO: Graidiant and endpoints
+%Eq.~\ref{eq:electric-field-del-gradient-potential}
+
+An equipotential curve shows the levels of electric potential. The intersection of the equipotential curve and the electric field lines are always perpendicular, i.e., $\vec{\boldsymbol{E}} \perp d\vec{\boldsymbol{s}}$, shown in Figure~\ref{fig:equipotential-curves-and-electric-field-lines}. The difference in the electric potential between two levels of the equipotential curve is 
+\begin{equation*}
+  dV = \left( \frac{\partial V}{\partial x}\hat{\boldsymbol{i}} + \frac{\partial V}{\partial y}\hat{\boldsymbol{j}} \right)\cdot\left( dx\hat{\boldsymbol{i}} + dy\hat{\boldsymbol{j}} \right) = (\nabla)\cdot d\vec{\boldsymbol{s}} = -\vec{\boldsymbol{E}}\cdot d\vec{\boldsymbol{s}}
+\end{equation*}
+
+% Perpendicular
+% Equipotetial cuervs
+
 
 \begin{figure}[H]
 \centering
