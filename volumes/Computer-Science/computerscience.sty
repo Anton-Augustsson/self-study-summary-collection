@@ -1,0 +1,17 @@
+\usepackage{../../preamble}
+\usepackage{tcolorbox}  % for coloring box env tcolorbox
+\usepackage{rtsched} 
+
+\newcommand{\adef}[1]{\textit{\textcolor{red}{#1}}}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\newenvironment{definitionblock}[1]{
+    \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=#1]}
+    {\end{tcolorbox}}
+
+\newenvironment{exampleblock}[1]{
+    \begin{tcolorbox}[colback=blue!5,colframe=blue!75!black,title=#1]}
+    {\end{tcolorbox}}
+
+
+

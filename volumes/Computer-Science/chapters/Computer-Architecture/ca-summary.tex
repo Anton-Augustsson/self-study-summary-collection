@@ -1,0 +1,771 @@
+\chapter{Computer Architecture}
+
+\newpage
+
+%\begin{multicols}{2}
+%\end{multicols}
+%\raggedcolumns
+
+\section{ISA1}
+%\noindent\textbf{MIPS instructions} \newline
+\subsection{MIPS instructions}
+The instructions that a assembly languge use for the MIPS proses.
+% https://www.dsi.unive.it/~gasparetto/materials/MIPS_Instruction_Set.pdf
+
+\noindent\textbf{Terminology} \newline
+\begin{itemize}
+\item  Register file: 32 registers from R0-R31, each is 32 bits.
+\item  Memory: Large each adders stores a word (4 x Registers). Address is all ways increments of 4.
+       Memory is segmented into 4 8-bits of data to create a word.
+\item  PC (Project counter): Increase with 4 each time to go to the next memory address.
+\item  Instruction Registers: Retrieve the current instructions.
+\item  Control: Inserts data to the register file and add the operation to ALU (Compute).
+\item  ALU (Compute): Calculates the value.
+\item  Memory Address: Call the value from a specific address. From ex ``lw''.
+\item  Data Register: Retries and directs value from memory to register file.
+\end{itemize}
+
+\noindent\textbf{The operations most used} \newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{\pathCA/images/mips-tabel.png} 
+    \caption{MIPS oporation tabel. From \cite{computer_architecture_book}.}
+    \label{mips-tabel}
+\end{figure}
+
+\emph{note:} memory operations like (sw R1, 0(R2)) stores the word in poison R2+0 where 0 is the increment
+since if it is a loop it is needed. The value at that position is R1. 
+
+
+\subsection{Sequencing}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/sequencing.png} 
+    \caption{Sequencing. From \cite{isa_sequencing}}
+    \label{sequencing}
+\end{figure}
+
+\subsection{Converge to Assambly code}
+\noindent\textbf{If Else example} \newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=9cm]{\pathCA/images/assambly-exampel.png} 
+    \caption{Assambly exampel. From \cite{ca}}
+    \label{Assambly-exampel}
+\end{figure}
+
+\section{ISA2}
+%https://inst.eecs.berkeley.edu/~cs61c/resources/MIPS_help.html
+\subsection{MIPS type format}
+\begin{itemize}
+\item  R-format, Aretmetic and lodgical (add)
+\item  I-format, Load/store, branch and intemidiats (addi, beq)
+\item  J-format, Jump (j skipelse) 
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{\pathCA/images/mips-types.png} 
+    \caption{MIPS Types. From \cite{ca}}
+    \label{MIPS-Types}
+\end{figure}
+
+A instruction allwas ends with 00 it means that when a instruction is done we update the program couner
+to by 4 or more it changes the posistion of the 16bit intermidjet for i-format and can. (bne, beq)
+
+\subsection{Procedure}
+Procedure is how a function call is handeld. It is devided into two parts Caller and Callee,
+the caller call the procedure (callee).
+The oporation for contolling procedure is called jump-and-link (jal).
+It stores the return address (PC+4) in \$ra (R31).
+Where (ra = register address (updates automatically))
+(PC = project counter)
+(R31 = value).
+jr \$ra returns the value.
+
+\subsubsection{Stacking}
+To avoid conflicts with writing over the callers register files, one uses staking in predefined
+ranges to allow store data independent from the callers. 
+(R29 =  store stack data \$sp)
+When a register file is added the stock pointer is moved and when it is done it returns with (jr) and then
+reset the previously used register files.
+when it has used what it needs it removes them when leaded one value at a time
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{\pathCA/images/mips-register.png} 
+    \caption{MIPS register. From \cite{ca}}
+\end{figure}
+
+Notice that the register files for the callee save is \$sx and for the caller \$tx.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/code-ex.png} 
+    \caption{code ex. From \cite{ca}}
+\end{figure}
+
+
+\subsection{Other ISA}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/other-isa.png} 
+    \caption{Other ISA. From \cite{ca}}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/other-isa-instructions.png} 
+    \caption{Other ISA instructions. From \cite{ca}}
+\end{figure}
+
+
+
+\section{Arithetic}
+
+\subsection{Binary numbers}
+\begin{itemize}
+\item  Binary numbers reduses noice and disregard the exact voltitge to rusult in on off mode.
+\item  In comuter sience octal and hexadecimals are also often used becose of it properties.
+  every octo didgets represent 3 in decimal
+  every hex didgets represent 4 in decimal
+\item  msb=most significant bit
+\item  lsb=lest significant bit
+\item  Optemazation: $0010*0101$  2 oporations $\to 0101*0010$  1 oporations
+\item  Multiplication: (fixed point need to shift desimal point)
+  $0010 * 0101 = 0010 + (0010 shifting[00]) = 1010$
+  $0011.010 * 0001.110 = $
+\item  Addition: (Same for fixed points and integers)
+  $1110+1000= carry[1] 0110$ Overflow
+  $0101+0001= 0110$ Not overflow
+\end{itemize}
+
+\subsection{Negative integes}
+\begin{itemize}
+\item  \emph{Signed magnetude:} msb is the sign
+  ${1011}_2 = {-(2+1)}_{10} = {-3}_{10}$
+\item  \emph{tow's complement:} if msb is 1 then negative number every other digiet after is positiv
+  ${1011}_2 = {-8 +2 +1}_{10} = {-5}_{10}$
+\end{itemize}
+
+
+\subsection{Oporations}
+
+\subsection{Non integer numbers (Floating and fixed point)}
+\begin{itemize}
+\item  Converting binary to decimal:
+  $0.111 = 1/2 + 1/4 + 1/8= 0.875$
+\item  Fixed point: for defined ranges $1.001$ and $0.100$ one can chose large and small representations
+\item  Floating point:  IEEE standard, se following image
+\item  Standard floting point is in binary so FFFF is at most 1111 and with two's complement  0111
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/floating-point.png} 
+    \caption{Floating Point. From \cite{ca}}
+    \label{floating-point}
+\end{figure}
+
+\subsection{Overflow}
+\begin{itemize}
+\item  input: msb = 1 for boath numbers and output: msb = 0 (overflow)
+\item  input: msb = 0 for boath numbers and output: msb = 1 (overflow)
+\item  input: msb = 0 for boath numbers and output: msb = 0 (Not overflow)
+\item  input: msb = 1 for boath numbers and output: msb = 1 (Not overflow)
+\item  input: msb = 1 and msb = 0 (Maby overflow)
+\end{itemize}
+
+
+\section{Logic}
+% https://aur.archlinux.org/packages/logisim/
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/logic-gates.jpeg} 
+    \caption{Floating Point. From \cite{ca}}
+    \label{logic-gates}
+\end{figure}
+
+\begin{itemize}
+\item  truth table, is used to represent all possible inputs and then the corresponding output.
+\item  To determined the possible schematics one can write for the input A and B ``!A and B''
+  not A and B. One often get a unnecessary complexity, one can often simplify the schematics.
+  It is only done with the inputs that have an output of one.
+\item  De Morgan’s Law $!(A+B)=!A \cdot !B$ $+$ and $\cdot$ works the same way but are different.
+\item  karno map is used to easily determine the schematics. It is a matrix. It is possible to use
+  more inputs then two. In the matrix one locks at when output is one.
+\item  A cabal with 4 wires can take 4 bits. Overflow needs one extra wire on output
+\end{itemize}
+
+
+\textbf{Building blocks}
+\begin{itemize}
+\item   Building blocks are the first layer of abstraction since one can not se the logical gates
+  constructed of. For example add is a building block.
+\item  Two types of logic, combinational and sequential.
+  combinational: output just depends on input
+  sequential: output deepens on the state. State is stored in memory update on clock.
+\end{itemize}
+
+\begin{itemize}
+\item  MUXes (Mulitplexrs): choose input from a buss/ routing signal.
+  2-bit decision for input 4-bit selection. Starts from position 0.
+\item  DEMUXes (Demulitplexrs): oposit, take on signal and decides where it want to be sent to
+  Buss is a multi-bit signal ``wire''
+\item  Decoder: binary to hot, can choose position in array. %(adds a zero or one)? in arrays it can shose position
+\item  Encoder: hot to binary. %(reomve a zero or one)?
+\item  Adders: adds carrys on extra bit to handel overflow
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/important-logic-blocks.png} 
+    \caption{Floating Point. From \cite{ca}}
+\end{figure}
+
+\textbf{Latches}
+\begin{itemize}
+\item  One use is for counters with a clock statest trigers the count.
+  So when input is one the output is 0 and when the clock clicks it is one then when the input is
+  0 the output is still 1.
+\item flip flop: is a edge trigerd latche has a clock trigger to open or close lathce and then can save it to SRAM cell
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{\pathCA/images/latche.png} 
+    \caption{latche. From \cite{ca}}
+\end{figure}
+
+\textbf{Memory}
+\begin{itemize}
+\item  SRAM (Static Random Access Memory) Big, fast and expensive. Loops thou value in order to store it.
+  To write to memory one uses a switch to update value.
+\item  DRAM (Dynamic Random Access Memory) Smaller, Slower and cheaper. Uses a transistor to store value
+  and a capacitor to store the charge so the data dose not disappear.
+  That is why it is slower become the capacitor needed to be recharge
+\end{itemize}
+
+
+
+\section{processor control and datapath}
+There is 3 main part of the mips datapath as seen in the following image:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{\pathCA/images/mips-datapath-3parts.png} 
+    \caption{mips datapath 3 parts}
+    \label{mips-datapath-3parts}
+\end{figure}
+
+An overview of the mips datapath with j-format instruction:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/mips-datapath.png} 
+    \caption{mips datapath. From \cite{ca}}
+    \label{mips-datapath}
+\end{figure}
+
+Think about the controller like a decoder that decodes the opt code from the different formats.
+
+
+\subsection{Clock}
+A clock is used to update the state and continue with the other instructions. Every state element uses
+a clock. In mips prossesor clock goes to memory, pc, rf and dm. The clock unit is in (MHz) converting
+from (ns) is simple. Ex 10ns: 1/10ns=0.1MHz.
+
+\subsection{Critical path}
+The longest path of the datapath is the critical path. Often PC is the fastest so one then calculates the
+amount of time it takes for the instruction has travel the data path and reternd to know what the
+critical path is. The longest part is data memory size it is big and slow. One often say read and write
+takes constant time regardless of the amount of different read and write.
+
+
+\section{pipline}
+The purpose is to split a instruction cycle into multiple stages to run instructions in peralel to
+improve preformans. Itch stage has its own pipline register file for storing the nessasary registers.
+Pipline registers has a preferment reduction since it takes time, therfore more pipeline stages dose
+not equal greater preformans over a certain amount. One issue of preformans is balance the stages
+inorder to get a good clock frequency. 
+Not all stages are needed for eatch operation or instruction
+
+\textbf{Mips stages}
+\begin{itemize}
+\item  IF= Instruction fetch
+\item  ID= Decode and RF Read
+\item  Ex= ALU Execute
+\item  MEM= Memory
+\item  WB= RF Write back
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/pipline.png} 
+    \caption{Pipline. From \cite{ca}}
+    \label{pipline}
+\end{figure}
+
+
+\textbf{Terminology}
+\begin{itemize}
+\item  Bubbles= Is detected by the hardware where there is no instuctions
+\item  Nop= Is a sudo instruction for a stall type instruction (do not do anything)
+\item  Delay slots= a stall type for branches. Try to fill in those slots with usful instructions.
+\item  Interference= Can not read and write at the same time.
+\item  Double pumping= Spiting write to first clock cycle and the second cycle is read.
+\item  Forwarding= Getting data from a different pipeline stage from a register file.
+\end{itemize}
+
+
+\textbf{Calculating time coplexity}
+\begin{itemize}
+\item  Latency: (stages*(penalty per stage)) \newline
+  overhead: (instructions time (ex 100ns)) / (stages (ex 1000)) + (register overhead (1ns)) = 1.1ns
+  Total time: 1.1*1000
+\end{itemize}
+
+
+
+\section{Pipline hazards}
+
+\subsection{Data hazards}
+\textbf{The issue}
+\begin{itemize}
+\item  Data is not available where we need it (later in the pipeline; not written back yet).
+\item  Data is not available when we need it (need to read memory first).
+\end{itemize}
+
+\noindent\textbf{Fixing the issue}
+\begin{itemize}
+\item  Forward the data to where we need it.
+\item  Stall if data is not ready yet (NOPs or Bubbles).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/dubble-pump.png} 
+    \caption{Bubble pump. From \cite{ca}}
+\end{figure}
+
+
+\subsection{Control hazards}
+\textbf{The issue}
+\begin{itemize}
+\item  Don’t know which instruction is next when we need to fetch it.
+\end{itemize}
+
+\noindent\textbf{Fixing the issue}
+\begin{itemize}
+\item  Calculate branch as early as possible.
+\item  Stall with a branch delay slot.
+\end{itemize}
+
+
+\subsection{Structural hazards}
+\textbf{The issue}
+\begin{itemize}
+\item  Can’t do the instruction because the hardware is busy.  
+\end{itemize}
+
+\noindent\textbf{Fixing the issue}
+\begin{itemize}
+\item  Build more hardware (double-pumped register file).
+  Double-pumped write at the first half cycle and read at the other half
+\end{itemize}
+
+\noindent\textbf{Calculating time coplexity}
+\begin{itemize}
+\item  Branch delay \newline
+  (How many branches (ex 20\%)) / (How many usful instuctions can be filled in (ex 50\%))
+  = 20\%/0.5 = 10\%
+\item  Instructions per cycle  
+\end{itemize}
+
+
+\section{Predicting Branches and Exceptions}
+When the prediction is wrong, clean up is needed.
+\begin{itemize}
+  \item “Kill” or “Squash” so they don't execute (they were wrong)
+  \item Prevent them from writing: disable RegWrite, MemWrite in the pipeline
+  \item Turn them into NOPs: change opcode to add R0, R0, R0 in the pipeline
+\end{itemize}
+
+
+\subsection{Static pridictors}
+\begin{itemize}
+\item  Predict alwas not taken
+\item  Predict alwas taken
+\item  Backwards-Taken, Forward-Not-Taken (BTFNT)
+\end{itemize}
+
+
+\subsection{Dynamic pridictors}
+
+The implementation of branch predictors look something like this:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{\pathCA/images/branch-predictor.png} 
+    \caption{branch-predictor. From \cite{ca}}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{\pathCA/images/2-bit-predict.png} 
+    \caption{2-bit predict. From \cite{ca}}
+\end{figure}
+
+
+\textbf{BTB}
+\begin{itemize}
+\item  Branch Target Buffer (BTB)
+\item  Save a table with PC in order to have history that we can predict on
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/btb.png} 
+    \caption{btb. From \cite{ca}}
+\end{figure}
+
+
+\subsection{Exceptions}
+Exceptions are non-normal events that interrupt the normal flow of instructions
+\begin{itemize}
+\item  Divide by zero
+\item  Misaligned memory access
+\item  Page fault
+\item  Memory protection violation
+\end{itemize}
+
+Interrupts are external events that interrupt the normal flow of 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/exceptions.png} 
+    \caption{exceptions. From \cite{ca}}
+\end{figure}
+
+
+
+\section{Input/Output}
+
+\textbf{Terminology}
+\begin{itemize}
+\item  nvram (flash): Similar to ram but it saves data when there is no power
+\item  Busses:
+  Parallel: many bits at once (e.g., 32 bits together in one clock)
+  Used to be used everywhere
+  Still used inside chips
+\item  Serial links:
+  Serial: one bit at a time (e.g., 32 clock cycles to send 32 bits)
+  Used to be used only where distances were long (e.g., networks)
+  Now used for most off-chip communications
+\item  memory-mapped I/O:
+  Manual handling of I/O devices
+  Map portions of the address space to I/O devices
+  Read and write to those addresses to access the 
+\item  direct memory access (DMA):
+  Hardware who manage I/O devices (dynamically)
+\item  Polling:
+  The device puts its status somewhere
+  The OS repeatedly checks for it to change
+\item  Interrupt:
+  When the device is ready, it gets the processor’s attention by signaling an interrupt
+  The OS then jumps to an interrupt handler to handle the event
+\item  Throughput: x/s
+  The read and write speed
+\item  Latency: s/x
+  Accessing time.
+\item  Overhead:
+  any combination of excess or 
+  indirect computation time, memory, bandwidth,
+  or other resources that are required to perform a specific task
+\end{itemize}
+
+
+
+\textbf{Data transfers: manual copy}
+\begin{lstlisting}%[language=Assembly]
+addi R3, R0, 921600  // Number of copies
+add   R2, R0, R0      // Counter starts at 0
+loop:
+  lw R4, 0x12f0(R0)  // Read the I/O device
+  sw R4, 0xfe00(R2)  // Store the results
+  addi R2, R2, 4       // Next location
+  bne R3, R2, loop
+done:
+\end{lstlisting}
+
+
+\textbf{Data transfers: DMA}
+\begin{lstlisting}%[language=Assembly]
+addi R1, R0, 0x12f0 // device address
+addi R2, R0, 0xfe00 // destination
+addi R3, R0, 230400  // number of words to copy
+sw R1, 0x100b(R0) // set the device address
+sw R2, 0x1008(R0) // set the destination address
+sw R3, 0x1004(R0) // set the length and start
+wait:
+  lw R2, R0(0x1000) // Wait for it to be done
+  bne R2, R0, wait
+done:
+\end{lstlisting}
+
+
+\section{Cache}
+\subsection{Memory hierarchy}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/memory-hierarchy.png}
+    \caption{memory-hierarchy. From \cite{ca}}
+\end{figure}
+
+\textbf{3-types of cache types}
+\begin{itemize}
+\item  Fully-associative: Have to search all blocks, but very flexible 
+\item  Direct-mapped: Only one place for each block, no flexibility
+\item  Set-associative: Only have to search one set for each block,
+  flexible because each set can store multiple blocks in its ways 
+\end{itemize}
+
+\textbf{Write policies}
+\begin{itemize}
+\item  Write-through: slow, simple 
+\item  Write-back: fast (keeps the data just in the cache), more complex
+\end{itemize}
+
+\textbf{Terminology}
+\begin{itemize}
+\item  Data: What is being stored
+\item  Tag: What address the data has
+\item  Index: What we use to determen where we want to put the data
+\item  Cache line (block) size: How many tag's there are
+\item  Valid bit: If the data is correct
+\item  Dirty bit: The data has been change and we need to write it to memory
+\item  Type of cache: Fully-associative (FA), Set-associative (SA), Direct-mapped (DM)
+\item  Replacement policy: Write-through, Write-back  
+\end{itemize}
+
+
+\textbf{Cache blocks}
+\begin{itemize}
+\item tag has 30bits and the 2 other bits is to determen what data
+  63 bits for eatch entry 32bit data 30bit tag 1bit valid-bit 
+\item larger block of data -> fewer tags -> more efficient storage
+\item 1 word cache block we have 1 32bit data
+\item 2 word cache block we have 2 32bit data 
+\item 4 word cache block we have 4 32bit data
+\item we load more data when we have space for it
+  we will then have spatial locality
+\item Last 2: determine the byte within the word   
+\item Next N: determine which word in the cache block 
+\item Remaining 32-N-2: tag
+\end{itemize}
+
+\textbf{Calculate overhead}
+\begin{itemize}
+\item  Data= Cache-Lines * Byte-Lines
+\item  Overhead= Cache-Lines * (Tags-per-line + valid-bit)
+\item  \% data=  Overhead / Data
+\end{itemize}
+
+\textbf{Calculate Address (Tag Index Offset)} %https://cs.stackexchange.com/questions/13356/how-to-calculate-the-number-of-tag-index-and-offset-bits-of-different-caches
+\begin{itemize}
+\item  Direct maped: \newline
+  Offest= $\log$ (number of data blocks)  (+ 2-bit (4-bite cache block size if 64 then log 64)) \newline
+  Index= $\log$ (number of cache lines) \newline
+  Tags= 32(bit processor)- (Index+Offset) 
+\item  x-set associative: \newline
+  Offest= $\log$ (number of data blocks)  (+ 2-bit determens how the address looks like) \newline
+  Index= $\log$ ((number of cache lines)/x) \newline
+  Tags= 32(bit processor)- (Index+Offset)
+\item  fully associative: \newline
+  Offest= $\log$ (number of data blocks)  (+ 2-bit determens how the address looks like) \newline
+  Index= 0 \newline
+  Tags= 32(bit processor)- (Offset)
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/cache-format.png}
+    \caption{cache-format. From \cite{ca}}
+\end{figure}
+
+
+\textbf{Calculate Avrage memory access time}
+\begin{itemize}
+\item  Avrage-cycles= CacheL1*Cycles + CacheL2*Cycles + Dram*Cycles
+\end{itemize}
+
+\subsection{Cache misses $3C's$}
+% https://www.youtube.com/watch?v=OBp7rpdg_IQ
+\begin{itemize}
+\item  cold/compulsory miss: When the program first begin it doesn't have anything in the cache
+\item  conflicts miss: to small to store the necessary data
+\item  capacity miss: map's at the same block an then overwrite unnecessarily 
+\end{itemize}
+
+
+
+\section{Virtual Memory}
+\textbf{Why use VM}
+\begin{itemize}
+\item  Map memory to disk (“unlimited” memory)
+\item  Keep programs from accessing each other’s memory (security)
+\item  Fill holes in the RAM address space (efficiency)
+\end{itemize}
+
+\textbf{Terminology}
+\begin{itemize}
+\item  Translation= map address
+\item  Page tables= for each program keep track of all translations
+\item  Fine grain= page table with spesific address
+\item  Coarse grain= page table with address mapped ranges
+\item  Page Table Entries (PTEs)= number of translation  
+\item  Translation Lookaside Buffer TLB= All of the pages, fast translation via hardware
+\item  VA= Virtual program addresses
+\item  PA= Physical RAM addresses
+\item  Page offset= point to a range and then use the offset to determen where
+\item  Translation Lookaside Buffer (TLB)= page table cache (Faster)
+\item  Multilevel page table translation= page table point to other page tables (inseption)
+\end{itemize}
+
+
+\textbf{Combining TLB and cache}
+\begin{itemize}
+\item  Physical caches: slow and needs the translation first and then save get the PA
+  also known as Pysical-Index, Physical-Tagged (PIPT)
+\item  Virtual caches: fast uses only virtual addresses, no translation, difficult for protection
+  also known as Virtual-Index, Virtual-Tagged (VIVT):
+\item  Virtual-Index, Phisically-Tagged (\textbf{VIPT}): VA for index PA for tags, fast dose translation and
+  fetch from cache at the same time, most commonly used.
+  We need a comperitor to se if the PA tags from cache matches the TLB PA only then we can say if we had a hit or a miss.
+  The VA offset is what the PA tag is selected and the VA tag (number of virtual pages) is what the TLB uses.
+  Mostly used for L1 cache not L2.
+\end{itemize}
+
+\textbf{TLB}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm, height=7cm]{\pathCA/images/tlb.png}
+    \caption{tlb}
+\end{figure}
+
+
+\textbf{usful conversion: $2^n=xB$}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/conversion.png}
+    \caption{conversion. From \cite{ca}}
+\end{figure}
+
+
+\textbf{Calculating Page sizing}
+\begin{itemize}
+\item  Number-of-Virtual-Pages= $2^{32}$/pages
+\item  Bits-used-for-Page-Offset= $\log$(pages)
+\item  Bits-used-for-VPN= 32(bit prossessor)- Bits-used-for-Page-Offset
+\end{itemize}
+
+\textbf{Calculating TLB size}
+\begin{itemize}
+\item  TLB-size=Entries*Pages
+\end{itemize}
+
+
+
+\section{Parallism}
+
+\subsection{Multicore}
+\textbf{powerwall}
+\begin{align*}
+  &\quad P=CV^2f \\
+  &\quad C= \text{ capasiter, smaller transistors smaller capasiters} \\
+  &\quad V= \text{ voltage, decreasing makes it slower} \\
+  &\quad f= \text{ frequency, reducing clock speed} \\
+\end{align*}
+
+\subsection{Paralel programming}
+
+
+\textbf{Avrage processors}
+\begin{align*}
+  &\quad  \text{Calculate how many cores are used in avrage we need to know } \\
+  &\quad  \text{how chunks (work) there is in total } \\
+  &\quad  \text{how many time units (cycles think of a reverse pyramid)} \\
+  &\quad  \\
+  &\quad  \text{there is 16 input data and we have 8-cores, we want to calculate the total sum} \\
+  &\quad  \text{what is the avrage prossesor being used} \\
+  &\quad  15 chunks, \; 4 time units \Rightarrow 15/4 = 3.75 \\
+\end{align*}
+
+\textbf{parallel issues}
+\begin{itemize}
+\item  Most programs can not utilize parallelism, need to devid the program to diffrent executions.
+\item  We also need to share cache and therefore have performance issue since we cant use the entire cache.
+\end{itemize}
+
+
+\textbf{How much faster}
+\begin{align*}
+  &\quad  75\% parallel, \; 25\% non parallel \text{ we have hundred thousand cores } \\
+  &\quad  \Rightarrow  \text{Parallaism takes } (0.75/100000 + 0.25*1) \\
+  &\quad  \text{Singular takes } (0.75*1 + 0.25*1)  \Rightarrow 4* \text{ faster} \\
+  &\quad  \\
+  &\quad  \text{Speedup with Amdahl's law } Speedup=\frac{1}{(1-P)+P/S} \\
+  &\quad  P= \text{ Parallel aktion} \\
+  &\quad  S= \text{ Speed up of the parrallel part} \\
+  &\quad  \Rightarrow \frac{1}{(1-0.75)+0.75/100000} = \frac{1}{0.25+0}= 4 \\
+\end{align*}
+%\subsection{Multicore issues}
+
+
+\subsection{Synchronization}
+\begin{itemize}
+\item  Fix the issue with 2 processors accessing the same value at the same time.
+\item  We can use atomic swap to first set lock to 1 then check the data.
+\end{itemize}
+
+
+\textbf{locks}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/locks.png}
+    \caption{locks}
+\end{figure}
+
+
+\subsection{Cache coherency}
+\begin{itemize}
+\item  How we use caches to save memory
+\item  Locks: if the data has been acceded. (not a guaranty of protection)
+\item  Snooping: Look what the other processors are storing in there private cache   
+\end{itemize}
+  
+
+\textbf{snooping}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/snooping.png}
+    \caption{locks. From \cite{ca}}
+\end{figure}
+
+\subsection{ILP}
+\begin{itemize}
+\item  Instruction level parallelism (ILP)
+\item  better to have out-of-oder execution since we can find independent instructions
+\item  We use Dual-issue pipline so we can have one for memory instructions and
+  one for non memory instruction
+\item  It makes ISA promise with in order execution
+\item  Issue with data hazards, more complexity
+\end{itemize}
+
+
+\textbf{dual issue pipeline}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{\pathCA/images/dual-issue-pipline.png}
+    \caption{dual-issue-pipline. From \cite{ca}}
+\end{figure}
