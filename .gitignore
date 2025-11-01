@@ -11,6 +11,7 @@
 *.run.xml
 *.synctex.gz
 *.fdb_latexmk
+svg-inkscape
 
 # VSCode spesific
 .vscode/
