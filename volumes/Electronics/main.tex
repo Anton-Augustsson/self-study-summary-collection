@@ -1,0 +1,31 @@
+\documentclass{book}
+\usepackage{../../preamble}
+\usepackage{electro}
+\addbibresource{bibliography.bib}
+
+\volumeTitle{1}{Electronics}
+\author{Anton Augustsson}
+
+\begin{document}
+
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COURSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pathELECTRO}{chapters}
+
+\newcommand{\pathICT}{\pathELECTRO/Introduction-to-Circuit-Theory} \input{\pathICT/ict-summary.tex} \newpage
+\newcommand{\pathOPAMP}{\pathELECTRO/OpAmp} \input{\pathOPAMP/opamp-summary.tex} \newpage
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\printbibliography
+
+
+\end{document}

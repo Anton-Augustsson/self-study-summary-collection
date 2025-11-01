@@ -1,0 +1,132 @@
+\chapter{Op-Amp}
+Op-Amp is a type of amplifier for data signals.
+Saturates mean that it will become a state line since it can not become more than the input nor can it be less than what is going in the opposite direction.
+$v_0=A(v^+-v^-)$ \newline
+
+The current to $v^-$ and $v^+$ will be close to zero and in an ideal circuit will
+be zero. \newline
+%We can set $v_-=v_+=0$ when we know that the input is, ex $v_{in}$ is the input with is directly dependent on $v_{out}$ like in a feedback loop.
+We can say $v^- = v^+$ when there is a feedback loop (negative terminal and non-inverting amp). 
+
+\section{Inside Op-Amp}
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=12cm, height=6cm]{\pathOPAMP/images/inside-opamp.png}
+    \caption{Inside opAmp. From \cite{}}
+\end{figure}
+In ideal op amp the resistance will be infinity. However, the in reality
+there is no infinite resistance therefore if one would have a voltage divider
+with larger resistance then the internal resistance the current will 
+go threw $V_+$ and $V_-$. The output in $0\Omega$ so we will not have any
+voltage drop, not in reality, however.
+
+\newpage
+\section{Implementation of Op-Amp}
+\subsubsection{Comparator}
+An op amp without negative feedback (a comparator)
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=8cm, height=6cm]{\pathOPAMP/images/op-amp-comparator.png}
+    \caption{Op-Amp comparator. From \cite{}}
+\end{figure}
+
+When $V_+>V_-$ then $V_o=+V_{cc}$. When $V_+<V_-$ then $V_o=-V_{cc}$
+
+\subsection{Non inverting (with feedback loop)}
+Amplifies the input but dose not change it sign (non inverting).
+An op amp with negative feedback (a non-inverting amplifier)
+
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=6cm, height=6cm]{\pathOPAMP/images/Operational_amplifier_noninverting.png}
+    \caption{Op-Amp Feedback (Non inverting). From \cite{}}
+\end{figure}
+
+\newpage
+\subsection{Voltage follower}
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=12cm, height=6cm]{\pathOPAMP/images/op-amp-voltage-follower.png}
+    \caption{Op-Amp voltage follower. From \cite{}}
+\end{figure}
+$v_+=v_-=v_{in}=v_{out}$
+
+\newpage
+\subsection{Inverting}
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=8cm, height=6cm]{\pathOPAMP/images/op-amp-inverting.png}
+    \caption{Op-Amp voltage follower. From \cite{}}
+\end{figure}
+
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=10cm, height=6cm]{\pathOPAMP/images/op-amp-calc-inverting.png}
+    \caption{Op-Amp calculations for inverting. From \cite{}}
+\end{figure}
+As seen from the image the current will be $i=v_{in}/R_1$ and $i=-v_0/R_2$. We combined them and get:
+$V_0=\frac{-R_2}{R_1}V_{in}$
+
+\newpage
+\subsection{Summing}
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=8cm, height=6cm]{\pathOPAMP/images/op-amp-summing.png}
+    \caption{Op-Amp summing. From \cite{}}
+\end{figure}
+
+Appling KCL we get: $I_f=I_1+I_2+I_3$ 
+$\frac{v_1-0}{R_1} + \frac{v_2}{R_2} + \frac{V_3}{R_3} = \frac{0-v_{out}}{R_f}$
+$\Rightarrow v_{out}=-(\frac{R_f}{R_1}V_1 + \frac{R_f}{R_2}V_2 + \frac{R_f}{R_3}V_3)$
+
+\newpage
+\section{General example}
+\begin{figure}[h]
+    \vspace{10mm}
+    \centering
+    \includegraphics[width=8cm, height=6cm]{\pathOPAMP/images/op-amp-example.png}
+    \caption{Op-Amp example. From \cite{}}
+\end{figure}
+\textbf{General observations:} 
+We can divide the circuit into three pieces. The one on the top is a   
+\textit{Voltage follower}, we can call it circuit 1. The one on the bottom
+is a \textit{Inverting op-amp} as is the middle one. We can name the bottom
+one circuit 2 and the middle one is circuit 3.
+\vspace{3mm}
+
+\textbf{We start with circuit 3:} \newline
+We name node \textbf{A} between $R_5$ and $R_6$. KCL: $I=I_5+I_6$ and $I=I_7$ since \newline
+there is no current in $-$ terminal. \newline
+$I=\frac{-U_{ut}}{R_7}=I_5+I_6=\frac{v_{O1}}{R_5}+\frac{v_{O2}}{R_6}$ \newline
+Because of Ohm's law and $v_{over resistor}=v_{head}-v_{tail}$. \newline
+\vspace{3mm}
+
+\textbf{To solve $v_{O1}$ we need to solve circuit 1:} \newline
+Applying KCL between $R_1$ and $R_2$ we get $I_1=I_2+I_3$ were $I_3=0$ since \newline
+there is no current going in the $+$ terminal. $I_1=I_2$ Ohm's law result in \newline
+$\frac{U_1-v_{O1}}{R_1}=\frac{V_{O1}-0}{R_2}$ since in a voltage follow circuit \newline
+$v^-=v^+=v_{out}$. We then get $v_{out}=\frac{R_2}{R_1+R_2}U_1$ \newline
+then $I_5=\frac{R_2}{(R_1+R_2)R_5}U_1$. \newline
+\vspace{3mm}
+
+\textbf{To solve $v_{O2}$ we need to solve circuit 2:} \newline
+KCL gives $I_3=I_4$ since there is no current in $-$ terminal. \newline
+Ohm's law $\frac{U_2-v^-}{R_3}=\frac{v^--v_{O2}}{R_4}$. \newline
+$v^-=v^+=0$ with result in $\frac{U_2}{R_3}=\frac{-v_{O2}}{R_4}$. \newline
+$v_{O2}=\frac{-R_4}{R_3}U_2$ \newline
+The current $I_6=\frac{-R_4}{R_3R_6}U_2$ \newline
+\vspace{3mm}
+
+\textbf{Going back to circuit 3:} \newline
+$I=I_5+I_6=\frac{R_2}{(R_1+R_2)R_5}U_1+\frac{-R_4}{R_3R_6}U_2$ \newline
+results in $\frac{-U_{ut}}{R_7}=\frac{R_2}{(R_1+R_2)R_5}U_1+\frac{-R_4}{R_3R_6}U_2$. \newline
+Final result: $U_{out}=-R_7(\frac{R_2}{R_5(R_1+R_2)}U_1-\frac{R_4}{R_3R_5}U_2)$
+
+

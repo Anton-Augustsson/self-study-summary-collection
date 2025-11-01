@@ -12,6 +12,9 @@
 *.synctex.gz
 *.fdb_latexmk
 
+# VSCode spesific
+.vscode/
+
 # Emacs spesific
 *.~undo-tree~
 auto/
