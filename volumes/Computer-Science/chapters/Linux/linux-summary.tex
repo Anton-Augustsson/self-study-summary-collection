@@ -14,13 +14,136 @@
 
 \section{File System}
 \subsection{Filesystem Hierarchy Standard}
+The filesystem hierarchy standards~\cite{fhs_3.0} defines the file system standard from the root directory. For the user specific directory standard XDG Base Directory Specification~\cite{xdg_basedir_spec} is used.
+
+\dirtree{%
+  .1 /\DTcomment{The root directory of the file system}.
+.2 bin/\DTcomment{Binaries of commands for all users}.
+.2 boot/\DTcomment{Contains required files for booting}.
+.2 dev/\DTcomment{Device files used by software to communicate with hardware}.
+.2 etc/\DTcomment{Host-specific system configuration}.
+.2 home/\DTcomment{Directories for all users}.
+.3 \textless{}your systems' username\textgreater{}/\DTcomment{Users home directory}.
+.4 .cache/\DTcomment{s}.
+.4 .config/.
+.4 .local/.
+.4 .ssh/.
+.4 .var/.
+.2 lib/.
+.2 media/.
+.2 mnt/.
+.2 opt/.
+.2 sbin/.
+.2 srv/.
+.2 tmp/.
+.2 usr/.
+.2 proc/.
+}
+
+
 
 
 \section{Systemd and its Alternatives}
+During the kernel boot process the kernel is hard coded to initiate the first user process, the init system, usually systemd. The init system is responsible for initiate the other user process. It will always have the process id (PID) 1. However, not all processes listed in the system, e.g., using \textit{top} or \textit{ps aux}, are created by PID 1, there are also kernel threads, e.g., kthreadd, ksoftirqd/0, and cpuhp/0. Each kernel thread is listed within brackets [], unlike user space process, and are almost always listed before the user space process.   
+
+Although systemd has become the de facto standard on Linux. There are other init systems, two of the most popular alternatives are OpenRC and runit.
+
+
 % .service, .device, ....
 \subsection{Systemd}
-\subsection{Openrc}
+\subsubsection{Design Philosophy}
+Modern, all-in-one suite with aggressive integration, aiming to unify system management.
+Key Features:
+
+
+\subsubsection{Key Features}
+\begin{itemize}
+\item \textbf{Service Management}: Uses .service files, supports parallel startup, socket activation, and dependency-based ordering.
+\item \textbf{Scope}: Beyond init, it manages devices (udev), logging (journald), login sessions (logind), network (networkd), timers, and more.
+\item \textbf{Complexity}: Highly feature-rich, often criticized for its monolithic design and tight coupling with Linux.
+\item \textbf{Adoption}: Default in most major Linux distributions (e.g., Debian, Ubuntu, Fedora, Arch).
+\end{itemize}
+
+
+\subsubsection{Pros}
+\begin{itemize}
+\item Fast boot times (parallelization).
+\item Advanced features (e.g., cgroups, resource control, snapshots).
+\item Strong integration with modern Linux ecosystems.
+\end{itemize}
+
+
+\subsubsection{Cons}
+\begin{itemize}
+\item Complexity and bloat.
+\item Controversial for deviating from Unix philosophy (``do one thing well'').
+\end{itemize}
+
+
+
+\subsection{OpenRC}
+\subsubsection{Design Philosophy}
+Lightweight, dependency-based init system, focusing on simplicity and compatibility.
+
+
+\subsubsection{Key Features}
+\begin{itemize}
+  \item \textbf{Service Management}: Uses shell scripts in /etc/init.d/, with dependency-based startup (defined in /etc/runlevels/).
+  \item \textbf{Scope}: Pure init system; relies on external tools for logging (e.g., syslog), device management (e.g., eudev), and networking.
+  \item \textbf{Compatibility}: Works with or without systemd (e.g., used in Alpine Linux, Gentoo, Devuan).
+  \item \textbf{Performance}: Lightweight, but slower than systemd for parallel startup.
+\end{itemize}
+
+
+\subsubsection{Pros}
+\begin{itemize}
+  \item Simple, modular, and transparent.
+  \item No hard dependencies on specific Linux features.
+  \item Easy to debug (shell scripts).
+\end{itemize}
+
+
+\subsubsection{Cons}
+\begin{itemize}
+  \item Slower boot times (less parallelization).
+  \item Fewer built-in features (e.g., no native socket activation).
+\end{itemize}
+
+
+
 \subsection{Runit}
+
+\subsubsection{Design Philosophy}
+Minimalist, Unix-like, focusing on reliability and simplicity.
+
+\subsubsection{Key Features}
+\begin{itemize}
+\item \textbf{Service Management}: Uses directories (/etc/sv/<service>/) with run scripts. Supervised by runsvdir.
+\item \textbf{Scope}: Pure process supervisor; relies on external tools for everything else (e.g., logging, networking).
+\item \textbf{Design}: Follows the "do one thing well" principle. Services are isolated and easy to manage.
+\item \textbf{Adoption}: Used in Void Linux, Artix Linux, and as an alternative in other distros.
+\end{itemize}
+
+
+\subsubsection{Pros}
+\begin{itemize}
+\item Extremely lightweight and fast.
+\item Simple to configure and debug.
+\item No dependencies on Linux-specific features (portable).
+\end{itemize}
+
+
+\subsubsection{Cons}
+\begin{itemize}
+\item Minimal built-in features (e.g., no native dependency resolution).
+\item Requires manual setup for logging, networking, etc
+\end{itemize}
+
+
+\subsection{Creating Systemd Services}
+
+%\subsection{Managing Systemd Services}
+
 
 
 \section{Security}
@@ -47,9 +170,9 @@
 \subsection{Output Manipulation}
 \paragraph{Less}
 \paragraph{Cat}
-\paragraph{Write >}
-\paragraph{Reed <}
-\paragraph{Pipe |}
+\paragraph{Write $>$}
+\paragraph{Reed $<$}
+\paragraph{Pipe $|$}
 \paragraph{Grep}
 \paragraph{Awk}
 \paragraph{Sed}

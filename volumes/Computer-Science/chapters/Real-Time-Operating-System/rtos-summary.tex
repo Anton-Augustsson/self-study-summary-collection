@@ -15,13 +15,13 @@ which allow CPU scheduling and memory management.
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{\pathRTS/images/rtos.png}
+  \includegraphics[width=\linewidth]{\pathRTOS/images/rtos.png}
   \caption{RTOS}
   \label{fig:rtos}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{\pathRTS/images/other_os.png}
+  \includegraphics[width=\linewidth]{\pathRTOS/images/other_os.png}
   \caption{Other OS}
   \label{fig:other_os}
 \end{subfigure}
@@ -60,7 +60,7 @@ But it is easier to conceptualize and work with if the deadline is within the pe
 \newpage
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/timing_constraints.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/timing_constraints.png}
     \caption{Timing Constraints, \cite{RTOS, p.21}}
 \end{figure}
 
@@ -80,7 +80,7 @@ Task states
 \subsection{Interrupt handling}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/handling_an_interrupt.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/handling_an_interrupt.png}
     \caption{Handling an Interrupt, \cite{RTOS, p.29}}
 \end{figure}
 
@@ -142,7 +142,7 @@ Standard for automotives \textbf{AUTOSAR}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/feasible_schedule.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/feasible_schedule.png}
     \caption{Handling an Interrupt, \cite{RTOS, p.29}}
 \end{figure}
 
@@ -187,7 +187,7 @@ A job $j_i$ is geven by a triple $(A_i,C_i,D_i)\in\mathcal{N}^3$, where
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/scheduling_window.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/scheduling_window.png}
     \caption{Scheduling window, \cite{05, p.7}}
 \end{figure}
 
@@ -431,7 +431,7 @@ However, there is no need to test for all $t$ it enough to check until the slope
 \end{equation}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/dbf.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/dbf.png}
     \caption{DBF graph}
     \label{fig:dbf}
 \end{figure}
@@ -514,14 +514,14 @@ Were the criticality level $\chi_i\in\{LO, HI\}$, i.e \{ Low citicality, High cr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/mixed-criticality_HI.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/mixed-criticality_HI.png}
     \caption{Timing Constraints, \cite{08A-advanced-workload-model, p.11}}
     \label{fig:mixed-criticality_HI}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/mixed-criticality_LO.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/mixed-criticality_LO.png}
     \caption{Timing Constraints, \cite{08A-advanced-workload-model, p.11}}
     \label{fig:mixed-criticality_LO}
 \end{figure}
@@ -552,7 +552,7 @@ Not all sets of tasks are sporadic.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/hierarchy_of_models.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/hierarchy_of_models.png}
     \caption{Hierarchy of Models}
 \end{figure}
 
@@ -658,7 +658,7 @@ V(scb):
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/bip_deadlock.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/bip_deadlock.png}
     \caption{Potential deadlock with BIP scheduling}
 \end{figure}
 
@@ -669,7 +669,7 @@ to that semaphore.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/hlp_example.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/hlp_example.png}
     \caption{HLP example of ceiling table}
 \end{figure}
 
@@ -791,7 +791,7 @@ Advantages and disadvantages for scheduling algorithms
 \subsection{Multiprocessor Scheduling of Task Graphs}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/multiprocessor_scheduling_of_sequantial_tasks.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/multiprocessor_scheduling_of_sequantial_tasks.png}
     \caption{Multiprocessor Scheduling of sequential tasks, \cite{11-multiprocessor-2, p.6}}
     \label{multiprocessor_scheduling_of_sequantial_tasks}
 \end{figure}
@@ -807,14 +807,14 @@ might make the schedule wors.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/lakshmanan's_algorithm.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/lakshmanan's_algorithm.png}
     \caption{Lakshmanan's Algorithm, \cite{11-multiprocessor-2, p.6}}
     \label{lakshmanan's_algorithm}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/breadth-first_partiononing_algorithms.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/breadth-first_partiononing_algorithms.png}
     \caption{breadth-first partiononing algorithms, \cite{11-multiprocessor-2, p.6}}
     \label{breadth-first_partiononing_algorithms}
 \end{figure}
@@ -847,7 +847,7 @@ The arbitration mechanism shown in Figure \ref{can_arbitration_mechanism}, allow
 The priority is dependent on the identifier. It is there fore important not to have the same identifier or the behaviur will be unexpected.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{\pathRTS/images/can_arbitration_mechanism.png}
+    \includegraphics[width=10cm]{\pathRTOS/images/can_arbitration_mechanism.png}
     \caption{CAN Arbitration Mechanism, \cite{14-rtc, p.11}}
     \label{can_arbitration_mechanism}
 \end{figure}

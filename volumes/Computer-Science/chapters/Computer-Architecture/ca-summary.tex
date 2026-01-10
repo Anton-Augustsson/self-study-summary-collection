@@ -6,7 +6,10 @@
 %\end{multicols}
 %\raggedcolumns
 
-\section{ISA1}
+\section{Instruction Set Architecture (ISA)}
+An ISA is the fundamental contract between the hardware mostly in terms of the CPU, and the software. The ISA contains a set of instruction describing fundamental operations, like adding two registers or load words from memory into a CPU register. There are several types of ISA used, but they can be divided into reduced instruction set computing (RISC) and complex instruction set computing (CISC). The x86 ISA is a CISC and was created by Intel but now maintained by the industry, e.g., AMD, Microsoft, Intel, Google, and Orical in \textbf{x86 Ecosystem Advisory Group}. On the other hand, there are several RISC ISAs, e.g., MIPS, ARM, and RISC-V.
+
+\section{MIPS ISA1}
 %\noindent\textbf{MIPS instructions} \newline
 \subsection{MIPS instructions}
 The instructions that an assembly language use for the MIPS proses.
@@ -427,23 +430,41 @@ The implementation of branch predictors look something like this:
 \end{figure}
 
 
-\subsection{Exceptions}
+\subsection{Exceptions and Interrupts}
 Exceptions are non-normal events that interrupt the normal flow of instructions.
 \begin{itemize}
 \item  Divide by zero.
-\item  Misaligned memory access.
-\item  Page fault.
+\item  Misaligned memory access, occurs when a program tries to access memory that is perfectly divisible by the data size, e.g., a 4-byte \textit{int} at address \textit{0x10001} instead of having a 4-byte \textit{int} as address \textit{0x10004}.
+\item  Page fault, occurs when a program tries to access a virtual memory page not currently in RAM.
 \item  Memory protection violation.
 \end{itemize}
 
-Interrupts are external events that interrupt the normal flow of 
+Interrupts are external events that interrupt the normal flow. There are several types of interrupts that can occur. Below is a list of characteristics of different interrupt.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=16cm]{\pathCA/images/exceptions.png} 
-    \caption{Exceptions. From \cite{ca}}
-\end{figure}
-
+\begin{itemize}
+  \item Synchronous vs. asynchronous
+  \begin{itemize}
+    \item Synchronous: always occurs at the same place in a program execution.
+    \item Asynchronous: instead caused by external devices that can happen at different times in a programs' execution.
+  \end{itemize}
+  \item User requested vs. coerced
+  \begin{itemize}
+    \item Coerced: hardware events that the user can't control
+    \item User requested: exceptions requested from the user.
+  \end{itemize}
+  \item User maskable vs. nonmaskable
+  \begin{itemize}
+    \item Markable if the user can disable the exception/interrupt.
+  \end{itemize}
+  \item Within vs. between instructions
+  \begin{itemize}
+    \item If the event prevents the current instruction from completing, or causes an interrupt after it.
+  \end{itemize}
+  \item Resume vs. terminate
+  \begin{itemize}
+    \item If the OS or program can handle the event or if the program must be terminated.
+  \end{itemize}
+\end{itemize}
 
 
 \section{Input/Output}
@@ -767,3 +788,11 @@ done:
     \includegraphics[width=16cm]{\pathCA/images/dual-issue-pipline.png}
     \caption{Dual-issue-pipline. From \cite{ca}}
 \end{figure}
+
+
+\section{Modern High Performance CPUs}
+% https://www.youtube.com/watch?v=jC_z1vL1OCI
+% Flow from instructions to actual execution.
+% Micro operations
+% Not just ALU, there are also specialised executions.
+
