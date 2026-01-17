@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% hydraulics.sty
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%:File hydraulics.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hydraulics}[%
+  2026/01/14 v0.0.1 Symbology to draw hydraulics circuits with TikZ
+] 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%: Packages Loading
+
+\RequirePackage{tikz}
+	\usetikzlibrary{shapes}
+	\usetikzlibrary{arrows.meta}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%: Definitions, Parameters and Commands
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%: Styles for Streams, Units and Signals
+% Define a pump symbol
+\tikzset{
+  pump/.pic = {
+    \draw[thick] (0,0) circle (0.5cm);
+    \draw[thick,->] (135:0.3cm) -- ++(315:0.7cm);
+    \node at (0,-0.7cm) {#1};
+  }
+}
+
+% Define a valve symbol
+\tikzset{
+  valve/.pic = {
+    \draw[thick] (0,0) -- ++(0,0.5cm) -- ++(0.5cm,0) -- ++(0,-0.5cm);
+    \node at (0,-0.5cm) {#1};
+  }
+}
+
+
+
+%\tikzset{
+%  % Solenoid actuator
+%  solenoid/.pic={
+%    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
+%    \draw[thick] (0,0) circle (0.2cm);
+%    \draw[thick] (-0.2,0) -- (0.2,0);
+%    \coordinate (-actuator) at (0,0.3);
+%  },
+%  % Lever actuator
+%  lever/.pic={
+%    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
+%    \draw[thick] (0,0) -- (0,0.4);
+%    \draw[thick] (0,0.4) circle (0.1cm);
+%    \coordinate (-actuator) at (0,0.4);
+%  }
+%}
+%
+%
+%\tikzset{
+%  % Full DCV with parameterized actuator type
+%  dcv/.pic = {
+%    \tikzset{dcv/.cd, #1}
+%    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
+%    \pic at (0, 0) {\pgfkeysvalueof{/tikz/dcv/actuator}};
+%  },
+%  dcv/actuator/.initial=lever,
+%}
+
+\tikzset{
+  % Solenoid actuator
+  solenoid/.pic={
+    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
+    \draw[thick] (0,0) circle (0.2cm);
+    \draw[thick] (-0.2,0) -- (0.2,0);
+    \coordinate (-actuator) at (0,0.3);
+  },
+  % Lever actuator
+  lever/.pic={
+    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
+    \draw[thick] (0,0) -- (0,0.4);
+    \draw[thick] (0,0.4) circle (0.1cm);
+    \coordinate (-actuator) at (0,0.4);
+  },
+  % Full DCV with parameterized actuator type
+  dcv/.pic={
+    \tikzset{dcv/.cd, #1}
+    \edef\actuator{\pgfkeysvalueof{/tikz/dcv/actuator}}
+    % Validate actuator type
+    \unless\ifnum\pdfstrcmp{\actuator}{lever}=0\relax
+      \unless\ifnum\pdfstrcmp{\actuator}{solenoid}=0\relax
+        \PackageError{TikZ}{Invalid actuator type: '\actuator'. Must be 'lever' or 'solenoid'}{}
+      \fi
+    \fi
+    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
+    \pic at (0, 0) {\actuator};
+  },
+  dcv/actuator/.initial=lever,
+}
