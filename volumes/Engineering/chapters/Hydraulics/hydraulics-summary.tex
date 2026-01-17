@@ -166,19 +166,10 @@ A small weight providing small force can lift a large weight requiring large for
 
 
 \begin{tikzpicture}
-  %\pic (myvalve1) at (0,0) {dcv={actuator=lever}};
-  \pic (myvalve1) at (4,0) {dcv={actuator=solenoid}};
-  %\pic (myvalve1) at (0,0) {dcv};
+  \pic (myvalve1) at (0,0) {dcv={control mechanism=lever}};
+  \pic (myvalve1) at (4,0) {dcv={control mechanism=pedal}};
+  \pic (myvalve1) at (8,0) {dcv={control mechanism=solenoid}};
 \end{tikzpicture}
-%    dcv={
-%      width=2.5,
-%      height=1.5,
-%      port spacing=0.4,
-%      stage spacing=0.4,
-%      stages={{spool type=spool open center},{spool type=spool closed center},{spool type=spool tandem center}}
-%    }
-%  };
-%
 
 
 \section{Series and Parallel Hydraulic Circuits}

@@ -1,6 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% hydraulics.sty
 %
+% The symbols are based on ISO 1219
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %:File hydraulics.sty
@@ -41,62 +42,61 @@
 }
 
 
-
-%\tikzset{
-%  % Solenoid actuator
-%  solenoid/.pic={
-%    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
-%    \draw[thick] (0,0) circle (0.2cm);
-%    \draw[thick] (-0.2,0) -- (0.2,0);
-%    \coordinate (-actuator) at (0,0.3);
-%  },
-%  % Lever actuator
-%  lever/.pic={
-%    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
-%    \draw[thick] (0,0) -- (0,0.4);
-%    \draw[thick] (0,0.4) circle (0.1cm);
-%    \coordinate (-actuator) at (0,0.4);
-%  }
-%}
-%
-%
-%\tikzset{
-%  % Full DCV with parameterized actuator type
-%  dcv/.pic = {
-%    \tikzset{dcv/.cd, #1}
-%    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
-%    \pic at (0, 0) {\pgfkeysvalueof{/tikz/dcv/actuator}};
-%  },
-%  dcv/actuator/.initial=lever,
-%}
-
+% Remember that you can not have a empty line
 \tikzset{
-  % Solenoid actuator
-  solenoid/.pic={
-    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
-    \draw[thick] (0,0) circle (0.2cm);
-    \draw[thick] (-0.2,0) -- (0.2,0);
-    \coordinate (-actuator) at (0,0.3);
+  % Control Mechanisms 
+  %% Mechanical Components
+  %%% Rotating Shaft
+  %%% Adjustible Stroke Limiter
+  %%% Detent
+  %%% Roller
+  %%% Spring
+  %% Fluidic
+  %%% Pneumatic Pilot
+  %%% Hydraulic Pilot
+  %% Manual
+  %%% General
+  %%% Push button
+  %%% Lever
+  /tikz/lever/.pic={
+    \draw[thick] (-1,0.4) -- (0,0.4);
+    \draw[thick] (-0.8,0) -- (0,0);
+    % y = -2x - 1.6
+    \draw[thick] (-1.2,0.8) -- (-0.7,-0.2);
+    \fill (-1.2,0.8) circle (0.6mm);
+    \coordinate (-right) at (0,-0.3);
   },
-  % Lever actuator
-  lever/.pic={
-    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
-    \draw[thick] (0,0) -- (0,0.4);
-    \draw[thick] (0,0.4) circle (0.1cm);
-    \coordinate (-actuator) at (0,0.4);
+  %%% Pedal
+  /tikz/pedal/.pic={
+    \draw[thick] (-0.8,0.4) -- (0,0.4);
+    \draw[thick] (-1,0) -- (0,0);
+    % y = 2x + 2
+    \draw[thick] (-1.2,-0.4) -- (-0.7,0.6);
+    % (-1)-(-0.7) = 0.3, 0.6 + 0.3/2 = 0.75,  deg(150) - deg(60) = deg(90)
+    \draw[thick] (-0.7,0.6) -- (-1,0.75);
+    \coordinate (-right) at (0,-0.3);
   },
+  %% Electrical
+  %%% Solenoid
+  /tikz/solenoid/.pic={
+    \draw[thick] (0,0.4) -- (-0.8,0.4) -- (-0.8,0) -- (0,0);
+    \draw[thick] (-0.5,0) -- (-0.3,0.4);
+    \coordinate (-right) at (0,-0.3);
+  },
+  %%% Proportional Solenoid
+  %%% Proportional Solenoid With Feedback
   % Full DCV with parameterized actuator type
-  dcv/.pic={
+  /tikz/dcv/.pic={
     \tikzset{dcv/.cd, #1}
-    \edef\actuator{\pgfkeysvalueof{/tikz/dcv/actuator}}
+    \edef\controlmechanism{\pgfkeysvalueof{/tikz/dcv/control mechanism}}
     % Validate actuator type
-    \unless\ifnum\pdfstrcmp{\actuator}{lever}=0\relax
-      \unless\ifnum\pdfstrcmp{\actuator}{solenoid}=0\relax
-        \PackageError{TikZ}{Invalid actuator type: '\actuator'. Must be 'lever' or 'solenoid'}{}
-      \fi
-    \fi
-    \draw[thick] (-0.3,-0.3) rectangle (0.3,0.3);
-    \pic at (0, 0) {\actuator};
+    \unless\ifnum\pdfstrcmp{\controlmechanism}{lever}=0\relax
+    \unless\ifnum\pdfstrcmp{\controlmechanism}{pedal}=0\relax
+    \unless\ifnum\pdfstrcmp{\controlmechanism}{solenoid}=0\relax
+      \PackageError{TikZ}{Invalid Control Mechanism: '\controlmechanism'. Must be 'lever', 'pedal, or 'solenoid'}{}
+    \fi\fi\fi
+    \pic (cm1) at (0, 0) {\controlmechanism};
+    \draw[thick] (cm1-right) rectangle (1,1);
   },
-  dcv/actuator/.initial=lever,
+  /tikz/dcv/control mechanism/.initial=lever,
 }
