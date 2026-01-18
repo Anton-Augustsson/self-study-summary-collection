@@ -5,8 +5,7 @@ This compendium on hydraulics is based on Jim Pytel excellent course called ``Hy
 \section{Introduction and Fluid Properties}
 Hydraulics systems transfer power by fluid within a close system. The advantage over pneumatic systems, which uses air, is that most fluids are incompressible, resulting in the ability of hydraulic actuators, e.g., hydraulic cylinder, to hold its position even under high loads. 
 
-% Compressability
-A substance's resistance to uniform compression is measured in terms of Bulk modulus ($B$), $B = \Delta{P}/(\Delta{V}/V)$, where $P$ is pressure and $V$ is volume. For water the bulk modulus is 2190 MPa~\cite{brennen_fluid_dynamics} in 20 C and in typical heavy machinery application the pressure is between 20–35 MPa, meaning that the volume will only decrease about 9-15.9 mL for each liter of water. Water is typically not used in hydronic systems, instead mineral-based hydraulic oil that are derived from crude oil or synthetic-based hydraulic oil, which have a slightly lower bulk module. But even for high pressure systems 50 MPa under 20 C the bulk modulus is 1880 MPa~\cite{gholizadeh_fluid_bulk_modulus}, resulting a volume decrease of....  Temperature has a greater effect on volume, however, both need to be taken into account.
+% Compressability A substance's resistance to uniform compression is measured in terms of Bulk modulus ($B$), $B = \Delta{P}/(\Delta{V}/V)$, where $P$ is pressure and $V$ is volume. For water the bulk modulus is 2190 MPa~\cite{brennen_fluid_dynamics} in 20 C and in typical heavy machinery application the pressure is between 20–35 MPa, meaning that the volume will only decrease about 9-15.9 mL for each liter of water. Water is typically not used in hydronic systems, instead mineral-based hydraulic oil that are derived from crude oil or synthetic-based hydraulic oil, which have a slightly lower bulk module. But even for high pressure systems 50 MPa under 20 C the bulk modulus is 1880 MPa~\cite{gholizadeh_fluid_bulk_modulus}, resulting a volume decrease of....  Temperature has a greater effect on volume, however, both need to be taken into account.
 
 % Lubricant
 Mineral-based and synthetic-based hydronic oil has additional properties over water, it acts as a lubricant. It also provides a seal for hydraulic cylinders, unlike water that could leak between chambers?
@@ -154,35 +153,61 @@ A small weight providing small force can lift a large weight requiring large for
 
 
 
-
-
 \section{Hydraulic Schematics}
-
-\begin{tikzpicture}
-  \pic at (0,0) {pump={Pump 1}};
-  \pic at (2,0) {valve={Valve A}};
-  \draw[thick] (0.5,0) -- (1.5,0); % Connect pump to valve
-\end{tikzpicture}
-
-
-\begin{tikzpicture}
-  \pic (myvalve1) at (0,0) {dcv={control mechanism=lever}};
-  \pic (myvalve1) at (4,0) {dcv={control mechanism=pedal}};
-  \pic (myvalve1) at (8,0) {dcv={control mechanism=solenoid}};
-\end{tikzpicture}
-
 
 \section{Series and Parallel Hydraulic Circuits}
 
-\section{Hydronic Cylinder}
+\section{Hydraulic Cylinder}
 \section{Check Valves}
 \section{Pressure Relief Valves}
 \section{Directional Control Valves}
+
+\begin{figure}[H]
+  \center
+  \begin{tabular}{ | >{\centering\arraybackslash}m{3cm} | m{3cm} | >{\centering\arraybackslash}m{4cm} | m{3cm} | } 
+  \hline
+    \tikz\pic at (0,0) {dcv={control mechanism=pedal, directional valve=two port two position normaly closed, scale=0.5}}; & Pedal controlled, 2 port, 2 position, normally closed &
+  \tikz\pic at (0,0) {dcv={control mechanism=pedal, directional valve=four port three position closed centre, scale=0.5}}; & Solenoid controlled, 4 port, 3 position, closed centre \\ 
+  \hline
+    \tikz\pic at (0,0) {dcv={control mechanism=lever, directional valve=two port two position normaly open, scale=0.5}}; & Lever controlled, 2 port, 2 position, normally open &
+  \tikz\pic at (0,0) {dcv={control mechanism=pedal, directional valve=four port three position a and b to t p blocked in centre position, scale=0.5}}; & Solenoid controlled, 4 port, 3 position, A and B to T, P blocked in centre position \\ 
+  \hline
+    \tikz\pic at (0,0) {dcv={control mechanism=solenoid, directional valve=three port two position normaly open, scale=0.5}}; & Solenoid controlled, 3 port, 2 position, normally open &
+  \tikz\pic at (0,0) {dcv={control mechanism=pedal, directional valve=infinite positioning, scale=0.5}}; & Solenoid controlled, infinite positioning \\ 
+  \hline
+  \tikz\pic at (0,0) {dcv={control mechanism=solenoid, directional valve=three port two position normaly closed, scale=0.5}}; & Solenoid controlled, 3 port, 2 position, normally closed
+    & & \\ 
+  \hline
+  \tikz\pic at (0,0) {dcv={control mechanism=solenoid, directional valve=four port two position normaly open in centre position, scale=0.5}}; & Solenoid controlled, 4 port, 2 position, normally open in center position
+    & & \\ 
+  \hline
+\end{tabular}
+  \caption{Directional control valves symbols.}
+  \label{fig:directional-control-valves-symbols}
+\end{figure}
+
+
+
 
 \section{Accumulators}
 %\section{Fluid Properties}?
 \section{Filters and Conditioning}
 \section{Hydraulic Pumps}
+Figure~\ref{fig:hydraulic-pumps-symbols} shows the symbols for hydraulic pumps.
+\begin{figure}[H]
+  \center
+  \begin{tabular}{ | >{\centering\arraybackslash}m{3cm} | m{4cm} | } 
+  \hline
+  \tikz\pic at (0,0) {fixed displacment pump}; & Fixed displacement pump \\ 
+  \hline
+  \tikz\pic at (0,0) {variable displacment pump}; & Variable Displacment pump \\ 
+  \hline
+\end{tabular}
+  \caption{Hydraulic pumps symbols.}
+  \label{fig:hydraulic-pumps-symbols}
+\end{figure}
+
+
 \subsection{Gear Pumps}
 \subsection{Vane Pumps}
 \subsection{Piston Pumps}
