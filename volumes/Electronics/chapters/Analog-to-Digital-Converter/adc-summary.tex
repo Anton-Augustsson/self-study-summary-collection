@@ -1,0 +1,84 @@
+\chapter{Analog to Digital Converter}
+An Analog to Digital Converter (ADC) samples a voltage value. It can be used for signals with AC components or sample reading out of DC components. Sensor has either an internal ADC, providing a digital interface, or an external ADC. For example, temperature and humidity sensors provide a difference in voltage level, thus only a DC component, making a cheaper low sampling rate ADC sufficient. Other sensor like an accelerometer could either static or slow changing thus only seen as DC component. An accelerometer could also be seen as a signal, e.g., with shock or vibrations, where the signal could be converted to the frequency domain. For RF signals the ADC provides the signal in the time domain but then later converted to the frequency domain.
+
+
+\section{Nyquist–Shannon Sampling Theorem}
+Nyquist–Shannon sampling theorem defines the minimal sampling rate required to perfectly reconstruct a continues-time signal from its discrete samples, without losing information.
+The theorem only applies to band-limited signals, i.e., no high frequency components above a certain maximum frequency $f_{\text{max}}$. Usually this is achieved by low-pass filters.
+\begin{equation}
+  f_s \geq 2 \times f_{\text{max}}
+\end{equation}
+where $f_s$ is the sampling frequency.
+
+% TODO: make a graph showing under sampling nyquist sampling and oversampling.
+
+If there are high frequency components it can appear as lower frequencies in the sampled signal, due to a phenomenon called alias. See Figure~\ref{} for the alias effect.
+% TODO: graph
+
+Perfect anti-alias filters, i.e., low pass filters, are impossible in the real world. However, the theorem provides a critical guideline for digital signal processing. 
+
+Some systems are intentionally undersampled then, having a low pass filter significantly higher than Nyquist sampling rate, i.e., $f_{\text{max}}$. Then there needs to be some additional mechanism to distinguish the higher frequencies components. In other words determine which \textit{Nyquist zone} it belongs. There are always infinity number of Nyquist zones, however, there should be some anti-alias filtering to ensure that there are only frequency components in zone 0, i.e., $0$ to $f_s/2$. The N-th Nyquist zone is defined as:
+\begin{equation}
+  n\frac{f_s}{2} \to (n+1)\frac{f_s}{2}
+\end{equation}
+
+
+\section{Representing Samples in the Frequency Domain}
+Fast Fourier Transform (FFT) is used to compute the Discrete Fourier Transform (DFT) of a signal, converting from time domain to the frequency domain.
+
+\subsection{DC Bin}
+With converting the sampled signal to the frequency domain, there will usually a DC component present in the signal. The signal is typically not centred around 0 volts when sampling. The offset will result in a 0 Hz competent, i.e., a DC component. Therefore, a signal will be shown in the first bin or at 0 Hz.
+
+\begin{equation} % TODO:
+  \sum f
+\end{equation}
+
+\subsection{Channeliser}
+As the name suggests a channeliser splits a signal into multiple channels to process it separately.
+Typically, a channeliser uses a FFT to separate the signal components into multiple channels. It is also possible to use digital filters, e.g., polyphase filter banks, to separate the frequency component.
+
+
+\section{Noise}
+
+
+\section{ADC types}
+\subsection{Successive Approximation (SAR) ADC}
+\subsection{Delta-Sigma ($\Delta\Sigma$) ADC}
+\subsection{Flash ADC}
+\subsection{Pipelined ADC}
+
+
+
+
+
+
+\section{Sampling}
+\subsection{Real-Time Sampling}
+For real-time control and monitoring.
+
+\subsection{IQ Sampling (In-Phase and Quadrature Sampling)}
+For RF and wireless communication.
+
+\subsection{Nyquist Sampling}
+
+\subsection{Oversampling}
+For high-fidelity and precision measurements.
+
+\subsection{Undersampling (Bandpass Sampling)}
+For radar.
+
+
+\subsection{Random sampling (Non-Uniform Sampling)}
+For sensors?
+
+
+\subsection{Compressed Sampling (Compressive Sampling)}
+
+\subsection{Event-Based Sampling}
+
+\subsection{Block Sampling}
+
+\subsection{Synchronous vs. Asynchronous Sampling}
+
+
+
