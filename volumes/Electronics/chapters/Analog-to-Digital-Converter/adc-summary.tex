@@ -24,30 +24,109 @@ Some systems are intentionally undersampled then, having a low pass filter signi
 
 
 \section{Representing Samples in the Frequency Domain}
-Fast Fourier Transform (FFT) is used to compute the Discrete Fourier Transform (DFT) of a signal, converting from time domain to the frequency domain.
+Fast Fourier Transform (FFT) is used to compute the Discrete Fourier Transform (DFT) of a signal, converting from time domain to the frequency domain. The signal will be split into discrete frequency components called bins, each bins value is defined in \ref{eq:bin}.
 
-\subsection{DC Bin}
-With converting the sampled signal to the frequency domain, there will usually a DC component present in the signal. The signal is typically not centred around 0 volts when sampling. The offset will result in a 0 Hz competent, i.e., a DC component. Therefore, a signal will be shown in the first bin or at 0 Hz.
-
-\begin{equation} % TODO:
-  \sum f
+Each bin represents the 
+\begin{equation}\label{eq:bin}
+  X[k] = \sum{n=0}^{N-1} x[n] \cdot e^{-i2\pi kn/N}
 \end{equation}
+
+The amplitude is the magnitude of $X[k]$, i.e., $|X[k]|$, the bin frequency $k$, and the phase is 
+\begin{equation*}
+  \theta[k]=\atan2(\Im(X[k]),\Re(X[k])).
+\end{equation*}
+Arctan2 will result in a phase between $\pm\pi$.
+
+We could use Eulers formula to derive a formula for imaginary and real part.
+\begin{align*}
+  e^{-i\theta} &= \cos{\theta} - i\sin{\theta} \\
+  e^{-i2\pi kn/N} &= \cos(2\pi kn/N) - i\sin(2\pi kn/N) \\
+  X[k] &= \sum_{n=0}^{N-1} x[k](\cos(2\pi kn/N) - i\sin(2\pi kn/N)) \\
+  X[k] &= \sum_{n=0}^{N-1} x[k]\cos(2\pi kn/N) - i\sum_{n=0}^{N-1} x[k]\sin(2\pi kn/N)) \\
+  \Rightarrow& \Re(X[k]) = \sum_{n=0}^{N-1} X[n]\cdot\cos(2\pi kn/N) \\
+  \Rightarrow& \Im(X[k]) = \sum_{n=0}^{N-1} X[n]\cdot\sin(2\pi kn/N) \\
+\end{align*}
+
+
+
 
 \subsection{Channeliser}
 As the name suggests a channeliser splits a signal into multiple channels to process it separately.
 Typically, a channeliser uses a FFT to separate the signal components into multiple channels. It is also possible to use digital filters, e.g., polyphase filter banks, to separate the frequency component.
 
 
-\section{Noise}
+
+
+\section{ADC Specifications} %TODO: more details
+\paragraph{Resolution (bits)} Number of bits represents the analog value, e.g., 8-bit, 12-bit, 16-bit.
+
+\paragraph{Sampling Rate (SPS)} How many samples the ADC can take per second, e.g., 1 MSPS, 100 kSPS.
+
+\paragraph{Input Range} Voltage range the ADC can digitize, e.g., $0$–$\SI{5}{\volt}$, $\pm\SI{10}{\volt}$.
+
+\paragraph{Integral Non-Linearity (INL)} Deviation of the actual transfer function from an ideal line.
+
+\paragraph{Differential Non-Linearity (DNL)} Variation in step size between adjacent codes.
+
+\paragraph{Signal-to-Noise Ratio (SNR)} Ratio of signal power to noise power, often expressed in dB.
+
+\paragraph{Effective Number of Bits (ENOB)} Actual resolution considering noise and distortion.
+
+\paragraph{Spurious-Free Dynamic Range (SFDR)} Ratio of the signal to the largest spurious component.
+
+
+% TODO:
+%Power Consumption: Critical for battery-powered or portable applications.
+%Latency: Time delay between sampling and data availability.
+% Dynamic Range
 
 
 \section{ADC types}
 \subsection{Successive Approximation (SAR) ADC}
+Usually has a bit rate of 8-16 bits, with moderate speed of 10 kSPS to 5 MSPS. 
+
 \subsection{Delta-Sigma ($\Delta\Sigma$) ADC}
+With a bit rate of 16-24 bits makes it ideal for high-precision application. However, its slow sampling rate of 1 SPS to 100 kSPS, it can only be for low speed aplication.
+
 \subsection{Flash ADC}
+Flash ADC are very fast with sampling rate ussaly above 100 MSPS. However, it has a low resulution of 4-8 bits.
+
 \subsection{Pipelined ADC}
+With speeds between 10 MSPS and 100 MSPS, and moderate to high resolution of 8-16 bits, it excel in application such as Automotive Radar~\cite{AD9081}\cite{TI-ADC12DJ3200}, LIDAR~\cite{AD9208}\cite{TI-ADC08D1520}, SDR~\cite{AD9361}\cite{LTC2175}\cite{TI-ADC32RF45}, spectrum analyzers~\cite{AD9680}\cite{Keysight-M9703A}, oscilloscopes~\cite{AD9625}\cite{Tektronix-DPO70000SX}. % TODO: see over sources
 
 
+\section{ADC Noise and Error Sources}
+\paragraph{Quantization Noise} Error introduced by discretizing a continuous signal.
+
+\paragraph{Thermal Noise} Random noise due to thermal agitation in components.
+
+\paragraph{Aperture Jitter} Timing uncertainty in the sampling instant, critical for high-frequency signals.
+
+\paragraph{Gain and Offset Errors} Deviations in the ADC’s transfer function.
+
+\paragraph{Clock Jitter} Uncertainty in the sampling clock, affecting high-speed ADCs.
+
+
+\subsection{DC Bin}
+With converting the sampled signal to the frequency domain, there will be a DC component present in the signal. The signal is typically not centred around 0 volts when sampling. The offset will result in a 0 Hz competent, i.e., a DC component. Therefore, a signal will be shown in the first bin or at 0 Hz.
+The first bin is derived from equation~\ref{eq:bin} and is defined in equation~\ref{eq:bin0}.
+
+\begin{equation}\label{eq:bin0}
+  X[0] = \sum_{n=0}^{N-1} x[n]
+\end{equation}
+
+
+
+\section{ADC Interfacing}
+
+\paragraph{Reference Voltage} Denoted as $V_{\text{REF}}$, sets the full-scale input range of the ADC.
+% TODO: I hold explain full-scale somewhere 
+
+\paragraph{Input Impedance} Must match the source impedance to avoid signal distortion.
+
+\paragraph{Driving the ADC} Use op-amps or buffers to ensure the input signal is stable during conversion.
+
+\paragraph{Multiplexing} Using a single ADC to sample multiple channels via a multiplexer.
 
 
 
@@ -79,6 +158,18 @@ For sensors?
 \subsection{Block Sampling}
 
 \subsection{Synchronous vs. Asynchronous Sampling}
+
+
+
+\section{Advanced Techniques}
+
+\paragraph{Dithering} Adding noise to improve linearity and reduce distortion in high-resolution ADCs.
+
+\paragraph{Decimation} Reducing the sampling rate after oversampling to improve resolution.
+
+\paragraph{Interleaving} Using multiple ADCs in parallel to increase effective sampling rate.
+
+\paragraph{Calibration} Compensating for ADC errors (gain, offset, INL/DNL) in software or hardware.
 
 
 
