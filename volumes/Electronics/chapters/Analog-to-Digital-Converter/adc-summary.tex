@@ -23,19 +23,18 @@ Some systems are intentionally undersampled then, having a low pass filter signi
 \end{equation}
 
 
-\section{Representing Samples in the Frequency Domain}
-Fast Fourier Transform (FFT) is used to compute the Discrete Fourier Transform (DFT) of a signal, converting from time domain to the frequency domain. The signal will be split into discrete frequency components called bins, each bins value is defined in \ref{eq:bin}.
+\section{Analysing ADC Outputs in the Frequency Domain}
+Fast Fourier Transform (FFT) is used to compute the Discrete Fourier Transform (DFT) of a signal, converting from time domain to the frequency domain. FFT process samples from the ADC in batches of N samples. Batches could have no overlap, where batch 0 uses sample $0\to N-1$ and batch 1 $N\to 2N-1$. Alternatively there could be an overlap of used samples to improve frequency resolution or reduce artefacts. A $50\%$ overlap would be batch 0 using $0\to N-1$, batch 1 using $N/2\to N/2+N-1$, and batch 2 using $2N\to2N-1$. The FFT will split the signal into discrete frequency components called bins, each bins value is defined in \ref{eq:bin}.
 
-Each bin represents the 
 \begin{equation}\label{eq:bin}
-  X[k] = \sum{n=0}^{N-1} x[n] \cdot e^{-i2\pi kn/N}
+  X[k] = \sum_{n=0}^{N-1} x[n] \cdot e^{-i2\pi kn/N}.
 \end{equation}
 
-The amplitude is the magnitude of $X[k]$, i.e., $|X[k]|$, the bin frequency $k$, and the phase is 
+The amplitude is the magnitude of $X[k]$, i.e., $|X[k]|$. The frequency is decrease into bins, meaning the frequency is represented by the bin $k$. The phase is defined as:
 \begin{equation*}
   \theta[k]=\atan2(\Im(X[k]),\Re(X[k])).
 \end{equation*}
-Arctan2 will result in a phase between $\pm\pi$.
+Arctan2 will result in a phase between $\pm\pi$. The phase represents the offset from the first samples, meaning in what position is the sinusoidal signal at the first sample.
 
 We could use Eulers formula to derive a formula for imaginary and real part.
 \begin{align*}
