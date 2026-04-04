@@ -4,8 +4,8 @@
 \section{RTOS}
 %- have image comparing normal and RTOS. 
 %- when ever you have time you can have the standard linux kernal on top of the RTLinux and run it as a task.
-A realtime OS needs to be \textit{Determinism}, we want the ability to control
-the sequence of execution. \textit{Responsiveness}, i.e. there should be short
+A realtime OS needs to be \textit{Determinism}, i.e., we want the ability to control
+the sequence of execution. \textit{Responsiveness}, i.e., there should be short
 interrupt latency as well as fast context switching. It should also have a \textit{small
 footprint}, i.e. use little storage. Some other requirements are \textit{Support for timely concurrent processing}, 
 which allow real-time, multi-tasking, and synchronization. Also, \textit{User control over OS policies}, 
@@ -471,6 +471,8 @@ If all deadlines are implicit it is a lot easier whe need just to check that the
 
 \subsection{Jitter}
 
+Jitter refers to the unpredictable variation in the timing of a periodic event—specifically, the deviation from the expected or ideal timing of when a task is executed.
+
 Jitter can be due to Tick-driven scheduler, since the timing-interupps accures every 10th ms 
 so we could be unlocky and have 10ms jitter.
 
@@ -478,9 +480,10 @@ varying execution time that start another task is another source of jitter
 
 Jitter, not exact or other tasks
 \begin{align*}
-  R_i &= \mathpzc{w}_i + \mathpzc{J}_i \\
-  \mathpzc{w}_i &= C_i + \sum_{j \in hp(\tau_i)} \left\lceil\frac{\mathpzc{w}_i + \mathpzc{J}_j}{T_j}\right\rceil C_j \\
+  R_i &= \mathpzc{w}_i + \mathpzc{J}_i, \\
+  \mathpzc{w}_i &= C_i + \sum_{j \in hp(\tau_i)} \left\lceil\frac{\mathpzc{w}_i + \mathpzc{J}_j}{T_j}\right\rceil C_j, \\
 \end{align*}
+where $mathpzc{w}$, $C$ is WCET, $mathpzc{J}$ is jitter,  in a given time unit.
 an optimistic view, so we can see the maximum allowed jitter
 
 %finding the executing time, we need since deadline and priotiry we have. We cant define it but we can have a estimate.

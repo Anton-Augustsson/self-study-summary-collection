@@ -471,19 +471,24 @@ If all deadlines are implicit it is a lot easier whe need just to check that the
 
 \subsection{Jitter}
 
-Jitter can be due to Tick-driven scheduler, since the timing-interupps accures every 10th ms 
-so we could be unlocky and have 10ms jitter.
+Jitter refers to the unpredictable variation in the timing of a periodic event, the deviation from the expected or ideal timing of when a task is executed.
 
-varying execution time that start another task is another source of jitter
+\paragraph{Release Jitter} The time variation of a periodic task being released, i.e., made ready to run, relative to its ideal time. For instance, when a task is schedule to run every 10ms might some times start at 9.9ms, 10.1ms or 10.3ms due to system load or scheduling delay.
+\paragraph{Execution Jitter} The variation in the execution time of a task from one instance to the next. A task might usually take 2ms but due to cache misses or resource contention it might take 2.5ms.
+\paragraph{Completion Jitter} The variation in the time at which a task finishes execution relative to its deadline or expected completion time. For instance a task that should finish by 10 ms might complete at 9.8 ms, 10.2 ms, or 10.5 ms.
+\paragraph{Inter-Arrival Jitter} The variation in the time between the arrivals of periodic events, e.g., sensor data, network packets. Could occur if a sensor sending data every 5 ms but sometimes send it at 4.9 ms, 5.0 ms, or 5.1 ms intervals.
 
-Jitter, not exact or other tasks
-\begin{align*}
-  R_i &= \mathpzc{w}_i + \mathpzc{J}_i \\
-  \mathpzc{w}_i &= C_i + \sum_{j \in hp(\tau_i)} \left\lceil\frac{\mathpzc{w}_i + \mathpzc{J}_j}{T_j}\right\rceil C_j \\
-\end{align*}
-an optimistic view, so we can see the maximum allowed jitter
+\paragraph{Calculating the Worst-Case Response Time}
+The worst-case response time ($R_i$) for task $\tau_i$ for FP-scheduling on a single processor would then be:
+\begin{equation*}
+  R_i = \mathpzc{J}_i + \mathpzc{w}_i,
+\end{equation*}
+where $\mathpzc{J}$ is the jitter, and $\mathpzc{w}$
+\begin{equation*}
+  \mathpzc{w}_i = C_i + \sum_{\tau_j \in hp(\tau_i)} \left\lceil\frac{\mathpzc{w}_i + \mathpzc{J}_j}{T_j}\right\rceil C_j, \\
+\end{equation*}
+$C$ is worst-case execution time, the sum calculate $\tau_j$ is a higher priority task. The sum calculates the maximum number of times the higher priority task ($\tau_j$) can preempt task $\tau_i$ during the interval $\mathpzc{w}_i+\mathpzc{J}_j$.
 
-%finding the executing time, we need since deadline and priotiry we have. We cant define it but we can have a estimate.
 
 
 \section{Workload Models}
