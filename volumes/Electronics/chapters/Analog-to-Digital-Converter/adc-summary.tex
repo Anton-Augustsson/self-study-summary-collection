@@ -1,6 +1,15 @@
 \chapter{Analog to Digital Converter}
+
 An Analog to Digital Converter (ADC) samples a voltage value. It can be used for signals with AC components or sample reading out of DC components. Sensor has either an internal ADC, providing a digital interface, or an external ADC. For example, temperature and humidity sensors provide a difference in voltage level, thus only a DC component, making a cheaper low sampling rate ADC sufficient. Other sensor like an accelerometer could either static or slow changing thus only seen as DC component. An accelerometer could also be seen as a signal, e.g., with shock or vibrations, where the signal could be converted to the frequency domain. For RF signals the ADC provides the signal in the time domain but then later converted to the frequency domain.
 
+
+The scope of this compendium is to describe: 
+\begin{enumerate}
+  \item How the analog circuit can manipulate the signal to improve the performance of an ADC;
+  \item The internals of an ADC;
+  \item And what comes just after ADC, e.g., representing in the frequency domain.
+\end{enumerate}
+What comes after a converting from time domain to frequency domain will not be covered in this compendium.
 
 \section{Nyquist–Shannon Sampling Theorem}
 Nyquist–Shannon sampling theorem defines the minimal sampling rate required to perfectly reconstruct a continues-time signal from its discrete samples, without losing information.
@@ -135,7 +144,36 @@ The first bin is derived from equation~\ref{eq:bin} and is defined in equation~\
 For real-time control and monitoring.
 
 \subsection{IQ Sampling (In-Phase and Quadrature Sampling)}
-For RF and wireless communication.
+Real-time sampling of a signal captures only its amplitude and frequency, but loses phase information. This limitation makes it impossible to use techniques like phase interferometry, which are essential in modern wireless communication systems such as 5G and WiFi.
+
+In contrast, IQ sampling provides both amplitude and phase information. This is achieved by mixing the input signal with two local oscillator (LO) signals that are 90° out of phase, enabling the reconstruction of the original signal’s complex envelope.
+
+
+Using the trigonometric identity $\cos(A)\cos(B)=1/2[\cos(A+B)+\cos(A-B)]$ the output signal from mixing with $\text{LO}_1$ will be:
+\begin{equation}
+  s_{input}(t) \cdot s_{\text{LO}_1}(t) = \frac{A}{2}\left[\cos\left(2\pi f_{RF}t + 2\pi f_{\text{LO}}t\right) + \cos\left(2\pi f_{RF}t - 2\pi f_{\text{LO}}t\right)\right].
+\end{equation}
+The high frequency component $\cos(2\pi f_{RF}t + 2\pi f_{\text{LO}}t)$ usually is filtered out using a low pass filter. Similarly, with the Q-channel the mixing with $\text{LO}_1$ will result in:
+\begin{equation}
+  s_{input}(t) \cdot s_{\text{LO}_2}(t) = \frac{A}{2}\left[\cos\left(2\pi f_{RF}t + 2\pi f_{\text{LO}}t - \frac{\pi}{2}\right) + \cos\left(2\pi f_{RF}t - \left(2\pi f_{\text{LO}}t - \frac{\pi}{2}\right)\right)\right].
+\end{equation}
+Note that $\sin(\theta)=\cos(\theta-\pi/2)$. Thus, the resulting two signals will be:
+\begin{align}
+  s_I(t) &= \frac{A}{2}\cos(2\pi(f_{RF}-f_{\text{LO}})t), \\
+  s_Q(t) &= \frac{A}{2}\cos\left(2\pi\left(f_{RF}-f_{\text{LO}}\right)t +\frac{\pi}{2}\right).
+\end{align}
+
+The amplitude is then calculated:
+\begin{equation}
+  \text{Amplitude} = \sqrt{I^2 + Q^2}.
+\end{equation}
+And the phase:
+\begin{equation}
+  \text{Phase} = \arctan\left(\frac{Q}{I}\right).
+\end{equation}
+
+
+
 
 \subsection{Nyquist Sampling}
 
