@@ -17,27 +17,32 @@
 The filesystem hierarchy standards~\cite{fhs_3.0} defines the file system standard from the root directory. For the user specific directory standard XDG Base Directory Specification~\cite{xdg_basedir_spec} is used.
 
 \dirtree{%
-  .1 /\DTcomment{The root directory of the file system}.
-.2 bin/\DTcomment{Binaries of commands for all users}.
-.2 boot/\DTcomment{Contains required files for booting}.
-.2 dev/\DTcomment{Device files used by software to communicate with hardware}.
-.2 etc/\DTcomment{Host-specific system configuration}.
-.2 home/\DTcomment{Directories for all users}.
-.3 \textless{}your systems' username\textgreater{}/\DTcomment{Users home directory}.
-.4 .cache/\DTcomment{s}.
-.4 .config/.
-.4 .local/.
-.4 .ssh/.
-.4 .var/.
-.2 lib/.
-.2 media/.
-.2 mnt/.
-.2 opt/.
-.2 sbin/.
-.2 srv/.
-.2 tmp/.
-.2 usr/.
-.2 proc/.
+  .1 /\DTcomment{The root directory of the file system.}.
+.2 bin/\DTcomment{Binaries of commands for all users.}.
+.2 boot/\DTcomment{Contains required files for booting.}.
+.2 dev/\DTcomment{Device files used by software to communicate with hardware.}.
+.2 etc/\DTcomment{Host-specific system configuration.}.
+.2 home/\DTcomment{Directories for all users.}.
+.3 \textless{}your systems' username\textgreater{}/\DTcomment{Users home directory.}.
+.4 .cache/\DTcomment{Stores non-essential, temporary data, e.g., downloaded packages, or logs.}.
+.4 .config/\DTcomment{Stores user-specific configuration files.}.
+.4 .local/\DTcomment{Stores user-specific data, configurations, and executables.}.
+.4 .ssh/\DTcomment{Contains configuration and key files for SSH connections}.
+.4 .var/\DTcomment{Used for runtime files for user applications.}.
+.2 lib/\DTcomment{Shared libraries and kernel modules.}.
+.2 media/\DTcomment{Removable media, e.g., USB drives, CDs.}.
+.2 mnt/\DTcomment{Temporary mount points for filesystems.}.
+.2 opt/\DTcomment{Third-party or optional software packages.}.
+.2 proc/\DTcomment{Virtual filesystem providing runtime system information, e.g., /proc/cpuinfo.}.
+.2 root/\DTcomment{The home directory for the root (superuser) account.}.
+.2 run/\DTcomment{Stores runtime data, e.g., process IDs, sockets.}.
+.2 sbin/\DTcomment{System administration binaries, e.g., fdisk, ifconfig.}.
+.2 selinux/\DTcomment{Used by SELinux to store policies, status, and configuration files.}.
+.2 srv/\DTcomment{Data for services provided by the system, e.g., web server files.}.
+.2 sys/\DTcomment{A virtual filesystem that exposes kernel and hardware information in a structured way.}.
+.2 tmp/\DTcomment{Temporary files created by applications.}.
+.2 usr/\DTcomment{Contains user programs, libraries, and documentation.}.
+.2 var/\DTcomment{Stores variable data like logs (/var/log), caches, and spool files.}.
 }
 
 
@@ -206,6 +211,67 @@ Minimalist, Unix-like, focusing on reliability and simplicity.
 \paragraph{Rm}
 \paragraph{Ls}
 \paragraph{Cp}
+
+
+
+\section{Yocto Project}
+\begin{description}
+
+    \item[Configuration Files]  
+    These files define global variables, user settings, and hardware-specific parameters.  
+    They instruct the build system which platform to support and what to include in the final image.
+
+    \item[Recipe]  
+    A recipe is the most common metadata unit. It specifies where to fetch source code,  
+    which patches to apply, dependencies on libraries or other recipes, and how to configure  
+    and compile the software. Recipes are stored within layers.
+
+    \item[Layer]  
+    A layer groups related recipes. Layers let you organize and reuse metadata across  
+    different hardware architectures or customizations. Layers are hierarchical — later  
+    layers can override earlier ones. The Yocto Project provides a searchable Layer Index.
+
+    \item[Metadata]  
+    Metadata includes recipes, configuration files, and build instructions. It controls  
+    what gets built, how, and from where. Metadata may also contain patches or auxiliary  
+    files to fix bugs or add features. OpenEmbedded Core is a core set of validated metadata.
+
+    \item[OpenEmbedded Core (OE-Core)]  
+    A foundational set of recipes, classes, and files shared across many embedded Linux  
+    systems. OE-Core is a quality-assured subset of the original OpenEmbedded repository,  
+    continuously tested for reliability.
+
+    \item[Poky]  
+    A reference distribution and test configuration. Poky serves three purposes:  
+    (1) demonstrating how to customize a Linux distribution, (2) validating the Yocto  
+    Project components, and (3) providing an easy starting point for users. Poky is not  
+    production-ready but is ideal for experimentation. It builds on top of OE-Core.
+
+    \item[BitBake (Build System)]  
+    A task scheduler and execution engine. BitBake parses recipes and configuration data,  
+    builds a dependency tree, schedules compilation, and produces a custom Linux image.  
+    It works like \texttt{make} but is tailored for cross-compilation. During a build,  
+    BitBake first creates a cross-compiler toolchain (an Extensible SDK) for the target platform.
+
+    \item[Packages]  
+    The intermediate outputs produced by the build system, which are assembled into the  
+    final image.
+
+    \item[Extensible SDK (eSDK)]  
+    A customized SDK for application developers. It allows developers to modify libraries  
+    or code and immediately integrate those changes back into the image, making them  
+    available to other applications.
+
+    \item[Image]  
+    A binary file containing a complete Linux distribution (operating system), ready to  
+    be written onto a target device.
+
+\end{description}
+
+
+\section{Real-Time Linux}
+
+
 
 
 \section{Linux Organizational Structure}
